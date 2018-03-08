@@ -33,8 +33,8 @@ const static SearchEngine searchengines[] = {
     { "urban",  "https://www.urbandictionary.com/define.php?term=%s" },
 };
 
-static char *scriptfile = "/home/mitch/etc/suckless-tools/surf/script.js";
-static char *styledir   = "/home/mitch/etc/suckless-tools/surf/styles";
+static char *scriptfile = "/home/mitch/etc/suckless/surf/script.js";
+static char *styledir   = "/home/mitch/etc/suckless/surf/styles";
 static char *cachedir   = "/home/mitch/.cache/surf";
 static char *cookiefile = "/home/mitch/var/tmp/surf-cookies.txt";
 

@@ -2,7 +2,8 @@
 
 /* --------------- Font ---------------------------------- */
 /* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
-char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false";
+/* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
+char font[] = "GohuFont:pixelsize=12:antialias=false:autohint=false";
 /* char font[] = "scientifica:pixelsize=14:antialias=false:autohint=false"; */
 /* char font[] = "MonteCarlo:pixelsize=14:antialias=false:autohint=false"; */
 /* char font[] = "Roboto Mono:pixelsize=14:antialias=true:autohint=true"; */
