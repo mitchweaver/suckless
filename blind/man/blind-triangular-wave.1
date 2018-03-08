@@ -1,0 +1,39 @@
+.TH BLIND-TRIANGULAR-WAVE 1 blind
+.SH NAME
+blind-triangular-wave - Apply triangular-wave repetition to gradient
+.SH SYNOPSIS
+.B blind-triangular-wave
+[-es]
+.SH DESCRIPTION
+.B blind-triangular-wave
+reads a video from stdin, applies a filter to
+each channel to it, and prints the result to
+stdout. The filter is designed for applying
+repetition to a gradient, and thus assumes the
+range of visible values is [0, 1]. The applied
+filter creates a triangular wave.
+.SH OPTIONS
+.TP
+.B -e
+Apply optimisation that assumes all channels
+are identical.
+.TP
+.B -s
+Apply a variation of the filter that is
+more appropriate for spiral gradient.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-double-sine-wave (1),
+.BR blind-round-wave (1),
+.BR blind-sawtooth-wave (1),
+.BR blind-sinc-wave (1),
+.BR blind-sine-wave (1),
+.BR blind-spectrum (1),
+.BR blind-cone-gradient (1),
+.BR blind-linear-gradient (1),
+.BR blind-radial-gradient (1),
+.BR blind-spiral-gradient (1),
+.BR blind-square-gradient (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

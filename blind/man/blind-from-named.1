@@ -1,0 +1,64 @@
+.TH BLIND-FROM-NAMED 1 blind
+.SH NAME
+blind-from-named - Receive a file descriptor
+.SH SYNOPSIS
+.B blind-from-named
+[-t
+.IR decisecs ]
+[-a]
+([-f
+.IR fd ]
+.I path
+.RI [ command \ ...]
+|
+.IR path )
+.SH DESCRIPTION
+.B blind-from-named
+connects to a
+.BR unix (7)
+socket with the filename
+.I path
+and received a file descriptor.
+.P
+If a
+.I command
+is specified, the received file descriptor set to
+stdin, and the process executes to the specified
+.IR commmand ,
+otherwise, the input from the received file descriptor
+is sent to stdout.
+.SH OPTIONS
+.TP
+.B -a
+Rather than binding to a filename, create and abstract
+address, starting with a NUL byte followed by
+.I path
+and padded with NUL bytes until the end of the address.
+.TP
+.BR -f \ \fIfd\fP
+Assign the file descriptor number
+.I fd
+to the received file descriptor, rather than as
+stdin.
+.TP
+.BR -t \ \fIdecisecs\fP
+Try to connect to the socket for at most
+.I decisecs
+deciseconds, trying once per decisecond. (Default is 10.)
+.SH RATIONALE
+The pipeline construction, in even advanced, shells
+are not flexible enough to do all kinds of pipelinings
+that are necessary when doing complicated effects with
+.BR blind (7).
+For example, this is necessary to pipe video into
+two processes pipelines using
+.BR tee (1)
+and then using the end of both pipelines as the in
+input to the process, like inverse multiplexing.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-to-named (1),
+.BR blind-tee (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

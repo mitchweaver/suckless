@@ -1,0 +1,157 @@
+.TH BLIND-SPIRAL-GRADIENT 1 blind
+.SH NAME
+blind-spiral-gradient - Generate a video with a spiral gradient
+.SH SYNOPSIS
+.B blind-spiral-gradient
+[-s
+.I spirals
+| -t]
+[-al]
+-w
+.I width
+-h
+.I height
+.SH DESCRIPTION
+.B blind-spiral-gradient
+prints a video with a spiral gradient to stdout,
+parameters for each from is read from each frame
+in stdin. The gradient is stored in all channels
+of the video.
+.P
+The video in stdin must contain 2 to 5 pixels per
+frame (inclusively). The first pixel shall point
+to the beginning of the gradient (where the value
+is 0) and the second pixel shall point to the end
+of the gradient (where the value is 1). In these
+pixels, the value of the first channel specifies
+the X-position and the value of the second
+channel specifies Y-position, the other channels
+are ignored. The angle of the vector between these
+two pixels determine the angle of the spiral.
+.P
+If there are four or five pixel in each frame in
+stdin, the third and fourth pixels are used to
+modify the shape of the spiral so that it is
+based on a superellipse instead of a circle.
+The first and second channel of third pixel creates
+a vector that is normalised. This vector and its
+normal creates the basis of an imaginary coordinate
+system with its origo at the beginning of the spiral.
+The superellipse defined by the equation
+.RI | x |^ a +| y / m |^ b =1,
+where
+.I x
+is the distance from origo along the vector,
+.I y
+is the distance from origo along the vector's normal,
+.IR a ,
+.IR b ,
+and
+.I m
+are the values of the first, second, and third
+channels, respectively, in the fourth pixel. and has
+the distance 1 from origo at all points on it. If
+.IR a ,
+.IR b ,
+and
+.I m
+have the values 2, 2, and 1, respectively, these
+pixels have no effect on the spiral's shape.
+The third and fourth channels in the third pixel
+and the fourth channel in the fourth pixel are
+ignored.
+.P
+If there are three or five pixels, the channels,
+in order, in the last pixel, specifies the value
+.IR a ,
+.IR e ,
+.IR p ,
+and
+.IR k ,
+whose default values are 0, 1, 1, and 1, respectively.
+.I k
+is ignored unless
+.B -l
+is used. If
+.B -l
+is not used, the spiral is defined by the equation
+.IR r = a +( b /( 2\fBpi\fP )^ e ) v ^( ep ).
+If
+.B -l
+is used, the spiral is defined by the equation
+.RI log( r / k )= a +(log( b )/( 2\fBpi\fP )^ e ) v ^( ep ).
+.I r
+is defined as the distance from the center of the
+spiral,
+.I b
+is defined as the distance between the points
+specified in the first and second pixel from stdin,
+and
+.I v
+is defined as the angle.
+.SH NOTES
+Pixels after the end of the gradient have values
+larger than 1.
+.BR blind-*-wave (1)
+commands can be used to put all values between
+0 and 1.
+.SH OPTIONS
+.TP
+.B -a
+Create a spiral that gones anticlockwise.
+.TP
+.B -l
+Create a logarithmic spiral.
+.TP
+.BR -s " "\fIspirals\fP
+Draw
+.I spirals
+spirals
+going out the specified centre instead of
+just one spiral. The spirals are uniformly
+distributed.
+.I spirals
+can be any non-zero real number.
+.TP
+.B -t
+Base the resulting values only on the angle
+in the spiral formula rather than then both
+the angle and radius. This is useful for
+creating transitions with spiral effects.
+.TP
+.BR -w " "\fIwidth\fP
+The width of the video, in pixels.
+.TP
+.BR -h " "\fIheight\fP
+The height of the video, in pixels.
+.SH NOTES
+Because
+.B -s
+has no affect when
+.B -t
+is applied,
+.B -s
+and
+.B -t
+cannot be combined unless
+.I spirals
+is 1. This will change in the future
+if a way to meaningfully combined the
+two flags is found.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-text (7),
+.BR blind-cone-gradient (1),
+.BR blind-linear-gradient (1),
+.BR blind-radial-gradient (1),
+.BR blind-square-gradient (1),
+.BR blind-double-sine-wave (1),
+.BR blind-round-wave (1),
+.BR blind-sawtooth-wave (1),
+.BR blind-sinc-wave (1),
+.BR blind-sine-wave (1),
+.BR blind-triangular-wave (1),
+.BR blind-spectrum (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

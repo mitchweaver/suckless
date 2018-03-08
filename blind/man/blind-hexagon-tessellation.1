@@ -1,0 +1,37 @@
+.TH BLIND-HEXAGON-TESSELLATION 1 blind
+.SH NAME
+blind-hexagon-tessellation - Create a frame with tessellated hexagons
+.SH SYNOPSIS
+.B blind-hexagon-tessellation
+[-F
+.IR pixel-format ]
+.I block-diameter
+.SH DESCRIPTION
+.B blind-hexagon-tessellation
+prints a small video to stdout, that
+can be extended to any size with
+.BR blind-repeat-tessellation (1)
+to create a pattern of tessellated
+hexagons. Each hexagon will be inscribed
+in an imaginary circle with the diameter
+.I block-diameter
+and with one of the corners at 12 o'clock.
+.SH OPTIONS
+.TP
+.BR -F " "\fIpixel-format\fP
+Select pixel format, see
+.BR blind-convert (1)
+for more information.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-rectangle-tessellation (1),
+.BR blind-triangle-tessellation (1),
+.BR blind-repeat-tessellation (1),
+.BR blind-get-colours (1),
+.BR blind-apply-palette (1),
+.BR blind-mosaic (1),
+.BR blind-mosaic-corners (1),
+.BR blind-mosaic-edges (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

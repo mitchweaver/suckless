@@ -1,0 +1,70 @@
+.TH BLIND-EXTEND 1 blind
+.SH NAME
+blind-extend - Add margins to a video
+.SH SYNOPSIS
+.B blind-extend
+[-l
+.IR left ]
+[-r
+.IR right ]
+[-a
+.IR above ]
+[-b
+.IR below ]
+[-t]
+.SH DESCRIPTION
+.B blind-extend
+reads a video from stdin and prints a version of it,
+where extra space has been to its sides, to stdout.
+.SH OPTIONS
+.TP
+.BR -l " "\fIleft\fP
+Extend the video by
+.I left
+pixels to the left side of the video.
+.I left
+most be a non-negative integer.
+.TP
+.BR -r " "\fIright\fP
+Extend the video by
+.I right
+pixels to the right side of the video.
+.I right
+most be a non-negative integer.
+.TP
+.BR -a " "\fIabove\fP
+Extend the video by
+.I above
+pixels to the top of the video.
+.I above
+most be a non-negative integer.
+.TP
+.BR -b " "\fIbelow\fP
+Extend the video by
+.I below
+pixels to the bottom of the video.
+.I blelow
+most be a non-negative integer.
+.TP
+.BR -t
+Instead of adding transparent pixels, draw the end
+of the input videos in the new room, such that the
+right-most part of the video has is put side-by-side
+with the left-most part of the video, and analogously
+for the other sides.
+.SH REQUIREMENTS
+.B blind-extend
+requires enough free memory to load two full frames into
+memory, one of the size of the source video's frames,
+and one of the size of the target video's frames. A frame
+requires 32 bytes per pixel it contains.
+.B blind-extend
+has not been optimised for memory usage, but instead
+for code simplicity.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-crop (1),
+.BR blind-translate (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

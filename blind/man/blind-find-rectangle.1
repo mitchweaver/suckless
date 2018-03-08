@@ -1,0 +1,70 @@
+.TH BLIND-FIND-RECTANGLE 1 blind
+.SH NAME
+blind-find-rectangle - Locate a coloured rectangle
+.SH SYNOPSIS
+.B blind-find-rectangle
+[-a
+.IR min-area ]
+[-h
+.IR min-height ]
+[-w
+.IR min-width ]
+.I X
+.I Y
+.I Z
+.RI [ alpha ]
+.SH DESCRIPTION
+.B blind-find-rectangle
+reads a video from stdin, and locates the largest
+rectangle of a specified colour. If there are two
+or more maximal rectangles, one is choosen arbitrarily.
+The specified by the arguments
+.IR X ,
+.IR Y ,
+and
+.IR Z ,
+and the selected
+.I alpha
+value. The colour is specified in CIE XYZ. If
+.I X
+and
+.I Z
+are not specified, the colour will be CIE Standard Illuminant
+D65-grey with the luminosity
+.IR Y .
+If
+.I alpha
+is not specified, 1, which means fully opaque, will be used.
+.SH STDOUT
+The location and dimensions of the rectangle is printed stdout.
+Exactly one line is printed per frame. Each line has the format
+.nf
+
+	\fB"%zu %zu %zu %zu\\n"\fP, <\fIleft\fP>, <\fItop\fP>, <\fIwidth\fP>, <\fIheight\fP>
+
+.fi
+where
+.I left
+is position on the X-axis (measured from the left) on the
+left-most pixels in the rectangle,
+.I top
+is position on the Y-axis (measured from the top) on the
+top-most pixels in the rectangle,
+.I width
+is the width of the rectangle, and
+.I height
+is the width of the rectangle.
+.SH NOTES
+.B blind-find-rectangle
+may be changed in the future to use some other colour model,
+therefore, it is recommended to also use
+.BR blind-colour-ciexyz (1)
+if you are specifying the colour in CIE XYZ. If however
+your values are colour space-agnostic, you should not. 
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-colour-ciexyz (1),
+.BR blind-colour-srgb (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

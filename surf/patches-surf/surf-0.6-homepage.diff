@@ -1,0 +1,26 @@
+diff --git a/config.def.h b/config.def.h
+index 93a3d49..41bb067 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -35,6 +35,7 @@ static Bool loadimages            = TRUE;
+ static Bool hidebackground        = FALSE;
+ static Bool allowgeolocation      = TRUE;
+ 
++#define HOMEPAGE "https://www.duckduckgo.com/"
+ #define SETPROP(p, q) { \
+ 	.v = (char *[]){ "/bin/sh", "-c", \
+ 	     "prop=\"`xprop -id $2 $0 " \
+diff --git a/surf.c b/surf.c
+index fdfaab1..7a71bf2 100644
+--- a/surf.c
++++ b/surf.c
+@@ -1759,6 +1759,9 @@ main(int argc, char *argv[])
+ 	default:
+ 		usage();
+ 	} ARGEND;
++	#ifdef HOMEPAGE
++		arg.v = HOMEPAGE;
++	#endif
+ 	if (argc > 0)
+ 		arg.v = argv[0];
+ 

@@ -1,0 +1,64 @@
+.TH BLIND-MATRIX-SHEAR 1 blind
+.SH NAME
+blind-matrix-shear - Create an affine 2D-transformation matrix for shearing
+.SH SYNOPSIS
+.B blind-matrix-shear
+[-a [-d]] [-c]
+.SH DESCRIPTION
+.B blind-matrix-shear
+creates an affine 2D-transformation matrix for
+shearing. The parameters for the matrix is read
+in stdin in format of a blind video, one matrix
+per frame in stdin created and printed to stdout
+in format of a blind video.
+.P
+Each frame in stdin shall contain exactly 2 pixel.
+The first pixel holds the amount the image shall
+be sheared horizontally, that is, how much all
+pixels 1 pixel above the X-axis shall be moved
+rightward. The second pixel holds the amount the
+image shall be sheared vertically, that is, how
+much all pixels 1 pixel right of the Y-axis shall
+be moved downward.
+.P
+The luma (encoding in the Y-channel, the second
+channel) multiplied by the alpha (the fourth channel)
+of the input pixels are used as the values. Each
+values in the resulting matrices are stored
+in all channels.
+.SH OPTIONS
+.TP
+.B -a
+The pixels holds the angles of the shearing rather
+than the amount of the shearing.
+.TP
+.B -c
+Create different matrices for each channel. Use
+values from each channel in stdin to create
+matrices whose values are stored in the same
+channels in stdout.
+.TP
+.B -d
+Input angles in degrees rather than radians.
+.SH NOTES
+The description assumes the Y-axis grows downwards.
+.P
+Horizontal shearing and vertical shearing is not
+mutually commutative, this tool performs the
+shearing at the same time rather than after each
+other. When shearing both horizontally and
+vertically, the transformation matrix is not
+necessarily invertable.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-text (1),
+.BR blind-matrix-orthoproject (1),
+.BR blind-matrix-reflect (1),
+.BR blind-matrix-rotate (1),
+.BR blind-matrix-scale (1),
+.BR blind-matrix-translate (1),
+.BR blind-matrix-transpose (1),
+.BR blind-multiply-matrices (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

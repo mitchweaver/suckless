@@ -1,0 +1,42 @@
+.TH BLIND-REPEAT-TESSELLATION 1 blind
+.SH NAME
+blind-repeat-tessellation - Repeat a video horizontally and veritically to a specific size
+.SH SYNOPSIS
+.B blind-repeat-tessellation
+-w
+.I width
+-h
+.I height
+.SH DESCRIPTION
+.B blind-repeat-tessellation
+reads a video from stdin and prints it, repeated both
+horizontally and vertically, to stdout.
+.SH OPTIONS
+.TP
+.BR -w " "\fIwidth\fP
+The width of the output video shall be exactly
+.I width
+pixels.
+.TP
+.BR -h " "\fIheight\fP
+The height of the output video shall be exactly
+.I height
+pixels.
+.SH REQUIREMENTS
+.B blind-repeat-tessellation
+requires enough free memory to load one full frame of
+the video from stdin into memory. A frame requires 32
+bytes per pixel it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-get-colours (1),
+.BR blind-apply-palette (1),
+.BR blind-hexagon-tessellation (1),
+.BR blind-rectangle-tessellation (1),
+.BR blind-triangle-tessellation (1),
+.BR blind-mosaic (1),
+.BR blind-mosaic-corners (1),
+.BR blind-mosaic-edges (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,48 @@
+.TH BLIND-INVERT-MATRIX 1 blind
+.SH NAME
+blind-invert-matrix - Invert matrix-vidoes
+.SH SYNOPSIS
+.B blind-invert-matrix
+[-aexyz]
+.SH DESCRIPTION
+.B blind-invert-matrix
+reads a video representing a matrix from
+stdin, inverts it, and prints the results
+to stdout.
+.P
+The matrix must be at least as wide as it
+is tall. If the matrix is wider than it is
+tall, it is treated as an augmented matrix,
+and the unaugmented square matrix is
+eliminated to the identity matrix and the
+resuling augment is printed.
+.SH OPTIONS
+.TP
+.B -a
+Ignore the alpha channel.
+.TP
+.B -e
+Apply optimisation that assumes all channels
+are identical.
+.TP
+.B -x
+Ignore the first channel (the X channel).
+.TP
+.B -y
+Ignore the second channel (the Y channel).
+.TP
+.B -z
+Ignore the third channel (the Z channel).
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-multiply-matrices (1),
+.BR blind-transpose (1),
+.BR blind-flip (1),
+.BR blind-flop (1),
+.BR blind-rotate-90 (1),
+.BR blind-rotate-180 (1),
+.BR blind-rotate-270 (1),
+.BR blind-rewrite-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

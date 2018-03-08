@@ -1,0 +1,327 @@
+.TH SURF 1 surf\-VERSION
+.SH NAME
+surf \- simple webkit-based browser
+.SH SYNOPSIS
+.B surf
+.RB [-bBdDfFgGiIkKmMnNpPsStTvwxX]
+.RB [-a\ cookiepolicies]
+.RB [-c\ cookiefile]
+.RB [-C\ stylefile]
+.RB [-e\ xid]
+.RB [-r\ scriptfile]
+.RB [-u\ useragent]
+.RB [-z\ zoomlevel]
+.RB [URI]
+.SH DESCRIPTION
+surf is a simple Web browser based on WebKit/GTK+. It is able
+to display websites and follow links. It supports the XEmbed protocol
+which makes it possible to embed it in another application. Furthermore,
+one can point surf to another URI by setting its XProperties.
+.SH OPTIONS
+.TP
+.B \-a cookiepolicies
+Define the order of
+.I cookie policies\fR.
+The default is "@Aa" but could be
+redefined in the
+.IR config.h ,
+with "A" meaning to
+accept all cookies, "a" to deny all cookies and "@", which tells surf to
+accept no third party cookies.
+.TP
+.B \-b
+Disable Scrollbars.
+.TP
+.B \-B
+Enable Scrollbars.
+.TP
+.B \-c cookiefile
+Specify the
+.I cookiefile
+to use.
+.TP
+.B \-C stylefile
+Specify the user
+.IR stylefile .
+This does disable the site-specific styles.
+.TP
+.B \-d
+Disable the disk cache.
+.TP
+.B \-D
+Enable the disk cache.
+.TP
+.B \-e xid
+Reparents to window specified by
+.IR xid .
+.TP
+.B \-f
+Start surf in windowed mode (not fullscreen).
+.TP
+.B \-F
+Start surf in fullscreen mode.
+.TP
+.B \-g
+Disable giving the geolocation to websites.
+.TP
+.B \-G
+Enable giving the geolocation to websites.
+.TP
+.B \-i
+Disable Images.
+.TP
+.B \-I
+Enable Images.
+.TP
+.B \-k
+Disable kiosk mode (disable key strokes and right click).
+.TP
+.B \-K
+Enable kiosk mode (disable key strokes and right click).
+.TP
+.B \-m
+Disable application of user style sheets.
+.TP
+.B \-M
+Enable application of user style sheets.
+.TP
+.B \-n
+Disable the Web Inspector (Developer Tools).
+.TP
+.B \-N
+Enable the Web Inspector (Developer Tools).
+.TP
+.B \-p
+Disable Plugins.
+.TP
+.B \-P
+Enable Plugins.
+.TP
+.B \-r scriptfile
+Specify the user
+.IR scriptfile .
+.TP
+.B \-s
+Disable Javascript.
+.TP
+.B \-S
+Enable Javascript.
+.TP
+.B \-t
+Disable strict TLS check.
+.TP
+.B \-T
+Enable strict TLS check.
+.TP
+.B \-u useragent
+Specify the
+.I useragent
+which surf should use.
+.TP
+.B \-v
+Prints version information to standard output, then exits.
+.TP
+.B \-w
+Prints xid to standard output. This can be used to script the browser in for
+example
+.BR xdotool(1) .
+.TP
+.B -x
+Disable custom certificates.
+.TP
+.B -X
+Enable custom certificates.
+.TP
+.B \-z zoomlevel
+Specify the
+.I zoomlevel
+which surf should use.
+.SH USAGE
+.B Escape
+Stops loading current page or stops download.
+.TP
+.B Ctrl\-h
+Walks back the history.
+.TP
+.B Ctrl\-l
+Walks forward the history.
+.TP
+.B Ctrl\-k
+Scrolls page upwards.
+.TP
+.B Ctrl\-j
+Scrolls page downwards.
+.TP
+.B Ctrl\-b
+Scroll up one whole page view.
+.TP
+.B Ctrl\-Space
+Scroll down one whole page view.
+.TP
+.B Ctrl\-i
+Scroll horizontally to the right.
+.TP
+.B Ctrl\-u
+Scroll horizontally to the left.
+.TP
+.B Ctrl\-Shift\-k or Ctrl\-+
+Zooms page in.
+.TP
+.B Ctrl\-Shift\-j or Ctrl\--
+Zooms page out.
+.TP
+.B Ctrl\-Shift\-q
+Resets Zoom.
+.TP
+.B Ctrl\-f and Ctrl\-/
+Opens the search-bar.
+.TP
+.B Ctrl\-n
+Go to next search result.
+.TP
+.B Ctrl\-Shift\-n
+Go to previous search result.
+.TP
+.B Ctrl\-g
+Opens the URL-bar (requires dmenu installed).
+.TP
+.B Ctrl\-p
+Loads URI from primary selection.
+.TP
+.B Ctrl\-Shift\-p
+Calls Printpage Dialog.
+.TP
+.B Ctrl\-r
+Reloads the website.
+.TP
+.B Ctrl\-Shift\-r
+Reloads the website without using the cache.
+.TP
+.B Ctrl\-y
+Copies current URI to primary selection.
+.TP
+.B Ctrl\-t
+Display the current TLS certificate in a popup window.
+.TP
+.B Ctrl\-Shift\-a
+Toggle through the the
+.I cookie policies\fR.
+This will not reload the page.
+.TP
+.B Ctrl\-Shift\-b
+Toggle scrollbars. This will reload the page.
+.TP
+.B Ctrl\-Shift\-c
+Toggle caret browsing. This will reload the page.
+.TP
+.B Ctrl\-Shift\-i
+Toggle auto-loading of images. This will reload the page.
+.TP
+.B Ctrl\-Shift\-m
+Toggle if the
+.I stylefile
+file should be loaded. This will reload the page.
+.TP
+.B Ctrl\-Shift\-o
+Open the Web Inspector (Developer Tools) window for the current page.
+.TP
+.B Ctrl\-Shift\-s
+Toggle script execution. This will reload the page.
+.TP
+.B Ctrl\-Shift\-t
+Toggle strict TLS check. This will reload the page.
+.TP
+.B Ctrl\-Shift\-v
+Toggle the enabling of plugins on that surf instance. This will reload the
+page.
+.TP
+.B F11
+Toggle fullscreen mode.
+.SH INDICATORS OF OPERATION
+Surf is showing indicators of operation in front of the site title.
+For all indicators, unless otherwise specified, a lower case letter means disabled and an upper case letter means enabled.
+.TP
+.B A
+all cookies accepted
+.TP
+.B a
+no cookies accepted
+.TP
+.B @
+all except third-party cookies accepted
+.TP
+.B c C
+caret browsing
+.TP
+.B g G
+geolocation
+.TP
+.B d D
+disk cache
+.TP
+.B i I
+images
+.TP
+.B s S
+scripts
+.TP
+.B v V
+plugins
+.TP
+.B m M
+styles
+.TP
+.B f F
+frame flattening
+.TP
+.B x X
+custom certificates
+.TP
+.B t T
+strict TLS
+.SH INDICATORS OF WEB PAGE
+The second part of the indicators specifies modes of the web page itself.
+.SS First character: encryption
+.TP
+.B -
+unencrypted
+.TP
+.B T
+encrypted (TLS)
+.TP
+.B U
+attempted encryption but failed
+.SS Second character: proxying
+.TP
+.B -
+no proxy
+.TP
+.B P
+using proxy
+.SH ENVIRONMENT
+.B SURF_USERAGENT
+If this variable is set upon startup, surf will use it as the
+.I useragent
+string.
+.TP
+.B http_proxy
+If this variable is set and not empty upon startup, surf will use it as the http proxy.
+.SH PLUGINS
+For using plugins in surf, first determine your running architecture. Then get
+the appropriate plugin for that architecture and copy it to
+.BR /usr/lib/browser-plugins
+or
+.BR /usr/lib64/browser-plugins.
+Surf should load them automatically.
+.BR
+If you want to use a 32bit plugin on a 64bit system,
+.BR nspluginwrapper(1)
+will help you.
+.SH SEE ALSO
+.BR dmenu(1),
+.BR xprop(1),
+.BR tabbed(1),
+.BR nspluginwrapper(1),
+.BR xdotool(1)
+.SH BUGS
+Please report them!

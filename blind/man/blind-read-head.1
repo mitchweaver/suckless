@@ -1,0 +1,26 @@
+.TH BLIND-READ-HEAD 1 blind
+.SH NAME
+blind-read-head - Reads the head from a video
+.SH SYNOPSIS
+.B blind-read-head
+.SH DESCRIPTION
+.B blind-read-head
+reads the head a video from stdin, and
+prints it, without the magic number, to stdout.
+The output will contain: the number of frames,
+<space>, the width, <space>, the height, <space>,
+and the pixel format. The output is text, and
+thus ends with a <newline>.
+.P
+No excess bytes are read and
+.BR blind-next-frame (1)
+can be used to get the first, and
+any following, frame from stdin.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-peek-head (1),
+.BR blind-write-head (1),
+.BR blind-next-frame (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

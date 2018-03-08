@@ -1,0 +1,26 @@
+diff --git a/config.def.h b/config.def.h
+index a221c86..ac35199 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -27,7 +27,7 @@ static Bool hidebackground  = FALSE;
+ #define SETPROP(p, q) { \
+ 	.v = (char *[]){ "/bin/sh", "-c", \
+ 		"prop=\"`xprop -id $2 $0 | cut -d '\"' -f 2 | dmenu`\" &&" \
+-		"xprop -id $2 -f $1 8s -set $1 \"$prop\"", \
++		"xprop -id $2 -f $1 8u -set $1 \"$prop\"", \
+ 		p, q, winid, NULL \
+ 	} \
+ }
+diff --git a/surf.c b/surf.c
+index cebd469..b467bbd 100644
+--- a/surf.c
++++ b/surf.c
+@@ -475,7 +475,7 @@ getatom(Client *c, int a) {
+ 	unsigned char *p = NULL;
+ 
+ 	XGetWindowProperty(dpy, GDK_WINDOW_XID(GTK_WIDGET(c->win)->window),
+-			atoms[a], 0L, BUFSIZ, False, XA_STRING,
++			atoms[a], 0L, BUFSIZ, False, AnyPropertyType,
+ 			&adummy, &idummy, &ldummy, &ldummy, &p);
+ 	if(p)
+ 		strncpy(buf, (char *)p, LENGTH(buf)-1);

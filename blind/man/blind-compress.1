@@ -1,0 +1,31 @@
+.TH BLIND-COMPRESS 1 blind
+.SH NAME
+blind-compress - Compress a video for network transmission
+.SH SYNOPSIS
+.B blind-compress
+.SH DESCRIPTION
+.B blind-compress
+applies a very fast and simple compression to video.
+The output is decompressed by
+.BR blind-decompress (1),
+and despite a normal head,
+.BR blind-decompress (1),
+is the only program that can use the output.
+.B blind-compress
+is designed to reduce the transferred data with
+minimal overhead when sending data between computers.
+It is recommended to combine
+.B blind-compress
+with
+.BR "lz4 -1" .
+.SH REQUIREMENTS
+.B blind-compress
+requires enough free memory to load two full frames into
+memory. A frame requires 32 bytes per pixel it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-decompress (1),
+.BR lz4 (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

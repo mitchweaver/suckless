@@ -1,0 +1,362 @@
+.TH BLIND 7 blind
+.SH NAME
+blind - Collection of command line video editing utilities
+.SH DESCRIPTION
+.B blind
+is a collection of command line video editing utilities.
+.B blind
+uses a custom raw video format with a simple container.
+If you have a video file you want to edit, you first
+have to convert it with
+.BR blind-from-video (1).
+To be able to play your video in a video play, you
+have to convert it with
+.BR blind-to-video (1).
+.P
+Raw video takes up tremendous amount of space, you
+should therefore avoid storing the video without
+first convert it with
+.BR blind-to-video (1).
+.SH UTILITIES
+.TP
+.BR blind-affine-colour (1)
+Apply an affine transformation to the colours in a video
+.TP
+.BR blind-apply-kernel (1)
+Apply a convolution matrix to a video
+.TP
+.BR blind-apply-palette (1)
+Apply a colour palette to a video
+.TP
+.BR blind-arithm (1)
+Perform simple arithmetic on a video
+.TP
+.BR blind-cat-cols (1)
+Place videos side by side
+.TP
+.BR blind-cat-rows (1)
+Stack videos vertically
+.TP
+.BR blind-chroma-key(1)
+Replace a colour range with transparency
+.TP
+.BR blind-colour-ciexyz (1)
+Convert CIE XYZ for use with
+.BR blind-single-colour (1)
+.TP
+.BR blind-colour-matrix(1)
+Create colour space conversion matrix
+.TP
+.BR blind-colour-srgb (1)
+Convert sRGB for use with
+.BR blind-single-colour (1)
+and
+.BR colour-colour-matrix (1)
+.TP
+.BR blind-compress (1)
+Compress a video for network transmission
+.TP
+.BR blind-concat (1)
+Concatenate videos
+.TP
+.BR blind-cone-gradient (1)
+Generate a video with a cone gradient
+.TP
+.BR blind-convert (1)
+Change pixel format of a video
+.TP
+.BR blind-coordinate-field (1)
+Generate a video where each pixel indicate their position
+.TP
+.BR blind-crop (1)
+Extract subframes for all frames
+.TP
+.BR blind-cross-product (1)
+Calculate the cross product of colours in a video
+.TP
+.BR blind-cut (1)
+Retain consecutive frames
+.TP
+.BR blind-decompress (1)
+Decompress a video compressed by
+.BR blind-compress (1)
+.TP
+.BR blind-disperse (1)
+Framewise split a video into multiple videos
+.TP
+.BR blind-dissolve (1)
+Fade a video by chaning it's alpha channel
+.TP
+.BR blind-dot-product (1)
+Calculate the dot product of colours in a video
+.TP
+.BR blind-double-sine-wave (1)
+Apply double-sine-wave repetition to gradient
+.TP
+.BR blind-dual-key(1)
+Apply transparency to a video based on two videos and two key
+.TP
+.BR blind-extend (1)
+Add margins to a video
+.TP
+.BR blind-extract-alpha (1)
+Split a video into an alpha mask video and a colour mask video
+.TP
+.BR blind-find-rectangle (1)
+Locate a coloured rectangle
+.TP
+.BR blind-flip (1)
+Mirror a video vertically
+.TP
+.BR blind-flop (1)
+Mirror a video horizontally
+.TP
+.BR blind-from-image (1)
+Convert an image to a frame
+.TP
+.BR blind-from-named (1)
+Receive a file descriptor
+.TP
+.BR blind-from-portable (1)
+Convert a video from a portable format to a processable format
+.TP
+.BR blind-from-text (1)
+Convert text to a video
+.TP
+.BR blind-from-video (1)
+Converts a regular, cooked video to a blind video
+.TP
+.BR blind-gauss-blur (1)
+Apply Gaussian blur to a video
+.TP
+.BR blind-get-colours (1)
+Get a frame with all colours from a video
+.TP
+.BR blind-hexagon-tessellation (1)
+Create a frame with tessellated hexagons
+.TP
+.BR blind-interleave (1)
+Framewise interleave videos
+.TP
+.BR blind-invert-luma (1)
+Invert the luminosity of a video
+.TP
+.BR blind-invert-matrix (1)
+Invert matrix-video
+.TP
+.BR blind-kernel (1)
+Create a convolution matrix
+.TP
+.BR blind-linear-gradient (1)
+Generate a video with a linear gradient
+.TP
+.BR blind-make-kernel (1)
+Create a custom convolution matrix
+.TP
+.BR blind-matrix-orthoproject (1)
+Create an affine 2D-transformation matrix for othogonal projection
+.TP
+.BR blind-matrix-reflect (1)
+Create an affine 2D-transformation matrix for reflection about a line
+.TP
+.BR blind-matrix-rotate (1)
+Create an affine 2D-transformation matrix for rotation
+.TP
+.BR blind-matrix-scale (1)
+Create an affine 2D-transformation matrix for scaling
+.TP
+.BR blind-matrix-shear (1)
+Create an affine 2D-transformation matrix for shearing
+.TP
+.BR blind-matrix-translate (1)
+Create an affine 2D-transformation matrix for translation
+.TP
+.BR blind-matrix-transpose (1)
+Create an affine 2D-transformation matrix for transposition
+.TP
+.BR blind-mean (1)
+Calcuate the mean over videos for each pixel in each frame
+.TP
+.BR blind-mosaic (1)
+Redraw each frame in video as a mosaic
+.TP
+.BR blind-mosaic-corners (1)
+Find corners in a mosaic video
+.TP
+.BR blind-mosaic-edges (1)
+Find edges in a mosaic video
+.TP
+.BR blind-multiply-matrices (1)
+Multiply matrix-vidoes
+.TP
+.BR blind-next-frame (1)
+Extracts the next frame from a video
+.TP
+.BR blind-norm (1)
+Calculate the norm of colours in a video
+.TP
+.BR blind-peek-head (1)
+Peeks the head from a video
+.TP
+.BR blind-premultiply (1)
+Premultiply the alpha channel of a video
+.TP
+.BR blind-primary-key (1)
+Replace a primary with transparency
+.TP
+.BR blind-quaternion-product (1)
+Calculate the quaternion product of colours in a video
+.TP
+.BR blind-radial-gradient (1)
+Generate a video with a radial gradient
+.TP
+.BR blind-rectangle-tessellation (1)
+Create a frame with tessellated rectangles
+.TP
+.BR blind-read-head (1)
+Reads the head from a video
+.TP
+.BR blind-repeat (1)
+Repeat a video
+.TP
+.BR blind-repeat-tessellation (1)
+Repeat a video horizontally and veritically to a specific size
+.TP
+.BR blind-reverse (1)
+Reverse a video
+.TP
+.BR blind-rewrite-head (1)
+Rewrite the head of a video
+.TP
+.BR blind-rotate-90 (1)
+Rotate a video 90 degrees clockwise
+.TP
+.BR blind-rotate-180 (1)
+Rotate a video 180 degrees
+.TP
+.BR blind-rotate-270 (1)
+Rotate a video 270 degrees clockwise
+.TP
+.BR blind-round-wave (1)
+Apply round wave repetition to gradient
+.TP
+.BR blind-sawtooth-wave (1)
+Apply sawtooth-wave repetition to gradient
+.TP
+.BR blind-set-alpha (1)
+Multiply the alpha channel of a video
+.TP
+.BR blind-set-luma (1)
+Multiply the luminosity of a video
+.TP
+.BR blind-set-saturation (1)
+Multiply the saturation of a video
+.TP
+.BR blind-sinc-wave (1)
+Apply cardinal sine-wave repetition to gradient
+.TP
+.BR blind-single-colour (1)
+Generate a single-colour video
+.TP
+.BR blind-sine-wave (1)
+Apply sine-wave repetition to gradient
+.TP
+.BR blind-skip-pattern (1)
+Skips frames in a video according to pattern
+.TP
+.BR blind-spatial-arithm (1)
+Perform simple arithmetic over all pixels for each frame in a video
+.TP
+.BR blind-spatial-mean (1)
+Calculate the mean over all pixel for each frame in a video
+.TP
+.BR blind-spectrum (1)
+Transform a gradient into a spectrum
+.TP
+.BR blind-spiral-gradient (1)
+Generate a video with a spiral gradient
+.TP
+.BR blind-split (1)
+Split a video, by frame, into multiple videos
+.TP
+.BR blind-split-chans (1)
+Split colour channels into separate videos
+.TP
+.BR blind-split-cols (1)
+Split a video vertically into multiple videos
+.TP
+.BR blind-split-rows (1)
+Split a video horizontally into multiple videos
+.TP
+.BR blind-square-gradient (1)
+Generate a video with a square gradient
+.TP
+.BR blind-stack (1)
+Overlay videos
+.TP
+.BR blind-tee (1)
+/dev/fd/ aware
+.BR tee (1)
+implementation
+.TP
+.BR blind-temporal-arithm (1)
+Perform simple arithmetic over all frames in a video for each pixel
+.TP
+.BR blind-temporal-mean (1)
+Calculate the mean over all frames in a video for each pixel
+.TP
+.BR blind-time-blur (1)
+Draw new frames on top of old frames with partial alpha
+.TP
+.BR blind-to-image (1)
+Convert a frame to an image
+.TP
+.BR blind-to-named (1)
+Send a file descriptor
+.TP
+.BR blind-to-portable (1)
+Convert a video to a portable format
+.TP
+.BR blind-to-text (1)
+Convert a video to text
+.TP
+.BR blind-to-video (1)
+Converts blind video to a regular video
+.TP
+.BR blind-transition (1)
+Turn a gradient video to transition-gradient video
+.TP
+.BR blind-translate (1)
+Perform framewise translation of a video
+.TP
+.BR blind-transpose (1)
+Transpose a video
+.TP
+.BR blind-triangle-tessellation (1)
+Create a frame with tessellated triangles
+.TP
+.BR blind-triangular-wave (1)
+Apply triangular wave repetition to gradient
+.TP
+.BR blind-unpremultiply (1)
+Unpremultiply the alpha channel of a video
+.TP
+.BR blind-vector-projection (1)
+Calculate the projection or rejection of colours in a video
+.TP
+.BR blind-write-head (1)
+Writes the head of a video
+.SH SEE ALSO
+.BR ffmpeg (1),
+.BR ffprobe (1),
+.BR convert (1),
+.BR sox (1),
+.BR rubberband (1),
+.BR soundstretch (1)
+.P
+.BR blind 's
+website:
+.RI < http://tools.suckless.org/blind/ >.
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

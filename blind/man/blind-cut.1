@@ -1,0 +1,38 @@
+.TH BLIND-CUT 1 blind
+.SH NAME
+blind-cut - Retain consecutive frames
+.SH SYNOPSIS
+.B blind-cut
+.I start-point
+.RI ( end-point
+|
+.RB ' end ')
+.I file
+.SH DESCRIPTION
+.B blind-cut
+reads a video from the the selected
+.IR file ,
+which must be a regular file.
+.B blind-cut
+prints the video to stdout, but
+skips the
+.I start-point
+first frames, and ends at the
+.I end-point
+frame, counting from the beginning of the
+input video, or at the end of the video
+if
+.B end
+is specified instead of
+.IR end-point .
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-video (1),
+.BR blind-split (1),
+.BR blind-concat (1),
+.BR blind-disperse (1),
+.BR blind-split-cols (1),
+.BR blind-split-rows (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

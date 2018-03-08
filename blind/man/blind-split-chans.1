@@ -1,0 +1,57 @@
+.TH BLIND-SPLIT-CHANS 1 blind
+.SH NAME
+blind-split-chans - Split colour channels into separate videos
+.SH SYNOPSIS
+.B blind-split-chans
+[-c]
+.I X-file
+.I Y-file
+.I Z-file
+.RI [ alpha-file ]
+.SH DESCRIPTION
+.B blind-split-chans
+reads a video from stdin and prints
+it to
+.I X-file
+with the values of the first channel
+(the X channel) in written to all
+channels, to
+.I Y-file
+with the values of the second channel
+(the Y channel) in written to all
+channels, to
+.I Z-file
+with the values of the third channel
+(the Z channel) in written to all
+channels, and to
+.I alpha-file
+with the values of the fourth channel
+(the alpha channel) in written to all
+channels.
+.P
+If
+.I alpha-file
+is omitted, values of the alpha channel
+are instead written to the alpha channels
+in
+.IR X-file ,
+.IR Y-file ,
+and
+.IR Z-file .
+.SH OPTIONS
+.TP
+.B -c
+Set the values to zero in all channels
+except for channels matching their file. If
+.I alpha-file
+is omitted, the alpha values are still
+stored in the alpha channel of the other
+files.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-arithm (1),
+.BR blind-cat-cols (1),
+.BR blind-cat-rows (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

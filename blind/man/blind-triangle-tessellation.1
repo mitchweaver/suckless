@@ -1,0 +1,44 @@
+.TH BLIND-TRIANGLE-TESSELLATION 1 blind
+.SH NAME
+blind-triangle-tessellation - Create a frame with tessellated triangles
+.SH SYNOPSIS
+.B blind-triangle-tessellation
+[-F
+.IR pixel-format ]
+.I block-width
+.I block-height
+.SH DESCRIPTION
+.B blind-triangle-tessellation
+prints a small video to stdout, that
+can be extended to any size with
+.BR blind-repeat-tessellation (1)
+to create a pattern of tessellated
+triangle. Each triangle will be
+a right triangle with a horizontal
+cathetus
+.I block-width
+pixels long and a vertical cathetus
+.I block-height
+pixels long. The hypotenuses will
+go from northwest to southeast.
+.SH OPTIONS
+.TP
+.BR -F " "\fIpixel-format\fP
+Select pixel format, see
+.BR blind-convert (1)
+for more information. Pixel formats starting with
+.BR raw
+are not supported.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-hexagon-tessellation (1),
+.BR blind-triangle-tessellation (1),
+.BR blind-repeat-tessellation (1),
+.BR blind-get-colours (1),
+.BR blind-apply-palette (1),
+.BR blind-mosaic (1),
+.BR blind-mosaic-corners (1),
+.BR blind-mosaic-edges (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

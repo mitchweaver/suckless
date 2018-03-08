@@ -1,0 +1,69 @@
+.TH BLIND-COLOUR-CIEXYZ 1 blind
+.SH NAME
+blind-colour-ciexyz - Convert CIE XYZ for use with blind-single-colour(1)
+.SH SYNOPSIS
+.B blind-colour-ciexyz
+[-%
+.IR format ]
+.RI ( X
+.I Y
+.I Z
+|
+.IR Y )
+.SH DESCRIPTION
+.B blind-colour-ciexyz
+prints the given input as is. If
+.BR blind-single-colour (1)
+is modified in the future to use another colour model
+than CIE XYZ,
+.B blind-colour-ciexyz
+will be modified to convert the values to
+that colour model. If only
+.I Y
+is specified, the colour will be CIE Standard Illuminant D65-grey
+with a luminosity of
+.IR Y .
+.SH OPTIONS
+.TP
+.BR -% \ \fIformat\fP
+Selects in what format parameters are printed.
+.I format
+may include the prefix
+.B +
+that specified that non-negative values should be prefixed with a
+.BR + .
+After any prefix, there may be a positive number specifying
+the percision of the output, optionally followed by either of
+the letters
+.BR a ,
+.BR e ,
+.BR f ,
+other
+.B g
+(other their synonymous uppercases),
+at most once, with the same semantics as in
+.BR printf (3).
+.B f
+is used if this letter is omitted.
+
+If ommited,
+.B 25f
+is used unless all three of
+.IR X ,
+.IR Y ,
+and
+.I Z
+is specified, in which case the parameters are
+printed as-is. This default is selected for ease
+of interoperability with other software, however,
+.B a
+is recommeded to improve performance and remove
+truncation error.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-single-colour (1),
+.BR blind-colour-matrix (1),
+.BR blind-colour-srgb (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,70 @@
+.TH BLIND-TEMPORAL-MEAN 1 blind
+.SH NAME
+blind-temporal-mean - Calculate the mean over all frames in a video for each pixel
+.SH SYNOPSIS
+.B blind-temporal-mean
+[-d | -g | -h | -l
+.I power-stream
+| -p
+.I power-stream
+| -v]
+.SH DESCRIPTION
+.B blind-temporal-mean
+reads a video from stdin and calculates the mean
+over all frames for each pixel, and outputs a
+single frame video to stdout with the mean for
+each pixel.
+.P
+Unless otherwise specified, the arithmetic mean
+is calculated.
+.SH OPTIONS
+.TP
+.B -d
+Calculate the standard deviation.
+.TP
+.B -g
+Calculate the geometric mean.
+.TP
+.B -h
+Calculate the harmonic mean.
+.TP
+.BR -l \ \fIpower-stream\fP
+Calculate the Lehmer mean with the power
+specified in the same pixel in the single-frame
+video
+.IR power-stream .
+.TP
+.BR -p \ \fIpower-stream\fP
+Calculate the power mean (Hölder mean) with
+the power specified in the same pixel in the
+single-frame video
+.IR power-stream .
+.TP
+.B -v
+Calculate the variance.
+.SH REQUIREMENTS
+.B blind-temporal-mean
+requires enough free memory to load two full frames memory.
+A frame requires 32 bytes per pixel it contains. If
+.B -p
+or
+.B -v
+is used, enough free memory to load three full frames
+memory is required. If
+.B -l
+is used, enough free memory to load four full frames
+memory is required.
+.P
+.B blind-temporal-mean
+is optimised for simplicity rather than memory usage.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-temporal-arithm (1),
+.BR blind-spatial-arithm (1),
+.BR blind-arithm (1),
+.BR blind-spatial-mean (1),
+.BR blind-mean (1),
+.BR blind-rewrite-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

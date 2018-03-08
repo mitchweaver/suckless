@@ -1,0 +1,112 @@
+.TH BLIND-ARITHM 1 blind
+.SH NAME
+blind-arithm - Perform simple arithmetic on a video
+.SH SYNOPSIS
+.B blind-arithm
+[-axyz]
+.I operation
+.IR right-hand-stream \ ...
+.SH DESCRIPTION
+.B blind-arithm
+reads left-hand operands from stdin, and right-hand
+operands from
+.IR right-hand-stream ,
+and perform the choosen
+.I operation
+over the read values and prints the resulting video
+to stdout.
+The operation with operands from the same colour
+parameters on the sames pixels on the same frames
+on the two videos.
+.P
+If stdin is longer than
+.IR right-hand-stream ,
+the remainder of stdin is printed without any changes.
+If stdin is shorter than
+.IR right-hand-stream ,
+the remainder of
+.I right-hand-stream
+is ignored but may be partially read.
+.P
+IF multiple
+.I right-hand-stream
+are specified, they are applied from left to right,
+with the exception for if	
+.I operation
+is
+.BR exp ,
+in which case they are applied from right to left with
+stdin applied last.
+.SH OPERATIONS
+.TP
+.B add
+Calculate the sum of the operands.
+.TP
+.B sub
+Subtract the right-hand operand from the left-hand operand.
+.TP
+.B mul
+Calculate the product of the operands.
+.TP
+.B div
+Divide the left-hand operand by the right-hand operand.
+.TP
+.B mod
+Calculate the modulus of left-hand operand and the right-hand operand.
+The result is always non-negative.
+.TP
+.B exp
+Raise the left-hand operand to the
+.IR n th
+operand, where
+.I n
+is the value of the right-hand operand.
+.TP
+.B log
+Calculate the logarithm of the left-hand operand
+and divide it by the logarithm of the rigth-hand operand.
+.TP
+.B min
+Select the lowest operand.
+.TP
+.B max
+Select the highest operand.
+.TP
+.B abs
+Calculate the the sum of absolute value of the left-hand
+operand subtracted by the right-hand operand, and the
+right-hand operand
+.SH OPTIONS
+.TP
+.B -a
+Do not modify the alpha channel (the fourth channel).
+.TP
+.B -x
+Do not modify the X channel (the first channel).
+.TP
+.B -y
+Do not modify the Y channel (the second channel).
+.TP
+.B -z
+Do not modify the Z channel (the third channel).
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-norm (1),
+.BR blind-dot-product (1),
+.BR blind-cross-product (1),
+.BR blind-quaternion-product (1),
+.BR blind-vector-projection (1),
+.BR blind-spatial-mean (1),
+.BR blind-spatial-arithm (1),
+.BR blind-temporal-mean (1),
+.BR blind-temporal-arithm (1),
+.BR blind-mean (1),
+.BR blind-single-colour (1),
+.BR blind-set-alpha (1),
+.BR blind-set-luma (1),
+.BR blind-invert-luma (1),
+.BR blind-set-saturation (1),
+.BR blind-affine-colour (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,95 @@
+.TH BLIND-MEAN 1 blind
+.SH NAME
+blind-mean - Calcuate the mean over videos for each pixel in each frame
+.SH SYNOPSIS
+.B blind-mean
+[-d | -g | -h | -H | -i | -l
+.I power-stream
+| -L | -p
+.I power-stream
+| -s
+.I power-stream
+| -v | -z
+.IR power-stream ]
+.I stream-1
+.IR stream-2 \ ...
+.SH DESCRIPTION
+.B blind-mean
+reads videos from
+.I stream-1
+and the files specified in all succeeding
+arguments, and for each pixel in each frame,
+calculates the mean of the videos, and prints
+the resulting video to stdout.
+.P
+Unless otherwise specified, the arithmetic mean
+is calculated.
+.SH OPTIONS
+.TP
+.B -d
+Calculate the standard deviation.
+.TP
+.B -g
+Calculate the geometric mean.
+.TP
+.B -h
+Calculate the harmonic mean.
+.TP
+.B -H
+Calculate the Heronian mean.
+No arguments after
+.I stream-2
+are allowed if this flag is used.
+.TP
+.B -i
+Calculate the identric mean.
+.TP
+.BR -l \ \fIpower-stream\fP
+Calculate the Lehmer mean with the power
+specified in the same frame and pixel in
+the video
+.IR power-stream .
+.TP
+.B -L
+Calculate the logarithmic mean.
+No arguments after
+.I stream-2
+are allowed if this flag is used.
+.TP
+.BR -p \ \fIpower-stream\fP
+Calculate the power mean (Hölder mean) with
+the power specified in the same frame and
+pixel in the video
+.IR power-stream .
+.TP
+.BR -s \ \fIpower-stream\fP
+Calculate the Stolarsky mean with the power
+specified in the same frame and pixel in
+the video
+.IR power-stream .
+No arguments after
+.I stream-2
+are allowed if this flag is used.
+.TP
+.B -v
+Calculate the variance.
+.TP
+.BR -z \ \fIpower-stream\fP
+Calculate the Heinz mean with the power
+specified in the same frame and pixel in
+the video
+.IR power-stream .
+No arguments after
+.I stream-2
+are allowed if this flag is used.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-temporal-mean (1),
+.BR blind-spatial-mean (1),
+.BR blind-temporal-arithm (1),
+.BR blind-spatial-arithm (1),
+.BR blind-arithm (1),
+.BR blind-rewrite-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,60 @@
+.TH BLIND-LINEAR-GRADIENT 1 blind
+.SH NAME
+blind-linear-gradient - Generate a video with a linear gradient
+.SH SYNOPSIS
+.B blind-linear-gradient
+[-b]
+-w
+.I width
+-h
+.I height
+.SH DESCRIPTION
+.B blind-linear-gradient
+prints a video with a linear gradient to stdout,
+parameters for each from is read from each frame
+in stdin. The gradient is stored in all channels
+of the video.
+.P
+The video in stdin must contain exactly 2 pixels
+per frame. The first pixel shall point to the
+beginning of the gradient (where the value is 0)
+and the second pixel shall point to the end of
+the gradient (where the value is 1). In these
+pixels, the value of the first channel specifies
+the X-position and the value of the second
+channel specifies Y-position, the other channels
+are ignored.
+.SH NOTES
+Pixels before the beginning of the gradient have
+negative values, and pixels after the end of the
+gradient have values larger than 1.
+.BR blind-*-wave (1)
+commands can be used to put all values between
+0 and 1.
+.SH OPTIONS
+.TP
+.B -b
+Create a bilinear gradient.
+.TP
+.BR -w " "\fIwidth\fP
+The width of the video, in pixels.
+.TP
+.BR -h " "\fIheight\fP
+The height of the video, in pixels.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-text (7),
+.BR blind-cone-gradient (1),
+.BR blind-radial-gradient (1),
+.BR blind-spiral-gradient (1),
+.BR blind-square-gradient (1),
+.BR blind-double-sine-wave (1),
+.BR blind-round-wave (1),
+.BR blind-sawtooth-wave (1),
+.BR blind-sinc-wave (1),
+.BR blind-sine-wave (1),
+.BR blind-triangular-wave (1),
+.BR blind-spectrum (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

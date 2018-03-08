@@ -1,0 +1,63 @@
+diff --git a/st.c b/st.c
+index ae93ade..ff531a3 100644
+--- a/st.c
++++ b/st.c
+@@ -218,6 +218,8 @@ char *opt_line  = NULL;
+ char *opt_name  = NULL;
+ char *opt_title = NULL;
+ int oldbutton   = 3; /* button event on startup: 3 = release */
++char *cwd = NULL;
++char *plumber_cmd = plumber;
+ 
+ static CSIEscape csiescseq;
+ static STREscape strescseq;
+@@ -1858,6 +1860,9 @@ strhandle(void)
+ 	switch (strescseq.type) {
+ 	case ']': /* OSC -- Operating System Command */
+ 		switch (par) {
++		case 7:
++			if (narg > 1 && access(strescseq.args[1], X_OK) != -1)
++				cwd = strescseq.args[1];
+ 		case 0:
+ 		case 1:
+ 		case 2:
+diff --git a/x.c b/x.c
+index fbfd350..02ba92d 100644
+--- a/x.c
++++ b/x.c
+@@ -140,6 +140,9 @@ static DC dc;
+ static XWindow xw;
+ static XSelection xsel;
+ 
++extern char *cwd;
++extern char *plumber_cmd;
++
+ /* Font Ring Cache */
+ enum {
+ 	FRC_NORMAL,
+@@ -512,6 +515,9 @@ xsetsel(char *str, Time t)
+ void
+ brelease(XEvent *e)
+ {
++	pid_t child;
++	char cmd[100 + strlen(cwd)];
++
+ 	if (IS_SET(MODE_MOUSE) && !(e->xbutton.state & forceselmod)) {
+ 		mousereport(e);
+ 		return;
+@@ -519,6 +525,15 @@ brelease(XEvent *e)
+ 
+ 	if (e->xbutton.button == Button2) {
+ 		xselpaste();
++	} else if (e->xbutton.button == Button3) {
++		switch(child = fork()) {
++			case -1: 
++				return;
++			case 0: 
++				sprintf(cmd, "(cd %s ; %s %s)", cwd, plumber_cmd, sel.primary);
++				execvp( "sh", (char *const []){ "/bin/sh", "-c", cmd, 0 });
++				exit(127);
++		}
+ 	} else if (e->xbutton.button == Button1) {
+ 		if (sel.mode == SEL_READY) {
+ 			getbuttoninfo(e);

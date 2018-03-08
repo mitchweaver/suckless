@@ -1,0 +1,70 @@
+.TH BLIND-APPLY-KERNEL 1 blind
+.SH NAME
+blind-apply-kernel - Apply a convolution matrix to a video
+.SH SYNOPSIS
+.B blind-apply-kernel
+[-apPxy]
+.I kernel-stream
+.SH DESCRIPTION
+.B blind-apply-kernel
+reads a video from stdin and a convolution matrix video
+from
+.I kernel-stream
+and apply the convolution matrix in each frame the
+same frame in stdin, and prints the resulting video
+to stdout.
+.SH OPTIONS
+.TP
+.B -a
+Used to optimise performance if it is known that
+the video is opaque, and to ensure that the output
+video is opaque.
+.TP
+.B -p
+Each frame in
+.I kernel-stream
+shall contain one matrix per pixel in a frame in
+stdin. The width of
+.I kernel-stream
+shall be a multiple of the width of stdin, the width
+shall be the width of stdin multiplied by the width
+of the convolution matrix. The height of
+.I kernel-stream
+shall be a multiple of the height of stdin, the
+height shall be the height of stdin multiplied by the
+height of the convolution matrix.
+.TP
+.B -P
+Apply the convolution with first premultiplying
+the alpha channel.
+.TP
+.B -x
+When encountering the left or right edge of the video,
+wrap around to the opposite edge.
+.TP
+.B -y
+When encountering the upper or lower edge of the video,
+wrap around to the opposite edge.
+.SH REQUIREMENTS
+.B blind-apply-kernel
+requires enough free memory to load two full frames
+from stdin and one full frame from
+.I kernel-stream
+into memory. However, if
+.I -p
+is used, the height of
+.I kernel-stream
+divide by the height of stdin number of rows from
+.I kernel-stream
+rather than a full frame from
+.I kernel-stream
+is loaded into memory.
+A frame or row requires 32 bytes per pixel it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-make-kernel (1),
+.BR blind-kernel (1),
+.BR blind-gauss-blur (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,32 @@
+.TH BLIND-DOT-PRODUCT 1 blind
+.SH NAME
+blind-dot-product - Calculate the dot product of colours in a video
+.SH SYNOPSIS
+.B blind-dot-product
+.I right-hand-stream
+.SH DESCRIPTION
+.B blind-dot-product
+reads left-hand operands from stdin, and right-hand
+operands from
+.IR right-hand-stream ,
+and calculates the dot product of the colours. The
+product is store in all four channels.
+.P
+If stdin is longer than
+.IR right-hand-stream ,
+the remainder of stdin is printed without any changes.
+If stdin is shorter than
+.IR right-hand-stream ,
+the remainder of
+.I right-hand-stream
+is ignored but may be partially read.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-arithm (1),
+.BR blind-norm (1),
+.BR blind-cross-product (1),
+.BR blind-quaternion-product (1),
+.BR blind-vector-projection (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

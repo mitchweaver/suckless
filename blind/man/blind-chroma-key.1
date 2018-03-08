@@ -1,0 +1,40 @@
+.TH BLIND-CHROMA-KEY 1 blind
+.SH NAME
+blind-chroma-key - Replace a colour range with transparency
+.SH SYNOPSIS
+.B blind-chroma-key
+.I key-stream
+.SH DESCRIPTION
+.B blind-chroma-key
+reads a video from stdin and colours from
+.IR key-stream .
+Each frame in
+.I key-stream
+should contain exactly two pixels. The colour of
+the first pixel, and all colours with a distance
+from that colour upto the same distance the colour
+of the second pixel has to that colour, will be
+turned into transparency in the video from stdin,
+and the resulting video will be printed to stdout.
+.P
+If the two colours in a frame from
+.I key-stream
+have the same alpha value, all matching colours
+will be turned into full transparency. Otherwise,
+the colours matching the first colour will be
+given the transparency specified with the first
+colour, all other matching colours will have
+a transparency between to two specified alpha
+values. However, if alpha value of the second
+colour is less than the alpha value of the first
+colour, twos alpha values are inverted.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-text (1),
+.BR blind-colour-ciexyz (1),
+.BR blind-colour-srgb (1),
+.BR blind-dual-key (1),
+.BR blind-primary-key (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

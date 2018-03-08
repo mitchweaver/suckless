@@ -1,0 +1,20 @@
+.TH BLIND-EXTRACT-ALPHA 1 blind
+.SH NAME
+blind-extract-alpha - Split a video into an alpha mask video and a colour mask video
+.SH SYNOPSIS
+.B blind-extract-alpha
+.I colour-file
+.SH DESCRIPTION
+.B blind-split
+reads a video from stdin and writes the same video,
+except fully opaque, to
+.IR colour-file ,
+and writes a fully opaque video to stdout where
+the colour channels have the values from the alpha
+channel from the video in stdin.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-set-alpha (7)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

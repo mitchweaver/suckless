@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+
+set -e
+
+if printf '%s\n' "$0" | grep / >/dev/null 2>/dev/null; then
+    export PATH="$(printf '%s\n' "$0" | tr '/\n' '\n/' | sed \$d | tr '/\n' '\n/'):${PATH}"
+fi
+
+pid=$$
+o='0 0 0 0'
+E='1 1 1 1'
+
+x=x; y=y; z=z
+ciexyy=0
+zflag=
+grey=0
+keep=0
+
+usage () {
+	xyy="-z x1 y1 x2 y2 x3 y3 [white-x white-y]"
+	xyz="X1 Y1 Z1 X2 Y2 Z2 X3 Y3 Z3 [white-X white-Y white-Z]"
+	printf 'usage: %s [-1 | -2 | -3] [-gk] [%s | %s]\n' "$0" "$xyy" "$xyz" >&2
+	exit 1
+}
+
+while ! test $# = 0; do
+	if test "$1" = --; then
+		shift 1
+		break
+	elif test "$(printf '%s\n' "$1" | sed 's/^\(.\).*$/\1/')" = -; then
+		arg="$(printf '%s\n' "$1" | sed 's/^.//')"
+		shift 1
+		while test -n "$arg"; do
+			flag="$(printf '%s\n' "$arg" | sed 's/^\(.\).*$/\1/')"
+			arg="$(printf '%s\n' "$arg" | sed 's/^.//')"
+			if test "$flag" = 1; then
+				x=x; y=y; z=z
+			elif test "$flag" = 2; then
+				x=y; y=z; z=x
+			elif test "$flag" = 3; then
+				x=z; y=x; z=y
+			elif test "$flag" = g; then
+				grey=1
+			elif test "$flag" = k; then
+				keep=1
+			elif test "$flag" = z; then
+				ciexyy=1
+			else
+				usage
+			fi  
+		done
+	else
+		break
+	fi
+done
+
+a=$(( ( 3 - $ciexyy ) * 3 ))
+b=$(( ( 3 - $ciexyy ) * 4 ))
+if test $# != 0 && test $# != $a && test $# != $b; then
+	usage
+elif test $ciexyy = 1 && test $# = 0; then
+	usage
+fi
+
+read frames width height pixfmt < <(blind-read-head)
+
+if test $# = 0; then
+	convert () { cat; }
+	unconvert () { cat; }
+else
+	if test $ciexyy = 1; then
+		zflag=-z
+	fi
+	convert () {
+		blind-affine-colour -al \
+			<(blind-colour-matrix -F "$pixfmt" $zflag -- "$@" | \
+				blind-tee \
+					>(blind-invert-matrix -e | \blind-to-named -a blind-${pid}-invmat) | \
+					blind-repeat inf -)
+	}
+	unconvert () {
+		blind-affine-colour -al \
+			<(blind-from-named -a blind-${pid}-invmat \
+				blind-arithm -xyz max <(blind-single-colour -w 3 -h 3 1) | \
+				blind-repeat inf -)
+	}
+fi
+
+if test $keep = 0; then
+	primary () { blind-from-named -a blind-${pid}-$x "$@"; }
+	keep_primary () { "$@"; }
+else
+	primary () {
+		blind-from-named -a blind-${pid}-$x \
+			blind-tee >(blind-to-named -a blind-${pid}-k) | \
+			"$@"
+	}
+	keep_primary () {
+		if test $x = x; then
+			X=; Y=y; Z=z
+		elif test $x = y; then
+			X=x; Y=; Z=z
+		else
+			X=x; Y=y; Z=
+		fi
+		blind-from-named -f 7 -a blind-${pid}-k \
+			blind-arithm -a$X$Y$Z add /dev/fd/7 | \
+			"$@"
+	}
+fi
+
+if test $grey = 0; then
+	finalise () { unconvert; }
+else
+	finalise () {
+		unconvert | blind-set-saturation <(blind-single-colour -f inf -w $width -h $height 0)
+	}
+fi
+
+(blind-write-head $frames $width $height "$pixfmt" ; cat) | \
+	convert "$@" | \
+	blind-split-chans -c \
+		>(blind-to-named -a blind-${pid}-x) \
+		>(blind-to-named -a blind-${pid}-y) \
+		>(blind-to-named -a blind-${pid}-z) \
+		- | \
+	blind-arithm mul \
+		<(blind-single-colour -f inf -w $width -h $height 0 0 0 1 | \
+			blind-arithm sub \
+				<(primary blind-affine-colour -l \
+					<(printf '%s %s %s %s\n' \
+						1 4 4 xyza \
+						$o $o $o $o \
+						$o $o $o $o \
+						$o $o $o $o \
+						$E $E $E $o | \
+						blind-from-text | \
+						blind-repeat inf -))) | \
+	keep_primary \
+	blind-from-named -f 8 -a blind-${pid}-$y blind-arithm add /dev/fd/8 | \
+	blind-from-named -f 9 -a blind-${pid}-$z blind-arithm add /dev/fd/9 | \
+	finalise

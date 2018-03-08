@@ -1,0 +1,41 @@
+.TH BLIND-RECTANGLE-TESSELLATION 1 blind
+.SH NAME
+blind-rectangle-tessellation - Create a frame with tessellated rectangles
+.SH SYNOPSIS
+.B blind-rectangle-tessellation
+[-F
+.IR pixel-format ]
+.I block-width
+.I block-height
+.SH DESCRIPTION
+.B blind-rectangle-tessellation
+prints a small video to stdout, that
+can be extended to any size with
+.BR blind-repeat-tessellation (1)
+to create a pattern of tessellated
+rectangles. Each rectangle will be
+.I block-width
+pixels wide and
+.I block-height
+pixels tall.
+.SH OPTIONS
+.TP
+.BR -F " "\fIpixel-format\fP
+Select pixel format, see
+.BR blind-convert (1)
+for more information. Pixel formats starting with
+.BR raw
+are not supported.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-hexagon-tessellation (1),
+.BR blind-triangle-tessellation (1),
+.BR blind-repeat-tessellation (1),
+.BR blind-get-colours (1),
+.BR blind-apply-palette (1),
+.BR blind-mosaic (1),
+.BR blind-mosaic-corners (1),
+.BR blind-mosaic-edges (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

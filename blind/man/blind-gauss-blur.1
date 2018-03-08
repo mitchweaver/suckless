@@ -1,0 +1,93 @@
+.TH BLIND-GAUSS-BLUR 1 blind
+.SH NAME
+blind-gauss-blur - Apply Gaussian blur to a video
+.SH SYNOPSIS
+.B blind-gauss-blur
+[-j
+.IR jobs ]
+[-s
+.I spread
+|
+-s
+.RB ' auto ']
+[-acghvy]
+.I sd-stream
+.SH DESCRIPTION
+.B blind-gauss-blur
+reads a video from stdin and a mask video from
+.IR sd-stream .
+The video is printed to stdout, with all pixels are
+blurred using Gaussian blur with a standard
+deviation calculated for each pixel individually.
+The standard deviation is calculated by multiplying
+the X, Y, or Z value with the alpha value of the
+corresponding pixel and frame in
+.IR sd-stream .
+The X value is used when blurring the X channel,
+and analogously for Y and Z. If the standard
+deviation is 0, the pixel is not blurred.
+.P
+If stdin is longer than
+.IR sd-stream ,
+the remainder of stdin is printed without any changes.
+If stdin is shorter than
+.IR sd-stream ,
+the remainder of
+.I sd-stream
+is ignored but may be partially read.
+.SH OPTIONS
+.TP
+.B -a
+Used to optimise performance if it is known that
+the video is opaque, and to ensure that the output
+video is opaque.
+.TP
+.B -c
+Blur the chroma only, not the luma.
+.TP
+.B -g
+Add glow effect.
+.TP
+.B -h
+Blur horizontally only. Has no affect if -v is also
+specified.
+.TP
+.BR -j " "\fIjobs\fP
+Process the video in parallel, using
+.I jobs
+processes.
+.TP
+.BR -s " "\fIspread\fP
+Pixels with Manhattan distances exceeding
+.I spread
+shall not affect each other. If
+.RB ' auto '
+is specified, this value is calculated from
+the standard deviation used to blir a pixel.
+If -s is not used, there will not be
+distance limit.
+.TP
+.B -v
+Blur vertically only. Has no affect if -h is also
+specified.
+.TP
+.B -y
+Use the Y value (multiplied by the alpha value) from
+.I sd-stream
+as the standard deviation all channels.
+.SH REQUIREMENTS
+.B blind-gauss-blur
+requires enough free memory to load three full frames into
+memory. A frame requires 32 bytes per pixel it contains. If
+.B -g
+is used, four full frames are required.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-single-colour (1),
+.BR blind-time-blur (1),
+.BR blind-make-kernel (1),
+.BR blind-kernel (1),
+.BR blind-apply-kernel (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

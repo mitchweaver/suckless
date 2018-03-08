@@ -1,0 +1,71 @@
+.TH BLIND-AFFINE-COLOUR 1 blind
+.SH NAME
+blind-affine-colour - Apply an affine transformation to the colours in a video
+.SH SYNOPSIS
+.B blind-affine-colour
+[-alp]
+.I matrix-stream
+.SH DESCRIPTION
+.B blind-affine-colour
+reads a video from stdin and a matrix video from
+.I matrix-stream
+and multiplies colours from stdin with matrices from
+.I matrix-stream
+and prints the resulting video to stdout.
+.P
+Each frame in
+.I matrix-stream
+is a matrix and shall have the width and height 5.
+Each pixel in a frame is a cell in the matrix,
+the pixels luma is multiples by its alpha value
+to determine the value of the matrix cell.
+.SH OPTIONS
+.TP
+.B -a
+The width and height of the matrix shall be 4
+instead of 5 (reduced by 1) and the alpha values
+of the pixels shall not be modified.
+.TP
+.B -l
+The width and height of the matrix shall be 4
+instead of 5 (reduced by 1) making the transformation
+linear instead of affine.
+.TP
+.B -p
+Each frame in
+.I matrix-stream
+shall contain one matrix per pixel in a frame in
+stdin. The video in
+.I matrix-stream
+shall be 5, 4, or 3, depending on whether
+.B -a
+and
+.B -l
+are specified, times are wide and tall as the
+video in stdin.
+.SH NOTES
+If both
+.B -a
+and
+.B -l
+are specified, the matrices shall have the
+width and height 3 instead of 5.
+.SH REQUIREMENTS
+.B blind-affine-colour
+requires enough free memory to load 5, 4, or 3,
+depending on whether
+.B -a
+and
+.B -l
+are specified, full rows from
+.I matrix-stream
+into memory. A frame requires 32 bytes per pixel
+it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-arithm (1),
+.BR blind-invert-matrix (1),
+.BR blind-multiply-matrice (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,35 @@
+.TH BLIND-SAWTOOTH-WAVE 1 blind
+.SH NAME
+blind-sawtooth-wave - Apply sawtooth-wave repetition to gradient
+.SH SYNOPSIS
+.B blind-sawtooth-wave
+[-e]
+.SH DESCRIPTION
+.B blind-sawtooth-wave
+reads a video from stdin, applies a filter to
+each channel to it, and prints the result to
+stdout. The filter is designed for applying
+repetition to a gradient, and thus assumes the
+range of visible values is [0, 1]. The applied
+filter creates a sawtooth-wave.
+.SH OPTIONS
+.TP
+.B -e
+Apply optimisation that assumes all channels
+are identical.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-double-sine-wave (1),
+.BR blind-round-wave (1),
+.BR blind-sinc-wave (1),
+.BR blind-sine-wave (1),
+.BR blind-triangular-wave (1),
+.BR blind-spectrum (1),
+.BR blind-cone-gradient (1),
+.BR blind-linear-gradient (1),
+.BR blind-radial-gradient (1),
+.BR blind-spiral-gradient (1),
+.BR blind-square-gradient (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

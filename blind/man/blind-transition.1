@@ -1,0 +1,43 @@
+.TH BLIND-TRANSITION 1 blind
+.SH NAME
+blind-transition - Turn a gradient video to transition-gradient video
+.SH SYNOPSIS
+.B blind-transition
+[-ir] [-s
+.IR softness-stream ]
+.SH DESCRIPTION
+.B blind-transition
+reads a video from stdin and prints a version of
+it to stdout suitable for input to
+.BR blind-set-alpha (1)
+to for creation an transition effect.
+.P
+The luma in stdin is used to determine when a
+pixel in the video shall be opaque.
+.SH OPTION
+.TP
+.B -i
+Invert the transition.
+.TP
+.B -r
+Reverse the transition.
+.TP
+.BR -s \ \fIsoftness-stream\fP
+The luma multiplied by the opacity for each pixel
+in each frame in the video from
+.I softness-stream
+will be used as the transitional softness for that
+pixel in the video.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-set-alpha (1),
+.BR blind-dissolve (1),
+.BR blind-stack (1),
+.BR blind-cone-gradient (1),
+.BR blind-linear-gradient (1),
+.BR blind-radial-gradient (1),
+.BR blind-spiral-gradient (1),
+.BR blind-square-gradient (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

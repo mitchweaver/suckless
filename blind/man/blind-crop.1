@@ -1,0 +1,73 @@
+.TH BLIND-CROP 1 blind
+.SH NAME
+blind-crop - Extract subframes for all frames
+.SH SYNOPSIS
+.B blind-crop
+[-s | -S | -t]
+.I width
+.I height
+.I left
+.I top
+.SH DESCRIPTION
+.B blind-crop
+reads a video from stdin and prints a cropped
+version of the video to stdout. The new video
+with have the specified
+.I width
+and
+.IR height ,
+and will have the same length as the input video.
+The left-most pixels of the subvideo will be
+.I left
+pixels rightward of the left-most pixels of the
+input video. The top-most pixels of the subvideo
+will be
+.I top
+pixels downward of the top-most pixels of the
+input video.
+.P
+The selected subvideo may not extend beyond the
+input video.
+.SH OPTIONS
+.TP
+.B -s
+Instead of resizing the video, set alpha (and
+all colour parameters) to 0 on each pixel outside
+the selected region.
+.TP
+.B -S
+Instead of resizing the video, set alpha (and
+all colour parameters) to 0 on each pixel inside
+the selected region.
+.TP
+.B -t
+Instead of changing the width and height of
+the output video, put the subvideo side-by-side.
+The subvideo's left-most pixel will be positioned
+.I left
+pixels rightward of the output video's left-most pixel,
+and the subvideo's top-most pixel will be positioned
+.I top
+pixels downward of the output video's left-most pixel.
+.SH REQUIREMENTS
+.B blind-crop
+requires enough free memory to load two full frames into
+memory, one of the size of the source video's frames,
+and one of the size of the target video's frames. However,
+if
+.B -s
+or
+.B -S
+is used, only memory for one full frame, of the size of
+the source video's frames, are required. A frame requires
+32 bytes per pixel it contains.
+.B blind-crop
+has not been optimised for memory usage, but instead
+for code simplicity.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-extend (1),
+.BR blind-translate (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,33 @@
+.TH BLIND-TIME-BLUR 1 blind
+.SH NAME
+blind-time-blur - Draw new frames on top of old frames with partial alpha
+.SH SYNOPSIS
+.B blind-time-blur
+.I alpha-stream
+.SH DESCRIPTION
+.B blind-time-blur
+reads a video from stdin and a mask video from
+.IR alpha-stream .
+The first frame from the video is printed to stdout
+as is, and the first frame from the mask video is
+ignored. Succeeding frames are drawn on top of the
+last frame printed to stdout, with its alpha cannel
+multiplied pixel-by-pixel by the product of the
+luminosity and the alpha from corresponding pixel
+in the mask video, and then printed stdout.
+.P
+If stdin is longer than
+.IR alpha-stream ,
+the remainder of stdin is printed without any changes.
+If stdin is shorter than
+.IR alpha-stream ,
+the remainder of
+.I alpha-stream
+is ignored but may be partially read.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-single-colour (1),
+.BR blind-gauss-blur (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

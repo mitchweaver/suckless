@@ -1,0 +1,14 @@
+diff -up dmenu/dmenu.c dmenu-icase/dmenu.c
+--- dmenu/dmenu.c	2016-12-01 02:51:31.642969377 -0600
++++ dmenu-icase/dmenu.c	2016-12-01 02:51:53.889635972 -0600
+@@ -296,8 +296,8 @@ fuzzymatch(void)
+ 			sidx = eidx = -1;
+ 			/* walk through item text */
+ 			for (i = 0; i < itext_len && (c = item->text[i]); i++) {
+-				/* fuzzy match pattern */
+/* -				if (text[pidx] == c) { */
++				/* case-insensitive fuzzy match pattern */
++				if (tolower(text[pidx]) == c || toupper(text[pidx]) == c) {
+ 					if (sidx == -1)
+ 						sidx = i;
+ 					pidx++;

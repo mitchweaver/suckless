@@ -1,0 +1,85 @@
+.TH BLIND-MAKE-KERNEL 1 blind
+.SH NAME
+blind-make-kernel - Create a custom convolution matrix
+.SH SYNOPSIS
+.B blind-make-kernel
+[-d
+.IR denominator ]\ ...
+[-nxyza]
+--
+.IR value \ ...]\ ...
+.SH DESCRIPTION
+.B blind-make-kernel
+creates a convolution matrix that can be applied to
+a video using
+.BR blind-apply-kernel (1).
+.P
+The matrix is construct from each
+.I value
+with
+.B --
+delimiting the rows. For example
+.P
+.nf
+	blind-make-kernel 1 2 3 -- 4 5 6
+.fi
+.P
+creates the matrix
+.P
+.nf
+	1 2 3
+	4 5 6
+.fi
+.P
+If no
+.I value
+is specified (and at most one
+.B --
+is used)
+the matrix is read from stdin, <newline>
+is used to delimit rows and other whitespace
+is used to delimit cells.
+.SH OPTIONS
+.TP
+.B -a
+Apply the values to the alpha channel, apply an
+identity kernel to all unselected channels.
+.TP
+.BR -d \ \fIdenominator\fP
+Divide the matrix by
+.IR denominator .
+This option is applied after
+.B -n
+and can be used multiple times. The product of
+all specified values are used as the denominator.
+.TP
+.B -n
+Normalise the matrix, that is, divide it by the
+sum of all its elements. This option is applied
+before
+.BR -d .
+.TP
+.B -x
+Apply the values to the X channel, apply an
+identity kernel to all unselected channels.
+.TP
+.B -y
+Apply the values to the Y channel, apply an
+identity kernel to all unselected channels.
+.TP
+.B -z
+Apply the values to the Z channel, apply an
+identity kernel to all unselected channels.
+.SH NOTES
+.B blind-make-kernel
+Create a single frame, to that it can be stored to
+disc. When applying it to a video, you want to use
+.BR blind-repeat (1).
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-apply-kernel (1),
+.BR blind-kernel (1),
+.BR blind-repeat (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

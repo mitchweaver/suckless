@@ -1,0 +1,64 @@
+.TH BLIND-CONE-GRADIENT 1 blind
+.SH NAME
+blind-cone-gradient - Generate a video with a cone gradient
+.SH SYNOPSIS
+.B blind-cone-gradient
+[-a | -s]
+-w
+.I width
+-h
+.I height
+.SH DESCRIPTION
+.B blind-cone-gradient
+prints a video with a cone gradient to stdout,
+parameters for each from is read from each frame
+in stdin. The gradient is stored in all channels
+of the video.
+.P
+The video in stdin must contain exactly 2 or 3
+pixels per frame. The first pixel shall point to
+the beginning of the gradient (where the value is
+0) and the second pixel shall point to the end of
+the gradient (where the value is 1). In these
+pixels, the value of the first channel specifies
+the X-position and the value of the second
+channel specifies Y-position, the other channels
+are ignored.
+.P
+If there is a third pixel, in frames in stdin, all
+values in the gradient are multipled by the value
+in the second channel (the Y channel) of the third
+pixel in stdin; the rest of the channels in this
+pixel is ignored.
+.SH OPTIONS
+.TP
+.B -a
+Make the gradient increase anticlockwise
+instead of clockwise.
+.TP
+.B -s
+Make the gradient increase symmetrically
+instead of clockwise.
+.TP
+.BR -w " "\fIwidth\fP
+The width of the video, in pixels.
+.TP
+.BR -h " "\fIheight\fP
+The height of the video, in pixels.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-text (7),
+.BR blind-linear-gradient (1),
+.BR blind-radial-gradient (1),
+.BR blind-spiral-gradient (1),
+.BR blind-square-gradient (1),
+.BR blind-double-sine-wave (1),
+.BR blind-round-wave (1),
+.BR blind-sawtooth-wave (1),
+.BR blind-sinc-wave (1),
+.BR blind-sine-wave (1),
+.BR blind-triangular-wave (1),
+.BR blind-spectrum (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

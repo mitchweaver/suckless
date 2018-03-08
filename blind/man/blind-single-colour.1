@@ -1,0 +1,80 @@
+.TH BLIND-SINGLE-COLOUR 1 blind
+.SH NAME
+blind-single-colour - Generate a single-colour video
+.SH SYNOPSIS
+.B blind-single-colour
+[-f
+.I frames
+| -f
+.RB ' inf ']
+[-F
+.IR pixel-format ]
+-w
+.I width
+-h
+.I height
+.RI ( X
+.I Y
+.IR Z
+|
+.IR Y )
+.RI [ alpha ]
+.SH DESCRIPTION
+.B blind-single-colour
+prints a single-colour video to stdout.
+The video have the colour specified by the arguments
+.IR X ,
+.IR Y ,
+and
+.IR Z ,
+and the selected
+.I alpha
+value. The colour is specified in CIE XYZ. If
+.I X
+and
+.I Z
+are not specified, the colour will be CIE Standard Illuminant D65-grey
+with the luminosity
+.IR Y .
+If
+.I alpha
+is not specified, 1, which means fully opaque, will be used.
+.SH OPTIONS
+.TP
+.BR -f " "\fIframes\fP
+The number of frames in the video. If
+.I frames
+is
+.RB ' inf ',
+the number of frames will be specified as 0 in the output's
+head (works fine with most
+.B blind
+tools) but the video will be printed to stdout until there are
+no processes with an open read end to this process's stdout.
+.TP
+.BR -F " "\fIpixel-format\fP
+Select pixel format, see
+.BR blind-convert (1)
+for more information. Pixel formats starting with
+.BR raw
+are not supported.
+.TP
+.BR -w " "\fIwidth\fP
+The width of the video, in pixels.
+.TP
+.BR -h " "\fIheight\fP
+The height of the video, in pixels.
+.SH NOTES
+.B blind-single-colour
+may be changed in the future to use some other colour model,
+therefore, it is recommended to also use
+.BR blind-colour-ciexyz (1)
+if you are specifying the colour in CIE XYZ. If however
+your values are colour space-agnostic, you should not.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-colour-ciexyz (1),
+.BR blind-colour-srgb (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

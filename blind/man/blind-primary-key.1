@@ -1,0 +1,87 @@
+.TH BLIND-PRIMARY-KEY 1 blind
+.SH NAME
+blind-primary-key - Replace a primary with transparency
+.SH SYNOPSIS
+.B blind-primary-key
+[-1 | -2 | -3] [-gk] (-z
+.I x1
+.I y1
+.I x2
+.I y2
+.I x3
+.I y3
+.RI [ white-x
+.IR white-y ]
+|
+.I X1
+.I Y1
+.I Z1
+.I X2
+.I Y2
+.I Z2
+.I X3
+.I Y3
+.I Z3
+.RI [ white-X
+.I white-Y
+.IR white-Z ])
+.SH DESCRIPTION
+.B blind-primary-key
+reads a video from stdin and replaces a primary
+with transparency and prints the resulting video
+to stdout.
+.B blind-primary-key
+internally converts colour space to the one
+with the primaries whose CIE XYZ values are
+.RI ( X1
+.I Y1
+.IR Z1 ),
+.RI ( X2
+.I Y2
+.IR Z2 ),
+and
+.RI ( X3
+.I Y3
+.IR Z3 )
+and whose white point is the colour whose
+CIE XYZ values are
+.RI ( white-X
+.I white-Y
+.IR white-Z ),
+and replaces the first primary with transparency.
+If the white point is not specified,
+CIE Standard Illuminant D65 is used.
+.P
+If the colour space is specified, no conversion
+is done internally.
+.SH OPTIONS
+.TP
+.B -1
+Replace the the first primary with transparency. (Default.)
+.TP
+.B -2
+Replace the the second primary, instead
+of the first primary, with transparency.
+.TP
+.B -3
+Replace the the third primary, instead
+of the first primary, with transparency.
+.TP
+.B -k
+Do not remove the keyed primary.
+.TP
+.B -g
+The video is, with the exception of the keyed primary,
+greyscale and the output video shall remain greyscale.
+.TP
+.B -z
+Parse arguments as CIE XYY instead of CIE XYZ.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-colour-ciexyz (1),
+.BR blind-colour-srgb (1),
+.BR blind-invert-matrix (1),
+.BR blind-affine-colour (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

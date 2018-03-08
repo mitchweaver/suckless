@@ -1,0 +1,201 @@
+.TH DMENU 1 dmenu\-VERSION
+.SH NAME
+dmenu \- dynamic menu
+.SH SYNOPSIS
+.B dmenu
+.RB [ \-bfiv ]
+.RB [ \-l
+.IR lines ]
+.RB [ \-m
+.IR monitor ]
+.RB [ \-p
+.IR prompt ]
+.RB [ \-fn
+.IR font ]
+.RB [ \-nb
+.IR color ]
+.RB [ \-nf
+.IR color ]
+.RB [ \-sb
+.IR color ]
+.RB [ \-sf
+.IR color ]
+.RB [ \-w
+.IR windowid ]
+.P
+.BR dmenu_run " ..."
+.SH DESCRIPTION
+.B dmenu
+is a dynamic menu for X, which reads a list of newline\-separated items from
+stdin.  When the user selects an item and presses Return, their choice is printed
+to stdout and dmenu terminates.  Entering text will narrow the items to those
+matching the tokens in the input.
+.P
+.B dmenu_run
+is a script used by
+.IR dwm (1)
+which lists programs in the user's $PATH and runs the result in their $SHELL.
+.SH OPTIONS
+.TP
+.B \-b
+dmenu appears at the bottom of the screen.
+.TP
+.B \-f
+dmenu grabs the keyboard before reading stdin.  This is faster, but will lock up
+X until stdin reaches end\-of\-file.
+.TP
+.B \-i
+dmenu matches menu items case insensitively.
+.TP
+.BI \-l " lines"
+dmenu lists items vertically, with the given number of lines.
+.TP
+.BI \-x " xoffset"
+dmenu is placed at this offset measured from the left side of the monitor.
+Can be negative.
+If option
+.B \-m
+is present, the measurement will use the given monitor.
+.TP
+.BI \-y " yoffset"
+dmenu is placed at this offset measured from the top of the monitor.  If the
+.B \-b
+option is used, the offset is measured from the bottom.  Can be negative.
+If option
+.B \-m
+is present, the measurement will use the given monitor.
+.TP
+.BI \-w " width"
+sets the width of the dmenu window.
+.TP
+
+.BI \-m " monitor"
+dmenu is displayed on the monitor number supplied. Monitor numbers are starting
+from 0.
+.TP
+.BI \-p " prompt"
+defines the prompt to be displayed to the left of the input field.
+.TP
+.BI \-fn " font"
+defines the font or font set used.
+.TP
+.BI \-nb " color"
+defines the normal background color.
+.IR #RGB ,
+.IR #RRGGBB ,
+and X color names are supported.
+.TP
+.BI \-nf " color"
+defines the normal foreground color.
+.TP
+.BI \-sb " color"
+defines the selected background color.
+.TP
+.BI \-sf " color"
+defines the selected foreground color.
+.TP
+.B \-v
+prints version information to stdout, then exits.
+.TP
+.BI \-w " windowid"
+embed into windowid.
+.SH USAGE
+dmenu is completely controlled by the keyboard.  Items are selected using the
+arrow keys, page up, page down, home, and end.
+.TP
+.B Tab
+Copy the selected item to the input field.
+.TP
+.B Return
+Confirm selection.  Prints the selected item to stdout and exits, returning
+success.
+.TP
+.B Ctrl-Return
+Confirm selection.  Prints the selected item to stdout and continues.
+.TP
+.B Shift\-Return
+Confirm input.  Prints the input text to stdout and exits, returning success.
+.TP
+.B Escape
+Exit without selecting an item, returning failure.
+.TP
+C\-a
+Home
+.TP
+C\-b
+Left
+.TP
+C\-c
+Escape
+.TP
+C\-d
+Delete
+.TP
+C\-e
+End
+.TP
+C\-f
+Right
+.TP
+C\-g
+Escape
+.TP
+C\-h
+Backspace
+.TP
+C\-i
+Tab
+.TP
+C\-j
+Return
+.TP
+C\-J
+Shift-Return
+.TP
+C\-k
+Delete line right
+.TP
+C\-m
+Return
+.TP
+C\-M
+Shift-Return
+.TP
+C\-n
+Down
+.TP
+C\-p
+Up
+.TP
+C\-u
+Delete line left
+.TP
+C\-w
+Delete word left
+.TP
+C\-y
+Paste from primary X selection
+.TP
+C\-Y
+Paste from X clipboard
+.TP
+M\-g
+Home
+.TP
+M\-G
+End
+.TP
+M\-h
+Up
+.TP
+M\-j
+Page down
+.TP
+M\-k
+Page up
+.TP
+M\-l
+Down
+.SH SEE ALSO
+.IR dwm (1),
+.IR stest (1)

@@ -1,0 +1,32 @@
+.TH BLIND-TO-IMAGE 1 blind
+.SH NAME
+blind-to-image - Convert a frame to an image
+.SH SYNOPSIS
+.B blind-to-image
+[-d
+.I depth
+| -f]
+.SH DESCRIPTION
+.B blind-to-image
+reads a frame from stdin, converts it to a
+Portable Arbitrary Map image, and prints it to
+stdout.
+.SH OPTIONS
+.TP
+.BR -d " "\fIdepth\fP
+Use
+.IR depth -bits
+per channel in the output.
+.TP
+.B -f
+Output a Farbfeld image instead of a
+Portable Arbitrary Map image.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-image (1),
+.BR blind-next-frame (1),
+.BR blind-to-text (1),
+.BR convert (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

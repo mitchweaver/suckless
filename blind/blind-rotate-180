@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+if ! test $# = 0; then
+	if test "$1" = --; then
+		shift 1
+	fi
+	if ! test $# = 0; then
+		printf 'usage: %s\n' "$0" >&2
+		exit 1
+	fi
+fi
+
+flip="$(printf '%s\n' "$0" | tr '/\n' '\n/' | sed '$s/^.*$/blind-flip\//' | tr '/\n' '\n/')"
+flop="$(printf '%s\n' "$0" | tr '/\n' '\n/' | sed '$s/^.*$/blind-flop\//' | tr '/\n' '\n/')"
+
+"$flip" | "$flop"

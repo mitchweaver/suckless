@@ -1,0 +1,60 @@
+diff --git a/dwm.c b/dwm.c
+index b2bc9bd..5a380e6 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -148,6 +148,7 @@ static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interac
+ static void arrange(Monitor *m);
+ static void arrangemon(Monitor *m);
+ static void attach(Client *c);
++static void attachabove(Client *c);
+ static void attachstack(Client *c);
+ static void buttonpress(XEvent *e);
+ static void checkotherwm(void);
+@@ -408,6 +409,20 @@ attach(Client *c)
+ }
+ 
+ void
++attachabove(Client *c)
++{
++	if(c->mon->sel == NULL || c->mon->sel == c->mon->clients || c->mon->sel->isfloating) {
++		attach(c);
++		return;
++	}
++
++	Client *at;
++	for(at = c->mon->clients; at->next != c->mon->sel; at = at->next);
++	c->next = at->next;
++	at->next = c;
++}
++
++void
+ attachstack(Client *c)
+ {
+ 	c->snext = c->mon->stack;
+@@ -1079,7 +1094,7 @@ manage(Window w, XWindowAttributes *wa)
+ 		c->isfloating = c->oldstate = trans != None || c->isfixed;
+ 	if (c->isfloating)
+ 		XRaiseWindow(dpy, c->win);
+-	attach(c);
++	attachabove(c);
+ 	attachstack(c);
+ 	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,
+ 	                (unsigned char *) &(c->win), 1);
+@@ -1437,7 +1452,7 @@ sendmon(Client *c, Monitor *m)
+ 	detachstack(c);
+ 	c->mon = m;
+ 	c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
+-	attach(c);
++	attachabove(c);
+ 	attachstack(c);
+ 	focus(NULL);
+ 	arrange(NULL);
+@@ -1890,7 +1905,7 @@ updategeom(void)
+ 					m->clients = c->next;
+ 					detachstack(c);
+ 					c->mon = mons;
+-					attach(c);
++					attachabove(c);
+ 					attachstack(c);
+ 				}
+ 				if (m == selmon)

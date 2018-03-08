@@ -1,0 +1,202 @@
+.TH BLIND-KERNEL 1 blind
+.SH NAME
+blind-kernel - Create a convolution matrix
+.SH SYNOPSIS
+.B blind-kernel
+[-xyza]
+.I kernel
+.RI [ parameter ]\ ...
+.SH DESCRIPTION
+.B blind-kernel
+creates a convolution matrix that can be applied to
+a video using
+.BR blind-apply-kernel (1).
+The convolution matrix is created from a set
+of standard formulae. The formula is selected
+using the
+.I kernel
+argument and is tuned with
+.IR kernel -specific
+.IR parameter s.
+.SH KERNELS
+.TP
+.RI ' \fBbox\ blur\fP '\ [-w\  weight ]\ [ spread \ |\  x-spread \  y-spread ]
+Creates a box blur kernel. Unless
+.B -w
+is used, the kernel is unweighted, otherwise it has the specified
+.IR weight .
+The kernel will have the spread 1, the specified
+.IR spread ,
+or
+.I x-spread
+as the horizontal spread and
+.I y-spread
+as the vertical spread.
+.TP
+.BR emboss \ [\fIdirection\fP]
+Create an emboss kernel with the specified
+.IR direction .
+The
+.I direction
+must be
+.BR N ;
+.BR NW
+or
+.BR WN ;
+.BR W ;
+.BR SW
+or
+.BR WS ;
+.BR S ;
+.BR SE
+or
+.BR ES ;
+.BR E ;
+.BR NE
+or
+.BR EN .
+If no
+.I direction
+is specified,
+.B SE
+is used.
+.TP
+.RI \fBgaussian\fP\ [-s\  spread ]\ [-g\ |\ -u]\  standard-deviation
+Creates a Gaussian blur kernel with the standard deviation
+.IR standard-deviation .
+If
+.B -u
+is used, the a Gaussian unsharpen kernel is created.
+If
+.B -g
+is used, the a Gaussian blur kernel with glow effect is created.
+If
+.B -s
+is specified, the specified
+.I spread
+will be used, otherwise the spread will be selected automatically.
+.TP
+.BI gradient\  direction
+Create a gradient detection kernel with the specified
+.IR direction .
+The
+.I direction
+must be
+.BR N ;
+.BR NW
+or
+.BR WN ;
+.BR W ;
+.BR SW
+or
+.BR WS ;
+.BR S
+or
+.BR H ;
+.BR SE
+or
+.BR ES ;
+.BR E
+or
+.BR V ;
+.BR NE
+or
+.BR EN .
+.TP
+.BI kirsch\  direction
+Create a Kirsch kernel with the specified
+.IR direction .
+The
+.I direction
+must be
+.B 1
+or
+.BR N ;
+.BR 2 ,
+.BR NW ,
+or
+.BR WN ;
+.BR 3
+or
+.BR W ;
+.BR 4 ,
+.BR SW ,
+or
+.BR WS ;
+.BR 5
+or
+.BR S ;
+.BR 6 ,
+.BR SE ,
+or
+.BR ES ;
+.BR 7
+or
+.BR E ;
+or
+.BR 8 ,
+.BR NE ,
+or
+.BR EN .
+.TP
+.BR sharpen \ [-i]
+Creates a sharpen kernel. If
+.B -i
+is used, an intensified sharpen kernel is created.
+.TP
+.BI sobel\  direction
+Create a Sobel operator kernel with the specified
+.IR direction .
+The
+.I direction
+must be
+.BR N
+or
+.BR H ;
+.BR NW
+or
+.BR WN ;
+.BR W
+or
+.BR V ;
+.BR SW
+or
+.BR WS ;
+.BR S ;
+.BR SE
+or
+.BR ES ;
+.BR E ;
+.BR NE
+or
+.BR EN .
+.SH OPTIONS
+.TP
+.B -a
+Apply the values to the alpha channel, apply an
+identity kernel to all unselected channels.
+.TP
+.B -x
+Apply the values to the X channel, apply an
+identity kernel to all unselected channels.
+.TP
+.B -y
+Apply the values to the Y channel, apply an
+identity kernel to all unselected channels.
+.TP
+.B -z
+Apply the values to the Z channel, apply an
+identity kernel to all unselected channels.
+.SH NOTES
+.B blind-make-kernel
+Create a single frame, to that it can be stored to
+disc. When applying it to a video, you want to use
+.BR blind-repeat (1).
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-apply-kernel (1),
+.BR blind-kernel (1),
+.BR blind-repeat (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,87 @@
+.TH BLIND-COLOUR-SRGB 1 blind
+.SH NAME
+blind-colour-srgb - Convert sRGB for use with blind-single-colour(1) and blind-colour-matrix(1)
+.SH SYNOPSIS
+.B blind-colour-srgb
+[-%
+.IR format ]
+[-d
+.IR depth ]
+[-l]
+.I red
+.I green
+.I blue
+.SH DESCRIPTION
+.B blind-colour-srgb
+converts the sRGB colour with the specified
+.IR red ,
+.IR green ,
+and
+.I blue
+values to CIE XYZ and prints the result to stdout
+in plain text, such that it can be used with
+.BR blind-single-colour (1).
+If
+.BR blind-single-colour (1)
+is modified in the future to use another colour
+model than CIE XYZ,
+.B blind-colour-srgb
+will be modified to convert the values into
+that colour model.
+.P
+.IR red ,
+.IR green ,
+and
+.I blue
+may be floating-point values and may be negative
+or beyond the maximum value encodable in an
+unsigned integer with
+.I depth
+bits.
+.SH OPTIONS
+.TP
+.BR -% \ \fIformat\fP
+Selects in what format parameters are printed.
+.I format
+may include the prefix
+.B +
+that specified that non-negative values should be prefixed with a
+.BR + .
+After any prefix, there may be a positive number specifying
+the percision of the output, optionally followed by either of
+the letters
+.BR a ,
+.BR e ,
+.BR f ,
+other
+.B g
+(other their synonymous uppercases),
+at most once, with the same semantics as in
+.BR printf (3).
+.B f
+is used if this letter is omitted.
+
+If ommited,
+.B 25f
+is used. This default is selected for ease of
+interoperability with other software, however,
+.B a
+is recommeded to improve performance and remove
+truncation error.
+.TP
+.BR -d " "\fIdepth\fP
+If all three parameters are
+.RI 2^ depth -1,
+the colour is 100 %. (default: 8)
+.TP
+.BR -l
+The values are encoded linearly instead of with
+the sRGB transfer function.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-single-colour (1),
+.BR blind-colour-matrix (1),
+.BR blind-colour-ciexyz (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

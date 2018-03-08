@@ -1,0 +1,21 @@
+.TH BLIND-FROM-TEXT 1 blind
+.SH NAME
+blind-from-text - Convert text to a video
+.SH SYNOPSIS
+.B blind-from-text
+.SH DESCRIPTION
+.B blind-from-text
+reads text from stdin, converts it to a video,
+and prints the video to stdout. The input text
+shall be formatted like the output of
+.BR blind-to-text (1),
+however, and <newline> or <space> may be replace
+with any whitespace, except on the first line,
+which represents the head.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-to-text (1),
+.BR blind-from-portable (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

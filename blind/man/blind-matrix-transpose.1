@@ -1,0 +1,44 @@
+.TH BLIND-MATRIX-TRANSPOSE 1 blind
+.SH NAME
+blind-matrix-transpose - Create an affine 2D-transformation matrix for transposition
+.SH SYNOPSIS
+.B blind-matrix-transpose
+[-c]
+.SH DESCRIPTION
+.B blind-matrix-transpose
+creates an affine 2D-transformation matrix for
+transposition. The parameters for the matrix is read
+in stdin in format of a blind video, one matrix
+per frame in stdin created and printed to stdout
+in format of a blind video.
+.P
+Each frame in stdin shall contain exactly 1 pixel,
+this pixel holds degree of the transposition, 0
+meaning no transposition at all, 1 meaning full
+transposition.
+.P
+The luma (encoding in the Y-channel, the second
+channel) multiplied by the alpha (the fourth channel)
+of the input pixels are used as the values. Each
+values in the resulting matrices are stored
+in all channels.
+.SH OPTIONS
+.TP
+.B -c
+Create different matrices for each channel. Use
+values from each channel in stdin to create
+matrices whose values are stored in the same
+channels in stdout.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-text (1),
+.BR blind-matrix-orthoproject (1),
+.BR blind-matrix-reflect (1),
+.BR blind-matrix-rotate (1),
+.BR blind-matrix-scale (1),
+.BR blind-matrix-shear (1),
+.BR blind-matrix-translate (1),
+.BR blind-multiply-matrices (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

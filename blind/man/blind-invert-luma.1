@@ -1,0 +1,50 @@
+.TH BLIND-INVERT-LUMA 1 blind
+.SH NAME
+blind-invert-luma - Invert the luminosity of a video
+.SH SYNOPSIS
+.B blind-invert-luma
+[-iw]
+.I mask-stream
+.SH DESCRIPTION
+.B blind-invert-luma
+reads a video from stdin and a mask video from
+.IR mask-stream .
+The video is printed to stdout, with the luminosity
+inverted where, in
+.IR mask-stream ,
+the product of the luminosity and the alpha value is
+1, and unchanged where the product is 0. For other
+products, the result is linearly interpolated or
+linearly extrapolated.
+.P
+If stdin is longer than
+.IR mask-stream ,
+the remainder of stdin is printed without any changes.
+If stdin is shorter than
+.IR mask-stream ,
+the remainder of
+.I mask-stream
+is ignored but may be partially read.
+.SH OPTIONS
+.TP
+.B -i
+Invert the luminosity in
+.I mask-stream
+before calculating the product of the luminosity and
+the alpha value.
+.TP
+.B -w
+Instead of using CIE Standard Illuminant D65 as the
+whitepoint, use the X and Z from each pixel in
+.I mask-stream
+for the whitepoint.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-single-colour (1),
+.BR blind-arithm (1),
+.BR blind-set-alpha (1),
+.BR blind-set-luma (1),
+.BR blind-set-saturation (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

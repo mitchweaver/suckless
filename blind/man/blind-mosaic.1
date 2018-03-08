@@ -1,0 +1,38 @@
+.TH BLIND-MOSAIC 1 blind
+.SH NAME
+blind-mosaic - Redraw each frame in video as a mosaic
+.SH SYNOPSIS
+.B blind-mosaic
+[-xy]
+.I mosaic-stream
+.SH DESCRIPTION
+.B blind-mosaic
+reads a video from stdin and a mosaic pattern video from
+.IR mosaic-stream .
+The video is printed to stdout, with each frame redraw in
+as a mosaic with the pattern found in the same frame in
+.IR mosaic-stream .
+.SH OPTIONS
+.TP
+.B -x
+When encountering the left or right edge of the video,
+wrap around to the opposite edge.
+.TP
+.B -y
+When encountering the upper or lower edge of the video,
+wrap around to the opposite edge.
+.SH REQUIREMENTS
+.B blind-mosaic
+requires enough free memory to load three full frames into
+memory. A frame requires 32 bytes per pixel it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-hexagon-tessellation (1),
+.BR blind-rectangle-tessellation (1),
+.BR blind-triangle-tessellation (1),
+.BR blind-repeat-tessellation (1),
+.BR blind-mosaic-corners (1),
+.BR blind-mosaic-edges (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

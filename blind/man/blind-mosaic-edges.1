@@ -1,0 +1,38 @@
+.TH BLIND-MOSAIC-EDGES 1 blind
+.SH NAME
+blind-mosaic-edges - Find edges in a mosaic video
+.SH SYNOPSIS
+[-xy]
+.B blind-mosaic-edges
+.SH DESCRIPTION
+.B blind-mosaic-edges
+reads a mosaic pattern from stdin and set the values
+of each change to 1 at edges and to 0 everywhere else.
+.IR mosaic-stream-edges .
+.SH OPTIONS
+.TP
+.B -x
+At the left and right edges of the video,
+wrap around to the opposite edges.
+.TP
+.B -y
+At the upper and lower edges of the video,
+wrap around to the opposite edges.
+.SH REQUIREMENTS
+.B blind-mosaic-edges
+requires enough free memory to load one full frame into
+memory and 1 bit per pixel on a frame. A frame requires
+32 bytes per pixel it contains.
+.B blind-mosaic-edges
+is optimised for simplicity rather the memory usage.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-mosaic-corners (1),
+.BR blind-hexagon-tessellation (1),
+.BR blind-rectangle-tessellation (1),
+.BR blind-triangle-tessellation (1),
+.BR blind-repeat-tessellation (1),
+.BR blind-mosaic (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

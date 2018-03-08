@@ -1,0 +1,102 @@
+.TH BLIND-FROM-VIDEO 1 blind
+.SH NAME
+blind-from-video - Converts a regular, cooked video to a blind video
+.SH SYNOPSIS
+.B blind-from-video
+[-F
+.IR pixel-format ]
+[-r
+.IR frame-rate ]
+[-w
+.I width
+-h
+.IR height ]
+[-dL]
+.I input-file
+.RI [ output-file ]
+.SH DESCRIPTION
+.B blind-from-video
+converts the video, in the file
+.IR input-file ,
+to a format usable by the
+.B blind
+tools, and prints the new video to the file
+.IR output-file .
+.I input-file
+and, unless -L is used,
+.I output-file
+must be regular files.
+.I input-file
+must be a normal video file with a container (i.e. not raw video)
+that is supported by
+.BR ffmpeg (1).
+It is unspecified what happens if
+.I input-file
+does not have exactly one video stream. All non-video streams,
+such as audio and subtitles are discarded.
+.P
+If
+.B output-file
+is omitted,
+.RB ' - '
+(stdout) is used.
+.SH OPTIONS
+.TP
+.B -d
+Perform coarse colour-model conversion. This will increase the
+performance of the conversion, but modifications to the colours
+will not produce the expected colours. This is useful for
+drafting or if you will not modify the colours. If you use this
+flag, you should also use it in
+.BR blind-to-video (1),
+otherwise the colours will be modified.
+.TP
+.BR -F " "\fIpixel-format\fP
+Select pixel format, see
+.BR blind-convert (1)
+for more information. Pixel formats starting with
+.BR raw ,
+other than
+.BR raw0 ,
+are not supported.
+.TP
+.BR -h " "\fIheight\fP
+Change the height of the video to
+.IR height .
+.TP
+.B -L
+Write to stdout that the number of frames in the video is 0.
+This allows you to use a non-regular file, including a pipe, as
+.IR output-file .
+If you specify
+.RB ' - '
+as the
+.IR output-file ,
+the video is printed to stdout.
+
+This option is useful if you want to split a video, into
+multiple videos, as it allows to to split the video without
+having to store the entire raw video to disc.
+
+If you use this option, you can use
+.BR blind-split (1)
+to write the actual number of frames to the head, if this
+is needed.
+.TP
+.BR -r " "\fIframe-rate\fP
+Change the frame rate of the video to
+.IR frame-rate .
+This value can be a rational.
+.TP
+.BR -w " "\fIwidth\fP
+Change the width of the video to
+.IR width .
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-to-video (1),
+.BR blind-convert (1),
+.BR blind-split (1),
+.BR blind-rewrite-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

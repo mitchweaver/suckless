@@ -1,0 +1,57 @@
+.TH BLIND-DUAL-KEY 1 blind
+.SH NAME
+blind-dual-key - Apply transparency to a video based on two videos and two key
+.SH SYNOPSIS
+.B blind-dual-key
+.I X
+.I Y
+.I Z
+.I dual-X
+.I dual-Y
+.I dual-Z
+.I dual-stream
+.SH DESCRIPTION
+.B blind-dual-key
+reads a video from stdin and a video
+.IR dual-stream .
+These two videos should be idential, except
+with two different background colours. The
+background colour used in the video from
+stdin should be specified in the arguments
+.IR X ,
+.IR Y ,
+and
+.IR Z ,
+using the CIE XYZ colour model. The
+background colour used in the video from
+.I dual-stream
+should be specified in the arguments
+.IR dual-X ,
+.IR dual-Y ,
+and
+.IR dual-Z ,
+using the CIE XYZ colour model. Using this information,
+.B blind-dual-key
+reconstruct the alpha channel of the video
+and prints the video with its alpha channel to
+stdout.
+.SH NOTES
+.B blind-dual-key
+may be changed in the future to use some other colour model,
+therefore, it is recommended to also use
+.BR blind-colour-ciexyz (1)
+if you are specifying the colour in CIE XYZ.
+.P
+When making a video whose transparancy is recovered with
+.BR blind-dual-key ,
+select to opposite background colours, for
+example black and white or green and magenta.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-colour-ciexyz (1),
+.BR blind-colour-srgb (1),
+.BR blind-chroma-key (1),
+.BR blind-primary-key (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

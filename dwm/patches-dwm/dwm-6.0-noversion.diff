@@ -1,0 +1,12 @@
+--- dwm.c.orig	2013-01-26 16:37:15.348463029 +0100
++++ b/dwm-6.0/dwm.c	2013-01-26 16:37:51.321795756 +0100
+@@ -2027,8 +2027,7 @@
+ 
+ void
+ updatestatus(void) {
+-	if(!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
+-		strcpy(stext, "dwm-"VERSION);
++	gettextprop(root, XA_WM_NAME, stext, sizeof(stext));
+ 	drawbar(selmon);
+ }
+ 

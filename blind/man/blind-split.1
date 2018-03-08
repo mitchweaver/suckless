@@ -1,0 +1,94 @@
+.TH BLIND-SPLIT 1 blind
+.SH NAME
+blind-split - Split a video, by frame, into multiple videos
+.SH SYNOPSIS
+.B blind-split
+[-L]
+.RI ( file
+.RI ( end-point
+|
+.RB ' end '))\ ...
+.SH DESCRIPTION
+.B blind-split
+reads a video from stdin and splits into multiple videos.
+Starting from the first frame in stdin, it writes a video
+to the first specified
+.I file
+until the first specified
+.I end-point
+number of frames have been written.
+.B blind-split
+then proceeds to write the following frames to the next
+specified
+.B file
+until a total of
+.I end-point
+frames has been written (that is, including all previous
+videos), where
+.I end-point
+is the associated
+.IR end-point .
+If
+.RB ' end '
+is used instead of
+.IR end-point ,
+.B blind-split
+will proceed until the end of the input video. If you
+want to discard a section of the video, you can specify
+the
+.I file
+/dev/null.
+.P
+All specified
+.IR end-point s,
+including
+.RB ' end '
+must be in strictly ascending order.
+.P
+The specified
+.IR file s
+may be of any type, except directory, including pipes
+and FIFO:s. Indeed you probably want all of the to be
+pipes, as saving a raw video to disc will probably fill
+your disc almost immediately. If you are levering the
+power of
+.BR make (1)
+to only rerended parts you have changes, you can
+pipe the videos into
+.BR blind-to-video (1)
+to compress them. If you're shall does not support
+process substitution or creating anonymous pipes, you
+can uses FIFO:s. If you try to truncate a FIFO, it
+will be flushed, if this is done after all writes have
+been done, the process reading from the FIFO will think
+that there no longer are any processes that have it
+open for writing, assuming it, like all
+.B blind
+tools, have been written to treat the file as any a
+regular file (which is usually have pipes are also
+treated).
+.SH OPTIONS
+.TP
+.B -L
+Ignore the number of frames specified in the videos head
+and read until the end or the last desired frame is reached.
+If this option is used in combination with
+.RB ' end ',
+the last video will have an incorrect frame count written
+in its head. Depending on what tools you will being using,
+you may need to save that video into a regular file and
+rewrite its head with
+.BR blind-rewrite-head (1).
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-video (1),
+.BR blind-to-video (1),
+.BR blind-cut (1),
+.BR blind-concat (1),
+.BR blind-disperse (1),
+.BR blind-split-cols (1),
+.BR blind-split-rows (1),
+.BR blind-rewrite-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

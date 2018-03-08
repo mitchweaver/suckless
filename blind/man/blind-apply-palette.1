@@ -1,0 +1,23 @@
+.TH BLIND-APPLY-PALETTE 1 blind
+.SH NAME
+blind-apply-palette - Apply a colour palette to a video
+.SH SYNOPSIS
+.B blind-apply-palette
+.I palette-stream
+.SH DESCRIPTION
+.B blind-apply-palette
+reads a video from stdin and video from
+.IR palette-stream .
+For each frame, the colours in the video from
+stdin are replaces with the closest match colour
+from the same from in the video in
+.IR palette-stream .
+The resulting video is printed to stdout.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-repeat (1),
+.BR blind-get-colours (1),
+.BR blind-repeat-tessellation (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

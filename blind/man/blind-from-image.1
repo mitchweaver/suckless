@@ -1,0 +1,37 @@
+.TH BLIND-FROM-IMAGE 1 blind
+.SH NAME
+blind-from-image - Convert an image to a frame
+.SH SYNOPSIS
+.B blind-from-image
+[-h] [-f | -p]
+.SH DESCRIPTION
+.B blind-from-image
+reads an image from stdin and converts in the
+frame usable by
+.BR blind ,
+and prints the frame to stdout.
+.SH OPTIONS
+.TP
+.B -f
+Treat the image from stdin as a Farbfeld image.
+.TP
+.B -h
+Omit the head when printed the frame to stdout.
+This is useful if you are converting multiple
+images, as the output can be appended to video
+with its head already written.
+.TP
+.B -p
+Treat the image from stdin as a Portable
+Arbitrary Map image.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-to-image (1),
+.BR blind-write-head (1),
+.BR blind-next-frame (1),
+.BR blind-from-text (1),
+.BR blind-repeat (1),
+.BR blind-convert (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

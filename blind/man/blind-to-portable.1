@@ -1,0 +1,31 @@
+.TH BLIND-TO-PORTABLE 1 blind
+.SH NAME
+blind-to-portable - Convert a video to a portable format
+.SH SYNOPSIS
+.B blind-to-portable
+[-s]
+.SH DESCRIPTION
+.B blind-to-portable
+converts a processable video into a portable format, so
+it can be sent to a computer with a different endianness
+or floating-point number encoding, and processes only
+multiple machines.
+.SH OPTIONS
+.B -s
+Do not convert single-precision floating-points number
+to binary32, and double-precision floating-points number
+to binary64.
+.SH NOTES
+The endian is changed to little endian.
+.SH RATIONALE
+Most computers use binary32 and binary64 for
+single-precision and double-precision floating-points
+number, respectively, however, this is not always the
+case for microcontrollers designed for embedded systems.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-portable (1),
+.BR blind-to-text (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,127 @@
+.TH BLIND-CONVERT 1 blind
+.SH NAME
+blind-convert - Change pixel format of a video
+.SH SYNOPSIS
+.B blind-convert
+.IR pixel-format " ..."
+.SH DESCRIPTION
+.B blind-convert
+converts a video to use the pixel format
+.I pixel-format
+(all arguments are joined together with
+a blank space). Available formats are:
+.TP
+.B xyza f
+Unscaled CIE XYZ with unscaled alpha channel, in the
+order, X, Y, Z, alpha. Each subpixel value is stored
+as a single-precision floating-point number using the
+local machines endianness.
+.TP
+.B xyza !f
+Unscaled CIE XYZ with unscaled alpha channel, in the
+order, X, Y, Z, alpha. Each subpixel value is stored
+as a double-precision floating-point number using the
+local machines endianness. This is the default format
+in other commands.
+.TP
+.B xyza
+Unscaled CIE XYZ with unscaled alpha channel, in the
+order, X, Y, Z, alpha. Each subpixel value is stored
+in the same format as in the input stream.
+.TP
+.B f
+The same colour space as the input stream, but with
+each subpixel value is stored as a single-precision
+floating-point number using the local machines
+endianness.
+.TP
+.B !f
+The same colour space as the input stream, but with
+each subpixel value is stored as a double-precision
+floating-point number using the local machines
+endianness.
+.TP
+.B raw0
+Use output from
+.BR ffmpeg (1)
+as-is, that is little-endian, 16-bit integer AY'UV.
+.TP
+.B raw1
+Little-endian, 16-bit integer Y'UVA.
+.TP
+.B raw2
+Host-endian, 16-bit integer Y'UV.
+.TP
+.B raw2a
+Host-endian, 16-bit integer Y'UVA.
+.TP
+.B raw3 f
+Host-endian, single-precision float-point Y'UV.
+.TP
+.B raw3 !f
+Host-endian, double-precision float-point Y'UV.
+.TP
+.B raw3
+Host-endian, double-precision float-point Y'UV,
+but single-precision float-point if input is
+single-precision float-point.
+.TP
+.B raw3a f
+Host-endian, single-precision float-point Y'UVA.
+.TP
+.B raw3a !f
+Host-endian, double-precision float-point Y'UVA.
+.TP
+.B raw3a
+Host-endian, double-precision float-point Y'UVA,
+but single-precision float-point if input is
+single-precision float-point.
+.TP
+.B raw4 f
+Host-endian, single-precision float-point sR'G'B'.
+.TP
+.B raw4 !f
+Host-endian, double-precision float-point sR'G'B'.
+.TP
+.B raw4
+Host-endian, double-precision float-point sR'G'B',
+but single-precision float-point if input is
+single-precision float-point.
+.TP
+.B raw4a f
+Host-endian, single-precision float-point sR'G'B'A.
+.TP
+.B raw4a !f
+Host-endian, double-precision float-point sR'G'B'A.
+.TP
+.B raw4a
+Host-endian, double-precision float-point sR'G'B'A,
+but single-precision float-point if input is
+single-precision float-point.
+.TP
+.B raw5 f
+Host-endian, single-precision float-point sRGB.
+.TP
+.B raw5 !f
+Host-endian, double-precision float-point sRGB.
+.TP
+.B raw5
+Host-endian, double-precision float-point sRGB,
+but single-precision float-point if input is
+single-precision float-point.
+.TP
+.B raw5a f
+Host-endian, single-precision float-point sRGBA.
+.TP
+.B raw5a !f
+Host-endian, double-precision float-point sRGBA.
+.TP
+.B raw5a
+Host-endian, double-precision float-point sRGBA,
+but single-precision float-point if input is
+single-precision float-point.
+.SH SEE ALSO
+.BR blind (7)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

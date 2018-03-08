@@ -1,0 +1,23 @@
+.TH BLIND-DISSOLVE 1 blind
+.SH NAME
+blind-dissolve - Fade a video by chaning it's alpha channel
+.SH SYNOPSIS
+.B blind-dissolve
+[-r]
+.SH DESCRIPTION
+.B blind-dissolve
+reads a video from stdin and prints a version if it to stdout
+where the the alpha channel fades to zero.
+.SH OPTION
+.TP
+.B -r
+Fade in from zero alpha instead of out to zero alpha.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-transition (1),
+.BR blind-set-alpha (1),
+.BR blind-stack (1),
+.BR blind-single-colour (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

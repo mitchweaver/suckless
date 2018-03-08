@@ -1,0 +1,57 @@
+.TH BLIND-NEXT-FRAME 1 blind
+.SH NAME
+blind-next-frame - Extracts the next frame from a video
+.SH SYNOPSIS
+.B blind-next-frame
+[-f
+.IR frames ]
+.I width
+.I height
+.IR pixel-format " ..."
+.SH DESCRIPTION
+.B blind-next-frame
+reads the first frame available in stdin, and prints
+it, with a head, to stdout. No excess bytes are read,
+and
+.B blind-next-frame
+can be used again to extract the next frame.
+The width, height, and pixel format of the video must
+be specified with
+.IR width ,
+.IR height ,
+and
+.IR pixel-format ,
+respectively;
+.BR blind-read-frame (1)
+is used to extract this information.
+And argument following
+.I pixel-format
+is appended to
+.I pixel-format
+with <space> in between.
+.SH OPTIONS
+.TP
+.BR -f " "\fIframes\fP
+Read and output the first
+.I frames
+frames rather than the first single frame.
+.SH EXIT STATUS
+.TP
+0
+Successful completion.
+.TP
+1
+End of file reached, no more frames available.
+.TP
+2
+An error occurred.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-read-head (1),
+.BR blind-write-head (1),
+.BR blind-to-image (1),
+.BR blind-from-image (1),
+.BR blind-skip-pattern (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

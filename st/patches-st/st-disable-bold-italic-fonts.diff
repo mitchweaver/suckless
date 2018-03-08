@@ -1,0 +1,70 @@
+From 1e932656e6ca3a50ec67cafabdb08d711635c504 Mon Sep 17 00:00:00 2001
+From: Alex Kozadaev <snobb@gmx.com>
+Date: Fri, 24 Mar 2017 12:11:47 +0000
+Subject: [PATCH] disable bold, italic and roman fonts globally
+
+---
+ config.def.h |  6 ++++++
+ x.c          | 14 +++++++++++---
+ 2 files changed, 17 insertions(+), 3 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 877afab..87c4534 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -6,6 +6,12 @@
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+ char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++
++/* disable bold, italic and roman fonts globally */
++int disablebold = 0;
++int disableitalic = 0;
++int disableroman = 0;
++
+ int borderpx = 2;
+ 
+ /*
+diff --git a/x.c b/x.c
+index 743b084..23e4f0a 100644
+--- a/x.c
++++ b/x.c
+@@ -158,6 +158,11 @@ typedef struct {
+ static Fontcache frc[16];
+ static int frclen = 0;
+ 
++/* declared in config.h */
++extern int disablebold;
++extern int disableitalic;
++extern int disableroman;
++
+ void
+ getbuttoninfo(XEvent *e)
+ {
+@@ -828,17 +833,20 @@ xloadfonts(char *fontstr, double fontsize)
+ 	win.ch = ceilf(dc.font.height * chscale);
+ 
+ 	FcPatternDel(pattern, FC_SLANT);
+-	FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ITALIC);
++	if (!disableitalic)
++		FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ITALIC);
+ 	if (xloadfont(&dc.ifont, pattern))
+ 		die("st: can't open font %s\n", fontstr);
+ 
+ 	FcPatternDel(pattern, FC_WEIGHT);
+-	FcPatternAddInteger(pattern, FC_WEIGHT, FC_WEIGHT_BOLD);
++	if (!disablebold)
++		FcPatternAddInteger(pattern, FC_WEIGHT, FC_WEIGHT_BOLD);
+ 	if (xloadfont(&dc.ibfont, pattern))
+ 		die("st: can't open font %s\n", fontstr);
+ 
+ 	FcPatternDel(pattern, FC_SLANT);
+-	FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ROMAN);
++	if (!disableroman)
++		FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ROMAN);
+ 	if (xloadfont(&dc.bfont, pattern))
+ 		die("st: can't open font %s\n", fontstr);
+ 
+-- 
+2.1.4
+

@@ -1,0 +1,32 @@
+.TH BLIND-REVERSE 1 blind
+.SH NAME
+blind-reverse - Reverse a video
+.SH SYNOPSIS
+.B blind-reverse
+[-i]
+.I file
+.SH DESCRIPTION
+.B blind-reverse
+reads a video from
+.I file
+and prints it in reverse frame-order to stdout.
+.I file
+must be a regular file.
+.SH OPTIONS
+.TP
+.B -i
+Reverse the file in place rather than printing
+it to stdout.
+.SH REQUIREMENTS
+.B blind-reverse
+requires enough free memory to load two full frames into
+memory if
+.B -i
+is used. A frame requires 32 bytes per pixel it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-split (1),
+.BR blind-concat (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,24 @@
+.TH BLIND-WRITE-HEAD 1 blind
+.SH NAME
+blind-write-head - Writes the head of a video
+.SH SYNOPSIS
+.B blind-write-head
+.IR parameters " ..."
+.SH DESCRIPTION
+.B blind-write-head
+prints all
+.IR parameters ,
+each separated by <space>, followed by a
+<newline> and
+.BR blind 's
+magic number, to stdout. This makes up the
+head of a video. The order of the parameters,
+should be: the number of frames, the width,
+the height, and the pixel format, they may
+be already joined to strings.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-read-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

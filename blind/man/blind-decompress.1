@@ -1,0 +1,20 @@
+.TH BLIND-DECOMPRESS 1 blind
+.SH NAME
+blind-decompress - Decompress a video compressed by blind-compress(1)
+.SH SYNOPSIS
+.B blind-decompress
+.SH DESCRIPTION
+.B blind-decompress
+removes compressed added by
+.BR blind-compress (1).
+.SH REQUIREMENTS
+.B blind-decompress
+requires enough free memory to load one full frame into
+memory. A frame requires 32 bytes per pixel it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-compress (1),
+.BR lz4 (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

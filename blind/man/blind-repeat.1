@@ -1,0 +1,67 @@
+.TH BLIND-REPEAT 1 blind
+.SH NAME
+blind-repeat - Repeat a video
+.SH SYNOPSIS
+.B blind-repeat
+([-f]
+.I count
+|
+.RB ' inf ')
+.RI [ file ]
+.SH DESCRIPTION
+.B blind-repeat
+write the a video to stdout that is a loop of the
+selected video. The looped video is read from the
+selected
+.IR file .
+The video will be repeated
+.I count
+times, or until there is no process the reads from
+this process's stdout if
+.B inf
+is selected instead of
+.IR count .
+.P
+.I file
+must be a regular file, or
+.RB ' - '.
+If
+.I file
+is
+.RB ' - ',
+.B blind-repeat
+will read stdin into memory; you are highly discouraged
+from using this unless stdin is a single frame, or known
+to only be a very small number of frames, is it can
+potentially use all of the computer's memory.
+.P
+If
+.I file
+is omitted,
+.RB ' - '
+is used.
+.SH OPTIONS
+.TP
+.B -f
+Repeat each frames
+.B count
+times before copying the next frame, rather than
+copying the entire video
+.B count
+times.
+.SH REQUIREMENTS
+.B blind-repeat
+requires enough free memory to load the entire video
+into memory if it is read from stdin. A frame requires
+32 bytes per pixel it contains. So for a 720p video at
+25 Hz, 1 GB is reached in just below 1.5 seconds.
+However, if
+.B -f
+is used, only a full video frame will be loaded into
+memory rather than an entire video, if reading from stdin.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-image (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,26 @@
+.TH BLIND-SKIP-PATTERN 1 blind
+.SH NAME
+blind-skip-pattern - Skips frames in a video according to pattern
+.SH SYNOPSIS
+.B blind-skip-pattern
+.RI ( skipped-frames
+|
+.RI + included-frames )\ ...
+.SH DESCRIPTION
+For every argument,
+.B blind-skip-pattern
+skips
+.I skipped-frames
+frames from stdin or prints
+.I included-frames
+frames from stdin to stdout,
+until the end of stdin is reached.
+After the last argument,
+.B blind-skip-pattern
+jumps back to the first argument.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-next-frame (1),
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

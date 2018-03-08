@@ -1,0 +1,85 @@
+.TH BLIND-SPECTRUM 1 blind
+.SH NAME
+blind-spectrum - Transform a gradient into a spectrum
+.SH SYNOPSIS
+.B blind-spectrum
+[-y]
+[-z
+.IR depth ]
+.I spectrum-stream
+.SH DESCRIPTION
+.B blind-spectrum
+reads a video from stdin, transforms it according
+to a colour table and prints the resulting video
+to stdout. The values of the colours, excluding
+the alpha channel, in stdin, are truncated to
+fit [0, 1]. The resulting values for each pixel
+is used to look up a colour in
+.I spectrum-stream
+for the same frame, with linear interpolation.
+That colour is used as the pixel's colour. The
+alpha values of the looked up colour and the
+pixel's original colour are multiplied, and the
+product is used as the pixel's alpha value.
+.P
+When looking up colours in
+.IR spectrum-stream ,
+the value of the first channel (the X channel)
+is multiplied by the width of the video in
+.I spectrum-stream
+less 1,
+the product is the column in
+.I spectrum-stream
+that will be used (using interpolation for
+none integer products), and the value of the first
+channel (the Y channel) is multiplied by the height
+of the video in
+.I spectrum-stream
+less 1, the product is the row in
+.I spectrum-stream
+that will be used.
+.SH OPTIONS
+.TP
+.B -y
+Rather than using the values of the three
+colour channels to look up a colour in a
+multidimensional table, the luma is used to
+look up a value in a singledimensional table.
+Which dimension is used does not matter; the
+result is unspecified if the colour table
+is multidimensional.
+.TP
+.BR -z \ \fIdepth\fP
+For each frame in stdin,
+.I depth
+frames are read from
+.IR spectrum-stream .
+When looking up colours in
+.IR spectrum-stream ,
+the value of the third channel (the > channel)
+is multiplied by
+.I depth
+less 1, the product is the frame
+in this set of
+.I depth
+frames from
+.I spectrum-stream
+that will be used.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-text (1),
+.BR blind-arithm (1),
+.BR blind-double-spectrum (1),
+.BR blind-round-wave (1),
+.BR blind-sawtooth-wave (1),
+.BR blind-sine-wave (1)
+.BR blind-sinc-wave (1),
+.BR blind-triangular-wave (1),
+.BR blind-cone-gradient (1),
+.BR blind-linear-gradient (1),
+.BR blind-radial-gradient (1),
+.BR blind-spiral-gradient (1),
+.BR blind-square-gradient (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

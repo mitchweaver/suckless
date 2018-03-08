@@ -1,0 +1,58 @@
+diff --git a/config.def.h b/config.def.h
+index 7054c06..9b5d5b8 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -76,6 +76,7 @@ static Key keys[] = {
+ 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+ 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
++	{ MODKEY,                       XK_s,      togglesticky,   {0} },
+ 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+ 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+ 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+diff --git a/dwm.c b/dwm.c
+index 0362114..0ef5c7f 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -49,7 +49,7 @@
+ #define CLEANMASK(mask)         (mask & ~(numlockmask|LockMask) & (ShiftMask|ControlMask|Mod1Mask|Mod2Mask|Mod3Mask|Mod4Mask|Mod5Mask))
+ #define INTERSECT(x,y,w,h,m)    (MAX(0, MIN((x)+(w),(m)->wx+(m)->ww) - MAX((x),(m)->wx)) \
+                                * MAX(0, MIN((y)+(h),(m)->wy+(m)->wh) - MAX((y),(m)->wy)))
+-#define ISVISIBLE(C)            ((C->tags & C->mon->tagset[C->mon->seltags]))
++#define ISVISIBLE(C)            ((C->tags & C->mon->tagset[C->mon->seltags]) || C->issticky)
+ #define LENGTH(X)               (sizeof X / sizeof X[0])
+ #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
+ #define WIDTH(X)                ((X)->w + 2 * (X)->bw)
+@@ -92,7 +92,7 @@ struct Client {
+ 	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
+ 	int bw, oldbw;
+ 	unsigned int tags;
+-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
++	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky;
+ 	Client *next;
+ 	Client *snext;
+ 	Monitor *mon;
+@@ -211,6 +211,7 @@ static void tagmon(const Arg *arg);
+ static void tile(Monitor *);
+ static void togglebar(const Arg *arg);
+ static void togglefloating(const Arg *arg);
++static void togglesticky(const Arg *arg);
+ static void toggletag(const Arg *arg);
+ static void toggleview(const Arg *arg);
+ static void unfocus(Client *c, int setfocus);
+@@ -1713,6 +1714,15 @@ togglefloating(const Arg *arg)
+ }
+
+ void
++togglesticky(const Arg *arg)
++{
++	if (!selmon->sel)
++		return;
++	selmon->sel->issticky = !selmon->sel->issticky;
++	arrange(selmon);
++}
++
++void
+ toggletag(const Arg *arg)
+ {
+ 	unsigned int newtags;

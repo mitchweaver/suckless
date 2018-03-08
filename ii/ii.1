@@ -1,0 +1,100 @@
+.TH II 1 ii\-VERSION
+.SH NAME
+ii \- irc it or irc improved
+.SH DESCRIPTION
+.B ii
+is a minimalistic FIFO and filesystem based IRC client.
+It creates an irc directory tree with server, channel and
+nick name directories.
+In every directory a FIFO file (in) and normal file (out)
+is placed. This will be for example ~/irc/irc.freenode.net/.
+The in file is used to communicate with the servers and the out
+files includes the server messages. For every channel and every nick
+name there will be new in and out files.
+The basic idea of this is to be able to communicate with an IRC
+server with basic command line tools.
+For example if you will join a channel just do echo "/j #channel" > in
+and ii creates a new channel directory with in and out file.
+.SH SYNOPSIS
+.B ii
+.RB < \-s
+.IR servername >
+.RB [ \-p
+.IR port ]
+.RB [ \-k
+.IR "environment variable" ]
+.RB [ \-i
+.IR prefix ]
+.RB [ \-n
+.IR nickname ]
+.RB [ \-f
+.IR realname ]
+.RB < \-u
+.IR sockname >
+.SH OPTIONS
+.TP
+.BI \-s " servername"
+server to connect to, for example: irc.freenode.net
+.TP
+.BI \-u " sockname"
+connect to a UNIX domain socket instead of directly to a server.
+.TP
+.BI \-p " port"
+lets you override the default port (6667)
+.TP
+.BI \-k " environment variable"
+lets you specify an environment variable that contains your IRC password, e.g. IIPASS="foobar" ii -k IIPASS.
+This is done in order to prevent other users from eavesdropping the server password via the process list.
+.TP
+.BI \-i " prefix"
+lets you override the default irc path (~/irc)
+.TP
+.BI \-n " nickname"
+lets you override the default nick ($USER)
+.TP
+.BI \-f " realname"
+lets you specify your real name associated with your nick
+.SH DIRECTORIES
+.TP
+.B ~/irc
+In this directory the irc tree will be created. In this directory you
+will find a directory for your server (default: irc.freenode.net) in
+which the FIFO and the output file will be stored.
+If you join a channel a new directory with the name of the channel
+will be created in the ~/irc/$servername/ directory.
+.SH COMMANDS
+.TP
+.BI /a " [<message>]"
+mark yourself as away
+.TP
+.BI /j " #channel/nickname [<message>]"
+join a channel or open private conversation with user
+.TP
+.BI /l " [reason]"
+leave a channel or query
+.TP
+.BI /n " nick"
+change the nick name
+.TP
+.BI /q " [reason]"
+quit ii
+.TP
+.BI /t " topic"
+set the topic of a channel
+.SH RAW COMMANDS
+.LP
+Everything which is not a command will be posted into the channel or to the server.
+So if you need /who just write /WHO as described in RFC#1459 to the server in FIFO.
+.SH SSL PROTOCOL SUPPORT
+.LP
+For TLS/SSL protocol support you can connect to a local tunnel, for example with stunnel or socat.
+.SH CONTACT
+.LP
+Subscribe to the mailinglist and write to dev (at) suckless (dot) org for suggestions, fixes, etc.
+.SH AUTHORS
+ii engineers, see LICENSE file
+.SH SEE ALSO
+.BR echo (1),
+.BR tail (1)
+.SH BUGS
+Please report them!

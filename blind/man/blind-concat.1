@@ -1,0 +1,49 @@
+.TH BLIND-CONCAT 1 blind
+.SH NAME
+blind-concat - Concatenate videos
+.SH SYNOPSIS
+.B blind-concat
+[-o
+.I output-file
+[-j
+.IR jobs ]]
+.IR first-stream
+.RI "... " last-stream
+.SH DESCRIPTION
+.B blind-concat
+concatenates the videos from the file
+.I first-stream
+to
+.I last-stream
+in the order they are specified, and
+prints the resulting video to stdout, or if
+specified,
+.IR output-file .
+.SH OPTIONS
+.TP
+.BR -o " "\fIoutput-file\fP
+Print the resulting video to
+.I output-file
+instead of stdout.
+.I output-file
+must be a regular file.
+.TP
+.BR -j " "\fIjobs\fP
+Always tead from
+.I jobs
+input files at the same time
+(or the number of uncomplete files
+if less are remaining). The files
+will be read in order. This is useful
+if the files are pipes to which other
+processes are rendering.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-to-video (1),
+.BR blind-split (1),
+.BR blind-interleave (1),
+.BR blind-cat-rows (1),
+.BR blind-cat-cols (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

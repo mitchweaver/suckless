@@ -1,0 +1,34 @@
+.TH BLIND-NORM 1 blind
+.SH NAME
+blind-norm - Calculate the norm of colours in a video
+.SH SYNOPSIS
+.B blind-norm
+[-axyz]
+.SH DESCRIPTION
+.B blind-norm
+reads a video from stdin, calculates the norm the
+colours of each pixel and prints the resulting
+video to stdout.
+.SH OPTIONS
+.TP
+.B -a
+Do not modify the alpha channel (the fourth channel).
+.TP
+.B -x
+Do not modify the X channel (the first channel).
+.TP
+.B -y
+Do not modify the Y channel (the second channel).
+.TP
+.B -z
+Do not modify the Z channel (the third channel).
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-arithm (1),
+.BR blind-dot-product (1),
+.BR blind-cross-product (1),
+.BR blind-quaternion-product (1),
+.BR blind-vector-projection (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

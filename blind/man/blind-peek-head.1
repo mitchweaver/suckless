@@ -1,0 +1,28 @@
+.TH BLIND-PEEK-HEAD 1 blind
+.SH NAME
+blind-peek-head - Peeks the head from a video
+.SH SYNOPSIS
+.B blind-peek-head
+.SH DESCRIPTION
+.B blind-peek-head
+peeks the head a video from stdin, and
+prints it, without the magic number, to stdout.
+The output will contain: the number of frames,
+<space>, the width, <space>, the height, <space>,
+and the pixel format. The output is text, and
+thus ends with a <newline>. The state of stdin
+will remain unchanged.
+.SH NOTES
+.B blind-peek-head
+requires that stdin is a socket, a regular file,
+or a (on Linux only) a pipe. Direct pipes and
+datagram sockets are supported but require that
+the entire head must be written in one write.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-read-head (1),
+.BR blind-write-head (1),
+.BR blind-next-frame (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,56 @@
+.TH BLIND-SINC-WAVE 1 blind
+.SH NAME
+blind-sinc-wave - Apply cardinal sine-wave repetition to gradient
+.SH SYNOPSIS
+.B blind-sinc-wave
+[-e]
+.RI [ theta0-stream ]
+.SH DESCRIPTION
+.B blind-sinc-wave
+reads a video from stdin, applies a filter to
+each channel to it, and prints the result to
+stdout. The filter is designed for applying
+repetition to a gradient, and thus assumes the
+range of visible values is [0, 1]. The applied
+filter creates a cardinal sine-wave.
+.P
+If
+.I theta0-stream
+is specified, it must be a video with only
+one pixel per frame. When applying the sine
+function, it is applied to the sum of the
+pixel it is applied to and the pixel in
+the same frame in
+.IR theta0-stream .
+.SH NOTES
+.BR blind-arithm (1)
+with the
+.B mul
+and
+.B div
+operators can be used to stretch the wave.
+.SH OPTIONS
+.TP
+.B -e
+Apply optimisation that assumes all channels
+are identical. If
+.I theta0-stream
+is specified, the values from its second channel
+(the Y channel) are used for all channels.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-arithm (1),
+.BR blind-double-sine-wave (1),
+.BR blind-round-wave (1),
+.BR blind-sawtooth-wave (1),
+.BR blind-sine-wave (1),
+.BR blind-triangular-wave (1),
+.BR blind-spectrum (1),
+.BR blind-cone-gradient (1),
+.BR blind-linear-gradient (1),
+.BR blind-radial-gradient (1),
+.BR blind-spiral-gradient (1),
+.BR blind-square-gradient (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

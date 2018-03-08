@@ -1,0 +1,51 @@
+.TH BLIND-MULTIPLY-MATRICES 1 blind
+.SH NAME
+blind-multiply-matrices - Multiply matrix-vidoes
+.SH SYNOPSIS
+.B blind-multiply-matrices
+[-en]
+.I leftmost-stream
+.RI "... " rightmost-stream
+.SH DESCRIPTION
+.B blind-multiply-matrices
+reads videos representing matrices from the files
+specified via the arguments
+.I leftmost-stream
+to
+.IR rightmost-stream ,
+and multiples them, frame by frame, from right to
+left, and prints the resulting video to stdout.
+Each frame in a video contains one matrix per
+channel, made up from the values on a channel
+of each pixel.
+.SH OPTIONS
+.TP
+.B -e
+Apply optimisation that assumes all channels
+are identical.
+.TP
+.B -n
+Reverse the order of each specified files,
+so that the transformations are applied in
+the order they are specified rather than
+in reverse order.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-matrix-orthoproject (1),
+.BR blind-matrix-reflect (1),
+.BR blind-matrix-rotate (1),
+.BR blind-matrix-scale (1),
+.BR blind-matrix-shear (1),
+.BR blind-matrix-translate (1),
+.BR blind-matrix-transpose (1),
+.BR blind-invert-matrix (1),
+.BR blind-transpose (1),
+.BR blind-flip (1),
+.BR blind-flop (1),
+.BR blind-rotate-90 (1),
+.BR blind-rotate-180 (1),
+.BR blind-rotate-270 (1),
+.BR blind-rewrite-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

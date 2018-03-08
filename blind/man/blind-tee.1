@@ -1,0 +1,28 @@
+.TH BLIND-TEE 1 blind
+.SH NAME
+blind-tee - /dev/fd/ aware tee(1) implementation
+.SH SYNOPSIS
+.B blind-tee
+.RI [ file \ ...]
+.SH DESCRIPTION
+.B blind-tee
+reads stdin and writes its input to stdout and to all
+.IR file s.
+.P
+Files are opened in truncate mode, file descriptors
+specified via their /dev/fd/ path are not reopened
+but used directly.
+.SH RATIONALE
+There are situations where opening files in /dev/fd/
+creates problems. Popular
+.BR tee (1),
+implementations do not treat files in /dev/fd/
+especially.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-to-named (1),
+.BR blind-from-named (1),
+.BR tee (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

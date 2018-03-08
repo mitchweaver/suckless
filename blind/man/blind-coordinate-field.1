@@ -1,0 +1,52 @@
+.TH BLIND-COORDINATE-FIELD 1 blind
+.SH NAME
+blind-coordinate-field - Generate a video where each pixel indicate their position
+.SH SYNOPSIS
+.B blind-coordinate-field
+[-f
+.I frames
+| -f
+.RB ' inf ']
+[-F
+.IR pixel-format ]
+-w
+.I width
+-h
+.I height
+.SH DESCRIPTION
+.B blind-coordinate-field
+prints a video to stdout.
+The values in first channel will be the X-position
+for each pixel, and the first channel will be the
+Y-position for each pixel. The values in the other
+channels will be zero.
+.SH OPTIONS
+.TP
+.BR -f " "\fIframes\fP
+The number of frames in the video. If
+.I frames
+is
+.RB ' inf ',
+the number of frames will be specified as 0 in the output's
+head (works fine with most
+.B blind
+tools) but the video will be printed to stdout until there are
+no processes with an open read end to this process's stdout.
+.TP
+.BR -F " "\fIpixel-format\fP
+Select pixel format, see
+.BR blind-convert (1)
+for more information. Pixel formats starting with
+.BR raw
+are not supported.
+.TP
+.BR -w " "\fIwidth\fP
+The width of the video, in pixels.
+.TP
+.BR -h " "\fIheight\fP
+The height of the video, in pixels.
+.SH SEE ALSO
+.BR blind (7)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

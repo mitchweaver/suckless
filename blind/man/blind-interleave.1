@@ -1,0 +1,31 @@
+.TH BLIND-INTERLEAVE 1 blind
+.SH NAME
+blind-interleave - Framewise interleave videos
+.SH SYNOPSIS
+.B blind-interleave
+.RI ( file
+.IR frames )\ ...
+.SH DESCRIPTION
+.BR blind-interleave ,
+for each specified pair of
+.I file
+and
+.IR frames ,
+in order, reads
+.I frames
+frames from
+.R file
+and writes the read frames to stdout.
+This process is repeated until the number of specified
+.I frames
+cannot be read from a
+.IR file .
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-disperse (1),
+.BR blind-concat (1),
+.BR blind-cat-cols (1),
+.BR blind-cat-rows (1),
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

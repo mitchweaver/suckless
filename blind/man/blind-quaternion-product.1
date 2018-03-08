@@ -1,0 +1,37 @@
+.TH BLIND-QUATERNION-PRODUCT 1 blind
+.SH NAME
+blind-quaternion-product - Calculate the quaternion product of colours in a video
+.SH SYNOPSIS
+.B blind-quaternion-product
+.I right-hand-stream
+.SH DESCRIPTION
+.B blind-quaternion-product
+reads left-hand operands from stdin, and right-hand
+operands from
+.IR right-hand-stream ,
+and calculates the quaternion product of the colours.
+The values in the the first channel (the X channel) are
+treated as real, the values in the the second channel
+(the Y channel) are treated as i-imaginary, the values
+in the the third channel (the Z channel) are treated
+as j-imaginary, and the values in the the fourth channel
+(the alpha channel) are treated as k-imaginary.
+.P
+If stdin is longer than
+.IR right-hand-stream ,
+the remainder of stdin is printed without any changes.
+If stdin is shorter than
+.IR right-hand-stream ,
+the remainder of
+.I right-hand-stream
+is ignored but may be partially read.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-arithm (1),
+.BR blind-norm (1),
+.BR blind-cross-product (1),
+.BR blind-quaternion-product (1),
+.BR blind-vector-projection (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

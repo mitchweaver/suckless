@@ -1,0 +1,29 @@
+.TH BLIND-ROTATE-90 1 blind
+.SH NAME
+blind-rotate-90 - Rotate a video 90 degrees clockwise
+.SH SYNOPSIS
+.B blind-rotate-90
+.SH DESCRIPTION
+.B blind-rotate-90
+reads a video from stdin and prints it, rotated
+90 degrees clockwise, to stdout.
+.SH REQUIREMENTS
+.B blind-rotate-90
+is implemented as a shell script pipeline of
+.BR blind-transpose (1)
+and
+.BR blind-flop (1),
+see those for details on requirements.
+.B blind-rotate-90
+is not been optimised for memory usage, but instead
+for code simplicity.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-rotate-180 (1),
+.BR blind-rotate-270 (1),
+.BR blind-flip (1),
+.BR blind-flop (1),
+.BR blind-transpose (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

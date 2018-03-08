@@ -1,0 +1,54 @@
+--- dwm/dwm.c.orig	2015-11-22 13:26:16.664650238 -0700
++++ dwm/dwm.c	2015-11-22 13:25:57.407984351 -0700
+@@ -52,8 +52,8 @@
+ #define ISVISIBLE(C)            ((C->tags & C->mon->tagset[C->mon->seltags]))
+ #define LENGTH(X)               (sizeof X / sizeof X[0])
+ #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
+-#define WIDTH(X)                ((X)->w + 2 * (X)->bw)
+-#define HEIGHT(X)               ((X)->h + 2 * (X)->bw)
++#define WIDTH(X)                ((X)->w + 2 * (X)->bw + gappx)
++#define HEIGHT(X)               ((X)->h + 2 * (X)->bw + gappx)
+ #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
+ #define TEXTW(X)                (drw_text(drw, 0, 0, 0, 0, (X), 0) + drw->fonts[0]->h)
+ 
+@@ -1293,12 +1293,36 @@ void
+ resizeclient(Client *c, int x, int y, int w, int h)
+ {
+ 	XWindowChanges wc;
++	unsigned int n;
++	unsigned int gapoffset;
++	unsigned int gapincr;
++	Client *nbc;
+ 
+-	c->oldx = c->x; c->x = wc.x = x;
+-	c->oldy = c->y; c->y = wc.y = y;
+-	c->oldw = c->w; c->w = wc.width = w;
+-	c->oldh = c->h; c->h = wc.height = h;
+ 	wc.border_width = c->bw;
++
++	/* Get number of clients for the selected monitor */
++	for (n = 0, nbc = nexttiled(selmon->clients); nbc; nbc = nexttiled(nbc->next), n++);
++
++	/* Do nothing if layout is floating */
++	if (c->isfloating || selmon->lt[selmon->sellt]->arrange == NULL) {
++		gapincr = gapoffset = 0;
++	} else {
++		/* Remove border and gap if layout is monocle or only one client */
++		if (selmon->lt[selmon->sellt]->arrange == monocle || n == 1) {
++			gapoffset = 0;
++			gapincr = -2 * borderpx;
++			wc.border_width = 0;
++		} else {
++			gapoffset = gappx;
++			gapincr = 2 * gappx;
++		}
++	}
++
++	c->oldx = c->x; c->x = wc.x = x + gapoffset;
++	c->oldy = c->y; c->y = wc.y = y + gapoffset;
++	c->oldw = c->w; c->w = wc.width = w - gapincr;
++	c->oldh = c->h; c->h = wc.height = h - gapincr;
++
+ 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
+ 	configure(c);
+ 	XSync(dpy, False);

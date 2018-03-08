@@ -1,0 +1,79 @@
+.TH BLIND-REWRITE-HEAD 1 blind
+.SH NAME
+blind-rewrite-head - Rewrite the head of a video
+.SH SYNOPSIS
+.B blind-rewrite-head
+[-h]
+.I file
+.RI [( frames
+|
+.RB ' auto ')
+.RI [( width
+|
+.RB ' same ')
+.RI ( height
+|
+.RB ' same ')
+.RI [ format
+|
+.RB ' same ']]]
+.SH DESCRIPTION
+.B blind-rewrite-head
+rewrites the head in the video
+.IR file .
+.I file
+must be a regular file. The new
+head will specify the choosen number of
+.IR frames ,
+the choosen
+.I width
+and
+.IR height ,
+and the choosen pixel
+.IR format .
+If
+.B ' same '
+is choosen as the
+.IR width ,
+.IR height ,
+or
+.IR format ,
+.B blind-rewrite-head
+will use the values specified in
+.IR file 's
+head. If
+.B ' auto '
+is choosen as the number of
+.IR frames ,
+the number of frames will be calculated from
+the length of the file, its geometry, and
+pixel format.
+.SH OPTIONS
+.TP
+.B -h
+Used if the video file does not have a head.
+This of course means that
+.RB ' same '
+cannot be used as there is not way to know
+the geometry or format of the video if it does
+not have a head.
+.SH RETIONALE
+.B blind-rewrite-head
+only support regular files because combining
+.BR blind-read-head (1),
+.BR blind-write-head (1),
+and
+.BR cat (1)
+is sufficient for doing the same operation on pipes,
+but not on regular files that are too large to store
+two copies of on disc.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-video (1),
+.BR blind-split (1),
+.BR blind-read-head (1),
+.BR blind-write-head (1),
+.BR blind-transpose (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

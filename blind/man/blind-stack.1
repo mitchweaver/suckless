@@ -1,0 +1,44 @@
+.TH BLIND-STACK 1 blind
+.SH NAME
+blind-stack - Overlay videos
+.SH SYNOPSIS
+.B blind-stack
+[-bs]
+.I bottom-stream
+.RI "... " top-stream
+.SH DESCRIPTION
+.B blind-stack
+prints the video from the file
+.I bottom-stream
+to stdout, but draws the videos from the
+succeeding arguments on top of the video from
+.IR bottom-stream ,
+drawing them in order, starting with the
+video specified direct after
+.I bottom-stream
+and ending with
+.IR top-stream .
+The specified files can be any type, except
+directory, including pipes.
+.P
+The output video will be as long as the longest
+input video.
+.SH OPTIONS
+.TP
+.B -b
+Instead of drawing the videos on top of each
+other, for each pixel in each frame, print the
+average colour for each input stream's
+corresponding pixel and frame.
+.TP
+.B -s
+The output video will be as long as the shortest
+input video, rather than as the longest.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-dissolve (1),
+.BR blind-set-alpha (1),
+.BR blind-single-colour (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

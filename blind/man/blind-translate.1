@@ -1,0 +1,57 @@
+.TH BLIND-TRANSLATE 1 blind
+.SH NAME
+blind-translate - Perform framewise translation of a video
+.SH SYNOPSIS
+.B blind-translate
+[-pw]
+.I translation-stream
+.SH DESCRIPTION
+.B blind-translate
+reads a video from stdin and translation operands from
+.IR translation-stream ,
+and perform framewise translation of the video and
+prints the resulting video to stdout.
+.P
+.I translation-stream
+is a video that is 1 pixel wide and 1 pixel high.
+The first pixel value in a frame is used as the
+translation value for the X-axis in the same frame
+in the video, and the second pixel value is used
+as the translation value for the Y-axis. The
+remaining two pixel values are ignored.
+.P
+If stdin is longer than
+.IR translation-stream ,
+the remainder of stdin is printed with the last translation
+or no translation if
+.I translation-stream
+does not contain any translations. If stdin is shorter than
+.IR translation-stream ,
+the remainder of
+.I translation-stream
+is ignored but may be partially read.
+.SH OPTIONS
+.TP
+.B -w
+Wrap video around the edges.
+.TP
+.B -p
+The values in
+.I translation-stream
+is to be treat as the position, measured form the
+top-left corner, in the input video that shall be
+used at the top-left corner of the output video.
+.SH REQUIREMENTS
+.B blind-translate
+requires enough free memory to load a full frames into
+memory if
+.B -w
+is used or a frame row otherwise. A frame or frame row
+requires 32 bytes per pixel it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-crop (1),
+.BR blind-extend (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

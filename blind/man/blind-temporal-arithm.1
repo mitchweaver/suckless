@@ -1,0 +1,40 @@
+.TH BLIND-TEMPORAL-ARITHM 1 blind
+.SH NAME
+blind-temporal-arithm - Perform simple arithmetic over all frames in a video for each pixel
+.SH SYNOPSIS
+.B blind-temporal-arithm
+.I operation
+.SH DESCRIPTION
+.B blind-temporal-arithm
+reads a video from stdin and applies an arithmetic
+operation over all frames in the video, for each
+pixel, and prints the resulting single-frame video
+to stdout.
+.SH OPERATIONS
+.TP
+.B add
+Calculate the sum of the operands.
+.TP
+.B mul
+Calculate the product of the operands.
+.TP
+.B min
+Select the lowest operand.
+.TP
+.B max
+Select the highest operand.
+.SH REQUIREMENTS
+.B blind-temporal-arithm
+requires enough free memory to load one full frames memory.
+A frame requires 32 bytes per pixel it contains.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-temporal-mean (1),
+.BR blind-spatial-arithm (1),
+.BR blind-spatial-mean (1),
+.BR blind-arithm (1),
+.BR blind-mean (1),
+.BR blind-rewrite-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,36 @@
+.TH BLIND-SPATIAL-ARITHM 1 blind
+.SH NAME
+blind-spatial-arithm - Perform simple arithmetic over all pixels for each frame in a video
+.SH SYNOPSIS
+.B blind-spatial-arithm
+.I operation
+.SH DESCRIPTION
+.B blind-spatial-arithm
+reads a video from stdin and applies an arithmetic
+operation over all pixels, for each frame in the
+video, and prints the resulting video, with one
+pixel in each frame, to stdout.
+.SH OPERATIONS
+.TP
+.B add
+Calculate the sum of the operands.
+.TP
+.B mul
+Calculate the product of the operands.
+.TP
+.B min
+Select the lowest operand.
+.TP
+.B max
+Select the highest operand.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-temporal-arithm (1),
+.BR blind-arithm (1),
+.BR blind-spatial-mean (1),
+.BR blind-temporal-mean (1),
+.BR blind-mean (1),
+.BR blind-rewrite-head (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

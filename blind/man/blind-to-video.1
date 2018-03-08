@@ -1,0 +1,67 @@
+.TH BLIND-TO-VIDEO 1 blind
+.SH NAME
+blind-to-video - Converts blind video to a regular video
+.SH SYNOPSIS
+.B blind-to-video
+[-d]
+.I frame-rate
+.IR ffmpeg-arguments " ..."
+.SH DESCRIPTION
+.B blind-to-video
+reads a
+.B blind
+video from stdin and uses
+.BR ffmpeg (1)
+to convert it to a normal video format.
+.I frame-rate
+must be set to the frame-rate of the input video,
+lest the tempo in the output video be modified. You
+can use
+.BR ffprobe (1)
+(an
+.B ffmpeg
+utility) on your original video to find out the frame rate:
+
+.nf
+	ffprobe -v quiet -show_streams -select_streams v -- your-video.mkv |
+	grep '^r_frame_rate=' | cut -d = -f 2-
+.fi
+
+This value will be a rational value, which is supported.
+All argumnets after
+.I frame-rate
+(that is
+.IR ffmpeg-arguments " ...)"
+are arguments that will be passed to
+.BR ffmpeg (1)
+after the arguments that
+.B blind-to-video
+will create that specifies the input file and necessary metadata
+such as frame rate, geometry, and format, of the input video.
+Beginners are recommended to use
+.B -c:v libx264 -preset veryslow -crf 0 -pix_fmt yuv444p --
+.IR output-file .
+.P
+If your output video need include an alpha channel, the codec
+.BR ffvhuff .
+Not all video players support videos with transparency.
+.BR mpv (1)
+is a good media player for previewing videos with transparency,
+however it distorts colour somewhat.
+.SH OPTIONS
+.TP
+.B -d
+Perform coarse colour-model conversion. This will increase the
+performance of the conversion, however, it the colours will
+not look correct, unless the -d flag was also with
+.BR blind-from-video (1)
+and not colours have been modified between to the processes.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-video (1),
+.BR blind-compress (1),
+.BR ffmpeg (1),
+.BR ffprobe (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,78 @@
+.TH BLIND-COLOUR-MATRIX 1 blind
+.SH NAME
+blind-colour-matrix - Create colour space conversion matrix
+.SH SYNOPSIS
+.B blind-colour-matrix
+[-F
+.IR pixel-format ]
+(-z
+.I x1
+.I y1
+.I x2
+.I y2
+.I x3
+.I y3
+.RI [ white-x
+.IR white-y ]
+|
+.I X1
+.I Y1
+.I Z1
+.I X2
+.I Y2
+.I Z2
+.I X3
+.I Y3
+.I Z3
+.RI [ white-X
+.I white-Y
+.IR white-Z ])
+.SH DESCRIPTION
+.B blind-colour-matrix
+creates a colour conversion matrix, that is
+printed as blind video to stdout, for conversion
+from the colour space used by blind to a colour
+space with the primaries whose CIE XYZ values are
+.RI ( X1
+.I Y1
+.IR Z1 ),
+.RI ( X2
+.I Y2
+.IR Z2 ),
+and
+.RI ( X3
+.I Y3
+.IR Z3 )
+and whose white point is the colour whose
+CIE XYZ values are
+.RI ( white-X
+.I white-Y
+.IR white-Z ).
+If the white point is not specified,
+CIE Standard Illuminant D65 is used.
+.SH OPTIONS
+.TP
+.BR -F " "\fIpixel-format\fP
+Select pixel format, see
+.BR blind-convert (1)
+for more information. Pixel formats starting with
+.BR raw
+are not supported.
+.TP
+.B -z
+Parse arguments as CIE XYY instead of CIE XYZ.
+.SH NOTES
+.B blind-colour-matrix
+may be changed in the future to use some other colour model,
+therefore, it is recommended to also use
+.BR blind-colour-ciexyz (1)
+if you are specifying the colour in CIE XYZ.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-colour-ciexyz (1),
+.BR blind-colour-srgb (1),
+.BR blind-invert-matrix (1),
+.BR blind-affine-colour (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

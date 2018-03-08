@@ -1,0 +1,29 @@
+.TH BLIND-UNPREMULTIPLY 1 blind
+.SH NAME
+blind-unpremultiply - Unpremultiply the alpha channel of a video
+.SH SYNOPSIS
+.B blind-unpremultiply
+[-xyz]
+.SH DESCRIPTION
+.B blind-unpremultiply
+reads a video from stdin and divides the colour
+with the alpha value for each pixel, and prints
+the resulting video to stdout, effectively
+undoing affects of
+.BR blind-unpremultiply (1).
+.SH OPTIONS
+.TP
+.B -x
+Do not modify the X channel (the first channel).
+.TP
+.B -y
+Do not modify the Y channel (the second channel).
+.TP
+.B -z
+Do not modify the Z channel (the third channel).
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-premultiply (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,27 @@
+.TH BLIND-PREMULTIPLY 1 blind
+.SH NAME
+blind-premultiply - Premultiply the alpha channel of a video
+.SH SYNOPSIS
+.B blind-premultiply
+[-xyz]
+.SH DESCRIPTION
+.B blind-premultiply
+reads a video from stdin and multiplies the
+colour values with the alpha value for each pixel,
+and prints the resulting video to stdout.
+.SH OPTIONS
+.TP
+.B -x
+Do not modify the X channel (the first channel).
+.TP
+.B -y
+Do not modify the Y channel (the second channel).
+.TP
+.B -z
+Do not modify the Z channel (the third channel).
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-unpremultiply (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

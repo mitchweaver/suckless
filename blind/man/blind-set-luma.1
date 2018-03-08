@@ -1,0 +1,42 @@
+.TH BLIND-SET-LUMA 1 blind
+.SH NAME
+blind-set-luma - Multiply the luminosity of a video
+.SH SYNOPSIS
+.B blind-set-luma
+.I luma-stream
+.SH DESCRIPTION
+.B blind-set-luma
+reads a video from stdin and a mask video from
+.IR luma-stream .
+The video is printed to stdout, with the luminosity
+of each pixel multiplied by the product of the
+luminosity and the alpha value of the corresponding
+pixel and frame in the mask video.
+.P
+If stdin is longer than
+.IR luma-stream ,
+the remainder of stdin is printed without any changes.
+If stdin is shorter than
+.IR luma-stream ,
+the remainder of
+.I luma-stream
+is ignored but may be partially read.
+.SH NOTES
+In most cases, this is not what you want to use, instead
+you probably want to use
+.BR blind-arithm (1)
+to multiple the X, Y and Z values on one value. This
+produces the same affect as reducing the intensity of
+the light sources, which is not what
+.B blind-set-luma
+does.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-single-colour (1),
+.BR blind-arithm (1),
+.BR blind-set-alpha (1),
+.BR blind-invert-luma (1),
+.BR blind-set-saturation (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

@@ -1,0 +1,39 @@
+.TH BLIND-TO-NAMED 1 blind
+.SH NAME
+blind-to-named - Send a file descriptor
+.SH SYNOPSIS
+.B blind-to-named
+[-a]
+.I path
+.SH DESCRIPTION
+.B blind-to-named
+create a
+.BR unix (7)
+socket with the filename
+.I path
+and sends the stdin file descriptor to the
+first process that connects to it.
+.SH OPTIONS
+.TP
+.B -a
+Rather than binding to a filename, create and abstract
+address, starting with a NUL byte followed by
+.I path
+and padded with NUL bytes until the end of the address.
+.SH RATIONALE
+The pipeline construction, in even advanced, shells
+are not flexible enough to do all kinds of pipelinings
+that are necessary when doing complicated effects with
+.BR blind (7).
+For example, this is necessary to pipe video into
+two processes pipelines using
+.BR tee (1)
+and then using the end of both pipelines as the in
+input to the process, like inverse multiplexing.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-from-named (1),
+.BR blind-tee (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

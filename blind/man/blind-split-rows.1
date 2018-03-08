@@ -1,0 +1,37 @@
+.TH BLIND-SPLIT-ROWS 1 blind
+.SH NAME
+blind-split-rows - Split a video horizontally into multiple videos
+.SH SYNOPSIS
+.B blind-split-rows
+.RI ( file
+.IR rows )\ ...
+.SH DESCRIPTION
+.B blind-split-rows
+reads a video from stdin and splits into multiple videos.
+Starting from the first row in stdin, it writes a video
+to the first specified
+.I file
+until the first specified number of
+.I rows
+have been written.
+.B blind-split-rows
+then proceeds to do to the same for the next pair of
+.I file
+and
+.I rows
+until, and in including, the last pair. This process
+is repeated until the last row in stdin has been read.
+.P
+The sum of all
+.I rows
+must add up exactly to the height of the input video.
+.SH SEE ALSO
+.BR blind (7),
+.BR blind-cat-rows (1),
+.BR blind-cut (1),
+.BR blind-split (1),
+.BR blind-disperse (1),
+.BR blind-split-cols (1)
+.SH AUTHORS
+Mattias Andrée
+.RI < maandree@kth.se >

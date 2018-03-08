@@ -1,0 +1,87 @@
+diff --git a/dmenu.1 b/dmenu.1
+index d3ab805..5301910 100644
+--- a/dmenu.1
++++ b/dmenu.1
+@@ -51,6 +51,24 @@ dmenu matches menu items case insensitively.
+ .BI \-l " lines"
+ dmenu lists items vertically, with the given number of lines.
+ .TP
++.BI \-x " xoffset"
++dmenu is placed at this offset measured from the left side of the monitor.
++Can be negative.
++If option
++.B \-m
++is present, the measurement will use the given monitor.
++.TP
++.BI \-y " yoffset"
++dmenu is placed at this offset measured from the top of the monitor.  If the
++.B \-b
++option is used, the offset is measured from the bottom.  Can be negative.
++If option
++.B \-m
++is present, the measurement will use the given monitor.
++.TP
++.BI \-w " width"
++sets the width of the dmenu window.
++.TP
+ .BI \-m " monitor"
+ dmenu is displayed on the monitor number supplied. Monitor numbers are starting
+ from 0.
+diff --git a/dmenu.c b/dmenu.c
+index 3b05752..add4364 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -36,6 +36,9 @@ struct item {
+ static char text[BUFSIZ] = "";
+ static int bh, mw, mh;
+ static int sw, sh; /* X display screen geometry width, height */
++static int dmx = 0; /* put dmenu at this x offset */
++static int dmy = 0; /* put dmenu at this y offset (measured from the bottom if topbar is 0) */
++static unsigned int dmw = 0; /* make dmenu this wide */
+ static int inputw = 0, promptw;
+ static int lrpad; /* sum of left and right padding */
+ static size_t cursor;
+@@ -563,16 +566,16 @@ setup(void)
+ 				if (INTERSECT(x, y, 1, 1, info[i]))
+ 					break;
+ 
+-		x = info[i].x_org;
+-		y = info[i].y_org + (topbar ? 0 : info[i].height - mh);
+-		mw = info[i].width;
++		x = info[i].x_org + dmx;
++		y = info[i].y_org + (topbar ? dmy : info[i].height - mh - dmy);
++		mw = (dmw>0 ? dmw : info[i].width);
+ 		XFree(info);
+ 	} else
+ #endif
+ 	{
+-		x = 0;
+-		y = topbar ? 0 : sh - mh;
+-		mw = sw;
++		x = dmx;
++		y = topbar ? dmy : sh - mh - dmy;
++		mw = (dmw>0 ? dmw : sw);
+ 	}
+ 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
+ 	inputw = MIN(inputw, mw/3);
+@@ -601,6 +604,7 @@ static void
+ usage(void)
+ {
+ 	fputs("usage: dmenu [-b] [-f] [-i] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
++	      "             [-x xoffset] [-y yoffset] [-w width]\n"
+ 	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-v]\n", stderr);
+ 	exit(1);
+ }
+@@ -627,6 +631,12 @@ main(int argc, char *argv[])
+ 		/* these options take one argument */
+ 		else if (!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
+ 			lines = atoi(argv[++i]);
++		else if (!strcmp(argv[i], "-x"))   /* window x offset */
++			dmx = atoi(argv[++i]);
++		else if (!strcmp(argv[i], "-y"))   /* window y offset (from bottom up if -b) */
++			dmy = atoi(argv[++i]);
++		else if (!strcmp(argv[i], "-w"))   /* make dmenu this wide */
++			dmw = atoi(argv[++i]);
+ 		else if (!strcmp(argv[i], "-m"))
+ 			mon = atoi(argv[++i]);
+ 		else if (!strcmp(argv[i], "-p"))   /* adds prompt to left of input field */
