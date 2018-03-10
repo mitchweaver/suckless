@@ -73,7 +73,8 @@ static const char terminal[] = "st";
 static const char editor[] = "nvim";
 
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+/* static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL }; */
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "90x26", NULL };
 
 /* ------------------------------------------------------- */
 /* static const int NUM_WORKSPACES=13; */
@@ -174,7 +175,7 @@ static const char *mediarw[] = { "media", "--skip_behind", NULL };
 static const char *togglekeyboardlayout[] = { "dash", "-c", "${HOME}/bin/keyboard", NULL };
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
 static const char *lock[] = { "slock", NULL };
-static const char *scrot[] = { "scrap", NULL };
+static const char *scrap[] = { "scrap", NULL };
 static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/brightness.sh -inc 10", NULL };
 static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/brightness.sh -dec 10", NULL };
 
@@ -201,7 +202,7 @@ const static Key keys[] = {
     { Mod1Mask,                     61,             spawn,    {.v = mediatoggle } }, // /
     { Mod1Mask,                     60,             spawn,    {.v = medianext } },  // >
     { Mod1Mask,                     59,             spawn,    {.v = mediaprev } }, // <
-    { 0,                            111,            spawn,    {.v = scrot } }, // Print
+    { 0,                            111,            spawn,    {.v = scrap } }, // Print
 
     { Mod1Mask,                     47,             spawn,    {.v = voldown }}, //  ;
     { Mod1Mask,                     48,             spawn,    {.v = volup }}, // '

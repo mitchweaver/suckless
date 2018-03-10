@@ -1,35 +1,39 @@
 #include "st-configh-ignores.h"
 
 /* --------------- Font ---------------------------------- */
-/* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
-/* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
-char font[] = "GohuFont:pixelsize=12:antialias=false:autohint=false";
-/* char font[] = "scientifica:pixelsize=14:antialias=false:autohint=false"; */
-/* char font[] = "MonteCarlo:pixelsize=14:antialias=false:autohint=false"; */
-/* char font[] = "Roboto Mono:pixelsize=14:antialias=true:autohint=true"; */
-/* char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true"; */
+/* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false:style=Regular"; */
+/* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false:style=Regular"; */
+/* char font[] = "GohuFont:pixelsize=12:antialias=false:autohint=false:style=Regular"; */
+/* char font[] = "scientifica:pixelsize=10:antialias=false:autohint=false:style=Regular"; */
+/* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false:style=Regular"; */
+char font[] = "cherry:pixelsize=10:antialias=false:autohint=false:style=Regular";
+/* char font[] = "orp:pixelsize=10:antialias=false:autohint=false:style=Regular"; */
+/* char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true:style=Regular"; */
 /* ------------------------------------------------------- */
 
 /* ---------------- Border ------------------------------- */
-/* int borderpx = 10; /1* Internal border *1/ */
-/* int borderpx = 12; /1* Internal border *1/ */
 /* int borderpx = 14; /1* Internal border *1/ */
 int borderpx = 28; /* Internal border */
-/* int borderpx = 35; /1* Internal border *1/ */
 /* ------------------------------------------------------- */
 
 /* --------------- Themes -------------------------------- */
 #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
-/* #include "ashes-dark-theme.h" */
-/* #include "unsifted-wheat-theme.h" */
-/* #include "mocha-light-theme.h" */
-/* #include "ashes-light-theme.h" */
-/* #include "mocha-dark-theme.h" */
-/* #include "navy-and-ivory-theme.h" */
-/* #include "visibone-theme.h" */
-/* #include "ocean-dark-theme.h" */
-/* #include "tomorrow-dark-theme.h" */
-/* #include "default-color-scheme.h" */
+/* #include "themes/ashes-dark-theme.h" */
+/* #include "themes/mocha-light-theme.h" */
+/* #include "themes/ashes-light-theme.h" */
+/* #include "themes/unsifted-wheat-theme.h" */
+/* #include "themes/insignificato-theme.h" */
+/* #include "themes/mostly-bright-theme.h" */
+/* #include "themes/dawn-theme.h" */
+/* #include "themes/grayscale-theme.h" */
+/* #include "themes/praiso-dark-theme.h" */
+/* #include "themes/nature-suede-theme.h" */
+/* #include "themes/mocha-dark-theme.h" */
+/* #include "themes/navy-and-ivory-theme.h" */
+/* #include "themes/visibone-theme.h" */
+/* #include "themes/ocean-dark-theme.h" */
+/* #include "themes/tomorrow-dark-theme.h" */
+/* #include "themes/default-color-scheme.h" */
 /*  -------------------------------------------------------  */
 
 unsigned int cols = 80;
@@ -37,19 +41,13 @@ unsigned int rows = 30;
 /* static char shell[] = "/bin/mksh"; */
 static char shell[] = "/bin/ksh";
 
-/* Kerning / character bounding-box multipliers */
-float cwscale = 1.0;
-float chscale = 1.0;
+float cwscale = 1.0; // kerning
+float chscale = 1.0; // bounding box
 static const unsigned int tabspaces = 4;
 
 /* frames per second st should at maximum draw to the screen */
-unsigned int xfps = 300; // higher number here seems to help with ranger previews
+unsigned int xfps = 300; // higher number here helps with ranger previews
 unsigned int actionfps = 30;
-
-/* Default colour and shape of the mouse cursor */
-unsigned int mousefg = 7;
-unsigned int mousebg = 0;
-unsigned int defaultrcs = 257;
 
 // this is using my own patch as the official one doesn't work on BSD... and
 // just isn't good.
