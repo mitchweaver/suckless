@@ -21,7 +21,7 @@ const static SearchEngine searchengines[] = {
     { "4",      "https://boards.4chan.org/%s" },
     { "u",      "https://reddit.com/u/%s" },
     { "yt",     "https://youtube.com/results?search_query=%s" },
-    { "image",  "https://google.com/search?safe=active&tbm=isch&q=%s" },
+    { "image",  "https://duckduckgo.com/!image+%s" },
     { "reddit", "https://reddit.com/search?q=%s" },
     { "pirate", "https://thepiratebay.org/search/%s" },
     { "think",  "https://thinkwiki.org/w/index.php?search=%s" },
@@ -56,8 +56,6 @@ static UriParameters uriparams[] = {
     { "(://|\\.)discord\\.gg(/|$)",       { [ZoomLevel] = { { .f = 1.0 }, 1.0 }, }, },
     // no javascript
     { "(://|\\.)suckless\\.org(/|$)",     { [JavaScript] = { { .i = 0 }, 1 }, }, },
-    { "(://|\\.)ddg\\.gg(/|$)",           { [JavaScript] = { { .i = 0 }, 1 }, }, },
-    { "(://|\\.)duckduckgo\\.com(/|$)",   { [JavaScript] = { { .i = 0 }, 1 }, }, },
     { "(://|\\.)googleads\\.com(/|$)",    { [JavaScript] = { { .i = 0 }, 1 }, }, },
     { "(://|\\.)adsense\\.com(/|$)",      { [JavaScript] = { { .i = 0 }, 1 }, }, },
     { "(://|\\.)adfly\\.com(/|$)",        { [JavaScript] = { { .i = 0 }, 1 }, }, },

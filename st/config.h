@@ -1,14 +1,14 @@
 #include "st-configh-ignores.h"
 
 /* --------------- Font ---------------------------------- */
-/* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false:style=Regular"; */
-/* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false:style=Regular"; */
-/* char font[] = "GohuFont:pixelsize=12:antialias=false:autohint=false:style=Regular"; */
-/* char font[] = "scientifica:pixelsize=10:antialias=false:autohint=false:style=Regular"; */
-/* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false:style=Regular"; */
-char font[] = "cherry:pixelsize=10:antialias=false:autohint=false:style=Regular";
-/* char font[] = "orp:pixelsize=10:antialias=false:autohint=false:style=Regular"; */
-/* char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true:style=Regular"; */
+/* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
+/* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
+/* char font[] = "GohuFont:pixelsize=12:antialias=false:autohint=false"; */
+/* char font[] = "scientifica:pixelsize=10:antialias=false:autohint=false"; */
+/* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
+/* char font[] = "cherry:pixelsize=10:antialias=false:autohint=false"; */
+/* char font[] = "orp:pixelsize=10:antialias=false:autohint=false"; */
+char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true";
 /* ------------------------------------------------------- */
 
 /* ---------------- Border ------------------------------- */
@@ -18,6 +18,11 @@ int borderpx = 28; /* Internal border */
 
 /* --------------- Themes -------------------------------- */
 #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
+
+/* #include "themes/estuary-light-theme.h" */
+/* #include "themes/gruvbox-light-hard-theme.h" */
+/* #include "themes/plateau-light-theme.h" */
+
 /* #include "themes/ashes-dark-theme.h" */
 /* #include "themes/mocha-light-theme.h" */
 /* #include "themes/ashes-light-theme.h" */
@@ -41,9 +46,10 @@ unsigned int rows = 30;
 /* static char shell[] = "/bin/mksh"; */
 static char shell[] = "/bin/ksh";
 
+static const unsigned int tabspaces = 4;
+
 float cwscale = 1.0; // kerning
 float chscale = 1.0; // bounding box
-static const unsigned int tabspaces = 4;
 
 /* frames per second st should at maximum draw to the screen */
 unsigned int xfps = 300; // higher number here helps with ranger previews

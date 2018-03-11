@@ -147,8 +147,8 @@ static const char *dmenucmd[] = { "dash", "-c", "${HOME}/bin/menu run -p 'Run:'"
 /* --------------------------------------------------------------------------- */
 static const char *net[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
 /* ------------------------------------------------------- */
-static const char *term[]  = { "st", NULL };
-/* static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL }; */
+/* static const char *term[]  = { "st", NULL }; */
+static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
 /* static const char *floatingterm[]  = { "st", "-T", "floating-st", "-n", "floating-st", NULL }; */
 
 static const char *x9term[]  = { "/bin/dash", "-c", \
