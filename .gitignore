@@ -7,6 +7,18 @@ surf/certificates
 *history*
 *cache*
 
+
+
+# these may change, but hide for now
+
+sselp
+swarp
+blind
+
+# --------------------
+
+
+
 *.o*
 
 *.o

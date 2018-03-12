@@ -9,4 +9,4 @@ static const char *colorname[NUMCOLS] = {
 };
 
 /* treat a cleared input like a wrong password (color) */
-static const int failonclear = 1;
+static const int failonclear = 0;
