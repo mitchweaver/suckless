@@ -108,7 +108,8 @@ char crossbones_ascii[] = "/home/mitch/usr/bin/ascii/crossbones";
 
 /* ----------------- open videos with youtube-dl ----------------- */
 #define YOUTUBEDL {.v = (char *[]){ "/bin/sh", "-c", \
-        "pkill -9 mpv ; mpv --really-quiet $(xprop -id $0 _SURF_URI | cut -d \\\" -f 2) &", \
+        " kill $(pgrep mpv | grep -v $(pgrep -P $(cat ${HOME}/.cache/mpvbg.pid))) > /dev/null 2>&1 ; \
+        mpv --really-quiet $(xprop -id $0 _SURF_URI | cut -d \\\" -f 2) &", \
         winid, NULL } }
 /* ----------------------------------------------------------------- */
 

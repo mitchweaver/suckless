@@ -159,7 +159,6 @@ static const char *x9term[]  = { "/bin/dash", "-c", \
 static const char *acme[]  = { "acme", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
 static const char *filechooser[] = { "pcmanfm", NULL };
-/* static const char *musicplayer[] = { "st", "-w", "music", "-T", "music", "-n", "music", "-e", "ranger", "/home/mitch/music", NULL }; */
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
@@ -172,7 +171,7 @@ static const char *mediatoggle[] = { "media", "--toggle", NULL };
 static const char *mediaff[] = { "media", "--skip_ahead", NULL };
 static const char *mediarw[] = { "media", "--skip_behind", NULL };
 
-static const char *togglekeyboardlayout[] = { "dash", "-c", "${HOME}/bin/keyboard", NULL };
+static const char *togglekeyboardlayout[] = { "dash", "-c", "${HOME}/bin/keys", NULL };
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
 static const char *lock[] = { "slock", NULL };
 static const char *scrap[] = { "scrap", NULL };
@@ -197,7 +196,6 @@ const static Key keys[] = {
     { Mod1Mask,                     38,             spawn,    {.v = acme} }, // a
 
     { Mod1Mask,                     26,             spawn,    {.v = filechooser } }, // e
-    /* { Mod1Mask,                     38,             spawn,    {.v = musicplayer } }, // a */
 
     { Mod1Mask,                     61,             spawn,    {.v = mediatoggle } }, // /
     { Mod1Mask,                     60,             spawn,    {.v = medianext } },  // >

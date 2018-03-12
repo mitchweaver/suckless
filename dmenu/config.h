@@ -8,11 +8,7 @@ static const char *fonts[] = {
     /* "Roboto Mono:pixelsize=24:antialias=true:autohint=true" */
     /* "Roboto Mono:pixelsize=18:antialias=true:autohint=true" */
     /* "Roboto Mono:pixelsize=16:antialias=true:autohint=true" */
-    /* "Roboto Mono:pixelsize=14:antialias=true:autohint=true" */
-    /* "xos4 Terminus:pixelsize=16:antialias=false:autohint=false" */
-    /* "xos4 Terminus:pixelsize=14:antialias=false:autohint=false" */
-    "Terminus:pixelsize=14:antialias=false:autohint=false"
-    /* "xos4 Terminus:pixelsize=12:antialias=false:autohint=false" */
+    "Roboto Mono:pixelsize=14:antialias=true:autohint=true"
 };
 
 static const char *prompt = NULL;      /* -p  option; prompt to the left of input field */

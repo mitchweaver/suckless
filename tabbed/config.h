@@ -1,9 +1,8 @@
 /* static const char font[]        = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
-static const char font[]        = "Terminus:pixelsize=12:antialias=false:autohint=false";
+/* static const char font[]        = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
 /* static const char font[]        = "MonteCarlo:pixelsize=12:antialias=false:autohint=false"; */
-/* static const char font[]        = "Roboto Mono:pixelsize=14:antialias=true:autohint=true"; */
+static const char font[]        = "Roboto Mono:pixelsize=14:antialias=true:autohint=true";
 /* static const char font[]        = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* static const char font[]        = "Roboto Mono:pixelsize=28:antialias=true:autohint=true"; */
 
 // whether to append 1., 2., 3. etc to the start of clients
 static const Bool numberclients = False;
