@@ -18,25 +18,26 @@ int borderpx = 28; /* Internal border */
 
 /* --------------- Themes -------------------------------- */
 #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
-/* #include "themes/estuary-light-theme.h" */
-/* #include "themes/gruvbox-light-hard-theme.h" */
-/* #include "themes/plateau-light-theme.h" */
-/* #include "themes/ashes-dark-theme.h" */
-/* #include "themes/mocha-light-theme.h" */
-/* #include "themes/ashes-light-theme.h" */
-/* #include "themes/unsifted-wheat-theme.h" */
-/* #include "themes/insignificato-theme.h" */
-/* #include "themes/mostly-bright-theme.h" */
-/* #include "themes/dawn-theme.h" */
-/* #include "themes/grayscale-theme.h" */
-/* #include "themes/praiso-dark-theme.h" */
-/* #include "themes/nature-suede-theme.h" */
-/* #include "themes/mocha-dark-theme.h" */
-/* #include "themes/navy-and-ivory-theme.h" */
-/* #include "themes/visibone-theme.h" */
-/* #include "themes/ocean-dark-theme.h" */
-/* #include "themes/tomorrow-dark-theme.h" */
-/* #include "themes/default-color-scheme.h" */
+/* #include "themes/mine/bubblegum-theme.h" */
+/* #include "themes/terminaldosexy/estuary-light-theme.h" */
+/* #include "themes/terminaldosexy/gruvbox-light-hard-theme.h" */
+/* #include "themes/terminaldosexy/plateau-light-theme.h" */
+/* #include "themes/terminaldosexy/ashes-dark-theme.h" */
+/* #include "themes/terminaldosexy/mocha-light-theme.h" */
+/* #include "themes/terminaldosexy/ashes-light-theme.h" */
+/* #include "themes/terminaldosexy/unsifted-wheat-theme.h" */
+/* #include "themes/terminaldosexy/insignificato-theme.h" */
+/* #include "themes/terminaldosexy/mostly-bright-theme.h" */
+/* #include "themes/terminaldosexy/dawn-theme.h" */
+/* #include "themes/terminaldosexy/grayscale-theme.h" */
+/* #include "themes/terminaldosexy/praiso-dark-theme.h" */
+/* #include "themes/terminaldosexy/nature-suede-theme.h" */
+/* #include "themes/terminaldosexy/mocha-dark-theme.h" */
+/* #include "themes/terminaldosexy/navy-and-ivory-theme.h" */
+/* #include "themes/terminaldosexy/visibone-theme.h" */
+/* #include "themes/terminaldosexy/ocean-dark-theme.h" */
+/* #include "themes/terminaldosexy/tomorrow-dark-theme.h" */
+/* #include "themes/terminaldosexy/default-color-scheme.h" */
 /*  -------------------------------------------------------  */
 
 unsigned int cols = 80;
