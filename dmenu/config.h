@@ -1,14 +1,14 @@
 static int topbar = 1;  /* -b  option; if 0, dmenu appears at bottom     */
 
 static const char *fonts[] = {
-    /* "Terminus:pixelsize=14:antialias=false:autohint=false" */
+    "Terminus:pixelsize=14:antialias=false:autohint=false"
     /* "Terminus:pixelsize=12:antialias=false:autohint=false" */
     /* "Terminus:pixelsize=18:antialias=false:autohint=false" */
     /* "Terminus:pixelsize=18:antialias=false:autohint=false" */
     /* "Roboto Mono:pixelsize=24:antialias=true:autohint=true" */
     /* "Roboto Mono:pixelsize=18:antialias=true:autohint=true" */
     /* "Roboto Mono:pixelsize=16:antialias=true:autohint=true" */
-    "Roboto Mono:pixelsize=14:antialias=true:autohint=true"
+    /* "Roboto Mono:pixelsize=14:antialias=true:autohint=true" */
 };
 
 static const char *prompt = NULL;      /* -p  option; prompt to the left of input field */

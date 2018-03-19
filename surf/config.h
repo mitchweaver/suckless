@@ -127,7 +127,7 @@ static const Key keys[] = {
     /* ----------------- Custom Functions ---------------------------- */
     { MODKEY,               GDK_KEY_y,      spawn,      YOUTUBEDL },
     { MODKEY|SHIFT,         GDK_KEY_b,      spawn,      BM_ADD },
-    { MODKEY,               GDK_KEY_t,      spawn,      SH("python ${HOME}/etc/suckless-tools/surf/scripts-surf/surf-translate.py \"$(xsel -o)\"") },
+    { MODKEY,               GDK_KEY_t,      spawn,      SH("python3.6 ${HOME}/etc/suckless-tools/surf/scripts-surf/surf-translate.py \"$(xsel -o)\"") },
     { MODKEY,               GDK_KEY_space,  spawn,      GO_HOME  },
     /* ----------------- End Custom Functions ------------------------ */
 

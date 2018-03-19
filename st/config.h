@@ -2,13 +2,13 @@
 
 /* --------------- Font ---------------------------------- */
 /* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
-/* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
+char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false";
 /* char font[] = "GohuFont:pixelsize=12:antialias=false:autohint=false"; */
 /* char font[] = "scientifica:pixelsize=10:antialias=false:autohint=false"; */
 /* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* char font[] = "cherry:pixelsize=10:antialias=false:autohint=false"; */
 /* char font[] = "orp:pixelsize=10:antialias=false:autohint=false"; */
-char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true";
+/* char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true"; */
 /* ------------------------------------------------------- */
 
 /* ---------------- Border ------------------------------- */
@@ -17,27 +17,27 @@ int borderpx = 28; /* Internal border */
 /* ------------------------------------------------------- */
 
 /* --------------- Themes -------------------------------- */
-#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
+/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
 /* #include "themes/mine/bubblegum-theme.h" */
-/* #include "themes/terminaldosexy/estuary-light-theme.h" */
-/* #include "themes/terminaldosexy/gruvbox-light-hard-theme.h" */
-/* #include "themes/terminaldosexy/plateau-light-theme.h" */
-/* #include "themes/terminaldosexy/ashes-dark-theme.h" */
-/* #include "themes/terminaldosexy/mocha-light-theme.h" */
-/* #include "themes/terminaldosexy/ashes-light-theme.h" */
-/* #include "themes/terminaldosexy/unsifted-wheat-theme.h" */
-/* #include "themes/terminaldosexy/insignificato-theme.h" */
-/* #include "themes/terminaldosexy/mostly-bright-theme.h" */
-/* #include "themes/terminaldosexy/dawn-theme.h" */
-/* #include "themes/terminaldosexy/grayscale-theme.h" */
-/* #include "themes/terminaldosexy/praiso-dark-theme.h" */
-/* #include "themes/terminaldosexy/nature-suede-theme.h" */
-/* #include "themes/terminaldosexy/mocha-dark-theme.h" */
-/* #include "themes/terminaldosexy/navy-and-ivory-theme.h" */
-/* #include "themes/terminaldosexy/visibone-theme.h" */
-/* #include "themes/terminaldosexy/ocean-dark-theme.h" */
-/* #include "themes/terminaldosexy/tomorrow-dark-theme.h" */
-/* #include "themes/terminaldosexy/default-color-scheme.h" */
+/* #include "themes/terminaldotsexy/estuary-light-theme.h" */
+/* #include "themes/terminaldotsexy/gruvbox-light-hard-theme.h" */
+/* #include "themes/terminaldotsexy/plateau-light-theme.h" */
+/* #include "themes/terminaldotsexy/ashes-dark-theme.h" */
+/* #include "themes/terminaldotsexy/mocha-light-theme.h" */
+/* #include "themes/terminaldotsexy/ashes-light-theme.h" */
+/* #include "themes/terminaldotsexy/unsifted-wheat-theme.h" */
+/* #include "themes/terminaldotsexy/insignificato-theme.h" */
+/* #include "themes/terminaldotsexy/mostly-bright-theme.h" */
+/* #include "themes/terminaldotsexy/dawn-theme.h" */
+/* #include "themes/terminaldotsexy/grayscale-theme.h" */
+/* #include "themes/terminaldotsexy/praiso-dark-theme.h" */
+/* #include "themes/terminaldotsexy/nature-suede-theme.h" */
+/* #include "themes/terminaldotsexy/mocha-dark-theme.h" */
+/* #include "themes/terminaldotsexy/navy-and-ivory-theme.h" */
+/* #include "themes/terminaldotsexy/visibone-theme.h" */
+#include "themes/terminaldotsexy/ocean-dark-theme.h"
+/* #include "themes/terminaldotsexy/tomorrow-dark-theme.h" */
+/* #include "themes/terminaldotsexy/default-color-scheme.h" */
 /*  -------------------------------------------------------  */
 
 unsigned int cols = 80;

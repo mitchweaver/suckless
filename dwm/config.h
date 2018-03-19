@@ -5,8 +5,8 @@
 /* static const int GAP_PX      = 36; /1* gap pixel between windows *1/ */
 /* static const int GAP_PX      = 32; /1* gap pixel between windows *1/ */
 /* static const int GAP_PX      = 24; /1* gap pixel between windows *1/ */
-static const int GAP_PX      = 20; /* gap pixel between windows */
-/* static const int GAP_PX      = 18; /1* gap pixel between windows *1/ */
+/* static const int GAP_PX      = 20; /1* gap pixel between windows *1/ */
+static const int GAP_PX      = 18; /* gap pixel between windows */
 static const int start_with_gaps = 1;
 /* ------------------------------------------------------- */
 
@@ -152,7 +152,7 @@ static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''"
 /* static const char *floatingterm[]  = { "st", "-T", "floating-st", "-n", "floating-st", NULL }; */
 
 static const char *x9term[]  = { "/bin/dash", "-c", \
-    "set $(slop -q -o -f '%x %y %w %h') ; \
+    "set $(slop -q -o -f '%x %y %w %h') && \
     tabbed -d -n floating-st -g ${3}x${4}+${1}+${2} \
     -c -r 2 st -w '' -T floating-st -n floating-st &" };
 
