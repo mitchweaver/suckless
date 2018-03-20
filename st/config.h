@@ -2,13 +2,12 @@
 
 /* --------------- Font ---------------------------------- */
 /* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
-char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false";
+/* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
+char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true";
 /* char font[] = "GohuFont:pixelsize=12:antialias=false:autohint=false"; */
 /* char font[] = "scientifica:pixelsize=10:antialias=false:autohint=false"; */
 /* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* char font[] = "cherry:pixelsize=10:antialias=false:autohint=false"; */
-/* char font[] = "orp:pixelsize=10:antialias=false:autohint=false"; */
-/* char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true"; */
 /* ------------------------------------------------------- */
 
 /* ---------------- Border ------------------------------- */
@@ -17,7 +16,7 @@ int borderpx = 28; /* Internal border */
 /* ------------------------------------------------------- */
 
 /* --------------- Themes -------------------------------- */
-/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
+#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
 /* #include "themes/mine/bubblegum-theme.h" */
 /* #include "themes/terminaldotsexy/estuary-light-theme.h" */
 /* #include "themes/terminaldotsexy/gruvbox-light-hard-theme.h" */
@@ -35,7 +34,7 @@ int borderpx = 28; /* Internal border */
 /* #include "themes/terminaldotsexy/mocha-dark-theme.h" */
 /* #include "themes/terminaldotsexy/navy-and-ivory-theme.h" */
 /* #include "themes/terminaldotsexy/visibone-theme.h" */
-#include "themes/terminaldotsexy/ocean-dark-theme.h"
+/* #include "themes/terminaldotsexy/ocean-dark-theme.h" */
 /* #include "themes/terminaldotsexy/tomorrow-dark-theme.h" */
 /* #include "themes/terminaldotsexy/default-color-scheme.h" */
 /*  -------------------------------------------------------  */

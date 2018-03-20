@@ -41,7 +41,8 @@ static const int BAR_HEIGHT    = 14; // in pixels
 
 /* ------------------------------------------------------- */
 /* static const int snap = 8; */
-static const int snap = 12;
+/* static const int snap = 12; */
+static const int snap = 0;
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- */
@@ -102,6 +103,9 @@ static const Rule rules[] = {
     { "floating-st",     NULL,       "floating-st",       0,         1,           1,           -1 },
     { "tabbed",          NULL,       "floating-st",       0,         1,           1,           -1 },
     { "st",              NULL,       "floating-st",       0,         1,           1,           -1 },
+    { "st",              NULL,       "x9term",       0,         1,           1,           -1 },
+    { "0",               NULL,       "x9term",       0,         1,           1,           -1 },
+    { "NULL",            NULL,       "x9term",       0,         1,           1,           -1 },
 
     { "scratchpad",      NULL,       "scratchpad",        0,         1,           1,           -1 },
     { "tabbed",          NULL,       "scratchpad",        0,         1,           1,           -1 },
@@ -150,11 +154,6 @@ static const char *net[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
 /* static const char *term[]  = { "st", NULL }; */
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
 /* static const char *floatingterm[]  = { "st", "-T", "floating-st", "-n", "floating-st", NULL }; */
-
-static const char *x9term[]  = { "/bin/dash", "-c", \
-    "set $(slop -q -o -f '%x %y %w %h') && \
-    tabbed -d -n floating-st -g ${3}x${4}+${1}+${2} \
-    -c -r 2 st -w '' -T floating-st -n floating-st &" };
 
 static const char *acme[]  = { "acme", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
@@ -282,5 +281,5 @@ const static Button buttons[] = {
     /* click                event mask      button          function        argument */
     { ClkClientWin,         Mod1Mask,       Button1,        movemouse,      {0} },
     { ClkClientWin,         Mod1Mask,       Button3,        resizemouse,    {0} },
-    { ClkRootWin,           0,              Button3,        spawn,          { .v = x9term } },
+    { ClkRootWin,           0,              Button3,        spawn,          SH("/home/mitch/bin/x9term") },
 };
