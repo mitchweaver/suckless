@@ -490,6 +490,9 @@ void detachstack(Client *c) {
 }
 
 void focus(Client *c) {
+/* ------------------------------------------------------- */ 
+	XWindowChanges wc;
+/* ------------------------------------------------------- */ 
     if (!c || !ISVISIBLE(c)) for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
     if (selmon->sel && selmon->sel != c) unfocus(selmon->sel, 0);
     if (c) {
@@ -499,6 +502,12 @@ void focus(Client *c) {
         attachstack(c);
         grabbuttons(c, 1);
         XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
+        /* ------------------------------------------------------- */ 
+		if(!c->isfloating) {
+			wc.stack_mode = Below;
+			XConfigureWindow(dpy, c->win, CWSibling | CWStackMode, &wc);
+		}
+        /* ------------------------------------------------------- */ 
         setfocus(c);
     } else {
         XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
