@@ -16,8 +16,9 @@ int borderpx = 28; /* Internal border */
 /* ------------------------------------------------------- */
 
 /* --------------- Themes -------------------------------- */
-#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
+/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
 /* #include "themes/mine/bubblegum-theme.h" */
+#include "themes/other/sourcerer-theme.h"
 /* #include "themes/terminaldotsexy/estuary-light-theme.h" */
 /* #include "themes/terminaldotsexy/gruvbox-light-hard-theme.h" */
 /* #include "themes/terminaldotsexy/plateau-light-theme.h" */
