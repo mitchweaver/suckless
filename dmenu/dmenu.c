@@ -319,10 +319,24 @@ static void insert(const char *str, ssize_t n) {
 
 static size_t nextrune(int inc) {
 	ssize_t n;
-
 	/* return location of next utf8 rune in the given direction (+1 or -1) */
-	for (n = cursor + inc; n + inc >= 0 && (text[n] & 0xc0) == 0x80; n += inc) ;
+	for (n = cursor + inc; n + inc >= 0 && (text[n] & 0xc0) == 0x80; n += inc)
+		;
 	return n;
+}
+
+static void movewordedge(int dir) {
+	if (dir < 0) { /* move cursor to the start of the word*/
+		while (cursor > 0 && strchr(worddelimiters, text[nextrune(-1)]))
+			cursor = nextrune(-1);
+		while (cursor > 0 && !strchr(worddelimiters, text[nextrune(-1)]))
+			cursor = nextrune(-1);
+	} else { /* move cursor to the end of the word */
+		while (text[cursor] && strchr(worddelimiters, text[cursor]))
+			cursor = nextrune(+1);
+		while (text[cursor] && !strchr(worddelimiters, text[cursor]))
+			cursor = nextrune(+1);
+	}
 }
 
 static void keypress(XKeyEvent *ev) {
@@ -350,7 +364,6 @@ static void keypress(XKeyEvent *ev) {
 		case XK_M: ksym = XK_Return; ev->state &= ~ControlMask; break;
 		case XK_n: ksym = XK_Down;      break;
 		case XK_p: ksym = XK_Up;        break;
-
 		case XK_k: /* delete right */
 			text[cursor] = '\0';
 			match();
@@ -369,6 +382,15 @@ static void keypress(XKeyEvent *ev) {
 			XConvertSelection(dpy, (ev->state & ShiftMask) ? clip : XA_PRIMARY,
 			                  utf8, utf8, win, CurrentTime);
 			return;
+		case XK_Left:
+			movewordedge(-1);
+			ksym = NoSymbol;
+			break;
+		case XK_Right:
+			movewordedge(+1);
+			ksym = NoSymbol;
+			break;
+
 		case XK_Return:
 		case XK_KP_Enter: break;
 		case XK_bracketleft:
@@ -378,6 +400,14 @@ static void keypress(XKeyEvent *ev) {
 		}
 	else if (ev->state & Mod1Mask)
 		switch(ksym) {
+		case XK_b:
+			movewordedge(-1);
+			ksym = NoSymbol;
+			break;
+		case XK_f:
+			movewordedge(+1);
+			ksym = NoSymbol;
+			break;
 		case XK_g: ksym = XK_Home;  break;
 		case XK_G: ksym = XK_End;   break;
 		case XK_h: ksym = XK_Up;    break;
@@ -391,6 +421,8 @@ static void keypress(XKeyEvent *ev) {
 	default:
 		if (!iscntrl(*buf))
 			insert(buf, len);
+		break;
+	case NoSymbol:
 		break;
 	case XK_Delete:
 		if (text[cursor] == '\0')

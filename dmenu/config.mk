@@ -1,4 +1,4 @@
-VERSION = 4.7
+VERSION = 4.8
 
 # PREFIX = /usr/local
 PREFIX = ${HOME}/usr

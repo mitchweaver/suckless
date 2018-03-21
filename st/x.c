@@ -5,6 +5,7 @@
 #include <sys/select.h>
 #include <time.h>
 #include <unistd.h>
+#include <math.h>
 #include <libgen.h>
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
@@ -423,8 +424,8 @@ void xselpaste(void) {
 void xclipcopy(void) {
 	Atom clipboard;
 
-	if (sel.clipboard != NULL)
-		free(sel.clipboard);
+    free(sel.clipboard);
+    sel.clipboard = NULL;
 
 	if (sel.primary != NULL) {
 		sel.clipboard = xstrdup(sel.primary);
@@ -502,6 +503,8 @@ void selrequest(XEvent *e) {
 }
 
 void xsetsel(char *str, Time t) {
+	if (!str)
+		return;
 	free(sel.primary);
 	sel.primary = str;
 
@@ -678,7 +681,7 @@ xhints(void)
 	XClassHint class = {opt_name ? opt_name : termname,
 	                    opt_class ? opt_class : termname};
 	XWMHints wm = {.flags = InputHint, .input = 1};
-	XSizeHints *sizeh = NULL;
+	XSizeHints *sizeh;
 
 	sizeh = XAllocSizeHints();
 
@@ -799,7 +802,6 @@ xloadfonts(char *fontstr, double fontsize)
 {
 	FcPattern *pattern;
 	double fontval;
-	float ceilf(float);
 
 	if (fontstr[0] == '-') {
 		pattern = XftXlfdParse(fontstr, False, False);
@@ -1481,9 +1483,7 @@ xsetpointermotion(int set)
 	XChangeWindowAttributes(xw.dpy, xw.win, CWEventMask, &xw.attrs);
 }
 
-void
-xseturgency(int add)
-{
+void xseturgency(int add) {
 	XWMHints *h = XGetWMHints(xw.dpy, xw.win);
 
 	MODBIT(h->flags, add, XUrgencyHint);
@@ -1738,12 +1738,12 @@ int main(int argc, char *argv[]) {
 	} ARGEND;
 
 run:
-	if (argc > 0) {
-		/* eat all remaining arguments */
+	if (argc > 0) /* eat all remaining arguments */
 		opt_cmd = argv;
-		if (!opt_title && !opt_line)
-			opt_title = basename(xstrdup(argv[0]));
-	}
+
+    if (!opt_title)
+        opt_title = (opt_line || !opt_cmd) ? "st" : opt_cmd[0];
+
 	setlocale(LC_CTYPE, "");
 	XSetLocaleModifiers("");
 	tnew(MAX(cols, 1), MAX(rows, 1));

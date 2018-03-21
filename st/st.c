@@ -1526,7 +1526,6 @@ void csihandle(void) {
         tputtab(csiescseq.arg[0]);
         break;
     case 'J': /* ED -- Clear screen */
-        selclear();
         switch (csiescseq.arg[0]) {
         case 0: /* below */
             tclearregion(term.c.x, term.c.y, term.col-1, term.c.y);
