@@ -1,54 +1,41 @@
 /* ------------------------------------------------------- */
-/* static const int GAP_PX      = 40; /1* gap pixel between windows *1/ */
-/* static const int GAP_PX      = 28; /1* gap pixel between windows *1/ */
-/* static const int GAP_PX      = 40; /1* gap pixel between windows *1/ */
-/* static const int GAP_PX      = 36; /1* gap pixel between windows *1/ */
-/* static const int GAP_PX      = 32; /1* gap pixel between windows *1/ */
 /* static const int GAP_PX      = 24; /1* gap pixel between windows *1/ */
 /* static const int GAP_PX      = 20; /1* gap pixel between windows *1/ */
 static const int GAP_PX      = 18; /* gap pixel between windows */
+/* ------------------------------------------------------- */ 
 static const int start_with_gaps = 0;
 /* ------------------------------------------------------- */
 
 // ------------------------------------------------------ //
 /* static const int BORDER_PX = 10; */
-/* static const int BORDER_PX = 8; */
 /* static const int BORDER_PX = 6; */
 /* static const int BORDER_PX = 4; */
-/* static const int BORDER_PX = 3; */
 static const int BORDER_PX = 2;
 /* static const int BORDER_PX = 0; */
 /* ------------------------------------------------------- */
-/* static const int CORNER_RADIUS = 16; */
 /* static const int CORNER_RADIUS = 14; */
 /* static const int CORNER_RADIUS = 10; */
 /* static const int CORNER_RADIUS = 8; */
 static const int CORNER_RADIUS = 0;
-static const int round_non_floating = 0; // whether to round corners of tiled clients
+/* ------------------------------------------------------- */ 
+static const int round_non_floating = 0;
 // ------------------------------------------------------ //
 
 /* ------------------------------------------------------- */
-/* static const int topbar        = 0; /1* 0 means bottom bar *1/ */
 static const int topbar        = 1; /* 0 means bottom bar */
-/* static const int BAR_HEIGHT    = 36; // in pixels */
-/* static const int BAR_HEIGHT    = 34; // in pixels */
-/* static const int BAR_HEIGHT    = 32; // in pixels */
-/* static const int BAR_HEIGHT    = 18; // in pixels */
-static const int BAR_HEIGHT    = 14; // in pixels
-/* static const int BAR_HEIGHT    = 12; // in pixels */
-/* static const int BAR_HEIGHT    = 0; // in pixels */
+/* ------------------------------------------------------- */ 
+/* static const int BAR_HEIGHT    = 14; // in pixels */
+static const int BAR_HEIGHT    = 0; // in pixels
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- */
 /* static const int snap = 8; */
-/* static const int snap = 12; */
 static const int snap = 0;
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- */
 // whether to keep the border for terminals if
 // they are the only window on the tag
-// --- normally the borders would be hidden
 static const int terminals_keep_border = 0;
 
 // whether a terminal should be floating if its the
@@ -61,6 +48,7 @@ void toggle_float_single_terms() {
         float_single_terms = 0;
 }
 
+/* ------------------------------------------------------- */ 
 // whether to warp mouse to next window on hjkl
 static const int warp_mouse = 0;
 /* ------------------------------------------------------- */

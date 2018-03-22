@@ -13,16 +13,20 @@ char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true";
 /* ------------------------------------------------------- */
 
 /* ---------------- Border ------------------------------- */
+/* int borderpx = 28; /1* Internal border *1/ */
+int borderpx = 22; /* Internal border */
 /* int borderpx = 14; /1* Internal border *1/ */
-int borderpx = 28; /* Internal border */
 /* ------------------------------------------------------- */
 
 /* --------------- Themes -------------------------------- */
-#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
+/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
 
 /* #include "themes/mine/bubblegum-theme.h" */
 
 /* #include "themes/other/sourcerer-theme.h" */
+
+#include "themes/terminaldotsexy/grayscale-theme.h"
+
 
 /* #include "themes/terminaldotsexy/estuary-light-theme.h" */
 /* #include "themes/terminaldotsexy/gruvbox-light-hard-theme.h" */
@@ -34,7 +38,6 @@ int borderpx = 28; /* Internal border */
 /* #include "themes/terminaldotsexy/insignificato-theme.h" */
 /* #include "themes/terminaldotsexy/mostly-bright-theme.h" */
 /* #include "themes/terminaldotsexy/dawn-theme.h" */
-/* #include "themes/terminaldotsexy/grayscale-theme.h" */
 /* #include "themes/terminaldotsexy/praiso-dark-theme.h" */
 /* #include "themes/terminaldotsexy/nature-suede-theme.h" */
 /* #include "themes/terminaldotsexy/mocha-dark-theme.h" */

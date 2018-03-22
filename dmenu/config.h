@@ -1,7 +1,9 @@
 static int topbar = 1;  /* -b  option; if 0, dmenu appears at bottom     */
 
 static const char *fonts[] = {
-    "Terminus:pixelsize=14:antialias=false:autohint=false"
+    /* "Share Tech Mono:pixelsize=16:antialias=true:autohint=true" */
+    "Share Tech Mono:pixelsize=14:antialias=true:autohint=true"
+    /* "Terminus:pixelsize=14:antialias=false:autohint=false" */
     /* "Terminus:pixelsize=12:antialias=false:autohint=false" */
     /* "Terminus:pixelsize=18:antialias=false:autohint=false" */
     /* "Terminus:pixelsize=18:antialias=false:autohint=false" */
