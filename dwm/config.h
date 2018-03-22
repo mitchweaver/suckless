@@ -7,7 +7,7 @@
 /* static const int GAP_PX      = 24; /1* gap pixel between windows *1/ */
 /* static const int GAP_PX      = 20; /1* gap pixel between windows *1/ */
 static const int GAP_PX      = 18; /* gap pixel between windows */
-static const int start_with_gaps = 1;
+static const int start_with_gaps = 0;
 /* ------------------------------------------------------- */
 
 // ------------------------------------------------------ //
@@ -15,8 +15,8 @@ static const int start_with_gaps = 1;
 /* static const int BORDER_PX = 8; */
 /* static const int BORDER_PX = 6; */
 /* static const int BORDER_PX = 4; */
-static const int BORDER_PX = 3;
-/* static const int BORDER_PX = 2; */
+/* static const int BORDER_PX = 3; */
+static const int BORDER_PX = 2;
 /* static const int BORDER_PX = 0; */
 /* ------------------------------------------------------- */
 /* static const int CORNER_RADIUS = 16; */

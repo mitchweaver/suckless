@@ -1,3 +1,6 @@
+#include <assert.h>
+#include <libgen.h>
+#include <sys/stat.h>
 #include <signal.h>
 #include <unistd.h>
 #include <sys/wait.h>
@@ -1358,10 +1361,47 @@ void sigchld(int unused) {
     while (0 < waitpid(-1, NULL, WNOHANG));
 }
 
+#define SPAWN_CWD_DELIM " []{}()<>\"':"
 void spawn(const Arg *arg) {
     if (arg->v == dmenucmd) dmenumon[0] = '0' + selmon->num;
     if (fork() == 0) {
         if (dpy) close(ConnectionNumber(dpy));
+
+        /* --------- spawn cwd -------------------------------------- */ 
+		if(selmon->sel) {
+			const char* const home = getenv("HOME");
+			assert(home && strchr(home, '/'));
+			const size_t homelen = strlen(home);
+			char *cwd, *pathbuf = NULL;
+			struct stat statbuf;
+
+			cwd = strtok(selmon->sel->name, SPAWN_CWD_DELIM);
+			/* NOTE: strtok() alters selmon->sel->name in-place,
+			 * but that does not matter because we are going to
+			 * exec() below anyway; nothing else will use it */
+			while(cwd) {
+				if(*cwd == '~') { /* replace ~ with $HOME */
+					if(!(pathbuf = malloc(homelen + strlen(cwd)))) /* ~ counts for NULL term */
+						die("fatal: could not malloc() %u bytes\n", homelen + strlen(cwd));
+					strcpy(strcpy(pathbuf, home) + homelen, cwd + 1);
+					cwd = pathbuf;
+				}
+
+				if(strchr(cwd, '/') && !stat(cwd, &statbuf)) {
+					if(!S_ISDIR(statbuf.st_mode))
+						cwd = dirname(cwd);
+
+					if(!chdir(cwd))
+						break;
+				}
+
+				cwd = strtok(NULL, SPAWN_CWD_DELIM);
+			}
+
+			free(pathbuf);
+		}
+        /* ------------------------------------------------------- */ 
+
         setsid();
         execvp(((char **)arg->v)[0], (char **)arg->v);
         fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[0]);
