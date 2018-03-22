@@ -66,14 +66,14 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "90x26", NULL };
 
 /* ------------------------------------------------------- */
-/* static const int NUM_WORKSPACES=13; */
-/* static const char *tags[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }; */
+static const int NUM_WORKSPACES=13;
+static const char *tags[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
 /* static const int NUM_WORKSPACES=8; */
 /* static const char *tags[] = { "0", "1", "2", "3", "4", "5", "6", "7" }; */
 
-static const int NUM_WORKSPACES=6;
-static const char *tags[] = { "0", "1", "2", "3", "4", "5" };
+/* static const int NUM_WORKSPACES=6; */
+/* static const char *tags[] = { "0", "1", "2", "3", "4", "5" }; */
 /* ------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------- */
@@ -256,13 +256,13 @@ const static Key keys[] = {
     TAGKEYS(14,4) TAGKEYS(15,5) TAGKEYS(16,6)
 
     // -- for 7 through BS to be 7-12
-    /* TAGKEYS(17,7) TAGKEYS(18, 8) TAGKEYS(19, 9) TAGKEYS(20,10) */ 
-    /* TAGKEYS(21,11) TAGKEYS(22,12) */
+    TAGKEYS(17,7) TAGKEYS(18, 8) TAGKEYS(19, 9) TAGKEYS(20,10) 
+    TAGKEYS(21,11) TAGKEYS(22,12)
 
     // -- for 7 through backspace to cycle between 1-6 in reverse:
-    TAGKEYS(17,1)
-    TAGKEYS(18, 1) TAGKEYS(19, 2) TAGKEYS(20,3) TAGKEYS(21,4)
-    TAGKEYS(22,5)
+    /* TAGKEYS(17,1) */
+    /* TAGKEYS(18, 1) TAGKEYS(19, 2) TAGKEYS(20,3) TAGKEYS(21,4) */
+    /* TAGKEYS(22,5) */
 };
 
 const static Button buttons[] = {

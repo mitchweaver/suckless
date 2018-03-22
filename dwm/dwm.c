@@ -15,7 +15,6 @@
 
 #include "drw.h"
 #include "util.h"
-#include "dwm_info.c"
 
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
 #define CLEANMASK(mask)         (mask & ~(numlockmask|LockMask) & (ShiftMask|ControlMask|Mod1Mask|Mod2Mask|Mod3Mask|Mod4Mask|Mod5Mask))
@@ -197,6 +196,7 @@ static Drw *drw;
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
 #include "config.h"
+#include "dwm_info.c"
 
 static unsigned int scratchtag = 1 << LENGTH(tags);
 

@@ -1,8 +1,8 @@
 void init_dwm_info(const int gappx, const int BAR_HEIGHT, const int topbar, const int num_ws) {
-    system("rm -rf /tmp/dwm_info");
+    system("[ -d /tmp/dwm_info ] && rm -rf /tmp/dwm_info");
     mkdir("/tmp/dwm_info", 0777);
 
-    for(int i = 1; i < 14; i++) {
+    for(int i = 1; i < NUM_WORKSPACES; i++) {
         char buf[20];
         snprintf(buf, sizeof(buf), "/tmp/dwm_info/ws%d", i);
         FILE *f = fopen(buf, "w");
@@ -15,7 +15,6 @@ void init_dwm_info(const int gappx, const int BAR_HEIGHT, const int topbar, cons
     FILE *fCL = fopen("/tmp/dwm_info/current_layout", "w"); fprintf(fCL, "0"); fclose(fCL);
     FILE *fCHECK = fopen("/tmp/dwm_info/check", "w"); fprintf(fCHECK, "1"); fclose(fCHECK);
 
-    // store information about dwm
     FILE *fgappx = fopen("/tmp/dwm_info/gappx", "w"); fprintf(fgappx, "%d", gappx); fclose(fgappx);
     FILE *fbar_height = fopen("/tmp/dwm_info/bar_height", "w"); fprintf(fgappx, "%d", BAR_HEIGHT); fclose(fbar_height);
     FILE *ftop_bar = fopen("/tmp/dwm_info/top_bar", "w"); fprintf(fgappx, "%d", topbar); fclose(ftop_bar);
