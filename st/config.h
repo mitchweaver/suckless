@@ -19,13 +19,13 @@ int borderpx = 22; /* Internal border */
 /* ------------------------------------------------------- */
 
 /* --------------- Themes -------------------------------- */
-/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
+#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
+/* #include "themes/terminaldotsexy/grayscale-theme.h" */
 
 /* #include "themes/mine/bubblegum-theme.h" */
 
 /* #include "themes/other/sourcerer-theme.h" */
 
-#include "themes/terminaldotsexy/grayscale-theme.h"
 
 
 /* #include "themes/terminaldotsexy/estuary-light-theme.h" */

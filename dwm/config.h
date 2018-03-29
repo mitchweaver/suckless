@@ -24,8 +24,8 @@ static const int round_non_floating = 0;
 /* ------------------------------------------------------- */
 static const int topbar        = 1; /* 0 means bottom bar */
 /* ------------------------------------------------------- */ 
-/* static const int BAR_HEIGHT    = 14; // in pixels */
-static const int BAR_HEIGHT    = 0; // in pixels
+static const int BAR_HEIGHT    = 14; // in pixels
+/* static const int BAR_HEIGHT    = 0; // in pixels */
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- */
@@ -144,14 +144,14 @@ static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''"
 /* static const char *floatingterm[]  = { "st", "-T", "floating-st", "-n", "floating-st", NULL }; */
 
 static const char *acme[]  = { "acme", NULL };
-static const char *ranger[] = { "st", "-e", "ranger", NULL };
+static const char *ranger[] = { "st", "-e", "ranger ; exit", NULL };
 static const char *filechooser[] = { "pcmanfm", NULL };
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
 
-static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 6 ; echo \"$(vol)\" > /tmp/bar/vol", NULL };
-static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 6 ; echo \"$(vol)\" > /tmp/bar/vol", NULL };
+static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 8 ; echo \"$(vol)\" > /tmp/bar/vol", NULL };
+static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 8 ; echo \"$(vol)\" > /tmp/bar/vol", NULL };
 static const char *medianext[] = { "media", "--next", NULL };
 static const char *mediaprev[] = { "media", "--prev", NULL };
 static const char *mediatoggle[] = { "media", "--toggle", NULL };
