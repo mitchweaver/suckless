@@ -2,7 +2,8 @@
 VERSION = 1.8
 
 # paths
-PREFIX   = /usr/local
+# PREFIX   = /usr/local
+PREFIX   = ${HOME}/usr/local
 BINDIR   = ${PREFIX}/bin
 MANDIR   = ${PREFIX}/share/man
 MAN1DIR  = ${MANDIR}/man1
@@ -13,7 +14,7 @@ INCLUDES = -I. -I/usr/include
 LIBS     =
 
 # compiler
-CC       = cc
+CC = cc
 
 # debug
 #CFLAGS  = -g -O0 -pedantic -Wall ${INCLUDES} -DVERSION=\"${VERSION}\" \

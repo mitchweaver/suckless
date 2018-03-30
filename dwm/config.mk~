@@ -16,9 +16,9 @@ XINERAMAFLAGS = -DXINERAMA
 FREETYPELIBS = -lfontconfig -lXft
 
 # Linux
-FREETYPEINC = /usr/include/freetype2
+#FREETYPEINC = /usr/include/freetype2
 # OpenBSD
-#FREETYPEINC = ${X11INC}/freetype2
+FREETYPEINC = ${X11INC}/freetype2
 
 INCS = -I${X11INC} -I${FREETYPEINC}
 LIBS = -L${X11LIB} -lX11 -lXext ${XINERAMALIBS} ${FREETYPELIBS}
@@ -28,7 +28,7 @@ CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os ${INCS} ${C
 LDFLAGS  = -s ${LIBS}
 
 # linux
-CC = gcc -O3 -pipe -std=c99 -fstack-protector-all -fpie
+# CC = gcc -O3 -pipe -std=c99 -fstack-protector-all -fpie
 # openbsd
-#CC = clang -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro
+CC = clang -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro
 
