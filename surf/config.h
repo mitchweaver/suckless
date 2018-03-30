@@ -92,9 +92,10 @@ char crossbones_ascii[] = "/home/mitch/usr/bin/ascii/crossbones";
 }
 
 #define BM_ADD { .v = (char *[]){ "/bin/sh", "-c", \
-    "(echo `xprop -id $0 _SURF_URI | cut -d '\"' -f 2` && \
-    cat \${HOME}/var/files/surf-bookmarks.txt) | sort -u > \${HOME}/var/files/surf-bookmarks.txt_new && \
-    mv ${HOME}/var/files/surf-bookmarks.txt_new \${HOME}/var/files/surf-bookmarks.txt", \
+    "BMKS=\${HOME}/var/files/bookmarks/bookmarks.txt ; \
+    (echo `xprop -id $0 _SURF_URI | cut -d '\"' -f 2` && \
+    cat \${BMKS}) | sort -u > \${BMKS}_new && \
+    mv \${BMKS}_new \${BMKS}", \
     winid, NULL } }
 
 #define GO_HOME { .v = (char *[]){ "/bin/sh", "-c", \
