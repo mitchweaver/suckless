@@ -94,7 +94,7 @@ static const char *dmenucmd[] = { "dash", "-c", "${HOME}/bin/menu run -p 'Run:'"
 
 static const char *net[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
-static const char *ranger[] = { "st", "-e", "ranger ; exit", NULL };
+static const char *ranger[] = { "st", "-e", "ranger", NULL };
 static const char *filechooser[] = { "pcmanfm", NULL };
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
