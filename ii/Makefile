@@ -28,7 +28,6 @@ install: all
 	mkdir -p ${DESTDIR}${BINDIR}
 	mkdir -p ${DESTDIR}${MAN1DIR}
 	install -d ${DESTDIR}${BINDIR} ${DESTDIR}${MAN1DIR}
-	install -m 644 CHANGES README FAQ LICENSE ${DESTDIR}${DOCDIR}
 	install -m 775 ii ${DESTDIR}${BINDIR}
 	sed "s/VERSION/${VERSION}/g" < ii.1 > ${DESTDIR}${MAN1DIR}/ii.1
 	chmod 644 ${DESTDIR}${MAN1DIR}/ii.1
@@ -40,7 +39,7 @@ uninstall: all
 
 dist: clean
 	mkdir -p ii-${VERSION}
-	cp -R Makefile CHANGES README FAQ LICENSE strlcpy.c arg.h \
+	cp -R Makefile strlcpy.c arg.h \
 		config.mk ii.c ii.1 ii-${VERSION}
 	tar -cf ii-${VERSION}.tar ii-${VERSION}
 	gzip ii-${VERSION}.tar
