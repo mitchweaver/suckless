@@ -1,11 +1,9 @@
 VERSION = 2.0
 
-# PREFIX = /usr/local
 PREFIX = ${HOME}/usr/local
 MANPREFIX = $(PREFIX)/share/man
 LIBPREFIX = $(PREFIX)/lib/surf
 
-# Linux / OpenBSD
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
 
@@ -20,7 +18,6 @@ CPPFLAGS = -DVERSION=\"${VERSION}\" -DWEBEXTDIR=\"${LIBPREFIX}\" \
 SURF_CFLAGS = $(INCS) $(CPPFLAGS) $(CFLAGS)
 SURF_LDFLAGS = $(LIBS) $(LDFLAGS)
 
-# linux
-CC = gcc -O3 -pipe -std=c99 -fstack-protector-all -fpie
-# openbsd
-# CC = clang -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro
+CC = tcc -w
+# CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
+# CC = clang - w-O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro

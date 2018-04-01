@@ -1,6 +1,5 @@
 VERSION = 6.1
 
-# PREFIX = /usr/local
 PREFIX = ${HOME}/usr/local
 MANPREFIX = ${PREFIX}/share/man
 
@@ -8,11 +7,9 @@ MANPREFIX = ${PREFIX}/share/man
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
 
-# Xinerama, comment if you don't want it
 XINERAMALIBS  = -lXinerama
 XINERAMAFLAGS = -DXINERAMA
 
-# freetype
 FREETYPELIBS = -lfontconfig -lXft
 
 # Linux
@@ -27,8 +24,6 @@ CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 -DVERSION=\"${VER
 CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os ${INCS} ${CPPFLAGS}
 LDFLAGS  = -s ${LIBS}
 
-# linux
-CC = gcc -O3 -pipe -std=c99 -fstack-protector-all -fpie
-# openbsd
-#CC = clang -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro
-
+CC = tcc -w
+# CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
+# CC = clang -w -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro

@@ -22,7 +22,6 @@ CPPFLAGS = -DVERSION=\"${VERSION}\" -D_XOPEN_SOURCE=600
 CFLAGS += -g -std=c99 -pedantic -Wall ${INCS} ${CPPFLAGS}
 LDFLAGS += -g ${LIBS}
 
-# linux
-CC = gcc -O3 -pipe
-# openbsd
+CC=tcc
+# CC = gcc -O3 -pipe
 # CC = clang -O3 -pipe

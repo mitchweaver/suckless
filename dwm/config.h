@@ -1,39 +1,13 @@
-/* ------------------------------------------------------- */
-/* static const int GAP_PX      = 24; /1* gap pixel between windows *1/ */
-/* static const int GAP_PX      = 20; /1* gap pixel between windows *1/ */
 static const int GAP_PX      = 18; /* gap pixel between windows */
-/* ------------------------------------------------------- */ 
 static const int start_with_gaps = 0;
-/* ------------------------------------------------------- */
 
-// ------------------------------------------------------ //
-/* static const int BORDER_PX = 10; */
-/* static const int BORDER_PX = 6; */
-/* static const int BORDER_PX = 4; */
 static const int BORDER_PX = 2;
-/* static const int BORDER_PX = 0; */
-/* ------------------------------------------------------- */
-/* static const int CORNER_RADIUS = 14; */
-/* static const int CORNER_RADIUS = 10; */
-/* static const int CORNER_RADIUS = 8; */
 static const int CORNER_RADIUS = 0;
-/* ------------------------------------------------------- */ 
 static const int round_non_floating = 0;
-// ------------------------------------------------------ //
-
-/* ------------------------------------------------------- */
 static const int topbar        = 1; /* 0 means bottom bar */
-/* ------------------------------------------------------- */ 
 static const int BAR_HEIGHT    = 14; // in pixels
-/* static const int BAR_HEIGHT    = 0; // in pixels */
-/* ------------------------------------------------------- */
-
-/* ------------------------------------------------------- */
-/* static const int snap = 8; */
 static const int snap = 0;
-/* ------------------------------------------------------- */
 
-/* ------------------------------------------------------- */
 // whether to keep the border for terminals if
 // they are the only window on the tag
 static const int terminals_keep_border = 0;
@@ -42,21 +16,15 @@ static const int terminals_keep_border = 0;
 // only terminal on the desktop
 static int float_single_terms = 0;
 void toggle_float_single_terms() {
-    if( float_single_terms == 0 )
-        float_single_terms = 1;
-    else
-        float_single_terms = 0;
+    float_single_terms = ( float_single_terms == 0 ) ? 1 : 0;
 }
 
-/* ------------------------------------------------------- */ 
 // whether to warp mouse to next window on hjkl
 static const int warp_mouse = 0;
-/* ------------------------------------------------------- */
 
-/* ------------------------------------------------------- */
-/* #include "normal-theme.h" */
-#include "/home/mitch/.cache/wal/colors-wal-dwm.h"
-/* ------------------------------------------------------- */
+/* #include "themes/default-theme.h" */
+#include "themes/light-and-black.h"
+/* #include "/home/mitch/.cache/wal/colors-wal-dwm.h" */
 
 static const char terminal[] = "st";
 static const char editor[] = "nvim";
@@ -65,18 +33,9 @@ static const char scratchpadname[] = "scratchpad";
 /* static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL }; */
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "90x26", NULL };
 
-/* ------------------------------------------------------- */
 static const int NUM_WORKSPACES=13;
 static const char *tags[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
-/* static const int NUM_WORKSPACES=8; */
-/* static const char *tags[] = { "0", "1", "2", "3", "4", "5", "6", "7" }; */
-
-/* static const int NUM_WORKSPACES=6; */
-/* static const char *tags[] = { "0", "1", "2", "3", "4", "5" }; */
-/* ------------------------------------------------------- */
-
-/* --------------------------------------------------------------------------- */
 static const Rule rules[] = {
     /* class      instance    title                 tags mask  iscentered   isfloating   monitor */
     { "Gimp",     NULL,       "Gimp",                 0,         0,           1,           -1 },
@@ -102,9 +61,7 @@ static const Rule rules[] = {
     { "feh",             NULL,       "feh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
 };
-/* --------------------------------------------------------------------------- */
 
-/* --------------------------------------------------------------------------- */
 #include "tile.c"
 #include "monocle.c"
 #include "grid.c"
@@ -131,25 +88,17 @@ static const Layout layouts[] = {
 { Mod4Mask,                       KEY,      toggleview,     {.ui = 1 << TAG} },
 // i never use toggle tag, convince me to use it
 /* { Mod1Mask|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, */
-/* --------------------------------------------------------------------------- */
 
 static char dmenumon[2] = "0";
 static const char *dmenucmd[] = { "dash", "-c", "${HOME}/bin/menu run -p 'Run:'", NULL };
 
-/* --------------------------------------------------------------------------- */
 static const char *net[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
-/* ------------------------------------------------------- */
-/* static const char *term[]  = { "st", NULL }; */
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
-/* static const char *floatingterm[]  = { "st", "-T", "floating-st", "-n", "floating-st", NULL }; */
-
-static const char *acme[]  = { "acme", NULL };
 static const char *ranger[] = { "st", "-e", "ranger ; exit", NULL };
 static const char *filechooser[] = { "pcmanfm", NULL };
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
-
 static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 8 ; echo \"$(vol)\" > /tmp/bar/vol", NULL };
 static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 8 ; echo \"$(vol)\" > /tmp/bar/vol", NULL };
 static const char *medianext[] = { "media", "--next", NULL };
@@ -157,16 +106,13 @@ static const char *mediaprev[] = { "media", "--prev", NULL };
 static const char *mediatoggle[] = { "media", "--toggle", NULL };
 static const char *mediaff[] = { "media", "--skip_ahead", NULL };
 static const char *mediarw[] = { "media", "--skip_behind", NULL };
-
 static const char *togglekeyboardlayout[] = { "dash", "-c", "${HOME}/bin/keys", NULL };
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
 static const char *lock[] = { "slock", NULL };
 static const char *scrap[] = { "scrap", NULL };
 static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/brightness.sh -inc 10", NULL };
 static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/brightness.sh -dec 10", NULL };
-
 static const char *history[] = { "dhist", NULL };
-/* --------------------------------------------------------------------------- */
 
 #include "movestack.c"
 #define SH(cmd) { .v = (const char*[]){ "dash", "-c", cmd, NULL } }
@@ -180,7 +126,6 @@ const static Key keys[] = {
     { Mod1Mask,                     31,             spawn,    {.v = tasks } }, // i
     { Mod1Mask,                     54,             spawn,    {.v = clipboard } }, // c
     { Mod1Mask,                     27,             spawn,    {.v = ranger } }, // r
-    { Mod1Mask,                     38,             spawn,    {.v = acme} }, // a
 
     { Mod1Mask,                     26,             spawn,    {.v = filechooser } }, // e
 

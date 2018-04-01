@@ -14,13 +14,12 @@ static const int WIDTH=500;
 static const int HEIGHT=400;
 
 /* set to -1 if you want to use the text's height */
-/* static const int barheight = 52; */ 
-/* static const int barheight = 36; */ 
 /* static const int barheight = 24; */ 
 static const int barheight = -1; 
 
-/* #include "normal-theme.h" */
-#include "/home/mitch/.cache/wal/colors-wal-tabbed.h" // wal
+/* #include "themes/default-theme.h" */
+#include "themes/light-orange-theme.h"
+/* #include "/home/mitch/.cache/wal/colors-wal-tabbed.h" // wal */
 
 static const char before[]      = "<";
 static const char after[]       = ">";
