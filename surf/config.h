@@ -77,13 +77,10 @@ char crossbones_ascii[] = "/home/mitch/usr/bin/ascii/crossbones";
 // Which stops the annoying flashing/moving around of windows on a download.
 #define DOWNLOAD(u, r) { \
         .v = (const char *[]){ "st", "-T", "surf-download", "-n", "surf-download", "-e", \
-            "/bin/sh", "-c", "dir=/tmp/surf-downloads ; mkdir -p $dir > /dev/null 2>&1 ; \
-            cd $dir && /usr/bin/ftp -D 'download: ' \
-            -U 'Mozilla/5.0' -m -4 -C -a -o ${HOME}/var/downloads/\"$(basename $1)\" \"$1\" && exit", \
+             "/bin/sh", "-c", "cd ${HOME}/var/downloads && curl -A 'Mozilla/5.0' -c '${HOME}/.surf/cookies.txt' -4 -L -O \"$@\" && exit", \
              "surf-download", u, r, NULL \
         } \
 }
-/* "/bin/sh", "-c", "cd ${HOME}/downloads && curl -A 'Mozilla/5.0' -c '${HOME}/.surf/cookies.txt' -4 -L -O \"$@\" && exit", \ */
 
 #define VIDEOPLAY(u) {\
         .v = (const char *[]){ "/bin/sh", "-c", \

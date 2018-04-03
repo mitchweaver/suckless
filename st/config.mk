@@ -25,5 +25,5 @@ STCFLAGS = $(INCS) $(CPPFLAGS) $(CFLAGS)
 STLDFLAGS = $(LIBS) $(LDFLAGS)
 
 CC = tcc -w
-# CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
+CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
 # CC = clang -w -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro
