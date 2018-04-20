@@ -23,8 +23,8 @@ void toggle_float_single_terms() {
 static const int warp_mouse = 0;
 
 /* #include "themes/default-theme.h" */
-#include "themes/light-and-black.h"
-/* #include "/home/mitch/.cache/wal/colors-wal-dwm.h" */
+/* #include "themes/light-and-black.h" */
+#include "/home/mitch/.cache/wal/colors-wal-dwm.h"
 
 static const char terminal[] = "st";
 static const char editor[] = "nvim";
@@ -92,6 +92,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0";
 static const char *dmenucmd[] = { "dash", "-c", "${HOME}/bin/menu run -p 'Run:'", NULL };
 
+
+static const char *bkmk[] = { "dash", "-c", "link=$(cat ${HOME}/var/files/bookmarks/bookmarks.txt | menu -p 'Go:') ; [ ! -z \"$link\" ] && $BROWSER http://duckduckgo.com/\"$link\"", NULL }; 
 static const char *net[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
@@ -123,6 +125,7 @@ const static Key keys[] = {
     { Mod1Mask,                     36,             spawn,    {.v = term } }, // return
     { Mod1Mask,                     25,             spawn,    {.v = net } }, // w
     { Mod1Mask,                     32,             spawn,    {.v = dedit } }, // o
+    { Mod1Mask,                     38,             spawn,    {.v = bkmk } }, // a
     { Mod1Mask,                     31,             spawn,    {.v = tasks } }, // i
     { Mod1Mask,                     54,             spawn,    {.v = clipboard } }, // c
     { Mod1Mask,                     27,             spawn,    {.v = ranger } }, // r
@@ -132,7 +135,7 @@ const static Key keys[] = {
     { Mod1Mask,                     61,             spawn,    {.v = mediatoggle } }, // /
     { Mod1Mask,                     60,             spawn,    {.v = medianext } },  // >
     { Mod1Mask,                     59,             spawn,    {.v = mediaprev } }, // <
-    { 0,                            111,            spawn,    {.v = scrap } }, // Print
+    { 0,                            107,            spawn,    {.v = scrap } }, // Print
 
     { Mod1Mask,                     47,             spawn,    {.v = voldown }}, //  ;
     { Mod1Mask,                     48,             spawn,    {.v = volup }}, // '

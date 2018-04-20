@@ -1,8 +1,8 @@
 #include "st-configh-ignores.h"
 
 /* --------------- Font ---------------------------------- */
-/* char font[]c= "Terminus:pixelsize=14:antialias=false:autohint=false"; */
 /* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
+/* char font[] = "xos4 Terminus:pixelsize=14:antialias=false:autohint=false"; */
 char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true";
 /* char font[] = "Share Tech Mono:pixelsize=14:antialias=true:autohint=true"; */
 /* char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true"; */
@@ -19,8 +19,8 @@ int borderpx = 22; /* Internal border */
 /* ------------------------------------------------------- */
 
 /* --------------- Themes -------------------------------- */
-/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
-#include "themes/light-orange-theme.h"
+#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
+/* #include "themes/light-orange-theme.h" */
 /* #include "themes/terminaldotsexy/grayscale-theme.h" */
 
 /* #include "themes/mine/bubblegum-theme.h" */
@@ -51,8 +51,8 @@ int borderpx = 22; /* Internal border */
 
 unsigned int cols = 80;
 unsigned int rows = 30;
-/* static char shell[] = "/bin/mksh"; */
-static char shell[] = "/bin/ksh";
+static char shell[] = "/bin/mksh";
+/* static char shell[] = "/bin/ksh"; */
 
 static const unsigned int tabspaces = 4;
 

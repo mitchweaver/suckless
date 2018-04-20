@@ -18,8 +18,8 @@ static const int HEIGHT=400;
 static const int barheight = -1; 
 
 /* #include "themes/default-theme.h" */
-#include "themes/light-orange-theme.h"
-/* #include "/home/mitch/.cache/wal/colors-wal-tabbed.h" // wal */
+/* #include "themes/light-orange-theme.h" */
+#include "/home/mitch/.cache/wal/colors-wal-tabbed.h" // wal
 
 static const char before[]      = "<";
 static const char after[]       = ">";
