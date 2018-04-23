@@ -1,7 +1,6 @@
 #include "surf-configh-ignore.h"
 #define HOMEPAGE "file:///home/mitch/usr/startpage/index.html"
 const static char *searchengine = "https://duckduckgo.com/html/?q=";
-/* const static char *searchengine = "https://searx.me/?q="; */
 const static SearchEngine searchengines[] = {
     { "d",      "https://duckduckgo.com/html/?q=%s" },
     { "g",      "https://encrypted.google.com/search?q=%s"   },
@@ -40,8 +39,8 @@ static char *cookiefile = "/home/mitch/var/tmp/surf-cookies.txt";
 
 static SiteSpecific styles[] = { "ljfadslfksaldflskfd", };
 
-static char *fulluseragent  = "Mozilla/5.0";
-/* static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64)"; */
+/* static char *fulluseragent  = "Mozilla/5.0"; */
+static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64)";
 /* static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0"; */
 /* static char *fulluseragent  = "Mozilla/5.0 (X11; rv:10.0) Gecko/20100101 Firefox/10.0"; */
 
@@ -57,13 +56,10 @@ static UriParameters uriparams[] = {
     // no javascript
     { "(://|\\.)suckless\\.org(/|$)",     { [JavaScript] = { { .i = 0 }, 1 }, }, },
     { "(://|\\.)googleads\\.com(/|$)",    { [JavaScript] = { { .i = 0 }, 1 }, }, },
-    { "(://|\\.)adsense\\.com(/|$)",      { [JavaScript] = { { .i = 0 }, 1 }, }, },
-    { "(://|\\.)adfly\\.com(/|$)",        { [JavaScript] = { { .i = 0 }, 1 }, }, },
-    { "(://|\\.)adf\\.ly(/|$)",        { [JavaScript] = { { .i = 0 }, 1 }, }, },
     // no DNS prefetch
-    { "(://|\\.)ebay\\.*(/|$)",            { [DNSPrefetch] = { { .i = 0 }, 0 }, }, },
-    { "(://|\\.)amazon\\.*(/|$)",          { [DNSPrefetch] = { { .i = 0 }, 0 }, }, },
-    { "(://|\\.)youtube\\.*(/|$)",          { [DNSPrefetch] = { { .i = 0 }, 0 }, }, },
+    { "(://|\\.)ebay\\.*(/|$)",           { [DNSPrefetch] = { { .i = 0 }, 0 }, }, },
+    { "(://|\\.)amazon\\.*(/|$)",         { [DNSPrefetch] = { { .i = 0 }, 0 }, }, },
+    /* { "(://|\\.)youtube\\.*(/|$)",        { [DNSPrefetch] = { { .i = 0 }, 0 }, }, }, */
 };
 
 char crossbones_ascii[] = "/home/mitch/usr/bin/ascii/crossbones";
@@ -71,7 +67,7 @@ char crossbones_ascii[] = "/home/mitch/usr/bin/ascii/crossbones";
 #define PROMPT_GO   "Go:"
 #define PROMPT_FIND "Find:"
 
-/* DOWNLOAD(URI, referer) */
+/* ------------------------------------------------------- */ 
 // This sets all the ids for the opening terminal to 'curl'.
 // This way you can set that 'curl' terminal to be opened floating
 // Which stops the annoying flashing/moving around of windows on a download.
@@ -81,6 +77,10 @@ char crossbones_ascii[] = "/home/mitch/usr/bin/ascii/crossbones";
              "surf-download", u, r, NULL \
         } \
 }
+        /* "st -e /bin/sh -c \"aria2c -U '$1'" \ */
+        /* " --referer '$2' --load-cookies $3 --save-cookies $3 '$0';" \ */
+/* } */
+/* ------------------------------------------------------- */ 
 
 #define VIDEOPLAY(u) {\
         .v = (const char *[]){ "/bin/sh", "-c", \
