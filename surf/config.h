@@ -20,7 +20,7 @@ const static SearchEngine searchengines[] = {
     { "4",      "https://boards.4chan.org/%s" },
     { "u",      "https://reddit.com/u/%s" },
     { "yt",     "https://youtube.com/results?search_query=%s" },
-    { "image",  "https://duckduckgo.com/!image+%s" },
+    { "image",  "https://duckduckgo.com/html/?q=!image %s" },
     { "reddit", "https://reddit.com/search?q=%s" },
     { "pirate", "https://thepiratebay.org/search/%s" },
     { "think",  "https://thinkwiki.org/w/index.php?search=%s" },
@@ -30,6 +30,8 @@ const static SearchEngine searchengines[] = {
     { "thes",   "https://thesaurus.com/browse/%s" },
     { "wine",   "https://www.winehq.org/search?q=%s" },
     { "urban",  "https://www.urbandictionary.com/define.php?term=%s" },
+    { "rs",     "https://oldschoolrunescape.wikia.com/wiki/Special:Search?query=%s" },
+    { "osrs",   "https://oldschoolrunescape.wikia.com/wiki/Special:Search?query=%s" },
 };
 
 static char *scriptfile = "/home/mitch/etc/suckless/surf/script.js";
@@ -73,10 +75,12 @@ char crossbones_ascii[] = "/home/mitch/usr/bin/ascii/crossbones";
 // Which stops the annoying flashing/moving around of windows on a download.
 #define DOWNLOAD(u, r) { \
         .v = (const char *[]){ "st", "-T", "surf-download", "-n", "surf-download", "-e", \
-             "/bin/sh", "-c", "cd ${HOME}/var/downloads && curl -A 'Mozilla/5.0' -c '${HOME}/.surf/cookies.txt' -4 -L -O \"$@\" && exit", \
+             "/bin/sh", "-c", "cd ${HOME}/var/downloads && wget \"$@\" && exit", \
              "surf-download", u, r, NULL \
         } \
 }
+
+             /* "/bin/sh", "-c", "cd ${HOME}/var/downloads && curl -A 'Mozilla/5.0' -c '${HOME}/.surf/cookies.txt' -4 -L -O \"$@\" && exit", \ */
         /* "st -e /bin/sh -c \"aria2c -U '$1'" \ */
         /* " --referer '$2' --load-cookies $3 --save-cookies $3 '$0';" \ */
 /* } */

@@ -27,8 +27,7 @@ int borderpx = 22; /* Internal border */
 
 /* #include "themes/other/sourcerer-theme.h" */
 
-
-
+/* #include "themes/terminaldotsexy/praiso-dark-theme.h" */
 /* #include "themes/terminaldotsexy/estuary-light-theme.h" */
 /* #include "themes/terminaldotsexy/gruvbox-light-hard-theme.h" */
 /* #include "themes/terminaldotsexy/plateau-light-theme.h" */
@@ -39,7 +38,6 @@ int borderpx = 22; /* Internal border */
 /* #include "themes/terminaldotsexy/insignificato-theme.h" */
 /* #include "themes/terminaldotsexy/mostly-bright-theme.h" */
 /* #include "themes/terminaldotsexy/dawn-theme.h" */
-/* #include "themes/terminaldotsexy/praiso-dark-theme.h" */
 /* #include "themes/terminaldotsexy/nature-suede-theme.h" */
 /* #include "themes/terminaldotsexy/mocha-dark-theme.h" */
 /* #include "themes/terminaldotsexy/navy-and-ivory-theme.h" */

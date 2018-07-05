@@ -93,9 +93,10 @@ static char dmenumon[2] = "0";
 static const char *dmenucmd[] = { "dash", "-c", "${HOME}/bin/menu run -p 'Run:'", NULL };
 
 static const char *surf[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
-static const char *chrome[] = { "chromium", "--new-window", NULL };
+static const char *chrome[] = { "google-chrome-stable", "--new-window", NULL };
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
+static const char *music[] = { "st", "-e", "ranger ~/var/music/main", NULL };
 static const char *filechooser[] = { "pcmanfm", NULL };
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
@@ -110,9 +111,9 @@ static const char *mediarw[] = { "media", "--skip_behind", NULL };
 static const char *togglekeyboardlayout[] = { "dash", "-c", "${HOME}/bin/keys", NULL };
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
 static const char *lock[] = { "slock", NULL };
-static const char *scrap[] = { "scrap", NULL };
-static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/brightness.sh -inc 10", NULL };
-static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/brightness.sh -dec 10", NULL };
+static const char *scrot[] = { "scrot", "-z", "-u", NULL };
+static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/brightness.sh 10", NULL };
+static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/brightness.sh -10", NULL };
 static const char *history[] = { "dhist", NULL };
 
 #include "movestack.c"
@@ -128,13 +129,14 @@ const static Key keys[] = {
     { Mod1Mask,                     31,             spawn,    {.v = tasks } }, // i
     { Mod1Mask,                     54,             spawn,    {.v = clipboard } }, // c
     { Mod1Mask,                     27,             spawn,    {.v = ranger } }, // r
+    { Mod1Mask,                     61,             spawn,    {.v = music } }, // a
 
     { Mod1Mask,                     26,             spawn,    {.v = filechooser } }, // e
 
     { Mod1Mask,                     61,             spawn,    {.v = mediatoggle } }, // /
     { Mod1Mask,                     60,             spawn,    {.v = medianext } },  // >
     { Mod1Mask,                     59,             spawn,    {.v = mediaprev } }, // <
-    { 0,                            107,            spawn,    {.v = scrap } }, // Print
+    { 0,                            107,            spawn,    {.v = scrot } }, // Print
 
     { Mod1Mask,                     47,             spawn,    {.v = voldown }}, //  ;
     { Mod1Mask,                     48,             spawn,    {.v = volup }}, // '

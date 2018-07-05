@@ -18,7 +18,7 @@ CPPFLAGS = -DVERSION=\"${VERSION}\" -DWEBEXTDIR=\"${LIBPREFIX}\" \
 SURF_CFLAGS = $(INCS) $(CPPFLAGS) $(CFLAGS)
 SURF_LDFLAGS = $(LIBS) $(LDFLAGS)
 
-#CC = tcc -w
 CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
 #CC = musl-gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
 #CC = clang -w -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro
+#CC = tcc -w
