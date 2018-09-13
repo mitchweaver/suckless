@@ -16,7 +16,8 @@ char termname[] = "st-256color";
 /* Default colour and shape of the mouse cursor */
 unsigned int mousefg = 7;
 unsigned int mousebg = 0;
-unsigned int defaultrcs = 257;
+
+//unsigned int defaultrcs = 257;
 
 /* If you want keys other than the X11 function keys (0xFD00 - 0xFFFF)
  * to be mapped below, add them to this array. */

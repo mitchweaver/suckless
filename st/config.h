@@ -2,8 +2,12 @@
 
 /* --------------- Font ---------------------------------- */
 /* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
+char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false";
 /* char font[] = "xos4 Terminus:pixelsize=14:antialias=false:autohint=false"; */
-char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true";
+//--
+/* char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
+//--
+
 /* char font[] = "Share Tech Mono:pixelsize=14:antialias=true:autohint=true"; */
 /* char font[] = "Roboto Mono:pixelsize=12:antialias=true:autohint=true"; */
 /* char font[] = "GohuFont:pixelsize=12:antialias=false:autohint=false"; */

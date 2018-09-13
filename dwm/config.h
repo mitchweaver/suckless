@@ -1,5 +1,5 @@
 static const int GAP_PX      = 18; /* gap pixel between windows */
-static const int start_with_gaps = 0;
+static const int start_with_gaps = 1;
 
 static const int BORDER_PX = 2;
 static const int CORNER_RADIUS = 0;
@@ -115,6 +115,7 @@ static const char *scrot[] = { "scrot", "-z", "-u", NULL };
 static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/brightness.sh 10", NULL };
 static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/brightness.sh -10", NULL };
 static const char *history[] = { "dhist", NULL };
+/* static const char *pavucontrol[] = { "pavucontrol", NULL }; */
 
 #include "movestack.c"
 #define SH(cmd) { .v = (const char*[]){ "dash", "-c", cmd, NULL } }
@@ -131,6 +132,7 @@ const static Key keys[] = {
     { Mod1Mask,                     27,             spawn,    {.v = ranger } }, // r
     { Mod1Mask,                     61,             spawn,    {.v = music } }, // a
 
+    /* { Mod1Mask,                     46,             spawn,    {.v = pavucontrol } }, // l */
     { Mod1Mask,                     26,             spawn,    {.v = filechooser } }, // e
 
     { Mod1Mask,                     61,             spawn,    {.v = mediatoggle } }, // /

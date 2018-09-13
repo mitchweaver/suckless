@@ -1766,6 +1766,9 @@ void on_start(void) {
     else gappx = 0;
     borderpx = BORDER_PX;
     init_dwm_info(gappx, BAR_HEIGHT, topbar, NUM_WORKSPACES);
+
+
+    // Note: this is now in ~/.xinitrc
     /* system("/bin/sh ${HOME}/bin/autostart &"); */
 }
 
