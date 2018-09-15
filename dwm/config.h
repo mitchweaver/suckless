@@ -96,11 +96,11 @@ static const char *surf[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
 static const char *chrome[] = { "google-chrome-stable", "--new-window", NULL };
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
-static const char *music[] = { "st", "-e", "ranger ~/var/music/main", NULL };
 static const char *filechooser[] = { "pcmanfm", NULL };
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
+static const char *music[] = { "music", NULL };
 static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 2 ; vol > /tmp/bar/vol", NULL };
 static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 2 ; vol > /tmp/bar/vol", NULL };
 static const char *medianext[] = { "media", "--next", NULL };
@@ -115,7 +115,6 @@ static const char *scrot[] = { "scrot", "-z", "-u", NULL };
 static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/brightness.sh 10", NULL };
 static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/brightness.sh -10", NULL };
 static const char *history[] = { "dhist", NULL };
-/* static const char *pavucontrol[] = { "pavucontrol", NULL }; */
 
 #include "movestack.c"
 #define SH(cmd) { .v = (const char*[]){ "dash", "-c", cmd, NULL } }
@@ -127,12 +126,11 @@ const static Key keys[] = {
     { Mod1Mask,                     25,             spawn,    {.v = surf } }, // w
     { Mod1Mask|ShiftMask,           25,             spawn,    {.v = chrome } }, // a
     { Mod1Mask,                     32,             spawn,    {.v = dedit } }, // o
-    { Mod1Mask,                     31,             spawn,    {.v = tasks } }, // i
+    { Mod1Mask,                     30,             spawn,    {.v = tasks } }, // u
+    { Mod1Mask,                     31,             spawn,    {.v = music } }, // i
     { Mod1Mask,                     54,             spawn,    {.v = clipboard } }, // c
     { Mod1Mask,                     27,             spawn,    {.v = ranger } }, // r
-    { Mod1Mask,                     61,             spawn,    {.v = music } }, // a
 
-    /* { Mod1Mask,                     46,             spawn,    {.v = pavucontrol } }, // l */
     { Mod1Mask,                     26,             spawn,    {.v = filechooser } }, // e
 
     { Mod1Mask,                     61,             spawn,    {.v = mediatoggle } }, // /
