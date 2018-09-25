@@ -60,6 +60,9 @@ static const Rule rules[] = {
 
     { "feh",             NULL,       "feh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
+    { "RuneLite",        NULL,       "RuneLite",          0,         1,           1,           -1 },
+    { "java",            NULL,       "RuneLite",          0,         1,           1,           -1 },
+    { "x9term",          NULL,       "x9term",            0,         0,           1,           -1 },
 };
 
 #include "tile.c"
@@ -112,9 +115,11 @@ static const char *togglekeyboardlayout[] = { "dash", "-c", "${HOME}/bin/keys", 
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
 static const char *lock[] = { "slock", NULL };
 static const char *scrot[] = { "scrot", "-z", "-u", NULL };
-static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/brightness.sh 10", NULL };
-static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/brightness.sh -10", NULL };
-static const char *history[] = { "dhist", NULL };
+static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/bright 10", NULL };
+static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/bright -10", NULL };
+static const char *record[] = { "dash", "-c", "${HOME}/bin/record", NULL };
+static const char *stoprecord[] = { "dash", "-c", "echo q >> /tmp/record", NULL };
+//static const char *history[] = { "dhist", NULL };
 
 #include "movestack.c"
 #define SH(cmd) { .v = (const char*[]){ "dash", "-c", cmd, NULL } }
@@ -151,11 +156,14 @@ const static Key keys[] = {
     // xf86 brightness up/down
     { 0,                            232,            spawn,    {.v = brightnessdown } },
     { 0,                            233,            spawn,    {.v = brightnessup } },
-    { Mod4Mask,                     43,             spawn,    {.v = history } }, // h
+//    { Mod4Mask,                     43,             spawn,    {.v = history } }, // h
 
     { Mod1Mask,                     53,       spawn,          {.v = lock }}, // x
     { Mod1Mask|ControlMask,         45,       spawn,          {.v = togglekeyboardlayout }}, // k
     { Mod1Mask|ControlMask,         65,       spawn,          {.v = toggletouchpad }}, // space
+    /* // ------------------------------------------------------------------ // */
+    { 0,                            74,       spawn,          {.v = record }}, // F8
+    { 0,                            75,       spawn,          {.v = stoprecord }}, // F9
     /* // ------------------------------------------------------------------ // */
     { Mod1Mask,                     44,       focusstack,     {.i = +1 } }, // j
     { Mod1Mask,                     45,       focusstack,     {.i = -1 } }, // k
