@@ -1,5 +1,5 @@
 static const int GAP_PX      = 18; /* gap pixel between windows */
-static const int start_with_gaps = 1;
+static const int start_with_gaps = 0;
 
 static const int BORDER_PX = 2;
 static const int CORNER_RADIUS = 0;
@@ -60,9 +60,13 @@ static const Rule rules[] = {
 
     { "feh",             NULL,       "feh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
-    { "RuneLite",        NULL,       "RuneLite",          0,         1,           1,           -1 },
-    { "java",            NULL,       "RuneLite",          0,         1,           1,           -1 },
     { "x9term",          NULL,       "x9term",            0,         0,           1,           -1 },
+
+    /* { "java",            NULL,       "RuneLite",          0,         1,           1,           -1 }, */
+    /* { "RuneLite",        NULL,       "RuneLite",          0,         1,           1,           -1 }, */
+    /* { "java",            NULL,       "java",          0,         1,           1,           -1 }, */
+    /* { "jdk",            NULL,       "jdk",          0,         1,           1,           -1 }, */
+    /* { "openjdk",            NULL,       "openjdk",          0,         1,           1,           -1 }, */
 };
 
 #include "tile.c"
@@ -115,10 +119,12 @@ static const char *togglekeyboardlayout[] = { "dash", "-c", "${HOME}/bin/keys", 
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
 static const char *lock[] = { "slock", NULL };
 static const char *scrot[] = { "scrot", "-z", "-u", NULL };
+static const char *scrap[] = { "scrap", "-u", NULL };
 static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/bright 10", NULL };
 static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/bright -10", NULL };
-static const char *record[] = { "dash", "-c", "${HOME}/bin/record", NULL };
-static const char *stoprecord[] = { "dash", "-c", "echo q >> /tmp/record", NULL };
+static const char *record[] = { "dash", "-c", "cd ${HOME}/var/recordings ; ${HOME}/bin/record &", NULL };
+static const char *togglerecord[] = { "dash", "-c", "${HOME}/bin/record --toggle", NULL };
+static const char *stoprecord[] = { "dash", "-c", "${HOME}/bin/record --stop", NULL };
 //static const char *history[] = { "dhist", NULL };
 
 #include "movestack.c"
@@ -142,6 +148,7 @@ const static Key keys[] = {
     { Mod1Mask,                     60,             spawn,    {.v = medianext } },  // >
     { Mod1Mask,                     59,             spawn,    {.v = mediaprev } }, // <
     { 0,                            107,            spawn,    {.v = scrot } }, // Print
+    { ControlMask,                  107,            spawn,    {.v = scrap } }, // Print
 
     { Mod1Mask,                     47,             spawn,    {.v = voldown }}, //  ;
     { Mod1Mask,                     48,             spawn,    {.v = volup }}, // '
@@ -163,7 +170,8 @@ const static Key keys[] = {
     { Mod1Mask|ControlMask,         65,       spawn,          {.v = toggletouchpad }}, // space
     /* // ------------------------------------------------------------------ // */
     { 0,                            74,       spawn,          {.v = record }}, // F8
-    { 0,                            75,       spawn,          {.v = stoprecord }}, // F9
+    { 0,                            75,       spawn,          {.v = togglerecord }}, // F9
+    { 0,                            76,       spawn,          {.v = stoprecord }}, // F10
     /* // ------------------------------------------------------------------ // */
     { Mod1Mask,                     44,       focusstack,     {.i = +1 } }, // j
     { Mod1Mask,                     45,       focusstack,     {.i = -1 } }, // k

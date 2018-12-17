@@ -30,8 +30,9 @@ const static SearchEngine searchengines[] = {
     { "thes",   "https://thesaurus.com/browse/%s" },
     { "wine",   "https://www.winehq.org/search?q=%s" },
     { "urban",  "https://www.urbandictionary.com/define.php?term=%s" },
-    { "rs",     "https://oldschoolrunescape.wikia.com/wiki/Special:Search?query=%s" },
-    { "osrs",   "https://oldschoolrunescape.wikia.com/wiki/Special:Search?query=%s" },
+    { "rs",     "https://oldschool.runescape.wiki/?search=%s" },
+    { "osrs",   "https://oldschool.runescape.wiki/?search=%s" },
+    { "07",   "https://oldschool.runescape.wiki/?search=%s" },
 };
 
 static char *scriptfile = "/home/mitch/etc/suckless/surf/script.js";
