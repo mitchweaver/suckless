@@ -1,23 +1,16 @@
 static const int GAP_PX      = 18; /* gap pixel between windows */
 static const int start_with_gaps = 0;
 
-static const int BORDER_PX = 2;
+static int BORDER_PX = 2;
 static const int CORNER_RADIUS = 0;
-static const int round_non_floating = 0;
 static const int topbar        = 1; /* 0 means bottom bar */
 static const int BAR_HEIGHT    = 14; // in pixels
 static const int snap = 0;
+/* static const int round_non_floating = 0; */
 
 // whether to keep the border for terminals if
 // they are the only window on the tag
 static const int terminals_keep_border = 0;
-
-// whether a terminal should be floating if its the
-// only terminal on the desktop
-static int float_single_terms = 0;
-void toggle_float_single_terms() {
-    float_single_terms = ( float_single_terms == 0 ) ? 1 : 0;
-}
 
 // whether to warp mouse to next window on hjkl
 static const int warp_mouse = 0;
@@ -184,23 +177,23 @@ const static Key keys[] = {
     { Mod1Mask|ShiftMask,           46,       setmfact,       {.f = +0.05} }, // l
     { Mod1Mask|ShiftMask,           45,       setsmfact,      {.f = +0.05} }, // k
     { Mod1Mask|ShiftMask,           44,       setsmfact,      {.f = -0.05} }, // j
-    { Mod1Mask|ShiftMask,           42,       togglegaps,      {0} }, // g
-	{ Mod1Mask,                     65,       togglescratch,  {.v = scratchpadcmd } },
+    { Mod1Mask|ShiftMask,           42,       togglegaps,     {0} }, // g
+    { Mod1Mask,                     56,       toggleborders,  {0} }, // b
+	{ Mod1Mask,                     65,       togglescratch,  {.v = scratchpadcmd } }, // space
     /* // ------------------------------------------------------------------- // */
     { Mod1Mask,                     23,       view,           {0} }, // Tab
     { Mod1Mask|ShiftMask,           65,       togglefloating, {0} }, // space
     { Mod1Mask,                     39,       togglesticky,   {0} }, // s
-    /* { Mod1Mask,                     38,       toggle_float_single_terms, {0} }, // a */
     /* // ------------------------------------------------------------------- // */
     { Mod1Mask,                     28,       setlayout,  {.v = &layouts[0]} }, // tiled // t
     { Mod1Mask,                     41,       setlayout,  {.v = &layouts[1]} }, // floating // f
     { Mod1Mask,                     58,       setlayout,  {.v = &layouts[2]} }, // monocle // m
     { Mod1Mask,                     42,       setlayout,  {.v = &layouts[3]} }, // grid // g
     { Mod1Mask,                     57,       setlayout,  {.v = &layouts[4]} }, // centered master // n
-    { Mod1Mask,                     56,       setlayout,  {.v = &layouts[5]} }, // centered floating master // b
+    /* { Mod1Mask,                     56,       setlayout,  {.v = &layouts[5]} }, // centered floating master // b */
     { Mod1Mask,                     55,       setlayout,  {.v = &layouts[6]} }, // fibonacci // v
     { Mod1Mask,                     40,       setlayout,  {.v = &layouts[7]} }, // horizgrid // d
-    /* { Mod1Mask,                     65,       setlayout,  {0} }, // toggle between last 2 layouts // space */
+    { Mod1Mask,                     65,       setlayout,  {0} }, // toggle between last 2 layouts // space
     /* // ------------------------------------------------------------------- // */
     { Mod1Mask,                     24,       killclient, {0} }, // q
     { Mod1Mask|ShiftMask|ControlMask,           24,       quit,       {0} }, // q

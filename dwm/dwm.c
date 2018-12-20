@@ -67,7 +67,6 @@ struct Client {
 
 typedef struct {
     unsigned int mod;
-    /* KeySym keysym; */
     KeyCode keycode;
     void (*func)(const Arg *);
     const Arg arg;
@@ -146,6 +145,7 @@ static void togglefloating(const Arg *arg);
 static void togglescratch(const Arg *arg);
 static void togglesticky(const Arg *arg);
 static void togglegaps();
+static void toggleborders();
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
 static void unmanage(Client *c, int destroyed);
@@ -164,7 +164,7 @@ static Monitor *wintomon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
-static void drawroundedcorners(Client *c);
+/* static void drawroundedcorners(Client *c); */
 static void update_ws_bools(Monitor *m); 
 void tagall(const Arg *arg);
 
@@ -565,6 +565,13 @@ int getrootptr(int *x, int *y) {
     return XQueryPointer(dpy, root, &dummy, &dummy, x, y, &di, &di, &dui);
 }
 
+void toggleborders() {
+    if(borderpx > 0)
+        borderpx = 0;
+    else
+        borderpx = BORDER_PX;
+}
+
 long getstate(Window w) {
     int format;
     long result = -1;
@@ -700,7 +707,7 @@ void manage(Window w, XWindowAttributes *wa) {
     if(c->iscentered) {
         c->x = (c->mon->mw - WIDTH(c)) / 2;
         c->y = (c->mon->mh - HEIGHT(c)) / 2;
-        if(c->isfloating) drawroundedcorners(c);
+        /* if(c->isfloating) drawroundedcorners(c); */
     }
 
 	if (!strcmp(c->name, scratchpadname)) {
@@ -941,81 +948,64 @@ void resizeclient(Client *c, int x, int y, int w, int h) {
     c->oldx = c->x; c->oldy = c->y;
     c->oldw = c->w; c->oldh = c->h;
 
-    if(! (n == 1 && float_single_terms == 1 &&
-                (strcmp(c->name, terminal) == 0 ||
-                strcmp(c->name, editor) == 0))) {
-                /* strcmp(c->name, "ranger") == 0 */ 
-
-        c->x = wc.x = x + gapoffset;
-        c->y = wc.y = y + gapoffset;
-        c->w = wc.width = w - gapincr;
-        c->h = wc.height = h - gapincr;
-
-    } else {
-
-        if(! c->isfloating ){ 
-            c->w = wc.width = c->mon->mw / 2.5 - gapincr;
-            c->h = wc.height = h - gapincr;
-            c->x = wc.x = c->mon->mw / 2 - c->w / 2;
-            c->y = wc.y = y + gapoffset;
-
-        }
-
-    }
+    c->x = wc.x = x + gapoffset;
+    c->y = wc.y = y + gapoffset;
+    c->w = wc.width = w - gapincr;
+    c->h = wc.height = h - gapincr;
 
     // if it is floating, then it is handled in resizemouse
-    if(!c->isfloating && round_non_floating == 1) drawroundedcorners(c);
+    /* if(!c->isfloating && round_non_floating == 1) drawroundedcorners(c); */
 
     XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
     configure(c);
     XSync(dpy, False);
 }
 
-void drawroundedcorners(Client *c) {
-    // NOTE: this is extremely hacky and surely could be optimized.
-    //       Any X wizards out there reading this, please pull request.
-    if(CORNER_RADIUS > 0 && c && !c->isfullscreen){
-        Window win;
-        win = c->win;
-        if(!win) return;
+/* void drawroundedcorners(Client *c) { */
+/*     // NOTE: this is extremely hacky and surely could be optimized. */
+/*     //       Any X wizards out there reading this, please pull request. */
+/*     if(CORNER_RADIUS > 0 && c && !c->isfullscreen){ */
+/*         Window win; */
+/*         win = c->win; */
+/*         if(!win) return; */
 
-        XWindowAttributes win_attr;
-        if(!XGetWindowAttributes(dpy, win, &win_attr)) return;
+/*         XWindowAttributes win_attr; */
+/*         if(!XGetWindowAttributes(dpy, win, &win_attr)) return; */
 
-        const int w = c->w;
-        const int h = c->h;
+/*         const int w = c->w; */
+/*         const int h = c->h; */
 
-        const int dia = 2 * CORNER_RADIUS; // set in config.h
-        if(w < dia || h < dia) return;
+/*         const int dia = 2 * CORNER_RADIUS; // set in config.h */
+/*         if(w < dia || h < dia) return; */
 
-        Pixmap mask;
-        mask = XCreatePixmap(dpy, win, w, h, 1);
-        if(!mask) return;
+/*         Pixmap mask; */
+/*         mask = XCreatePixmap(dpy, win, w, h, 1); */
+/*         if(!mask) return; */
 
-        XGCValues xgcv;
-        GC shape_gc;
-        shape_gc = XCreateGC(dpy, mask, 0, &xgcv);
+/*         XGCValues xgcv; */
+/*         GC shape_gc; */
+/*         shape_gc = XCreateGC(dpy, mask, 0, &xgcv); */
 
-        if(!shape_gc) {
-            XFreePixmap(dpy, mask);
-            free(shape_gc);
-            return;
-        }
+/*         if(!shape_gc) { */
+/*             XFreePixmap(dpy, mask); */
+/*             free(shape_gc); */
+/*             return; */
+/*         } */
 
-        XSetForeground(dpy, shape_gc, 0);
-        XFillRectangle(dpy, mask, shape_gc, 0, 0, w, h);
-        XSetForeground(dpy, shape_gc, 1);
-        XFillArc(dpy, mask, shape_gc, 0, 0, dia, dia, 0, 23040);
-        XFillArc(dpy, mask, shape_gc, w-dia-1, 0, dia, dia, 0, 23040);
-        XFillArc(dpy, mask, shape_gc, 0, h-dia-1, dia, dia, 0, 23040);
-        XFillArc(dpy, mask, shape_gc, w-dia-1, h-dia-1, dia, dia, 0, 23040);
-        XFillRectangle(dpy, mask, shape_gc, CORNER_RADIUS, 0, w-dia, h);
-        XFillRectangle(dpy, mask, shape_gc, 0, CORNER_RADIUS, w, h-dia);
-        XShapeCombineMask(dpy, win, ShapeBounding, 0, 0, mask, ShapeSet);
-        XFreePixmap(dpy, mask);
-        XFreeGC(dpy, shape_gc);
-    }
-}
+/*         XSetForeground(dpy, shape_gc, 0); */
+/*         XFillRectangle(dpy, mask, shape_gc, 0, 0, w, h); */
+/*         XSetForeground(dpy, shape_gc, 1); */
+/*         XFillArc(dpy, mask, shape_gc, 0, 0, dia, dia, 0, 23040); */
+/*         XFillArc(dpy, mask, shape_gc, w-dia-1, 0, dia, dia, 0, 23040); */
+/*         XFillArc(dpy, mask, shape_gc, 0, h-dia-1, dia, dia, 0, 23040); */
+/*         XFillArc(dpy, mask, shape_gc, w-dia-1, h-dia-1, dia, dia, 0, 23040); */
+/*         XFillRectangle(dpy, mask, shape_gc, CORNER_RADIUS, 0, w-dia, h); */
+/*         XFillRectangle(dpy, mask, shape_gc, 0, CORNER_RADIUS, w, h-dia); */
+/*         XShapeCombineMask(dpy, win, ShapeBounding, 0, 0, mask, ShapeSet); */
+/*         XFreePixmap(dpy, mask); */
+/*         XFreeGC(dpy, shape_gc); */
+/*     } */
+/* } */
 
 void resizemouse(const Arg *arg) {
     int ocx, ocy, nw, nh;
@@ -1073,7 +1063,7 @@ void resizemouse(const Arg *arg) {
                 if (!selmon->lt[selmon->sellt]->arrange || c->isfloating)
                     resize(c, nx, ny, nw, nh, 1);
 
-                drawroundedcorners(c);
+                /* drawroundedcorners(c); */
                 break;
         }
     } while (ev.type != ButtonRelease);
@@ -1087,7 +1077,7 @@ void resizemouse(const Arg *arg) {
         selmon = m;
         focus(NULL);
     }
-    drawroundedcorners(c);
+    /* drawroundedcorners(c); */
 }
 
 void restack(Monitor *m) {
@@ -1368,38 +1358,38 @@ void spawn(const Arg *arg) {
         if (dpy) close(ConnectionNumber(dpy));
 
         /* --------- spawn cwd -------------------------------------- */ 
-		if(selmon->sel) {
-			const char* const home = getenv("HOME");
-			assert(home && strchr(home, '/'));
-			const size_t homelen = strlen(home);
-			char *cwd, *pathbuf = NULL;
-			struct stat statbuf;
+		/* if(selmon->sel) { */
+		/* 	const char* const home = getenv("HOME"); */
+		/* 	assert(home && strchr(home, '/')); */
+		/* 	const size_t homelen = strlen(home); */
+		/* 	char *cwd, *pathbuf = NULL; */
+		/* 	struct stat statbuf; */
 
-			cwd = strtok(selmon->sel->name, SPAWN_CWD_DELIM);
-			/* NOTE: strtok() alters selmon->sel->name in-place,
-			 * but that does not matter because we are going to
-			 * exec() below anyway; nothing else will use it */
-			while(cwd) {
-				if(*cwd == '~') { /* replace ~ with $HOME */
-					if(!(pathbuf = malloc(homelen + strlen(cwd)))) /* ~ counts for NULL term */
-						die("fatal: could not malloc() %u bytes\n", homelen + strlen(cwd));
-					strcpy(strcpy(pathbuf, home) + homelen, cwd + 1);
-					cwd = pathbuf;
-				}
+		/* 	cwd = strtok(selmon->sel->name, SPAWN_CWD_DELIM); */
+		/* 	/1* NOTE: strtok() alters selmon->sel->name in-place, */
+		/* 	 * but that does not matter because we are going to */
+		/* 	 * exec() below anyway; nothing else will use it *1/ */
+		/* 	while(cwd) { */
+		/* 		if(*cwd == '~') { /1* replace ~ with $HOME *1/ */
+		/* 			if(!(pathbuf = malloc(homelen + strlen(cwd)))) /1* ~ counts for NULL term *1/ */
+		/* 				die("fatal: could not malloc() %u bytes\n", homelen + strlen(cwd)); */
+		/* 			strcpy(strcpy(pathbuf, home) + homelen, cwd + 1); */
+		/* 			cwd = pathbuf; */
+		/* 		} */
 
-				if(strchr(cwd, '/') && !stat(cwd, &statbuf)) {
-					if(!S_ISDIR(statbuf.st_mode))
-						cwd = dirname(cwd);
+		/* 		if(strchr(cwd, '/') && !stat(cwd, &statbuf)) { */
+		/* 			if(!S_ISDIR(statbuf.st_mode)) */
+		/* 				cwd = dirname(cwd); */
 
-					if(!chdir(cwd))
-						break;
-				}
+		/* 			if(!chdir(cwd)) */
+		/* 				break; */
+		/* 		} */
 
-				cwd = strtok(NULL, SPAWN_CWD_DELIM);
-			}
+		/* 		cwd = strtok(NULL, SPAWN_CWD_DELIM); */
+		/* 	} */
 
-			free(pathbuf);
-		}
+		/* 	free(pathbuf); */
+		/* } */
         /* ------------------------------------------------------- */ 
 
         setsid();
@@ -1762,11 +1752,12 @@ void togglegaps() {
 }
 
 void on_start(void) {
-    if(start_with_gaps == 1) gappx = GAP_PX;
-    else gappx = 0;
+    if(start_with_gaps == 1)
+        gappx = GAP_PX;
+    else
+        gappx = 0;
     borderpx = BORDER_PX;
     init_dwm_info(gappx, BAR_HEIGHT, topbar, NUM_WORKSPACES);
-
 
     // Note: this is now in ~/.xinitrc
     /* system("/bin/sh ${HOME}/bin/autostart &"); */
