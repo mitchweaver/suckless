@@ -101,8 +101,14 @@ static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
 static const char *music[] = { "music", NULL };
-static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 2 ; vol > /tmp/bar/vol", NULL };
-static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 2 ; vol > /tmp/bar/vol", NULL };
+
+//static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 2 ; vol > /tmp/bar/vol", NULL };
+//static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 2 ; vol > /tmp/bar/vol", NULL };
+
+static const char *mpv_volup[] =   { "dash", "-c", "mpvc -v +5", NULL };
+static const char *mpv_voldown[] = { "dash", "-c", "mpvc -v -5", NULL };
+
+
 static const char *medianext[] = { "media", "--next", NULL };
 static const char *mediaprev[] = { "media", "--prev", NULL };
 static const char *mediatoggle[] = { "media", "--toggle", NULL };
@@ -143,15 +149,15 @@ const static Key keys[] = {
     { 0,                            107,            spawn,    {.v = scrot } }, // Print
     { ControlMask,                  107,            spawn,    {.v = scrap } }, // Print
 
-    { Mod1Mask,                     47,             spawn,    {.v = voldown }}, //  ;
-    { Mod1Mask,                     48,             spawn,    {.v = volup }}, // '
+    { Mod1Mask,                     47,             spawn,    {.v = mpv_voldown }}, //  ;
+    { Mod1Mask,                     48,             spawn,    {.v = mpv_volup }}, // '
 
     { Mod1Mask,                     34,             spawn,    {.v = mediarw }}, // [
     { Mod1Mask,                     35,             spawn,    {.v = mediaff }}, // ]
 
     // xf86 volume keys
-    { 0,                            122,            spawn,    {.v = voldown }},
-    { 0,                            123,            spawn,    {.v = volup }},
+    { 0,                            122,            spawn,    {.v = mpv_voldown }},
+    { 0,                            123,            spawn,    {.v = mpv_volup }},
 
     // xf86 brightness up/down
     { 0,                            232,            spawn,    {.v = brightnessdown } },
