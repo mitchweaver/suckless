@@ -54,12 +54,6 @@ static const Rule rules[] = {
     { "feh",             NULL,       "feh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
     { "x9term",          NULL,       "x9term",            0,         0,           1,           -1 },
-
-    /* { "java",            NULL,       "RuneLite",          0,         1,           1,           -1 }, */
-    /* { "RuneLite",        NULL,       "RuneLite",          0,         1,           1,           -1 }, */
-    /* { "java",            NULL,       "java",          0,         1,           1,           -1 }, */
-    /* { "jdk",            NULL,       "jdk",          0,         1,           1,           -1 }, */
-    /* { "openjdk",            NULL,       "openjdk",          0,         1,           1,           -1 }, */
 };
 
 #include "tile.c"
@@ -102,12 +96,8 @@ static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
 static const char *music[] = { "music", NULL };
 
-//static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 2 ; vol > /tmp/bar/vol", NULL };
-//static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 2 ; vol > /tmp/bar/vol", NULL };
-
-static const char *mpv_volup[] =   { "dash", "-c", "mpvc -v +5", NULL };
-static const char *mpv_voldown[] = { "dash", "-c", "mpvc -v -5", NULL };
-
+static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 2 ; vol > /tmp/bar/vol", NULL };
+static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 2 ; vol > /tmp/bar/vol", NULL };
 
 static const char *medianext[] = { "media", "--next", NULL };
 static const char *mediaprev[] = { "media", "--prev", NULL };
