@@ -139,15 +139,14 @@ const static Key keys[] = {
     { 0,                            107,            spawn,    {.v = scrot } }, // Print
     { ControlMask,                  107,            spawn,    {.v = scrap } }, // Print
 
-    { Mod1Mask,                     47,             spawn,    {.v = mpv_voldown }}, //  ;
-    { Mod1Mask,                     48,             spawn,    {.v = mpv_volup }}, // '
+    { Mod1Mask,                     47,             spawn,    {.v = voldown }}, //  ;
+    { Mod1Mask,                     48,             spawn,    {.v = volup }}, // '
 
+    // xf86 media keys
     { Mod1Mask,                     34,             spawn,    {.v = mediarw }}, // [
     { Mod1Mask,                     35,             spawn,    {.v = mediaff }}, // ]
-
-    // xf86 volume keys
-    { 0,                            122,            spawn,    {.v = mpv_voldown }},
-    { 0,                            123,            spawn,    {.v = mpv_volup }},
+    { 0,                            122,            spawn,    {.v = voldown }},
+    { 0,                            123,            spawn,    {.v = volup }},
 
     // xf86 brightness up/down
     { 0,                            232,            spawn,    {.v = brightnessdown } },
