@@ -9,6 +9,7 @@
 #include <X11/Xatom.h>
 
 #include "arg.h"
+regex_t *filter_expressions;
 
 #define LENGTH(x)       (sizeof(x) / sizeof(x[0]))
 #define CLEANMASK(mask) (mask & (MODKEY|GDK_SHIFT_MASK))
@@ -99,6 +100,8 @@ static const char *getstyle(const char *uri);
 static void setstyle(Client *c, const char *file);
 static void runscript(Client *c);
 static void evalscript(Client *c, const char *jsstr, ...);
+static bool filter_init(void);
+static bool filter_request(const gchar *uri);
 static void updatewinid(Client *c);
 static void newwindow(Client *c, const Arg *a, int noembed);
 static void spawn(Client *c, const Arg *a);
@@ -185,6 +188,47 @@ void die(const char *errstr, ...) {
     vfprintf(stderr, errstr, ap);
     va_end(ap);
     exit(1);
+}
+
+static bool filter_init(void) {
+	bool errors = false;
+	char *errorbuf;
+
+	errorbuf = malloc(sizeof(char) * BUFSIZ);
+	filter_expressions = malloc(sizeof(regex_t) * LENGTH(filter_patterns));
+
+	for (off_t idx = 0; idx < LENGTH(filter_patterns); idx++) {
+		char *pat = filter_patterns[idx];
+		int err = regcomp(&filter_expressions[idx], pat,
+				            REG_EXTENDED | REG_ICASE | REG_NOSUB);
+		if (err != 0) {
+			/* regerror always ends messages with 0x00 */
+			(void) regerror(err, &filter_expressions[idx], errorbuf, BUFSIZ);
+			fprintf(stderr, "Failed to compile \"%s\": %s\n", pat, errorbuf);
+			errors = true;
+		}
+	}
+
+	free(errorbuf);
+	return !errors;
+}
+
+static bool filter_request(const gchar *uri) {
+	if (!strcmp(uri, "about:blank"))
+		return false;
+	for (off_t idx = 0; idx < LENGTH(filter_patterns); idx++) {
+		if (regexec(&filter_expressions[idx], uri, 0, NULL, 0) == REG_NOMATCH) {
+			continue;
+		}
+#ifdef FILTER_VERBOSE
+		fprintf(stderr, "filtering \"%s\"\n", uri);
+#endif
+		return true;
+	}
+#ifdef FILTER_VERBOSE
+	fprintf(stderr, "not filtering \"%s\"\n", uri);
+#endif
+	return false;
 }
 
 void setup(void) {
@@ -910,7 +954,7 @@ void decideresource(WebKitPolicyDecision *d, Client *c) {
     WebKitResponsePolicyDecision *r = WEBKIT_RESPONSE_POLICY_DECISION(d);
     WebKitURIResponse *res = webkit_response_policy_decision_get_response(r);
     const gchar *uri = webkit_uri_response_get_uri(res);
-    if (g_str_has_suffix(uri, "/favicon.ico")) {
+	if(filter_request(uri)) {
         webkit_policy_decision_ignore(d);
         return;
     }
@@ -1034,6 +1078,10 @@ void find(Client *c, const Arg *a) {
         if (strcmp(s, "") == 0)
             webkit_find_controller_search_finish(c->finder);
     }
+
+	if (!filter_init()) {
+		die("Failed to compile one or more filter expressions\n");
+	}
 }
 
 void clicknavigate(Client *c, const Arg *a, WebKitHitTestResult *h) {

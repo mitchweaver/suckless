@@ -17,7 +17,14 @@ options:
 	@echo CC -c $<
 	@$(CC) $(SURF_CFLAGS) -c $<
 
-$(OBJ): config.h config.mk
+${OBJ}: config.h config.mk filters_compiled
+
+filters_compiled: filters
+	sed -e '/^$$/d' -e 's|\\|\\\\|g' -e 's|$$|",|' -e 's|^|"|' < filters > $@
+
+filters:
+	@echo creating $@ from filters.def
+	@cp filters.def $@
 
 config.h:
 	@echo creating $@ from config.def.h
@@ -29,7 +36,7 @@ surf: $(OBJ)
 
 clean:
 	@echo cleaning
-	@rm -f surf $(OBJ)
+	@rm -f surf ${OBJ} surf-${VERSION}.tar.gz filters_compiled
 
 distclean: clean
 	@echo cleaning dist

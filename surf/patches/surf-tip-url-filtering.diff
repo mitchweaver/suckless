@@ -1,0 +1,154 @@
+diff --git a/Makefile b/Makefile
+index a9d4d1d..75fb004 100644
+--- a/Makefile
++++ b/Makefile
+@@ -18,7 +18,14 @@ options:
+ 	@echo CC $<
+ 	@${CC} -c ${CFLAGS} $<
+ 
+-${OBJ}: config.h config.mk
++${OBJ}: config.h config.mk filters_compiled
++
++filters_compiled: filters
++	sed -e '/^$$/d' -e 's|\\|\\\\|g' -e 's|$$|",|' -e 's|^|"|' < filters > $@
++
++filters:
++	@echo creating $@ from filters.def
++	@cp filters.def $@
+ 
+ config.h:
+ 	@echo creating $@ from config.def.h
+@@ -30,7 +37,7 @@ surf: ${OBJ}
+ 
+ clean:
+ 	@echo cleaning
+-	@rm -f surf ${OBJ} surf-${VERSION}.tar.gz
++	@rm -f surf ${OBJ} surf-${VERSION}.tar.gz filters_compiled
+ 
+ dist: clean
+ 	@echo creating dist tarball
+diff --git a/config.def.h b/config.def.h
+index 80a0feb..3cc5131 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -21,6 +21,13 @@ static char *cafile         = "/etc/ssl/certs/ca-certificates.crt";
+ static char *strictssl      = FALSE; /* Refuse untrusted SSL connections */
+ static time_t sessiontime   = 3600;
+ 
++/* Regular expressions to match URLs that should not be loaded */
++char *filter_patterns[] = {
++#include "filters_compiled"
++};
++/* Define this for verbose filtering */
++// #define FILTER_VERBOSE
++
+ /* Webkit default features */
+ static Bool enablescrollbars = TRUE;
+ static Bool enablespatialbrowsing = TRUE;
+diff --git a/filters.def b/filters.def
+new file mode 100644
+index 0000000..77158de
+--- /dev/null
++++ b/filters.def
+@@ -0,0 +1,2 @@
++^eviladvertisments\.com$
++/favicon\.ico$
+diff --git a/surf.c b/surf.c
+index 7c78b4a..8d24197 100644
+--- a/surf.c
++++ b/surf.c
+@@ -20,6 +20,7 @@
+ #include <webkit/webkit.h>
+ #include <glib/gstdio.h>
+ #include <JavaScriptCore/JavaScript.h>
++#include <regex.h>
+ #include <sys/file.h>
+ #include <libgen.h>
+ #include <stdarg.h>
+@@ -27,6 +28,7 @@
+ #include "arg.h"
+ 
+ char *argv0;
++regex_t *filter_expressions;
+ 
+ #define LENGTH(x)               (sizeof x / sizeof x[0])
+ #define CLEANMASK(mask)         (mask & (MODKEY|GDK_SHIFT_MASK))
+@@ -119,6 +121,8 @@ static void destroyclient(Client *c);
+ static void destroywin(GtkWidget* w, Client *c);
+ static void die(const char *errstr, ...);
+ static void eval(Client *c, const Arg *arg);
++static bool filter_init(void);
++static bool filter_request(const gchar *uri);
+ static void find(Client *c, const Arg *arg);
+ static void fullscreen(Client *c, const Arg *arg);
+ static void geopolicyrequested(WebKitWebView *v, WebKitWebFrame *f,
+@@ -200,7 +204,7 @@ beforerequest(WebKitWebView *w, WebKitWebFrame *f, WebKitWebResource *r,
+ 		gpointer d) {
+ 	const gchar *uri = webkit_network_request_get_uri(req);
+ 
+-	if(g_str_has_suffix(uri, "/favicon.ico"))
++	if(filter_request(uri))
+ 		webkit_network_request_set_uri(req, "about:blank");
+ }
+ 
+@@ -473,6 +477,49 @@ die(const char *errstr, ...) {
+ 	exit(EXIT_FAILURE);
+ }
+ 
++static bool
++filter_init(void) {
++	bool errors = false;
++	char *errorbuf;
++
++	errorbuf = malloc(sizeof(char) * BUFSIZ);
++	filter_expressions = malloc(sizeof(regex_t) * LENGTH(filter_patterns));
++
++	for (off_t idx = 0; idx < LENGTH(filter_patterns); idx++) {
++		char *pat = filter_patterns[idx];
++		int err = regcomp(&filter_expressions[idx], pat,
++				            REG_EXTENDED | REG_ICASE | REG_NOSUB);
++		if (err != 0) {
++			/* regerror always ends messages with 0x00 */
++			(void) regerror(err, &filter_expressions[idx], errorbuf, BUFSIZ);
++			fprintf(stderr, "Failed to compile \"%s\": %s\n", pat, errorbuf);
++			errors = true;
++		}
++	}
++
++	free(errorbuf);
++	return !errors;
++}
++
++static bool
++filter_request(const gchar *uri) {
++	if (!strcmp(uri, "about:blank"))
++		return false;
++	for (off_t idx = 0; idx < LENGTH(filter_patterns); idx++) {
++		if (regexec(&filter_expressions[idx], uri, 0, NULL, 0) == REG_NOMATCH) {
++			continue;
++		}
++#ifdef FILTER_VERBOSE
++		fprintf(stderr, "filtering \"%s\"\n", uri);
++#endif
++		return true;
++	}
++#ifdef FILTER_VERBOSE
++	fprintf(stderr, "not filtering \"%s\"\n", uri);
++#endif
++	return false;
++}
++
+ static void
+ find(Client *c, const Arg *arg) {
+ 	const char *s;
+@@ -1152,6 +1199,10 @@ setup(void) {
+ 		g_free(new_proxy);
+ 		usingproxy = 1;
+ 	}
++
++	if (!filter_init()) {
++		die("Failed to compile one or more filter expressions\n");
++	}
+ }
+ 
+ static void

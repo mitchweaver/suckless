@@ -3,14 +3,13 @@
 const static char *searchengine = "https://duckduckgo.com/html/?q=";
 const static SearchEngine searchengines[] = {
     { "d",      "https://duckduckgo.com/html/?q=%s" },
-    { "g",      "https://encrypted.google.com/search?q=%s"   },
+    { "g",      "https://google.com/search?q=%s"   },
     { "git",    "https://github.com/search?utf8=&q=%s&type=" },
     { "ugit",   "https://github.com/%s" },
     { "gist",   "https://gist.github.com/search?q=%s" },
     { "wiki",   "https://en.wikipedia.org/wiki/%s" },
     { "w",      "https://en.wikipedia.org/wiki/%s" },
     { "metal",  "https://metal-archives.com/search?searchString=%s&type=band_name" },
-    { "m",      "https://metal-archives.com/search?searchString=%s&type=band_name" },
     { "discogs","https://www.discogs.com/search?q=%s&btn=&type=all" },
     { "discog", "https://www.discogs.com/search?q=%s&btn=&type=all" },
     { "bc",     "https://bandcamp.com/search?q=%s" },
@@ -24,15 +23,10 @@ const static SearchEngine searchengines[] = {
     { "reddit", "https://reddit.com/search?q=%s" },
     { "pirate", "https://thepiratebay.org/search/%s" },
     { "think",  "https://thinkwiki.org/w/index.php?search=%s" },
-    { "ebay",   "https://ebay.de/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313.TR0.TRC0.H0.Xthinkp.TRS0&_nkw=%s&_sacat=0" },
-    { "e",      "https://ebay.de/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313.TR0.TRC0.H0.Xthinkp.TRS0&_nkw=%s&_sacat=0" },
     { "dict",   "https://thefreedictionary.com/%s" },
     { "thes",   "https://thesaurus.com/browse/%s" },
-    { "wine",   "https://www.winehq.org/search?q=%s" },
     { "urban",  "https://www.urbandictionary.com/define.php?term=%s" },
-    { "rs",     "https://oldschool.runescape.wiki/?search=%s" },
-    { "osrs",   "https://oldschool.runescape.wiki/?search=%s" },
-    { "07",   "https://oldschool.runescape.wiki/?search=%s" },
+    { "tcg",    "https://shop.tcgplayer.com/all/product/show?newSearch=false&IsProductNameExact=false&ProductName=%s&Language=English&orientation=list" }
 };
 
 static char *scriptfile = "/home/mitch/etc/suckless/surf/script.js";
@@ -46,6 +40,14 @@ static SiteSpecific styles[] = { "ljfadslfksaldflskfd", };
 static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64)";
 /* static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0"; */
 /* static char *fulluseragent  = "Mozilla/5.0 (X11; rv:10.0) Gecko/20100101 Firefox/10.0"; */
+
+/* Regular expressions to match URLs that should not be loaded */
+char *filter_patterns[] = {
+    #include "filters_compiled"
+};
+/* Define this for verbose filtering */
+// #define FILTER_VERBOSE
+
 
 static UriParameters uriparams[] = {
     // no css

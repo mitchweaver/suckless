@@ -1,5 +1,5 @@
 static const int GAP_PX      = 18; /* gap pixel between windows */
-static const int start_with_gaps = 0;
+static const int start_with_gaps = 1;
 static const int topbar        = 1; /* 0 means bottom bar */
 
 static int BORDER_PX = 0;
@@ -111,9 +111,9 @@ static const char *scrot[] = { "scrot", "-z", "-u", NULL };
 static const char *scrap[] = { "scrap", "-u", NULL };
 static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/bright 10", NULL };
 static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/bright -10", NULL };
-static const char *record[] = { "dash", "-c", "cd ${HOME}/var/recordings ; ${HOME}/bin/record &", NULL };
-static const char *togglerecord[] = { "dash", "-c", "${HOME}/bin/record --toggle", NULL };
-static const char *stoprecord[] = { "dash", "-c", "${HOME}/bin/record --stop", NULL };
+/* static const char *record[] = { "dash", "-c", "cd ${HOME}/var/recordings ; ${HOME}/bin/record &", NULL }; */
+/* static const char *togglerecord[] = { "dash", "-c", "${HOME}/bin/record --toggle", NULL }; */
+/* static const char *stoprecord[] = { "dash", "-c", "${HOME}/bin/record --stop", NULL }; */
 //static const char *history[] = { "dhist", NULL };
 
 #include "movestack.c"
@@ -157,9 +157,9 @@ const static Key keys[] = {
     { Mod1Mask|ControlMask,         45,       spawn,          {.v = togglekeyboardlayout }}, // k
     { Mod1Mask|ControlMask,         65,       spawn,          {.v = toggletouchpad }}, // space
     /* // ------------------------------------------------------------------ // */
-    { 0,                            74,       spawn,          {.v = record }}, // F8
-    { 0,                            75,       spawn,          {.v = togglerecord }}, // F9
-    { 0,                            76,       spawn,          {.v = stoprecord }}, // F10
+    /* { 0,                            74,       spawn,          {.v = record }}, // F8 */
+    /* { 0,                            75,       spawn,          {.v = togglerecord }}, // F9 */
+    /* { 0,                            76,       spawn,          {.v = stoprecord }}, // F10 */
     /* // ------------------------------------------------------------------ // */
     { Mod1Mask,                     44,       focusstack,     {.i = +1 } }, // j
     { Mod1Mask,                     45,       focusstack,     {.i = -1 } }, // k
