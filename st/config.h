@@ -2,8 +2,10 @@
 
 /* --------------- Font ---------------------------------- */
 /* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
-/* char font[] = "Terminus:pixelsize=14:atialias=false:autohint=false"; */
-char font[] = "Terminus:pixelsize=18:atialias=false:autohint=false";
+
+char font[] = "Terminus:pixelsize=14:atialias=false:autohint=false";
+//char font[] = "Terminus:pixelsize=18:atialias=false:autohint=false";
+
 /* char font[] = "xos4 Terminus:pixelsize=14:antialias=false:autohint=false"; */
 //--
 /* char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
