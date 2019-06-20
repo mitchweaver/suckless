@@ -1,5 +1,5 @@
 static const int GAP_PX      = 18; /* gap pixel between windows */
-static const int start_with_gaps = 1;
+static const int start_with_gaps = 0;
 static const int topbar        = 1; /* 0 means bottom bar */
 
 static int BORDER_PX = 0;
@@ -87,9 +87,11 @@ static char dmenumon[2] = "0";
 static const char *dmenucmd[] = { "dash", "-c", "${HOME}/bin/menu run -p 'Run:'", NULL };
 
 static const char *surf[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
-static const char *chrome[] = { "google-chrome-stable", "--new-window", NULL };
+static const char *chromium[] = { "chromium", "--new-window", NULL };
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
+static const char *vimwiki[] = { "st", "-e", "nvim", "-c", "VimwikiIndex", NULL };
+static const char *htop[] = { "st", "-e", "htop", NULL };
 static const char *filechooser[] = { "pcmanfm", NULL };
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
@@ -123,13 +125,15 @@ const static Key keys[] = {
     // ------------------------------------------------------------------- //
     { Mod1Mask,                     33,             spawn,    {.v = dmenucmd } }, // p
     { Mod1Mask,                     36,             spawn,    {.v = term } }, // return
-    { Mod1Mask,                     25,             spawn,    {.v = surf } }, // w
-    { Mod1Mask|ShiftMask,           25,             spawn,    {.v = chrome } }, // a
+    { Mod1Mask|ShiftMask,           25,             spawn,    {.v = surf } }, // w
+    { Mod1Mask,                     25,             spawn,    {.v = chromium } }, // w
     { Mod1Mask,                     32,             spawn,    {.v = dedit } }, // o
     { Mod1Mask,                     30,             spawn,    {.v = tasks } }, // u
     { Mod1Mask,                     31,             spawn,    {.v = music } }, // i
     { Mod1Mask,                     54,             spawn,    {.v = clipboard } }, // c
     { Mod1Mask,                     27,             spawn,    {.v = ranger } }, // r
+    { Mod1Mask,                     55,             spawn,    {.v = vimwiki } }, // v
+    { Mod1Mask,                     43,             spawn,    {.v = htop } }, // v
 
     { Mod1Mask,                     26,             spawn,    {.v = filechooser } }, // e
 
@@ -186,7 +190,7 @@ const static Key keys[] = {
     { Mod1Mask,                     42,       setlayout,  {.v = &layouts[3]} }, // grid // g
     { Mod1Mask,                     57,       setlayout,  {.v = &layouts[4]} }, // centered master // n
     /* { Mod1Mask,                     56,       setlayout,  {.v = &layouts[5]} }, // centered floating master // b */
-    { Mod1Mask,                     55,       setlayout,  {.v = &layouts[6]} }, // fibonacci // v
+//    { Mod1Mask,                     55,       setlayout,  {.v = &layouts[6]} }, // fibonacci // v
     { Mod1Mask,                     40,       setlayout,  {.v = &layouts[7]} }, // horizgrid // d
     { Mod1Mask,                     65,       setlayout,  {0} }, // toggle between last 2 layouts // space
     /* // ------------------------------------------------------------------- // */
