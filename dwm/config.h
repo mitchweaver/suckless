@@ -91,7 +91,6 @@ static const char *chromium[] = { "chromium", "--new-window", NULL };
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
 static const char *vimwiki[] = { "st", "-e", "nvim", "-c", "VimwikiIndex", NULL };
-static const char *htop[] = { "st", "-e", "htop", NULL };
 static const char *filechooser[] = { "pcmanfm", NULL };
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
@@ -133,7 +132,6 @@ const static Key keys[] = {
     { Mod1Mask,                     54,             spawn,    {.v = clipboard } }, // c
     { Mod1Mask,                     27,             spawn,    {.v = ranger } }, // r
     { Mod1Mask,                     55,             spawn,    {.v = vimwiki } }, // v
-    { Mod1Mask,                     43,             spawn,    {.v = htop } }, // v
 
     { Mod1Mask,                     26,             spawn,    {.v = filechooser } }, // e
 
