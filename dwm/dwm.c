@@ -1734,12 +1734,12 @@ void togglegaps() {
     if(gappx == 0) {
         gappx = GAP_PX;
         borderpx = BORDER_PX;
-        system("[ -z \"$(pgrep compton)\" ] && compton &");
+        system("${HOME}/bin/composit &");
     } else {
         gappx = 0;
         borderpx = BORDER_PX - BORDER_PX / 2;
         if( borderpx % 2 != 0 ) borderpx++;
-        system("[ \"$(pgrep compton)\" ] && pkill -9 compton");
+        system("${HOME}/bin/composit &");
     }
 
     // write our new gap config so our bar can read it

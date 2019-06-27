@@ -2,7 +2,7 @@ static const int GAP_PX      = 18; /* gap pixel between windows */
 static const int start_with_gaps = 0;
 static const int topbar        = 1; /* 0 means bottom bar */
 
-static int BORDER_PX = 0;
+static int BORDER_PX = 2;
 static const int CORNER_RADIUS = 0;
 static const int BAR_HEIGHT    = 14; // in pixels
 static const int snap = 0;
@@ -15,8 +15,11 @@ static const int terminals_keep_border = 0;
 // whether to warp mouse to next window on hjkl
 static const int warp_mouse = 0;
 
+// to use the themes that came with this repo:
 /* #include "themes/default-theme.h" */
 /* #include "themes/light-and-black.h" */
+
+// if you want to use pywal, (replace your $USER):
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
 
 static const char terminal[] = "st";

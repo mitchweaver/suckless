@@ -2,7 +2,7 @@
 
 People have been requesting this for a while.
 
-I'll get around to making patches eventually, but this
+I'll get around to making patches eventually™, but this
 will be a central repo to store everything.
 
 ### misc screenshots:
@@ -35,6 +35,4 @@ will be a central repo to store everything.
 
 -------
 
-dotfiles: http://github.com/mitchweaver/dots
-
-~/bin: http://github.com/mitchweaver/bin
+[dots](http://github.com/mitchweaver/dots) [bin](http://github.com/mitchweaver/bin)
