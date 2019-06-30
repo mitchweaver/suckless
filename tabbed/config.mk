@@ -23,6 +23,5 @@ CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE
 CFLAGS   = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
 LDFLAGS  = -s ${LIBS}
 
-#CC = tcc -w
-CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
-# CC = clang -w -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro
+CC = tcc -w
+#CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie

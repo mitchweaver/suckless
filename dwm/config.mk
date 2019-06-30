@@ -24,7 +24,7 @@ CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 -DVERSION=\"${VER
 CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os ${INCS} ${CPPFLAGS}
 LDFLAGS  = -s ${LIBS}
 
-#CC = tcc -w
-CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
+CC = tcc -w
+#CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
 # CC = musl-gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
 # CC = clang -w -O3 -pipe -std=c99 -fstack-protector-all -fpie -Wl,-pie -Wl,-z,relro

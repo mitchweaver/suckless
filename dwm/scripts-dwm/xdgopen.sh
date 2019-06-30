@@ -1,3 +1,7 @@
 #!/bin/sh
 
-xdg-open $(xclip -o) &
+if type xclip > /dev/null ; then
+    xdg-open $(xclip -o) &
+else
+    xdg-open $(xsel -o) &
+fi

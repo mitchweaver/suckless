@@ -1734,19 +1734,19 @@ void togglegaps() {
     if(gappx == 0) {
         gappx = GAP_PX;
         borderpx = BORDER_PX;
-        system("${HOME}/bin/composit &");
+        system("composit &");
     } else {
         gappx = 0;
         borderpx = BORDER_PX - BORDER_PX / 2;
         if( borderpx % 2 != 0 ) borderpx++;
-        system("${HOME}/bin/composit &");
+        system("composit &");
     }
 
     // write our new gap config so our bar can read it
     FILE *fgappx = fopen("/tmp/dwm_info/gappx", "w"); fprintf(fgappx, "%d", gappx); fclose(fgappx);
 
     // restart bar with our new gaps so it resizes
-    system("pkill -9 lemonbar ; pkill -9 bar ; bash ${HOME}/bin/bar &");
+    system("pkill bar ; bar &");
 
 }
 
@@ -1758,13 +1758,12 @@ void on_start(void) {
     borderpx = BORDER_PX;
     init_dwm_info(gappx, BAR_HEIGHT, topbar, NUM_WORKSPACES);
 
-    // Note: this is now in ~/.xinitrc
-    /* system("/bin/sh ${HOME}/bin/autostart &"); */
+    system("autostart &");
 }
 
 int main(int argc, char *argv[]) {
     on_start();
-    /* if (argc == 2 && !strcmp("-v", argv[1])) die("dwm-"VERSION); */
+    if (argc == 2 && !strcmp("-v", argv[1])) die("dwm-"VERSION);
     if (!(dpy = XOpenDisplay(NULL))) die("dwm: cannot open display");
     checkotherwm();
     setup();

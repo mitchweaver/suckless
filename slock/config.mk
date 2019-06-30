@@ -26,6 +26,7 @@ COMPATSRC = explicit_bzero.c
 #COMPATSRC =
 
 # linux
-CC = gcc -O3 -pipe
+#CC=gcc -O3 -pipe
+CC=tcc -w
 # openbsd
 # CC = clang -O3 -pipe

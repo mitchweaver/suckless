@@ -87,7 +87,7 @@ static const Layout layouts[] = {
 /* { Mod1Mask|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, */
 
 static char dmenumon[2] = "0";
-static const char *dmenucmd[] = { "dash", "-c", "${HOME}/bin/menu run -p 'Run:'", NULL };
+static const char *dmenucmd[] = { "dash", "-c", "menu run -p 'Run:'", NULL };
 
 static const char *surf[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
 static const char *chromium[] = { "chromium", "--new-window", NULL };
@@ -100,24 +100,24 @@ static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
 static const char *music[] = { "music", NULL };
 
-static const char *volup[] =   { "dash", "-c", "${HOME}/bin/vol -inc 2 ; vol > /tmp/bar/vol", NULL };
-static const char *voldown[] = { "dash", "-c", "${HOME}/bin/vol -dec 2 ; vol > /tmp/bar/vol", NULL };
+static const char *volup[] =   { "dash", "-c", "vol -inc 2 ; vol > /tmp/bar/vol", NULL };
+static const char *voldown[] = { "dash", "-c", "vol -dec 2 ; vol > /tmp/bar/vol", NULL };
 
 static const char *medianext[] = { "media", "--next", NULL };
 static const char *mediaprev[] = { "media", "--prev", NULL };
 static const char *mediatoggle[] = { "media", "--toggle", NULL };
 static const char *mediaff[] = { "media", "--skip_ahead", NULL };
 static const char *mediarw[] = { "media", "--skip_behind", NULL };
-static const char *togglekeyboardlayout[] = { "dash", "-c", "${HOME}/bin/keys", NULL };
+static const char *togglekeyboardlayout[] = { "dash", "-c", "keys", NULL };
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
 static const char *lock[] = { "slock", NULL };
 static const char *scrot[] = { "scrot", "-z", "-u", NULL };
 static const char *scrap[] = { "scrap", "-u", NULL };
-static const char *brightnessup[] = { "dash", "-c", "${HOME}/bin/bright 10", NULL };
-static const char *brightnessdown[] = { "dash", "-c", "${HOME}/bin/bright -10", NULL };
-/* static const char *record[] = { "dash", "-c", "cd ${HOME}/var/recordings ; ${HOME}/bin/record &", NULL }; */
-/* static const char *togglerecord[] = { "dash", "-c", "${HOME}/bin/record --toggle", NULL }; */
-/* static const char *stoprecord[] = { "dash", "-c", "${HOME}/bin/record --stop", NULL }; */
+static const char *brightnessup[] = { "dash", "-c", "bright 10", NULL };
+static const char *brightnessdown[] = { "dash", "-c", "bright -10", NULL };
+/* static const char *record[] = { "dash", "-c", "cd ${HOME}/var/recordings ; record &", NULL }; */
+/* static const char *togglerecord[] = { "dash", "-c", "record --toggle", NULL }; */
+/* static const char *stoprecord[] = { "dash", "-c", "record --stop", NULL }; */
 //static const char *history[] = { "dhist", NULL };
 
 #include "movestack.c"
@@ -227,5 +227,5 @@ const static Button buttons[] = {
     /* click                event mask      button          function        argument */
     { ClkClientWin,         Mod1Mask,       Button1,        movemouse,      {0} },
     { ClkClientWin,         Mod1Mask,       Button3,        resizemouse,    {0} },
-    { ClkRootWin,           0,              Button3,        spawn,          SH("/home/mitch/bin/x9term") },
+    { ClkRootWin,           0,              Button3,        spawn,          SH("x9term") },
 };
