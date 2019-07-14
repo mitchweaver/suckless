@@ -1,5 +1,5 @@
 static const int GAP_PX      = 18; /* gap pixel between windows */
-static const int start_with_gaps = 0;
+static const int start_with_gaps = 1;
 static const int topbar        = 1; /* 0 means bottom bar */
 
 static int BORDER_PX = 2;
@@ -113,8 +113,8 @@ static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-to
 static const char *lock[] = { "slock", NULL };
 static const char *scrot[] = { "scrot", "-z", "-u", NULL };
 static const char *scrap[] = { "scrap", "-u", NULL };
-static const char *brightnessup[] = { "dash", "-c", "bright 10", NULL };
-static const char *brightnessdown[] = { "dash", "-c", "bright -10", NULL };
+static const char *brightnessup[] = { "dash", "-c", "bright 5", NULL };
+static const char *brightnessdown[] = { "dash", "-c", "bright -5", NULL };
 /* static const char *record[] = { "dash", "-c", "cd ${HOME}/var/recordings ; record &", NULL }; */
 /* static const char *togglerecord[] = { "dash", "-c", "record --toggle", NULL }; */
 /* static const char *stoprecord[] = { "dash", "-c", "record --stop", NULL }; */
@@ -127,8 +127,8 @@ const static Key keys[] = {
     // ------------------------------------------------------------------- //
     { Mod1Mask,                     33,             spawn,    {.v = dmenucmd } }, // p
     { Mod1Mask,                     36,             spawn,    {.v = term } }, // return
-    { Mod1Mask|ShiftMask,           25,             spawn,    {.v = surf } }, // w
-    { Mod1Mask,                     25,             spawn,    {.v = chromium } }, // w
+    { Mod1Mask,                     25,             spawn,    {.v = surf } }, // w
+    { Mod1Mask|ShiftMask,           25,             spawn,    {.v = chromium } }, // w
     { Mod1Mask,                     32,             spawn,    {.v = dedit } }, // o
     { Mod1Mask,                     30,             spawn,    {.v = tasks } }, // u
     { Mod1Mask,                     31,             spawn,    {.v = music } }, // i

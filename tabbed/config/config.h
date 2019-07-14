@@ -1,14 +1,5 @@
-/* static const char font[]        = "Share Tech Mono:pixelsize=18:antialias=true:autohint=true"; */
-static const char font[]        = "Share Tech Mono:pixelsize=14:antialias=true:autohint=true";
-/* static const char font[]        = "Share Tech Mono:pixelsize=12:antialias=true:autohint=true"; */
-/* static const char font[]        = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
-/* static const char font[]        = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
-/* static const char font[]        = "MonteCarlo:pixelsize=12:antialias=false:autohint=false"; */
-/* static const char font[]        = "Roboto Mono:pixelsize=14:antialias=true:autohint=true"; */
-/* static const char font[]        = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
-
-// whether to append 1., 2., 3. etc to the start of clients
-static const Bool numberclients = False;
+static const char font[]        = "Terminus:pixelsize=16:antialias=false:autohint=false";
+/* static const char font[]        = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
 
 static const int WIDTH=500;
 static const int HEIGHT=400;
@@ -17,9 +8,8 @@ static const int HEIGHT=400;
 /* static const int barheight = 24; */ 
 static const int barheight = -1; 
 
-/* #include "themes/default-theme.h" */
-/* #include "themes/light-orange-theme.h" */
-#include "/home/mitch/.cache/wal/colors-wal-tabbed.h" // wal
+// pywal theme
+#include "/home/mitch/.cache/wal/colors-wal-tabbed.h"
 
 static const char before[]      = "<";
 static const char after[]       = ">";
