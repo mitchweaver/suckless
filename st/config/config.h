@@ -8,6 +8,7 @@ char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false";
 /* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* ------------------------------------------------------- */
 
+float alpha = 0.8; /* bg opacity */
 int borderpx = 22; /* Internal border */
 static unsigned int cols = 80; /* Default columns */
 static unsigned int rows = 30; /* Default rows */
