@@ -102,7 +102,20 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
         ". ${HOME}/.cache/wal/colors.sh ;" \
         "prop=\"$(printf '%b' \"$(xprop -id $1 $2 " \
         "| sed \"s/^$2(STRING) = //;s/^\\\"\\(.*\\)\\\"$/\\1/\" && cat ${HOME}/var/files/bookmarks/bookmarks.txt)\" " \
-        "| dmenu -nb $color0 -nf $color15 -sb $color2 -sf $color15 -l 10 -p \"$4\" -w $1)\" && " \
+        "| dmenu -i -nb $color0 -nf $color15 -sb $color2 -sf $color15 -l 10 -p \"$4\" -w $1)\" && " \
+        "xprop -id $1 -f $3 8s -set $3 \"$prop\"", \
+        "surf-setprop", winid, r, s, p, NULL \
+    } \
+}
+
+// same as above but don't cat my bookmarks
+#define SETFIND(r, s, p) { \
+    .v = (const char *[]){ "/bin/sh", "-c", \
+        "[ \"$(pgrep dmenu)\" ] && pkill -9 dmenu ; " \
+        ". ${HOME}/.cache/wal/colors.sh ;" \
+        "prop=\"$(printf '%b' \"$(xprop -id $1 $2 " \
+        "| sed \"s/^$2(STRING) = //;s/^\\\"\\(.*\\)\\\"$/\\1/\")\" " \
+        "| dmenu -i -nb $color0 -nf $color15 -sb $color2 -sf $color15 -l 10 -p \"$4\" -w $1)\" && " \
         "xprop -id $1 -f $3 8s -set $3 \"$prop\"", \
         "surf-setprop", winid, r, s, p, NULL \
     } \
@@ -123,7 +136,7 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
  */
 #define PLUMB(u) {\
         .v = (const char *[]){ "/bin/sh", "-c", \
-             "xdg-open \"$0\"", u, NULL \
+             "${HOME}/bin/utils/open \"$0\"", u, NULL \
         } \
 }
 
@@ -178,7 +191,7 @@ static SiteSpecific certs[] = {
 static Key keys[] = {
 	/* modifier              keyval          function    arg */
 	{ MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", PROMPT_GO) },
-	{ MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
+	{ MODKEY,                GDK_KEY_slash,  spawn,      SETFIND("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
 
     /* ------------------------ FINDING ------------------------------ */
     { MODKEY,               GDK_KEY_period,  find,       { .i = +1 } },
