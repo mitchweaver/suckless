@@ -1,0 +1,22 @@
+--- surf/config.def.h
++++ surf/config.def.h_new
+@@ -164,3 +164,5 @@ static Button buttons[] = {
+ 	{ OnAny,        0,              9,      clicknavigate,  { .i = +1 },    1 },
+ 	{ OnMedia,      MODKEY,         1,      clickexternplayer, { 0 },       1 },
+ };
++
++#define HOMEPAGE "https://start.duckduckgo.com/html"
+--- surf/surf.c
++++ surf/surf.c_new
+@@ -1751,7 +1751,11 @@ main(int argc, char *argv[])
+ 	if (argc > 0)
+ 		arg.v = argv[0];
+ 	else
++#ifdef HOMEPAGE
++		arg.v = HOMEPAGE;
++#else
+ 		arg.v = "about:blank";
++#endif
+ 
+ 	setup();
+ 	c = newclient(NULL);

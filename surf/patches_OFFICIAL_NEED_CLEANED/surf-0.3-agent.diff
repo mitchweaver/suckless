@@ -1,0 +1,65 @@
+--- surf/config.def.h	Fri Oct 30 13:38:14 2009 +0100
++++ surf/config.def.h_new	Fri Oct 30 10:26:39 2009 -0700
+@@ -29,6 +29,7 @@
+     { MODKEY,               GDK_k,      scroll,     { .i = -1 } },
+     { 0,                    GDK_Escape, stop,       { 0 } },
+     { MODKEY,               GDK_o,      source,     { 0 } },
++    { MODKEY,               GDK_a,      spawn,      SETPROP("_SURF_AGENT") },
+     { MODKEY,               GDK_g,      spawn,      SETPROP("_SURF_URI") },
+     { MODKEY,               GDK_slash,  spawn,      SETPROP("_SURF_FIND") },
+     { MODKEY,               GDK_n,      find,       { .b = TRUE } },
+--- surf/surf.c	Fri Oct 30 13:38:14 2009 +0100
++++ surf/surf.c_new	Fri Oct 30 10:26:39 2009 -0700
+@@ -55,7 +55,7 @@
+ } Key;
+ 
+ static Display *dpy;
+-static Atom uriprop, findprop;
++static Atom uriprop, findprop, agentprop;
+ static SoupCookieJar *cookies;
+ static SoupSession *session;
+ static Client *clients = NULL;
+@@ -119,6 +119,16 @@
+ /* configuration, allows nested code to access above variables */
+ #include "config.h"
+ 
++void
++agent(Client *c, const Arg *arg) {
++	const char *s;
++	WebKitWebSettings *settings;
++
++	s = getatom(c, agentprop);
++	settings = webkit_web_view_get_settings(c->view);
++	g_object_set(G_OBJECT(settings), "user-agent", s, NULL);
++}
++
+ char *
+ buildpath(const char *path) {
+ 	char *apath, *p;
+@@ -537,6 +547,7 @@
+ 	g_object_set(G_OBJECT(settings), "user-stylesheet-uri", uri, NULL);
+ 	g_free(uri);
+ 	setatom(c, findprop, "");
++	setatom(c, agentprop, useragent);
+ 
+ 	c->download = NULL;
+ 	c->title = NULL;
+@@ -605,6 +616,10 @@
+ 				arg.b = TRUE;
+ 				find(c, &arg);
+ 			}
++			else if(ev->atom == agentprop) {
++				arg.v = getatom(c, agentprop);
++				agent(c, &arg);
++			}
+ 			return GDK_FILTER_REMOVE;
+ 		}
+ 	}
+@@ -692,6 +707,7 @@
+ 	session = webkit_get_default_session();
+ 	uriprop = XInternAtom(dpy, "_SURF_URI", False);
+ 	findprop = XInternAtom(dpy, "_SURF_FIND", False);
++	agentprop = XInternAtom(dpy, "_SURF_AGENT", False);
+ 
+ 	/* create dirs and files */
+ 	cookiefile = buildpath(cookiefile);

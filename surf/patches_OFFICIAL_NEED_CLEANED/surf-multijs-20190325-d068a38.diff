@@ -1,0 +1,101 @@
+From 8d8ca34a8e61733711e23ce43b88435bfdfd4962 Mon Sep 17 00:00:00 2001
+From: knary <theknary@gmail.com>
+Date: Mon, 25 Mar 2019 15:03:15 -0400
+Subject: [PATCH] This patch replaces scriptfile with an array of
+ scriptfiles[]. This allows for the inclusion of multiple javascript files
+ instead of filling up one file with multiple script plugins.
+
+---
+ config.def.h |  4 +++-
+ surf.c       | 23 +++++++++++++++--------
+ 2 files changed, 18 insertions(+), 9 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 34265f6..7d7d68e 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,11 +1,13 @@
+ /* modifier 0 means no modifier */
+ static int surfuseragent    = 1;  /* Append Surf version to default WebKit user agent */
+ static char *fulluseragent  = ""; /* Or override the whole user agent string */
+-static char *scriptfile     = "~/.surf/script.js";
+ static char *styledir       = "~/.surf/styles/";
+ static char *certdir        = "~/.surf/certificates/";
+ static char *cachedir       = "~/.surf/cache/";
+ static char *cookiefile     = "~/.surf/cookies.txt";
++static char *scriptfiles[]  = {
++	"~/.surf/script.js",
++};
+ 
+ /* Webkit default features */
+ /* Highest priority value will be used.
+diff --git a/surf.c b/surf.c
+index 2b54e3c..34a75de 100644
+--- a/surf.c
++++ b/surf.c
+@@ -337,9 +337,11 @@ setup(void)
+ 
+ 	/* dirs and files */
+ 	cookiefile = buildfile(cookiefile);
+-	scriptfile = buildfile(scriptfile);
+ 	cachedir   = buildpath(cachedir);
+ 	certdir    = buildpath(certdir);
++	for (i = 0; i < LENGTH(scriptfiles); i++) {
++		scriptfiles[i] = buildfile(scriptfiles[i]);
++	}
+ 
+ 	gdkkb = gdk_seat_get_keyboard(gdk_display_get_default_seat(gdpy));
+ 
+@@ -945,9 +947,11 @@ runscript(Client *c)
+ 	gchar *script;
+ 	gsize l;
+ 
+-	if (g_file_get_contents(scriptfile, &script, &l, NULL) && l)
+-		evalscript(c, "%s", script);
+-	g_free(script);
++	for (int i = 0; i < LENGTH(scriptfiles); i++) {
++		if (g_file_get_contents(scriptfiles[i], &script, &l, NULL) && l)
++			evalscript(c, "%s", script);
++		g_free(script);
++	}
+ }
+ 
+ void
+@@ -1010,9 +1014,9 @@ newwindow(Client *c, const Arg *a, int noembed)
+ 	cmd[i++] = curconfig[Style].val.i ?           "-M" : "-m" ;
+ 	cmd[i++] = curconfig[Inspector].val.i ?       "-N" : "-n" ;
+ 	cmd[i++] = curconfig[Plugins].val.i ?         "-P" : "-p" ;
+-	if (scriptfile && g_strcmp0(scriptfile, "")) {
++	if (scriptfiles[0] && g_strcmp0(scriptfiles[0], "")) {
+ 		cmd[i++] = "-r";
+-		cmd[i++] = scriptfile;
++		cmd[i++] = scriptfiles[0];
+ 	}
+ 	cmd[i++] = curconfig[JavaScript].val.i ? "-S" : "-s";
+ 	cmd[i++] = curconfig[StrictTLS].val.i ? "-T" : "-t";
+@@ -1076,9 +1080,12 @@ cleanup(void)
+ 	close(pipein[0]);
+ 	close(pipeout[1]);
+ 	g_free(cookiefile);
+-	g_free(scriptfile);
+ 	g_free(stylefile);
+ 	g_free(cachedir);
++	for (int i = 0; i < LENGTH(scriptfiles); i++) {
++		g_free(scriptfiles[i]);
++	}
++
+ 	XCloseDisplay(dpy);
+ }
+ 
+@@ -2067,7 +2074,7 @@ main(int argc, char *argv[])
+ 		defconfig[Plugins].prio = 2;
+ 		break;
+ 	case 'r':
+-		scriptfile = EARGF(usage());
++		scriptfiles[0] = EARGF(usage());
+ 		break;
+ 	case 's':
+ 		defconfig[JavaScript].val.i = 0;
+-- 
+2.21.0
+

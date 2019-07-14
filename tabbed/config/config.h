@@ -1,8 +1,8 @@
 static const char font[]        = "Terminus:pixelsize=16:antialias=false:autohint=false";
 /* static const char font[]        = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
 
-static const int WIDTH=500;
-static const int HEIGHT=400;
+static const int WIDTH=400;
+static const int HEIGHT=300;
 
 /* set to -1 if you want to use the text's height */
 /* static const int barheight = 24; */ 

@@ -1,7 +1,6 @@
-diff --git a/surf.c b/surf.c
 index 93a1629..eb2af97 100644
---- a/surf.c
-+++ b/surf.c
+--- surf/surf.c
++++ surf/surf.c_new
 @@ -129,6 +129,11 @@ typedef struct {
  } Button;
  
