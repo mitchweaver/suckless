@@ -1,3 +1,4 @@
+/* edited to avoid collision with -w windowid argument */
 --- dmenu/dmenu.c
 +++ dmenu/dmenu.c_new
 @@ -36,6 +36,9 @@ struct item {
@@ -44,7 +45,7 @@
 +			dmx = atoi(argv[++i]);
 +		else if (!strcmp(argv[i], "-y"))   /* window y offset (from bottom up if -b) */
 +			dmy = atoi(argv[++i]);
-+		else if (!strcmp(argv[i], "-w"))   /* make dmenu this wide */
++		else if (!strcmp(argv[i], "-wi"))   /* make dmenu this wide */
 +			dmw = atoi(argv[++i]);
  		else if (!strcmp(argv[i], "-m"))
  			mon = atoi(argv[++i]);
