@@ -1,7 +1,5 @@
-diff --git a/config.def.h b/config.def.h
-index b41747f..1b52a86 100644
---- a/config.def.h
-+++ b/config.def.h
+--- st/config.def.h
++++ st/config.def.h_new
 @@ -261,7 +261,7 @@ static Key key[] = {
  	{ XK_KP_Delete,     ShiftMask,      "\033[2K",      -1,    0,    0},
  	{ XK_KP_Delete,     ShiftMask,      "\033[3;2~",    +1,    0,    0},
@@ -21,10 +19,8 @@ index b41747f..1b52a86 100644
  	{ XK_BackSpace,     Mod1Mask,       "\033\177",      0,    0,    0},
  	{ XK_Home,          ShiftMask,      "\033[2J",       0,   -1,    0},
  	{ XK_Home,          ShiftMask,      "\033[1;2H",     0,   +1,    0},
-diff --git a/st.info b/st.info
-index b70fefa..d979946 100644
---- a/st.info
-+++ b/st.info
+--- st/st.info
++++ st/st.info_new
 @@ -53,7 +53,7 @@ st| simpleterm,
  	ka3=\E[5~,
  	kc1=\E[4~,
