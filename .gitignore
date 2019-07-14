@@ -27,6 +27,8 @@ blind
 *.cache
 *.tmp
 *.temp
+*.rej
+*.orig
 *__pycache__
 *TODO*
 *FAQ*
@@ -58,3 +60,18 @@ st/st
 surf/surf
 swarp/swarp
 tabbed/tabbed
+
+blind/blind/blind
+dmenu/dmenu/dmenu
+dmenu/stest
+dmenu/dmenu/dmenu/stest
+dwm/dwm/dwm
+ii/ii/ii
+quark/quark/quark
+sent/sent/sent
+slock/slock/slock
+sselp/sselp/sselp
+st/st/st
+surf/surf/surf
+swarp/swarp/swarp
+tabbed/tabbed/tabbed
