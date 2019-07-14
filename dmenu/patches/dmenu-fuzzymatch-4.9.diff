@@ -1,5 +1,15 @@
---- a/dmenu.c
-+++ b/dmenu.c
+--- dmenu/config.def.h
++++ dmenu/config.def.h_new
+@@ -2,6 +2,7 @@
+ /* Default settings; can be overriden by command line. */
+ 
+ static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
++static int fuzzy = 1;                      /* -F  option; if 0, dmenu doesn't use fuzzy matching     */
+ /* -fn option overrides fonts[0]; default X11 font or font set */
+ static const char *fonts[] = {
+ 	"monospace:size=10"
+--- dmenu/dmenu.c
++++ dmenu/dmenu.c_new
 @@ -1,6 +1,7 @@
  /* See LICENSE file for copyright and license details. */
  #include <ctype.h>
@@ -8,7 +18,7 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
-@@ -31,6 +32,7 @@ struct item {
+@@ -32,6 +33,7 @@ struct item {
  	char *text;
  	struct item *left, *right;
  	int out;
@@ -16,7 +26,7 @@
  };
  
  static char text[BUFSIZ] = "";
-@@ -209,9 +211,94 @@ grabkeyboard(void)
+@@ -210,9 +212,94 @@ grabkeyboard(void)
  	die("cannot grab keyboard");
  }
  
@@ -111,7 +121,7 @@
  	static char **tokv = NULL;
  	static int tokn = 0;
  
-@@ -656,6 +743,8 @@ main(int argc, char *argv[])
+@@ -702,6 +789,8 @@ main(int argc, char *argv[])
  			topbar = 0;
  		else if (!strcmp(argv[i], "-f"))   /* grabs keyboard before reading stdin */
  			fast = 1;
@@ -120,25 +130,6 @@
  		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
  			fstrncmp = strncasecmp;
  			fstrstr = cistrstr;
+-- 
+2.22.0
 
-/* --- dmenu-patches.orig/dmenu/config.def.h */
-/* +++ dmenu-patches/dmenu/config.def.h */
-/* @@ -2,6 +2,7 @@ */
-/*  /1* Default settings; can be overriden by command line. *1/ */
- 
-/*  static int topbar = 1;                      /1* -b  option; if 0, dmenu appears at bottom     *1/ */
-/* +static int fuzzy = 1;                      /1* -F  option; if 0, dmenu doesn't use fuzzy matching     *1/ */
-/*  /1* -fn option overrides fonts[0]; default X11 font or font set *1/ */
-/*  static const char *fonts[] = { */
-/*  	"monospace:size=10" */
---- a/config.mk
-+++ b/config.mk
-@@ -20,7 +20,7 @@ FREETYPEINC = /usr/include/freetype2
- 
- # includes and libs
- INCS = -I${X11INC} -I${FREETYPEINC}
--LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS}
-+LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS} -lm
- 
- # flags
- CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE=200809L -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}

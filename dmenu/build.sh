@@ -1,12 +1,9 @@
 #!/bin/sh
 
-COMMIT=6dc3978
-
 download() {
     rm -rf $name 2> /dev/null
     git clone https://git.suckless.org/$name
     cd $name
-    git reset --hard 6dc3978
     cd - > /dev/null
 }
 
@@ -41,4 +38,4 @@ main() {
     clean > /dev/null
 }
 
-name=tabbed main
+name=dmenu main
