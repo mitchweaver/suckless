@@ -37,8 +37,9 @@ static char *cachedir       = "~/.surf/cache/";
 static char *cookiefile     = "~/.surf/cookies.txt";
 static char *historyfile    = "~/.surf/history.txt";
 static char *scriptfiles[]  = {
-    "~/src/suckless/surf/scripts/link_hints.js",
-	"~/.surf/script.js",
+    "~/src/suckless/surf/scripts_official/link_hints.js",
+//    "~/src/suckless/surf/scripts_mine/.js",
+//	"~/.surf/script.js",
 };
 
 /* Webkit default features */
@@ -103,7 +104,7 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
         "[ \"$(pgrep dmenu)\" ] && pkill -9 dmenu ; " \
         ". ${HOME}/.cache/wal/colors.sh ;" \
         "prop=\"$(printf '%b' \"$(xprop -id $1 $2 " \
-        "| sed \"s/^$2(STRING) = //;s/^\\\"\\(.*\\)\\\"$/\\1/\" && cat ${HOME}/var/files/bookmarks/bookmarks.txt)\" " \
+        "| sed \"s/^$2(STRING) = //;s/^\\\"\\(.*\\)\\\"$/\\1/\" && cat ${HOME}/var/files/bkm/bookmarks.txt)\" " \
         "| dmenu -i -nb $color0 -nf $color15 -sb $color2 -sf $color15 -l 10 -p \"$4\" -w $1)\" && " \
         "xprop -id $1 -f $3 8s -set $3 \"$prop\"", \
         "surf-setprop", winid, r, s, p, NULL \
@@ -155,21 +156,27 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
 
 
 #define BM_ADD { .v = (char *[]){ "/bin/sh", "-c", \
-    "BMKS=\${HOME}/var/files/bookmarks/bookmarks.txt ; \
+    "BMKS=\${HOME}/var/files/bkm/bookmarks.txt ; \
     (echo `xprop -id $0 _SURF_URI | cut -d '\"' -f 2` && \
     cat \${BMKS}) | sort -u > \${BMKS}_new && \
     mv \${BMKS}_new \${BMKS}", \
     winid, NULL } }
 
-#define SETURI(p)       { .v = (char *[]){ "/bin/sh", "-c", \
-"prop=\"`surf_history_dmenu.sh`\" &&" \
-"xprop -id $1 -f $0 8s -set $0 \"$prop\"", \
-p, winid, NULL } }
-
 // go to homepage with a hotkey, ex: mod+spacebar
 #define GO_HOME { .v = (char *[]){ "/bin/sh", "-c", \
     "xprop -id $0 -f _SURF_GO 8s -set _SURF_GO \
     \${HOME}/usr/startpage/index.html || exit 0", \
+    winid, NULL } }
+
+// grab bookmark from my bookmark script
+#define BKM { .v = (char *[]){ "/bin/sh", "-c", \
+    "\${HOME}/src/suckless/surf/scripts_mine/bkm.sh $0", \
+    winid, NULL } }
+
+// store a bookmark to $bkm/unsorted
+#define BKM_ADD { .v = (char *[]){ "/bin/sh", "-c", \
+    "echo `xprop -id $0 _SURF_URI | cut -d '\"' -f 2` \
+    > \${HOME}/var/files/bkm/unsorted/\$(date)", \
     winid, NULL } }
 
 /* styles */
@@ -202,6 +209,8 @@ static Key keys[] = {
 
     /* ----------------- Custom Functions ---------------------------- */
 	{ MODKEY|SHIFT,          GDK_KEY_m,      spawn,      BM_ADD   },
+    { MODKEY,                GDK_KEY_e,      spawn,      BKM      },
+    { MODKEY|SHIFT,          GDK_KEY_e,      spawn,      BKM_ADD  },
     { MODKEY,                GDK_KEY_space,  spawn,      GO_HOME  },
     { MODKEY,                GDK_KEY_y,      spawn,      MPV_URL },
     /* ----------------- End Custom Functions ------------------------ */
@@ -261,7 +270,6 @@ static Key keys[] = {
 //	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_b,      toggle,     { .i = ScrollBars } },
 //	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_t,      toggle,     { .i = StrictTLS } },
 //	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_m,      toggle,     { .i = Style } },
-//    { MODKEY               , GDK_KEY_Return, spawn,      SETURI("_SURF_GO") },
 };
 
 /* button definitions */

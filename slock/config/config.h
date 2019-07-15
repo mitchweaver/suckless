@@ -21,7 +21,7 @@ static const char * text_color = "#ffffff";
 static const char * text_size = "7x13";
 
 /* time in seconds before the monitor shuts down */
-static const int monitortime = 30;
+static const int monitortime = 300;
 
 /* allow control key to trigger fail on clear */
 static const int controlkeyclear = 0;
