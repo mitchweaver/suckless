@@ -1,19 +1,5 @@
-From 8d8ca34a8e61733711e23ce43b88435bfdfd4962 Mon Sep 17 00:00:00 2001
-From: knary <theknary@gmail.com>
-Date: Mon, 25 Mar 2019 15:03:15 -0400
-Subject: [PATCH] This patch replaces scriptfile with an array of
- scriptfiles[]. This allows for the inclusion of multiple javascript files
- instead of filling up one file with multiple script plugins.
-
----
- config.def.h |  4 +++-
- surf.c       | 23 +++++++++++++++--------
- 2 files changed, 18 insertions(+), 9 deletions(-)
-
-diff --git a/config.def.h b/config.def.h
-index 34265f6..7d7d68e 100644
---- a/config.def.h
-+++ b/config.def.h
+--- surf/config.def.h
++++ surf/config.def.h_new
 @@ -1,11 +1,13 @@
  /* modifier 0 means no modifier */
  static int surfuseragent    = 1;  /* Append Surf version to default WebKit user agent */
@@ -29,10 +15,8 @@ index 34265f6..7d7d68e 100644
  
  /* Webkit default features */
  /* Highest priority value will be used.
-diff --git a/surf.c b/surf.c
-index 2b54e3c..34a75de 100644
---- a/surf.c
-+++ b/surf.c
+--- surf/surf.c
++++ surf/surf.c_new
 @@ -337,9 +337,11 @@ setup(void)
  
  	/* dirs and files */

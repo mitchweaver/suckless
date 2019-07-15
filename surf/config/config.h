@@ -9,52 +9,58 @@ const static SearchEngine searchengines[] = {
     { "wiki",   "https://en.wikipedia.org/wiki/%s" },
     { "w",      "https://en.wikipedia.org/wiki/%s" },
     { "metal",  "https://metal-archives.com/search?searchString=%s&type=band_name" },
-    { "discogs","https://www.discogs.com/search?q=%s&btn=&type=all" },
+    { "discogs","https://discogs.com/search?q=%s&btn=&type=all" },
     { "bc",     "https://bandcamp.com/search?q=%s" },
     { "arch",   "https://wiki.archlinux.org/index.php?search=%s" },
     { "gentoo", "https://wiki.gentoo.org/index.php?search=%s" },
-    { "r",      "https://reddit.com/r/%s" },
-    { "u",      "https://reddit.com/u/%s" },
+    { "r",      "https://old.reddit.com/r/%s" },
+    { "u",      "https://old.reddit.com/u/%s" },
     { "4",      "https://boards.4chan.org/%s" },
     { "yt",     "https://youtube.com/results?search_query=%s" },
-    { "reddit", "https://reddit.com/search?q=%s" },
+    { "reddit", "https://old.reddit.com/search?q=%s" },
     { "pirate", "https://thepiratebay.org/search/%s" },
     { "think",  "https://thinkwiki.org/w/index.php?search=%s" },
     { "dict",   "https://thefreedictionary.com/%s" },
     { "thes",   "https://thesaurus.com/browse/%s" },
-    { "urban",  "https://www.urbandictionary.com/define.php?term=%s" },
+    { "urban",  "https://urbandictionary.com/define.php?term=%s" },
 };
 
-static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0";
+//static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Firefox/10.0";
+static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36";
 
 // --------------------------------------------------------------------------------
 
-/* modifier 0 means no modifier */
-static int surfuseragent    = 1;  /* Append Surf version to default WebKit user agent */
-static char *scriptfile     = "~/.surf/script.js";
+static int surfuseragent    = 0;  /* Append Surf version to default WebKit user agent */
 static char *styledir       = "~/.surf/styles/";
 static char *certdir        = "~/.surf/certificates/";
 static char *cachedir       = "~/.surf/cache/";
 static char *cookiefile     = "~/.surf/cookies.txt";
 static char *historyfile    = "~/.surf/history.txt";
+static char *scriptfiles[]  = {
+    "~/src/suckless/surf/scripts/link_hints.js",
+	"~/.surf/script.js",
+};
 
 /* Webkit default features */
 /* Highest priority value will be used.
  * Default parameters are priority 0
  * Per-uri parameters are priority 1
- * Command parameters are priority 2
- */
+ * Command parameters are priority 2 */
 static Parameter defconfig[ParameterLast] = {
 	/* parameter                    Arg value       priority */
 	[AcceleratedCanvas]   =       { { .i = 1 },     },
+	[StrictTLS]           =       { { .i = 0 },     },
 	[AccessMicrophone]    =       { { .i = 0 },     },
 	[AccessWebcam]        =       { { .i = 0 },     },
+	[JavaScript]          =       { { .i = 1 },     },
+	[LoadImages]          =       { { .i = 1 },     },
+	[DNSPrefetch]         =       { { .i = 0 },     },
+	[MediaManualPlay]     =       { { .i = 0 },     },
 	[Certificate]         =       { { .i = 0 },     },
 	[CaretBrowsing]       =       { { .i = 0 },     },
 	[CookiePolicies]      =       { { .v = "@Aa" }, },
 	[DefaultCharset]      =       { { .v = "UTF-8" }, },
 	[DiskCache]           =       { { .i = 1 },     },
-	[DNSPrefetch]         =       { { .i = 0 },     },
 	[FileURLsCrossAccess] =       { { .i = 0 },     },
 	[FontSize]            =       { { .i = 12 },    },
 	[FrameFlattening]     =       { { .i = 0 },     },
@@ -62,20 +68,16 @@ static Parameter defconfig[ParameterLast] = {
 	[HideBackground]      =       { { .i = 0 },     },
 	[Inspector]           =       { { .i = 0 },     },
 	[Java]                =       { { .i = 0 },     },
-	[JavaScript]          =       { { .i = 1 },     },
 	[KioskMode]           =       { { .i = 0 },     },
-	[LoadImages]          =       { { .i = 1 },     },
-	[MediaManualPlay]     =       { { .i = 0 },     },
 	[Plugins]             =       { { .i = 0 },     },
 	[PreferredLanguages]  =       { { .v = (char *[]){ NULL } }, },
 	[RunInFullscreen]     =       { { .i = 0 },     },
 	[ScrollBars]          =       { { .i = 0 },     },
-	[ShowIndicators]      =       { { .i = 1 },     },
+	[ShowIndicators]      =       { { .i = 0 },     },
 	[SiteQuirks]          =       { { .i = 1 },     },
-	[SmoothScrolling]     =       { { .i = 0 },     },
+	[SmoothScrolling]     =       { { .i = 1 },     },
 	[SpellChecking]       =       { { .i = 0 },     },
 	[SpellLanguages]      =       { { .v = ((char *[]){ "en_US", NULL }) }, },
-	[StrictTLS]           =       { { .i = 1 },     },
 	[Style]               =       { { .i = 1 },     },
 	[ZoomLevel]           =       { { .f = 1.0 },   },
 };
@@ -88,7 +90,7 @@ static UriParameters uriparams[] = {
 };
 
 /* default window size: width, height */
-static int winsize[] = { 800, 600 };
+static int winsize[] = { 1000, 700 };
 
 static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
                                     WEBKIT_FIND_OPTIONS_WRAP_AROUND;
@@ -143,11 +145,15 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
 /* VIDEOPLAY(URI) */
 #define VIDEOPLAY(u) {\
         .v = (const char *[]){ "/bin/sh", "-c", \
-             "pkill -9 mpv ; mpv --really-quiet \"$0\"", u, NULL \
+             "pkill -9 mpv ; mpv --really-quiet $(xprop -id $0 _SURF_URI | cut -d \\\" -f 2)", u, NULL \
         } \
 }
 
-/* BM_ADD(readprop) */
+#define MPV_URL { .v = (char *[]){ "/bin/sh", "-c", \
+    "mpv --really-quiet \$(xprop -id $0 _SURF_URI | cut -d '\"' -f 2)", \
+    winid, NULL } }
+
+
 #define BM_ADD { .v = (char *[]){ "/bin/sh", "-c", \
     "BMKS=\${HOME}/var/files/bookmarks/bookmarks.txt ; \
     (echo `xprop -id $0 _SURF_URI | cut -d '\"' -f 2` && \
@@ -167,19 +173,15 @@ p, winid, NULL } }
     winid, NULL } }
 
 /* styles */
-/*
- * The iteration will stop at the first match, beginning at the beginning of
- * the list.
- */
+/* The iteration will stop at the first match, beginning at the beginning of
+ * the list.  */
 static SiteSpecific styles[] = {
 	/* regexp               file in $styledir */
 	{ ".*",                 "default.css" },
 };
 
-/* certificates */
-/*
- * Provide custom certificate for urls
- */
+/* certificates */ /*
+ * Provide custom certificate for urls */
 static SiteSpecific certs[] = {
 	/* regexp               file in $certdir */
 	{ "://suckless\\.org/", "suckless.org.crt" },
@@ -201,6 +203,7 @@ static Key keys[] = {
     /* ----------------- Custom Functions ---------------------------- */
 	{ MODKEY|SHIFT,          GDK_KEY_m,      spawn,      BM_ADD   },
     { MODKEY,                GDK_KEY_space,  spawn,      GO_HOME  },
+    { MODKEY,                GDK_KEY_y,      spawn,      MPV_URL },
     /* ----------------- End Custom Functions ------------------------ */
 
     /* ---------------------- History -------------------------------- */

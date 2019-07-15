@@ -110,7 +110,7 @@ static const char *mediaff[] = { "media", "--skip_ahead", NULL };
 static const char *mediarw[] = { "media", "--skip_behind", NULL };
 static const char *togglekeyboardlayout[] = { "dash", "-c", "keys", NULL };
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
-static const char *lock[] = { "slock", NULL };
+static const char *lock[] = { "/bin/sh", "-c", "slock -m \"$(bonsai)\"", NULL };
 static const char *scrot[] = { "scrot", "-z", "-u", NULL };
 static const char *scrap[] = { "scrap", "-u", NULL };
 static const char *brightnessup[] = { "dash", "-c", "bright 5", NULL };
@@ -159,6 +159,7 @@ const static Key keys[] = {
 //    { Mod4Mask,                     43,             spawn,    {.v = history } }, // h
 
     { Mod1Mask,                     53,       spawn,          {.v = lock }}, // x
+    { 0,                            156,      spawn,          {.v = lock }}, // thinkvantage
     { Mod1Mask|ControlMask,         45,       spawn,          {.v = togglekeyboardlayout }}, // k
     { Mod1Mask|ControlMask,         65,       spawn,          {.v = toggletouchpad }}, // space
     /* // ------------------------------------------------------------------ // */

@@ -21,5 +21,5 @@ CPPFLAGS = -DVERSION=\"$(VERSION)\" -DWEBEXTDIR=\"$(LIBDIR)\" \
 SURFCFLAGS = $(INCS) $(CPPFLAGS) -fPIC
 WEBEXTCFLAGS = -fPIC $(WEBEXTINC)
 
-CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
+CC = gcc -w -O2 -pipe -std=c99 -fstack-protector-all -fpie
 #CC = tcc -w -std=c99
