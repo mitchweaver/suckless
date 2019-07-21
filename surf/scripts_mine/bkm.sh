@@ -10,13 +10,11 @@
 #
 
 xid="$1"
-dir="${HOME}/var/files/bkm"
+bkm="${HOME}/var/files/bkm"
+tmp=/tmp/bmk.tmp
 
-go() { xprop -id $xid -f _SURF_GO 8s -set _SURF_GO "$1" ; }
+st -n floating-st -T floating-st -e \
+    ranger --cmd='set viewmode!' --choosefiles=$tmp "$bkm"
 
-st -n floating-st -T floating-st \
-    -e ranger --choosefiles /tmp/bmk.tmp "$dir"
-
-go "$(cat "$(cat /tmp/bmk.tmp)")"
-
-rm -f /tmp/bmk.tmp
+xprop -id $xid -f _SURF_GO 8s -set _SURF_GO "$(cat "$(cat $tmp)")"
+rm -f $tmp

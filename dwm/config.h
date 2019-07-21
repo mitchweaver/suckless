@@ -92,13 +92,14 @@ static const char *dmenucmd[] = { "dash", "-c", "menu run -p 'Run:'", NULL };
 static const char *surf[] = { "tabbed", "-d", "-c", "surf", "-e", NULL };
 static const char *chromium[] = { "chromium", "--new-window", NULL };
 static const char *term[]  = { "tabbed", "-d", "-c", "-r", "2", "st", "-w", "''", NULL };
-static const char *ranger[] = { "st", "-e", "ranger", NULL };
+static const char *filechooser[] = { "st", "-T", "floating-st", "-n", "floating-st", "-e", "ranger", NULL };
+/* static const char *filechooser[] = { "st", "-T", "floating-st", "-n", "floating-st", "-e", "fff", NULL }; */
 static const char *vimwiki[] = { "st", "-e", "nvim", "-c", "VimwikiIndex", NULL };
-static const char *filechooser[] = { "pcmanfm", NULL };
+static const char *pcmanfm[] = { "pcmanfm", NULL };
 static const char *clipboard[] = { "clip", NULL };
 static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
-static const char *music[] = { "music", NULL };
+static const char *mus[] = { "mus", "pick", NULL };
 
 static const char *volup[] =   { "dash", "-c", "vol -inc 2 ; vol > /tmp/bar/vol", NULL };
 static const char *voldown[] = { "dash", "-c", "vol -dec 2 ; vol > /tmp/bar/vol", NULL };
@@ -131,12 +132,12 @@ const static Key keys[] = {
     { Mod1Mask|ShiftMask,           25,             spawn,    {.v = chromium } }, // w
     { Mod1Mask,                     32,             spawn,    {.v = dedit } }, // o
     { Mod1Mask,                     30,             spawn,    {.v = tasks } }, // u
-    { Mod1Mask,                     31,             spawn,    {.v = music } }, // i
+    { Mod1Mask,                     31,             spawn,    {.v = mus } }, // i
     { Mod1Mask,                     54,             spawn,    {.v = clipboard } }, // c
-    { Mod1Mask,                     27,             spawn,    {.v = ranger } }, // r
+    { Mod1Mask,                     27,             spawn,    {.v = filechooser } }, // r
     { Mod1Mask,                     55,             spawn,    {.v = vimwiki } }, // v
 
-    { Mod1Mask,                     26,             spawn,    {.v = filechooser } }, // e
+    { Mod1Mask,                     26,             spawn,    {.v = pcmanfm } }, // e
 
     { Mod1Mask,                     61,             spawn,    {.v = mediatoggle } }, // /
     { Mod1Mask,                     60,             spawn,    {.v = medianext } },  // >

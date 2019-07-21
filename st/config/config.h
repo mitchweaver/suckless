@@ -9,7 +9,7 @@ char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false";
 /* ------------------------------------------------------- */
 
 float alpha = 0.9; /* bg opacity */
-int borderpx = 22; /* Internal border */
+int borderpx = 22; /* Internal border / padding */
 static unsigned int cols = 80; /* Default columns */
 static unsigned int rows = 30; /* Default rows */
 unsigned int tabspaces = 4;

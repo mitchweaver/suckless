@@ -1,6 +1,6 @@
-#define HOMEPAGE "file:///home/mitch/usr/startpage/index.html"
+#define HOMEPAGE "file:///home/mitch/src/startpage/index.html"
 const static SearchEngine searchengines[] = {
-    { "",       "https://duckduckgo.com/html/?q=%s" },
+    { "",       "https://duckduckgo.com/?q=%s" },
     { "g",      "https://google.com/search?q=%s"   },
     { "image",  "https://duckduckgo.com/?q=!image %s" },
     { "git",    "https://github.com/search?utf8=&q=%s&type=" },
@@ -9,6 +9,7 @@ const static SearchEngine searchengines[] = {
     { "wiki",   "https://en.wikipedia.org/wiki/%s" },
     { "w",      "https://en.wikipedia.org/wiki/%s" },
     { "metal",  "https://metal-archives.com/search?searchString=%s&type=band_name" },
+    { "ebay",   "https://www.ebay.com/sch/i.html?_from=R40&_nkw=%s&_sacat=0&_sop=15&rt=nc&LH_BIN=1" },
     { "discogs","https://discogs.com/search?q=%s&btn=&type=all" },
     { "bc",     "https://bandcamp.com/search?q=%s" },
     { "arch",   "https://wiki.archlinux.org/index.php?search=%s" },
@@ -165,7 +166,7 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
 // go to homepage with a hotkey, ex: mod+spacebar
 #define GO_HOME { .v = (char *[]){ "/bin/sh", "-c", \
     "xprop -id $0 -f _SURF_GO 8s -set _SURF_GO \
-    \${HOME}/usr/startpage/index.html || exit 0", \
+    \${HOME}/src/startpage/index.html || exit 0", \
     winid, NULL } }
 
 // grab bookmark from my bookmark script
@@ -208,7 +209,7 @@ static Key keys[] = {
     /* --------------------------------------------------------------- */
 
     /* ----------------- Custom Functions ---------------------------- */
-	{ MODKEY|SHIFT,          GDK_KEY_m,      spawn,      BM_ADD   },
+	{ MODKEY|SHIFT,          GDK_KEY_b,      spawn,      BM_ADD   },
     { MODKEY,                GDK_KEY_e,      spawn,      BKM      },
     { MODKEY|SHIFT,          GDK_KEY_e,      spawn,      BKM_ADD  },
     { MODKEY,                GDK_KEY_space,  spawn,      GO_HOME  },
@@ -249,7 +250,7 @@ static Key keys[] = {
     /* ------------------------------------------------------------------- */
 
     // -------------------- COPY PASTE ---------------------------- //
-	{ MODKEY,                GDK_KEY_v,      clipboard,  { .i = 1 } },
+	//{ MODKEY,                GDK_KEY_v,      clipboard,  { .i = 1 } },
 	{ MODKEY,                GDK_KEY_c,      clipboard,  { .i = 0 } },
     // ------------------------------------------------------------ //
 

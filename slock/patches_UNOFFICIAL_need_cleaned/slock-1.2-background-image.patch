@@ -1,0 +1,108 @@
+diff --git config.mk config.mk
+index 8cc3f68..0b2b096 100644
+--- config.mk
++++ config.mk
+@@ -11,7 +11,7 @@ X11LIB = /usr/X11R6/lib
+ 
+ # includes and libs
+ INCS = -I. -I/usr/include -I${X11INC}
+-LIBS = -L/usr/lib -lc -lcrypt -L${X11LIB} -lX11 -lXext
++LIBS = -L/usr/lib -lc -lcrypt -L${X11LIB} -lX11 -lXext -lImlib2
+ 
+ # flags
+ CPPFLAGS = -DVERSION=\"${VERSION}\" -DHAVE_SHADOW_H -DCOLOR1=\"black\" -DCOLOR2=\"\#005577\"
+diff --git slock.c slock.c
+index d281965..e1f40a2 100644
+--- slock.c
++++ slock.c
+@@ -17,6 +17,7 @@
+ #include <X11/keysym.h>
+ #include <X11/Xlib.h>
+ #include <X11/Xutil.h>
++#include <Imlib2.h>
+ 
+ #if HAVE_BSD_AUTH
+ #include <login_cap.h>
+@@ -27,6 +28,7 @@ typedef struct {
+ 	int screen;
+ 	Window root, win;
+ 	Pixmap pmap;
++	Pixmap bgmap;
+ 	unsigned long colors[2];
+ } Lock;
+ 
+@@ -34,6 +36,8 @@ static Lock **locks;
+ static int nscreens;
+ static Bool running = True;
+ 
++Imlib_Image image;
++
+ static void
+ die(const char *errstr, ...) {
+ 	va_list ap;
+@@ -160,7 +164,10 @@ readpw(Display *dpy, const char *pws)
+ 				}
+ 			} else if(llen != 0 && len == 0) {
+ 				for(screen = 0; screen < nscreens; screen++) {
+-					XSetWindowBackground(dpy, locks[screen]->win, locks[screen]->colors[0]);
++					if(locks[screen]->bgmap)
++						XSetWindowBackgroundPixmap(dpy, locks[screen]->win, locks[screen]->bgmap);
++					else
++						XSetWindowBackground(dpy, locks[screen]->win, locks[screen]->colors[0]);
+ 					XClearWindow(dpy, locks[screen]->win);
+ 				}
+ 			}
+@@ -204,12 +211,27 @@ lockscreen(Display *dpy, int screen) {
+ 
+ 	lock->root = RootWindow(dpy, lock->screen);
+ 
++	if(image) {
++		lock->bgmap = XCreatePixmap(dpy, lock->root, DisplayWidth(dpy, lock->screen), DisplayHeight(dpy, lock->screen), DefaultDepth(dpy, lock->screen));
++		imlib_context_set_image(image);
++		imlib_context_set_display(dpy);
++		imlib_context_set_visual(DefaultVisual(dpy, lock->screen));
++		imlib_context_set_colormap(DefaultColormap(dpy, lock->screen));
++		imlib_context_set_drawable(lock->bgmap);
++		imlib_render_image_on_drawable(0, 0);
++		imlib_free_image();
++	}
++
+ 	/* init */
+ 	wa.override_redirect = 1;
+ 	wa.background_pixel = BlackPixel(dpy, lock->screen);
+ 	lock->win = XCreateWindow(dpy, lock->root, 0, 0, DisplayWidth(dpy, lock->screen), DisplayHeight(dpy, lock->screen),
+ 			0, DefaultDepth(dpy, lock->screen), CopyFromParent,
+ 			DefaultVisual(dpy, lock->screen), CWOverrideRedirect | CWBackPixel, &wa);
++
++	if(lock->bgmap)
++		XSetWindowBackgroundPixmap(dpy, lock->win, lock->bgmap);
++
+ 	XAllocNamedColor(dpy, DefaultColormap(dpy, lock->screen), COLOR2, &color, &dummy);
+ 	lock->colors[1] = color.pixel;
+ 	XAllocNamedColor(dpy, DefaultColormap(dpy, lock->screen), COLOR1, &color, &dummy);
+@@ -246,7 +268,7 @@ lockscreen(Display *dpy, int screen) {
+ 
+ static void
+ usage(void) {
+-	fprintf(stderr, "usage: slock [-v]\n");
++	fprintf(stderr, "\nusage: slock [options]\noptions:\n\t-v\tPrint version and exit.\n\t-i\t<full path to image file to display>\n");
+ 	exit(EXIT_FAILURE);
+ }
+ 
+@@ -258,8 +280,15 @@ main(int argc, char **argv) {
+ 	Display *dpy;
+ 	int screen;
+ 
+-	if((argc == 2) && !strcmp("-v", argv[1]))
++	if((argc == 2) && !strcmp("-v", argv[1])) {
+ 		die("slock-%s, © 2006-2012 Anselm R Garbe\n", VERSION);
++	}
++	if((argc == 3) && !strcmp("-i", argv[1])) {
++		image = imlib_load_image(argv[2]);
++		if(!image) {
++			die("slock: unable to load image.\n");
++		}
++	}
+ 	else if(argc != 1)
+ 		usage();
+ 
