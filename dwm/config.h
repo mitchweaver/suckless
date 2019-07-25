@@ -104,11 +104,11 @@ static const char *mus[] = { "mus", "pick", NULL };
 static const char *volup[] =   { "dash", "-c", "vol -inc 2 ; vol > /tmp/bar/vol", NULL };
 static const char *voldown[] = { "dash", "-c", "vol -dec 2 ; vol > /tmp/bar/vol", NULL };
 
-static const char *medianext[] = { "media", "--next", NULL };
-static const char *mediaprev[] = { "media", "--prev", NULL };
-static const char *mediatoggle[] = { "media", "--toggle", NULL };
-static const char *mediaff[] = { "media", "--skip_ahead", NULL };
-static const char *mediarw[] = { "media", "--skip_behind", NULL };
+static const char *medianext[] = { "media", "-n", NULL };
+static const char *mediaprev[] = { "media", "-p", NULL };
+static const char *mediatoggle[] = { "media", "-t", NULL };
+static const char *mediaff[] = { "media", "-sa", NULL };
+static const char *mediarw[] = { "media", "-sb", NULL };
 static const char *togglekeyboardlayout[] = { "dash", "-c", "keys", NULL };
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
 static const char *lock[] = { "/bin/sh", "-c", "slock -m \"$(bonsai)\"", NULL };
