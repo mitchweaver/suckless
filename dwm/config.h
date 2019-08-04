@@ -101,8 +101,8 @@ static const char *dedit[] = { "dedit", NULL };
 static const char *tasks[] = { "tasks", NULL };
 static const char *mus[] = { "mus", "pick", NULL };
 
-static const char *volup[] =   { "dash", "-c", "vol -inc 2 ; vol > /tmp/bar/vol", NULL };
-static const char *voldown[] = { "dash", "-c", "vol -dec 2 ; vol > /tmp/bar/vol", NULL };
+static const char *volup[] =   { "dash", "-c", "vol -inc 2", NULL };
+static const char *voldown[] = { "dash", "-c", "vol -dec 2", NULL };
 
 static const char *medianext[] = { "media", "-n", NULL };
 static const char *mediaprev[] = { "media", "-p", NULL };
@@ -111,15 +111,11 @@ static const char *mediaff[] = { "media", "-sa", NULL };
 static const char *mediarw[] = { "media", "-sb", NULL };
 static const char *togglekeyboardlayout[] = { "dash", "-c", "keys", NULL };
 static const char *toggletouchpad[] = { "bash", "-c", "${HOME}/usr/bin/toggle-touchpad.sh", NULL };
-static const char *lock[] = { "/bin/sh", "-c", "slock -m \"$(bonsai)\"", NULL };
+static const char *lock[] = { "/bin/sh", "-c", "slock -m \"$(bonsai2)\"", NULL };
 static const char *scrot[] = { "scrot", "-z", "-u", NULL };
-static const char *scrap[] = { "scrap", "-u", NULL };
+static const char *scrap[] = { "scrap", NULL };
 static const char *brightnessup[] = { "dash", "-c", "bright 5", NULL };
 static const char *brightnessdown[] = { "dash", "-c", "bright -5", NULL };
-/* static const char *record[] = { "dash", "-c", "cd ${HOME}/var/recordings ; record &", NULL }; */
-/* static const char *togglerecord[] = { "dash", "-c", "record --toggle", NULL }; */
-/* static const char *stoprecord[] = { "dash", "-c", "record --stop", NULL }; */
-//static const char *history[] = { "dhist", NULL };
 
 #include "movestack.c"
 #define SH(cmd) { .v = (const char*[]){ "dash", "-c", cmd, NULL } }

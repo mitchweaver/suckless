@@ -3,8 +3,10 @@ static int topbar = 1;  /* -b  option; if 0, dmenu appears at bottom     */
 static const char *fonts[] = {
     /* "Share Tech Mono:pixelsize=16:antialias=true:autohint=true" */
     /* "Share Tech Mono:pixelsize=14:antialias=true:autohint=true" */
+    /* "IBMPlexMono:pixelsize=16:antialias=true:autohint=true" */
+    "IBMPlexMono:pixelsize=14:antialias=true:autohint=true"
     /* "Terminus:pixelsize=16:antialias=false:autohint=false" */
-    "Terminus:pixelsize=14:antialias=false:autohint=false"
+    /* "Terminus:pixelsize=14:antialias=false:autohint=false" */
 };
 
 static const char *prompt = NULL;  /* -p  option; prompt to the left of input field */
