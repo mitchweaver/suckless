@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 export CC=gcc
 export CFLAGS='-O3 -pipe -s -w -fstack-protector-strong \
@@ -24,8 +24,8 @@ for name in $@ ; do
     ls patches | while read -r patch ; do
         patch -p0 --ignore-whitespace < patches/$patch
     done
-    cp -f config/config.h $name/config.h
-    cp -f config/config.mk $name/config.mk
+    cp -f config/config.h $name/config.h 2>/dev/null ||:
+    cp -f config/config.mk $name/config.mk 2>/dev/null ||:
     cd $name
     make
     make PREFIX="$PREFIX" install
