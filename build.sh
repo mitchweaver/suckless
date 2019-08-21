@@ -22,6 +22,7 @@ for name in $@ ; do
         cd - > /dev/null
     fi
     ls patches | while read -r patch ; do
+		echo "* applying $patch..."
         patch -p0 --ignore-whitespace < patches/$patch
     done
     cp -f config/config.h $name/config.h 2>/dev/null ||:

@@ -1,0 +1,34 @@
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -58,7 +58,7 @@
+ 
+ /* enums */
+ enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
+-enum { SchemeNorm, SchemeSel, SchemeLast }; /* color schemes */
++enum { SchemeNorm, SchemeSel, SchemeUrg, SchemeLast }; /* color schemes */
+ enum { NetSupported, NetWMName, NetWMState,
+        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
+        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
+@@ -1537,6 +1537,9 @@ setup(void) {
+ 	scheme[SchemeSel].border = drw_clr_create(drw, selbordercolor);
+ 	scheme[SchemeSel].bg = drw_clr_create(drw, selbgcolor);
+ 	scheme[SchemeSel].fg = drw_clr_create(drw, selfgcolor);
++	scheme[SchemeUrg].border = drw_clr_create(drw, urgbordercolor);
++	scheme[SchemeUrg].bg = drw_clr_create(drw, selbgcolor);
++	scheme[SchemeUrg].fg = drw_clr_create(drw, selfgcolor);
+ 	/* init bars */
+ 	updatebars();
+ 	updatestatus();
+@@ -1982,8 +1985,11 @@ updatewmhints(Client *c) {
+ 			wmh->flags &= ~XUrgencyHint;
+ 			XSetWMHints(dpy, c->win, wmh);
+ 		}
+-		else
++		else {
+ 			c->isurgent = (wmh->flags & XUrgencyHint) ? True : False;
++			if (c->isurgent)
++				XSetWindowBorder(dpy, c->win, scheme[SchemeUrg].border->pix);
++		}
+ 		if(wmh->flags & InputHint)
+ 			c->neverfocus = !wmh->input;
+ 		else
