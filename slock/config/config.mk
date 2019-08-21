@@ -14,4 +14,5 @@ CFLAGS = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
 LDFLAGS = -s ${LIBS}
 COMPATSRC = explicit_bzero.c
 
-CC = tcc
+CC = gcc -O2 -pipe -w -fstack-protector-strong
+#CC = tcc

@@ -13,4 +13,5 @@ CPPFLAGS = -DVERSION=\"${VERSION}\" -D_XOPEN_SOURCE=600
 CFLAGS += -g -std=c99 -pedantic -Wall ${INCS} ${CPPFLAGS}
 LDFLAGS += -g ${LIBS}
 
-CC = tcc -w
+CC = gcc -O3 -pipe -w -fstack-protector-strong
+#CC = tcc -w

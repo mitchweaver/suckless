@@ -18,5 +18,5 @@ CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600
 STCFLAGS = $(INCS) $(CPPFLAGS) $(CFLAGS)
 STLDFLAGS = $(LIBS) $(LDFLAGS)
 
-#CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
-CC = tcc -w
+CC = gcc -w -O3 -pipe -fstack-protector-all -fpie
+#CC = tcc -w
