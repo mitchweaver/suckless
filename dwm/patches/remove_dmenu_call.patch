@@ -1,0 +1,11 @@
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -1723,8 +1723,6 @@
+ void
+ spawn(const Arg *arg)
+ {
+-	if (arg->v == dmenucmd)
+-		dmenumon[0] = '0' + selmon->num;
+ 	selmon->tagset[selmon->seltags] &= ~scratchtag;
+ 	if (fork() == 0) {
+ 		if (dpy)
