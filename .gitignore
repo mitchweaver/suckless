@@ -33,18 +33,18 @@ blind
 *__pycache__
 *TODO*
 *FAQ*
-blind/README*
-dmenu/README*
-dwm/README*
-ii/README*
-quark/README*
-sent/README*
-slock/README*
-sselp/README*
-st/README*
-surf/README*
-swarp/README*
-tabbed/README*
+blind/blind/README*
+dmenu/demnu/README*
+dwm/dwm/README*
+ii/ii/README*
+quark/quark/README*
+sent/sent/README*
+slock/slock/README*
+sselp/sselp/README*
+st/st/README*
+surf/surf/README*
+swarp/swarp/README*
+tabbed/tabbed/README*
 
 
 blind/blind
