@@ -2,7 +2,7 @@ static unsigned int gappx = 12;
 static const unsigned int borderpx  = 4;
 static const int showbar            = 1;
 static const int topbar             = 1;
-static const int bh = 20; // bar height
+static const int bh = 16; // bar height
 
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
@@ -35,6 +35,7 @@ static const float mfact     = 0.5;
 static const int nmaster     = 1;
 static const int resizehints = 1;
 
+static const int NUM_LAYOUTS = 3;
 static const Layout layouts[] = {
     /* symbol     arrange function */
     { "T",      tile },    /* first entry is default */
