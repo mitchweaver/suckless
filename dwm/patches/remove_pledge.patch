@@ -1,0 +1,14 @@
+// http://github.com/mitchweaver/suckless
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -2368,10 +2348,6 @@
+ 		die("dwm: cannot open display");
+ 	checkotherwm();
+ 	setup();
+-#ifdef __OpenBSD__
+-	if (pledge("stdio rpath proc exec", NULL) == -1)
+-		die("pledge");
+-#endif /* __OpenBSD__ */
+ 	scan();
+ 	run();
+ 	cleanup();
