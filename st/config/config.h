@@ -1,11 +1,12 @@
 /* --------------- Fonts -------------------------------- */
+/* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
 /* char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
-char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false";
+/* char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
 /* char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* char font[] = "IBMPlexMono:pixelsize=12:antialias=true:autohint=true"; */
+/* char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "GohuFont:pixelsize=14:antialias=false:autohint=false"; */
 /* char font[] = "cherry:pixelsize=12:antialias=false:autohint=false"; */
-/* char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
+char font[] = "Roboto Mono:pixelsize=14:antialias=true:autohint=true";
 /* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* ------------------------------------------------------- */
 
@@ -16,11 +17,13 @@ static unsigned int rows = 30; /* Default rows */
 unsigned int tabspaces = 4;
 
 /* --------------- Themes -------------------------------- */
-#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
-/* #include "../themes/light-orange-theme.h" */
+/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+// best
+#include "../themes/mine/plan9.h"
 /* #include "../themes/terminaldotsexy/grayscale-theme.h" */
 /* #include "../themes/mine/bubblegum-theme.h" */
-/* #include "../themes/other/sourcerer-theme.h" */
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* #include "../themes/terminaldotsexy/praiso-dark-theme.h" */
 /* #include "../themes/terminaldotsexy/estuary-light-theme.h" */
 /* #include "../themes/terminaldotsexy/gruvbox-light-hard-theme.h" */
@@ -128,7 +131,7 @@ char *termname = "st-256color";
 /* #unsigned int defaultfg = 7; */
 /* #unsigned int defaultbg = 0; */
 /* #static unsigned int defaultcs = 256; */
-/* #static unsigned int defaultrcs = 257; */
+static unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
