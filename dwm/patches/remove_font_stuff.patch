@@ -1,0 +1,31 @@
+// http://github.com/mitchweaver/suckless
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -55,7 +55,6 @@
+ #define WIDTH(X)                ((X)->w + 2 * (X)->bw)
+ #define HEIGHT(X)               ((X)->h + 2 * (X)->bw)
+ #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
+-#define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
+ 
+ /* enums */
+ enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
+@@ -238,8 +237,6 @@
+ static char stext[256];
+ static int screen;
+ static int sw, sh;           /* X display screen geometry width, height */
+-static int bh, blw = 0;      /* bar geometry */
+-static int lrpad;            /* sum of left and right padding for text */
+ static int (*xerrorxlib)(Display *, XErrorEvent *);
+ static unsigned int numlockmask = 0;
+ static void (*handler[LASTEvent]) (XEvent *) = {
+@@ -1563,10 +1560,6 @@
+ 	sh = DisplayHeight(dpy, screen);
+ 	root = RootWindow(dpy, screen);
+ 	drw = drw_create(dpy, screen, root, sw, sh);
+-	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
+-		die("no fonts could be loaded.");
+-	lrpad = drw->fonts->h;
+-	bh = drw->fonts->h + 2;
+ 	updategeom();
+ 	/* init atoms */
+ 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);

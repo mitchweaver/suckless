@@ -2,8 +2,7 @@ static unsigned int gappx = 12;
 static const unsigned int borderpx  = 4;
 static const int showbar            = 1;
 static const int topbar             = 1;
-
-static const char *fonts[]          = { "monospace:size=10" };
+static const int bh = 20; // bar height
 
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
@@ -44,11 +43,7 @@ static const Layout layouts[] = {
 };
 
 #define MODKEY Mod1Mask
-#define TAGKEYS(KEY,TAG) \
-    { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-    { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+#define TAGKEYS(KEY,TAG) { MODKEY, KEY, view, {.ui = 1 << TAG} },
 
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 

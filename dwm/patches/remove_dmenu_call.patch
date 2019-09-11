@@ -1,3 +1,4 @@
+// http://github.com/mitchweaver/suckless
 --- dwm/dwm.c
 +++ dwm/dwm.c
 @@ -1723,8 +1723,6 @@
