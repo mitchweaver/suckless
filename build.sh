@@ -23,7 +23,7 @@ for name in $@ ; do
     fi
     ls patches | while read -r patch ; do
 		echo "===> applying $patch..."
-        patch -p0 --ignore-whitespace < patches/$patch || exit 1
+        patch -u -f -l --ignore-whitespace -p0 <patches/$patch || exit 1
     done
     echo
     cp -f config/config.h $name/config.h 2>/dev/null ||:
@@ -36,5 +36,6 @@ for name in $@ ; do
 
     make CC=$CC
     make PREFIX="$PREFIX" install
+    make clean
     cd "$START_PWD"
 done
