@@ -1,6 +1,6 @@
 static unsigned int gappx = 12;
 static const unsigned int borderpx  = 4;
-static const int showbar            = 0;
+static const int showbar            = 1;
 static const int topbar             = 1;
 
 static const char *fonts[]          = { "monospace:size=10" };

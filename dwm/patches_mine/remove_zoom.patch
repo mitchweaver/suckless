@@ -1,0 +1,32 @@
+// http://github.com/mitchweaver/suckless
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -232,7 +232,6 @@
+ static int xerror(Display *dpy, XErrorEvent *ee);
+ static int xerrordummy(Display *dpy, XErrorEvent *ee);
+ static int xerrorstart(Display *dpy, XErrorEvent *ee);
+-static void zoom(const Arg *arg);
+ 
+ /* variables */
+ static const char broken[] = "broken";
+@@ -2110,20 +2109,6 @@
+ 	return -1;
+ }
+ 
+-void
+-zoom(const Arg *arg)
+-{
+-	Client *c = selmon->sel;
+-
+-	if (!selmon->lt[selmon->sellt]->arrange
+-	|| (selmon->sel && selmon->sel->isfloating))
+-		return;
+-	if (c == nexttiled(selmon->clients))
+-		if (!c || !(c = nexttiled(c->next)))
+-			return;
+-	pop(c);
+-}
+-
+ int
+ main(int argc, char *argv[])
+ {
