@@ -8,6 +8,7 @@ static const char *colors[][3]      = {
     /*               fg         bg         border   */
     [SchemeNorm] = { "#bbbbbb", "#222222", "#555555" },
     [SchemeSel]  = { "#eeeeee", "#eeeeee", "#333333" },
+    [SchemeUrg]  = { "#ff0000", "#ff0000", "#ff0000" },
 };
 
 static const int NUM_WORKSPACES=13;
