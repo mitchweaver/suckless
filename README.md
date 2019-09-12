@@ -4,14 +4,6 @@
 
 `./build.sh $name`
 
-note: `dwm` has not yet been cleaned up to work with build.sh, it will be a while.
-
-These are using my `config.h` and `config.mk` in the `config` dir of each folder.  
-Note... These are more for reference, don't expect them to just compile.
-
-If you get color array errors, it's because I use `pywal` and my config.h tries to pull those colors in.  
-If you do not have `~/.cache/wal` then you'll need to add those colors to the config.h's manually.
-
 For any questions, feel free to contact me or open a git issue.
 
 ### misc screenshots:
@@ -19,7 +11,8 @@ For any questions, feel free to contact me or open a git issue.
 
 **[dwm](http://github.com/MitchWeaver/suckless/tree/master/dwm)**:
 
-![dwm](http://i.imgur.com/oSki6JQ.png)
+![dwm](http://mitch.sh/u/C3p.png)
+![older_dwm](http://i.imgur.com/oSki6JQ.png)
 
 **[surf](http://github.com/MitchWeaver/suckless/tree/master/surf)**:
 
