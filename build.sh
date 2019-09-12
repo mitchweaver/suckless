@@ -23,7 +23,7 @@ for name in $@ ; do
     fi
     ls patches | while read -r patch ; do
 		echo "===> applying $patch..."
-        patch -u -f -l --ignore-whitespace -p0 <patches/$patch || exit 1
+        patch -l -p0 <patches/$patch
     done
     echo
     cp -f config/config.h $name/config.h 2>/dev/null ||:
