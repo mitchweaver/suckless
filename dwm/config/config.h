@@ -29,6 +29,7 @@ static const Rule rules[] = {
     { "0",               NULL,       "x9term",            0,         1,           1,           -1 },
     { "NULL",            NULL,       "x9term",            0,         1,           1,           -1 },
     { "feh",             NULL,       "feh",               0,         1,           1,           -1 },
+    { "meh",             NULL,       "meh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
     { "x9term",          NULL,       "x9term",            0,         0,           1,           -1 },
 };
