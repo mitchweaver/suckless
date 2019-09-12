@@ -46,7 +46,8 @@ static const Layout layouts[] = {
 };
 
 #define MODKEY Mod1Mask
-#define TAGKEYS(KEY,TAG) { MODKEY, KEY, view, {.ui = 1 << TAG} },
+#define TAGKEYS(KEY,TAG) { MODKEY, KEY, view, {.ui = 1 << TAG} }, \
+                         { MODKEY|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 static const char scratchpadname[] = "scratchpad";

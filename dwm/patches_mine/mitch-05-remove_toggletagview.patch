@@ -1,11 +1,11 @@
 // http://github.com/mitchweaver/suckless
 --- dwm/dwm.c
 +++ dwm/dwm.c
-@@ -211,14 +211,10 @@
+@@ -211,13 +211,10 @@
  static void showhide(Client *c);
  static void sigchld(int unused);
  static void spawn(const Arg *arg);
--static void tag(const Arg *arg);
+ static void tag(const Arg *arg);
 -static void tagmon(const Arg *arg);
  static void tile(Monitor *);
  static void togglefloating(const Arg *arg);
@@ -16,31 +16,6 @@
  static void unfocus(Client *c, int setfocus);
  static void unmanage(Client *c, int destroyed);
  static void unmapnotify(XEvent *e);
-@@ -1674,24 +1670,6 @@
- }
- 
- void
--tag(const Arg *arg)
--{
--	if (selmon->sel && arg->ui & TAGMASK) {
--		selmon->sel->tags = arg->ui & TAGMASK;
--		focus(NULL);
--		arrange(selmon);
--	}
--}
--
--void
--tagmon(const Arg *arg)
--{
--	if (!selmon->sel || !mons->next)
--		return;
--	sendmon(selmon->sel, dirtomon(arg->i));
--}
--
--void
- tile(Monitor *m)
- {
- 	unsigned int i, n, h, mw, my, ty;
 @@ -1771,54 +1749,6 @@
  }
  
