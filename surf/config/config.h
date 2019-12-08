@@ -24,6 +24,7 @@ const static SearchEngine searchengines[] = {
     { "dict",   "https://thefreedictionary.com/%s" },
     { "thes",   "https://thesaurus.com/browse/%s" },
     { "urban",  "https://urbandictionary.com/define.php?term=%s" },
+    { "rs",     "https://oldschool.runescape.wiki/?search=%s" },
 };
 
 //static char *fulluseragent  = "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Firefox/10.0";
