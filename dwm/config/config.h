@@ -1,4 +1,4 @@
-static unsigned int gappx = 0;
+static unsigned int gappx = 10;
 static const unsigned int borderpx  = 4;
 static const int showbar            = 1;
 static const int topbar             = 1;
@@ -32,6 +32,7 @@ static const Rule rules[] = {
     { "meh",             NULL,       "meh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
     { "x9term",          NULL,       "x9term",            0,         0,           1,           -1 },
+    { "stalonetray",     NULL,       "NULL",              ~0,        0,           1,           -1 },
 };
 
 static const float mfact     = 0.5;

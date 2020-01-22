@@ -2,8 +2,9 @@
 
 type tcc >/dev/null && CC=tcc
 export CC=${CC:-gcc}
+export NPROC=${NPROC:-1}
 export CFLAGS='-O3 -pipe -s -pedantic -std=c99 \
--fstack-protector-strong -fstack-clash-protection -fexceptions'
+    -fstack-protector-strong -fstack-clash-protection -fexceptions'
 export LDFLAGS=-s
 export PREFIX="${HOME}"/usr/local
 
@@ -34,7 +35,7 @@ for name in $@ ; do
     # surf refuses to start with tcc, looking into it
     [ $name = surf ] && export CC=gcc
 
-    make CC=$CC
+    make -j$NPROC CC=$CC
     make PREFIX="$PREFIX" install
     make clean
     cd "$START_PWD"
