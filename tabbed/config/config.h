@@ -11,7 +11,7 @@ static const int HEIGHT=300;
 static const int barheight = -1; 
 
 // pywal theme
-#include "/home/mitch/.cache/wal/colors-wal-tabbed.h"
+#include "/home/alan/.cache/wal/colors-wal-tabbed.h"
 
 static const char before[]      = "<";
 static const char after[]       = ">";

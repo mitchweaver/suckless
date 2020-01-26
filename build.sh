@@ -1,12 +1,11 @@
 #!/bin/sh -e
 
-type tcc >/dev/null && CC=tcc
 export CC=${CC:-gcc}
 export NPROC=${NPROC:-1}
 export CFLAGS='-O3 -pipe -s -pedantic -std=c99 \
-    -fstack-protector-strong -fstack-clash-protection -fexceptions'
+    -fstack-protector-strong -fexceptions'
 export LDFLAGS=-s
-export PREFIX="${HOME}"/usr/local
+export PREFIX="${HOME}"/.local
 
 [ "$1" ] || set -- dmenu sent st surf tabbed
 
@@ -23,7 +22,7 @@ for name in $@ ; do
         cd - >/dev/null
     fi
     ls patches | while read -r patch ; do
-		echo "===> applying $patch..."
+	echo "===> applying $patch..."
         patch -l -p0 <patches/$patch
     done
     echo
@@ -31,9 +30,6 @@ for name in $@ ; do
     cp -f config/config.mk $name/config.mk 2>/dev/null ||:
     cd $name
     make clean
-
-    # surf refuses to start with tcc, looking into it
-    [ $name = surf ] && export CC=gcc
 
     make -j$NPROC CC=$CC
     make PREFIX="$PREFIX" install

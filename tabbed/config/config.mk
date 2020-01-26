@@ -1,6 +1,6 @@
 VERSION=4.7
 
-PREFIX = ${HOME}/usr/local
+PREFIX = ${HOME}/.local
 MANPREFIX = ${PREFIX}/share/man
 
 X11INC = /usr/X11R6/include
@@ -10,7 +10,10 @@ XINERAMALIBS  = -lXinerama
 XINERAMAFLAGS = -DXINERAMA
 
 FREETYPELIBS = -lfontconfig -lXft
-FREETYPEINC = /usr/include/freetype2
+# --------- Linux ---------------
+#FREETYPEINC = /usr/include/freetype2
+# --------- OpenBSD -------------
+FREETYPEINC = ${X11INC}/freetype2
 
 INCS = -I${X11INC} -I${FREETYPEINC}
 LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS} -lm -lXrender
@@ -20,4 +23,3 @@ CFLAGS   = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
 LDFLAGS  = -s ${LIBS}
 
 CC = gcc -w -O3 -pipe -std=c99 -fstack-protector-all -fpie
-#CC = tcc -w
