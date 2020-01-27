@@ -1,5 +1,5 @@
-static unsigned int gappx = 10;
-static const unsigned int borderpx  = 4;
+static unsigned int gappx = 0;
+static const unsigned int borderpx  = 2;
 static const int showbar            = 1;
 static const int topbar             = 1;
 static const char *fonts[]          = { "Terminus:size=8" };
