@@ -2,18 +2,20 @@ static unsigned int gappx = 10;
 static const unsigned int borderpx  = 4;
 static const int showbar            = 1;
 static const int topbar             = 1;
-static const int bh = 16; // bar height
+static const char *fonts[]          = { "Terminus:size=8" };
 static const int focusonwheel = 1;
 
-static const char *colors[][3]      = {
-    /*               fg         bg         border   */
-    [SchemeNorm] = { "#bbbbbb", "#222222", "#555555" },
-    [SchemeSel]  = { "#eeeeee", "#eeeeee", "#333333" },
-    [SchemeUrg]  = { "#ff0000", "#ff0000", "#ff0000" },
-};
+/* static const char *colors[][3]      = { */
+/*     /1*               fg         bg         border   *1/ */
+/*     [SchemeNorm] = { "#bbbbbb", "#222222", "#555555" }, */
+/*     [SchemeSel]  = { "#eeeeee", "#eeeeee", "#333333" }, */
+/*     [SchemeUrg]  = { "#ff0000", "#ff0000", "#ff0000" }, */
+/* }; */
+
+#include "/home/alan/.cache/wal/colors-wal-dwm.h"
 
 static const int NUM_WORKSPACES=13;
-static const char *tags[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 
 static const Rule rules[] = {
     /* class      instance    title                 tags mask  iscentered   isfloating   monitor */
@@ -73,7 +75,7 @@ static Key keys[] = {
     { MODKEY,                       XK_Tab,    view,           {0} },
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) TAGKEYS(XK_5,4)
     TAGKEYS(XK_6,5) TAGKEYS(XK_7,6) TAGKEYS(XK_8,7) TAGKEYS(XK_9,8) TAGKEYS(XK_0,9)
-    TAGKEYS(XK_parenleft,10) TAGKEYS(XK_parenright,11) TAGKEYS(XK_BackSpace,12)
+    TAGKEYS(XK_parenleft,10) TAGKEYS(XK_parenright,11) TAGKEYS(XK_BackSpace,9)
     { MODKEY|ShiftMask|ControlMask, XK_q,      quit,           {0} },
 };
 
