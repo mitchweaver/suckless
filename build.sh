@@ -1,11 +1,17 @@
 #!/bin/sh -e
 
 export CC=${CC:-gcc}
-export NPROC=${NPROC:-1}
 export CFLAGS='-O3 -pipe -s -pedantic -std=c99 \
     -fstack-protector-strong -fexceptions'
 export LDFLAGS=-s
 export PREFIX="${HOME}"/.local
+
+if [ -z "$NPROC" ] ; then
+    case $(uname) in
+        Linux)   export NPROC=$(nproc 2>/dev/null) ;;
+        OpenBSD) export NPROC=$(sysctl -n hw.ncpu)
+    esac
+fi
 
 [ "$1" ] || set -- dmenu sent st surf tabbed
 

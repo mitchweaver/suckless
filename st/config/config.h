@@ -20,7 +20,7 @@ unsigned int tabspaces = 4;
 #include "/home/alan/.cache/wal/colors-wal-st.h" // pywal
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 // best
-//#include "../themes/mine/plan9.h"
+/* #include "../themes/mine/plan9.h" */
 /* #include "../themes/terminaldotsexy/grayscale-theme.h" */
 /* #include "../themes/mine/bubblegum-theme.h" */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
