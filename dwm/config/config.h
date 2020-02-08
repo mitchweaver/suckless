@@ -18,8 +18,8 @@ static const int NUM_WORKSPACES=13;
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 
 static const Rule rules[] = {
-    /* class      instance    title                 tags mask  iscentered   isfloating   monitor */
-    { "Gimp",     NULL,       "Gimp",                 0,         0,           1,           -1 },
+    /* class           instance       title                 tags mask  iscentered   isfloating   monitor */
+    { "Gimp",            NULL,       "Gimp",                 0,         0,           1,           -1 },
     { "Image Manipulation Program", NULL, "Image Manipulation Program",  0, 0, 1, -1 },
     { "GNU Image Manipulation Program", NULL, "GNU Image Manipulation Program", 0, 0, 1, -1 },
     { "st",              NULL,       "surf-download",     0,         1,           1,           -1 },
@@ -57,6 +57,7 @@ static const Layout layouts[] = {
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "84x24", NULL };
  
+// NOTE: most keybinds for programs I use sxhkd for
 static Key keys[] = {
     /* modifier                     key        function        argument */
     { MODKEY,                       XK_q,      killclient,     {0} },
