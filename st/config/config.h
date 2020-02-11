@@ -1,5 +1,6 @@
 /* --------------- Fonts -------------------------------- */
-char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false";
+/* char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false"; */
+char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false";
 /* char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */

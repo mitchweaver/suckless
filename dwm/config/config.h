@@ -1,10 +1,11 @@
-static unsigned int gappx = 0;
-static const unsigned int borderpx  = 2;
+static unsigned int gappx = 18;
+static const unsigned int borderpx  = 3;
 static const int showbar            = 1;
 static const int topbar             = 1;
-static const char *fonts[]          = { "Terminus:size=8" };
+static const char *fonts[]          = { "Terminus:size=10" };
 static const int focusonwheel = 1;
 
+#include "/home/alan/.cache/wal/colors-wal-dwm.h"
 /* static const char *colors[][3]      = { */
 /*     /1*               fg         bg         border   *1/ */
 /*     [SchemeNorm] = { "#bbbbbb", "#222222", "#555555" }, */
@@ -12,10 +13,8 @@ static const int focusonwheel = 1;
 /*     [SchemeUrg]  = { "#ff0000", "#ff0000", "#ff0000" }, */
 /* }; */
 
-#include "/home/alan/.cache/wal/colors-wal-dwm.h"
-
-static const int NUM_WORKSPACES=13;
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+static const int NUM_WORKSPACES=4;
+static const char *tags[] = { "1", "2", "3", "4" };
 
 static const Rule rules[] = {
     /* class           instance       title                 tags mask  iscentered   isfloating   monitor */
@@ -34,7 +33,6 @@ static const Rule rules[] = {
     { "meh",             NULL,       "meh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
     { "x9term",          NULL,       "x9term",            0,         0,           1,           -1 },
-    { "stalonetray",     NULL,       "NULL",              ~0,        0,           1,           -1 },
 };
 
 static const float mfact     = 0.5;
@@ -44,14 +42,13 @@ static const int resizehints = 1;
 static const int NUM_LAYOUTS = 3;
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    { "T",      tile },    /* first entry is default */
-    { "F",      NULL },    /* no layout function means floating behavior */
-    { "M",      monocle },
+    { "[T]",      tile },    /* first entry is default */
+    { "[F]",      NULL },    /* no layout function means floating behavior */
+    { "[M]",      monocle },
 };
 
-#define MODKEY Mod1Mask
-#define TAGKEYS(KEY,TAG) { MODKEY, KEY, view, {.ui = 1 << TAG} }, \
-                         { MODKEY|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
+#define TAGKEYS(KEY,TAG) { Mod1Mask, KEY, view, {.ui = 1 << TAG} }, \
+                         { Mod1Mask|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 static const char scratchpadname[] = "scratchpad";
@@ -60,28 +57,27 @@ static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "84x24"
 // NOTE: most keybinds for programs I use sxhkd for
 static Key keys[] = {
     /* modifier                     key        function        argument */
-    { MODKEY,                       XK_q,      killclient,     {0} },
-    { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-    { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-    { MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
-    { MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
-    { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-    { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-    { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-    { MODKEY,                       XK_space,  togglescratch,  {.v = scratchpadcmd } },
-    { MODKEY,                       XK_s,      togglesticky,   {0} },
-    { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-    { MODKEY,                       XK_h,      rotatestack,    {.i = -1 } },
-    { MODKEY,                       XK_l,      rotatestack,    {.i = +1 } },
-    { MODKEY,                       XK_Tab,    view,           {0} },
-    TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) TAGKEYS(XK_5,4)
-    TAGKEYS(XK_6,5) TAGKEYS(XK_7,6) TAGKEYS(XK_8,7) TAGKEYS(XK_9,8) TAGKEYS(XK_0,9)
-    TAGKEYS(XK_parenleft,10) TAGKEYS(XK_parenright,11) TAGKEYS(XK_BackSpace,9)
-    { MODKEY|ShiftMask|ControlMask, XK_q,      quit,           {0} },
+    { Mod1Mask,                       XK_q,      killclient,     {0} },
+    { Mod1Mask,                       XK_j,      focusstack,     {.i = +1 } },
+    { Mod1Mask,                       XK_k,      focusstack,     {.i = -1 } },
+    { Mod1Mask|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
+    { Mod1Mask|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
+    { Mod1Mask,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+    { Mod1Mask,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+    { Mod1Mask,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+    { Mod1Mask,                       XK_space,  togglescratch,  {.v = scratchpadcmd } },
+    { Mod1Mask,                       XK_s,      togglesticky,   {0} },
+    { Mod1Mask|ShiftMask,             XK_space,  togglefloating, {0} },
+    { Mod1Mask,                       XK_h,      rotatestack,    {.i = -1 } },
+    { Mod1Mask,                       XK_l,      rotatestack,    {.i = +1 } },
+    { Mod1Mask,                       XK_Tab,    view,           {0} },
+    { Mod1Mask|ShiftMask|ControlMask, XK_q,      quit,           {0} },
+    TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) TAGKEYS(XK_BackSpace,3)
 };
 
 static Button buttons[] = {
-    { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-    { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+    { ClkClientWin,         Mod1Mask,         Button1,        movemouse,      {0} },
+    { ClkClientWin,         Mod1Mask,         Button3,        resizemouse,    {0} },
+    { ClkClientWin,         Mod4Mask,       Button1,        resizemouse,    {0} },
     { ClkRootWin,           0,              Button3,        spawn,          SHCMD("x9term") },
 };
