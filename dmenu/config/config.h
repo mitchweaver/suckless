@@ -5,7 +5,8 @@ static const char *fonts[] = {
     /* "Share Tech Mono:pixelsize=14:antialias=true:autohint=true" */
     /* "IBMPlexMono:pixelsize=16:antialias=true:autohint=true" */
     /* "IBMPlexMono:pixelsize=14:antialias=true:autohint=true" */
-    "Terminus:pixelsize=26:antialias=false:autohint=false"
+    /* "Terminus:pixelsize=26:antialias=false:autohint=false" */
+    "Terminus:pixelsize=28:antialias=false:autohint=false"
 };
 
 static const char *prompt = NULL;  /* -p  option; prompt to the left of input field */

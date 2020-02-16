@@ -1,5 +1,7 @@
-static unsigned int gappx = 18;
-static const unsigned int borderpx  = 3;
+/* static unsigned int gappx = 18; */
+/* static const unsigned int borderpx  = 3; */
+static unsigned int gappx = 0;
+static const unsigned int borderpx  = 2;
 static const int showbar            = 1;
 static const int topbar             = 1;
 static const char *fonts[]          = { "Terminus:size=10" };
@@ -13,8 +15,8 @@ static const int focusonwheel = 1;
 /*     [SchemeUrg]  = { "#ff0000", "#ff0000", "#ff0000" }, */
 /* }; */
 
-static const int NUM_WORKSPACES=4;
-static const char *tags[] = { "1", "2", "3", "4" };
+static const int NUM_WORKSPACES=6;
+static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 
 static const Rule rules[] = {
     /* class           instance       title                 tags mask  iscentered   isfloating   monitor */
@@ -72,7 +74,8 @@ static Key keys[] = {
     { Mod1Mask,                       XK_l,      rotatestack,    {.i = +1 } },
     { Mod1Mask,                       XK_Tab,    view,           {0} },
     { Mod1Mask|ShiftMask|ControlMask, XK_q,      quit,           {0} },
-    TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) TAGKEYS(XK_BackSpace,3)
+    TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
+    TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) TAGKEYS(XK_BackSpace,5)
 };
 
 static Button buttons[] = {
