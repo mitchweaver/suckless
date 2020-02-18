@@ -19,10 +19,11 @@ INCS = -I$(X11INC) \
 
 # --------- OpenBSD: --------------
 CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600 -D_BSD_SOURCE
-LIBS = -L$(X11LIB) -lm -lX11 -lutil -lXft \
+LIBS = -L$(X11LIB) -lm -lX11 -lutil -lXft -lXrender\
        `pkg-config --libs fontconfig` \
        `pkg-config --libs freetype2`
 
+# LIBS = -L$(X11LIB) -lm -lX11 -lutil -lXft \
 
 STCFLAGS = $(INCS) $(CPPFLAGS) $(CFLAGS)
 STLDFLAGS = $(LIBS) $(LDFLAGS)

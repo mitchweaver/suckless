@@ -1,6 +1,6 @@
 /* --------------- Fonts -------------------------------- */
-/* char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false"; */
 char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false";
+/* char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false"; */
 /* char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
@@ -8,40 +8,20 @@ char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false";
 /* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* ------------------------------------------------------- */
 
-float alpha = 0.9; /* bg opacity */
-int borderpx = 22; /* Internal border / padding */
-static unsigned int cols = 80; /* Default columns */
-static unsigned int rows = 30; /* Default rows */
+float alpha = 0.96;
+const int borderpx = 22;
+
+static unsigned int cols = 100;
+static unsigned int rows = 40;
+
 unsigned int tabspaces = 4;
 
 /* --------------- Themes -------------------------------- */
 #include "/home/alan/.cache/wal/colors-wal-st.h" // pywal
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-// best
 /* #include "../themes/mine/plan9.h" */
-/* #include "../themes/terminaldotsexy/grayscale-theme.h" */
 /* #include "../themes/mine/bubblegum-theme.h" */
-/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* #include "../themes/terminaldotsexy/praiso-dark-theme.h" */
-/* #include "../themes/terminaldotsexy/estuary-light-theme.h" */
-/* #include "../themes/terminaldotsexy/gruvbox-light-hard-theme.h" */
-/* #include "../themes/terminaldotsexy/plateau-light-theme.h" */
-/* #include "../themes/terminaldotsexy/ashes-dark-theme.h" */
-/* #include "../themes/terminaldotsexy/mocha-light-theme.h" */
-/* #include "../themes/terminaldotsexy/ashes-light-theme.h" */
-/* #include "../themes/terminaldotsexy/unsifted-wheat-theme.h" */
-/* #include "../themes/terminaldotsexy/insignificato-theme.h" */
-/* #include "../themes/terminaldotsexy/mostly-bright-theme.h" */
-/* #include "../themes/terminaldotsexy/dawn-theme.h" */
-/* #include "../themes/terminaldotsexy/nature-suede-theme.h" */
-/* #include "../themes/terminaldotsexy/mocha-dark-theme.h" */
-/* #include "../themes/terminaldotsexy/navy-and-ivory-theme.h" */
-/* #include "../themes/terminaldotsexy/visibone-theme.h" */
-/* #include "../themes/terminaldotsexy/ocean-dark-theme.h" */
-/* #include "../themes/terminaldotsexy/tomorrow-dark-theme.h" */
-/* #include "../themes/terminaldotsexy/default-color-scheme.h" */
 /*  -------------------------------------------------------  */
-
 
 MouseShortcut mshortcuts[] = {
     /* button               mask            string */
