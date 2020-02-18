@@ -4,12 +4,12 @@ static const char font[]        = "Terminus:pixelsize=24:antialias=false:autohin
 /* static const char font[]        = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[]        = "IBMPlexMono:pixelsize=12:antialias=true:autohint=true"; */
 
-static const int WIDTH=400;
-static const int HEIGHT=300;
+static const int WIDTH=800;
+static const int HEIGHT=500;
 
 /* set to -1 if you want to use the text's height */
-/* static const int barheight = 24; */ 
 static const int barheight = -1; 
+/* static const int barheight = 24; */ 
 
 // pywal theme
 #include "/home/alan/.cache/wal/colors-wal-tabbed.h"

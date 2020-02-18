@@ -1,16 +1,5 @@
---- tabbed/config.mk
-+++ tabbed/config.mk_new
-@@ -9,7 +9,7 @@ MANPREFIX = ${PREFIX}/share/man
- 
- # includes and libs
- INCS = -I. -I/usr/include -I/usr/include/freetype2
--LIBS = -L/usr/lib -lc -lX11 -lfontconfig -lXft
-+LIBS = -L/usr/lib -lc -lX11 -lfontconfig -lXft -lXrender
- 
- # flags
- CPPFLAGS = -DVERSION=\"${VERSION}\" -D_DEFAULT_SOURCE
 --- tabbed/tabbed.c
-+++ tabbed/tabbed.c_new
++++ tabbed/tabbed.c
 @@ -170,6 +170,9 @@ static char **cmd;
  static char *wmname = "tabbed";
  static const char *geometry;
