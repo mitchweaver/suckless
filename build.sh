@@ -1,25 +1,17 @@
-#!/bin/sh -e
+#!/bin/sh
+
+[ "$1" ] || exit 1
 
 export CC=${CC:-gcc}
-export CFLAGS='-O3 -pipe -s -pedantic -std=c99 \
-    -fstack-protector-strong -fexceptions'
+export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexceptions'
 export LDFLAGS=-s
-export PREFIX="${HOME}"/.local
-
-if [ -z "$NPROC" ] ; then
-    case $(uname) in
-        Linux)   export NPROC=$(nproc 2>/dev/null) ;;
-        OpenBSD) export NPROC=$(sysctl -n hw.ncpu)
-    esac
-fi
-
-[ "$1" ] || set -- dmenu sent st surf tabbed
+export PREFIX=${HOME}/.local
 
 START_PWD="$PWD"
-for name in $@ ; do
+for name ; do
     cd $name
     if [ ! -d $name ] ; then
-        git clone http://git.suckless.org/$name
+        git clone http://git.suckless.org/$name || exit 1
     else
         cd $name
         git clean -df
@@ -29,16 +21,14 @@ for name in $@ ; do
     fi
     ls patches | while read -r patch ; do
 	echo "===> applying $patch..."
-        patch -l -p0 <patches/$patch
+        patch -l -p0 <patches/$patch || exit 1
     done
-    echo
-    cp -f config/config.h $name/config.h 2>/dev/null ||:
+    cp -f config/config.h  $name/config.h  2>/dev/null ||:
     cp -f config/config.mk $name/config.mk 2>/dev/null ||:
     cd $name
-    make clean
-
-    make -j$NPROC CC=$CC
+    make clean >/dev/null 2>&1 ||:
+    make CC=$CC
     make PREFIX="$PREFIX" install
-    make clean
+    make clean >/dev/null 2>&1 ||:
     cd "$START_PWD"
 done
