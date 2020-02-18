@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 [ "$1" ] || exit 1
 
