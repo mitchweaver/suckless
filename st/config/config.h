@@ -1,6 +1,9 @@
 /* --------------- Fonts -------------------------------- */
-char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false";
-/* char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false"; */
+// x200
+char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
+// surface
+/* char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false"; */
+
 /* char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
@@ -8,11 +11,11 @@ char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false";
 /* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* ------------------------------------------------------- */
 
-float alpha = 0.96;
+float alpha = 0.97;
 const int borderpx = 22;
 
-static unsigned int cols = 100;
-static unsigned int rows = 40;
+static unsigned int cols = 80;
+static unsigned int rows = 50;
 
 unsigned int tabspaces = 4;
 

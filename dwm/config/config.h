@@ -1,11 +1,23 @@
-static unsigned int gappx = 18;
-static unsigned int borderpx  = 3;
+/* -*--*-*-*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+// x200
+static unsigned int gappx = 12;
+static unsigned int borderpx  = 2;
+// surface
+/* static unsigned int gappx = 18; */
+/* static unsigned int borderpx  = 3; */
+
+// no gaps
 /* static unsigned int gappx = 0; */
 /* static const unsigned int borderpx  = 1; */
+/* -*-*-*-*-*-*-*-*-*-*- BAR SIZE -*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+// x200
+static const char *fonts[] = { "Terminus:size=8" };
+// surface
+/* static const char *fonts[] = { "Terminus:size=10" }; */
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-static const int showbar            = 1;
-static const int topbar             = 1;
-static const char *fonts[]          = { "Terminus:size=10" };
+static const int showbar = 1;
+static const int topbar  = 1;
 static const int focusonwheel = 1;
 
 #include "/home/alan/.cache/wal/colors-wal-dwm.h"
@@ -81,8 +93,8 @@ static Key keys[] = {
 };
 
 static Button buttons[] = {
-    { ClkClientWin,         Mod1Mask,         Button1,        movemouse,      {0} },
-    { ClkClientWin,         Mod1Mask,         Button3,        resizemouse,    {0} },
-    { ClkClientWin,         Mod4Mask,       Button1,        resizemouse,    {0} },
+    { ClkClientWin,         Mod1Mask,       Button1,        movemouse,      {0} },
+    { ClkClientWin,         Mod1Mask,       Button3,        resizemouse,    {0} },
+    /* { ClkClientWin,         Mod4Mask,       Button1,        resizemouse,    {0} }, */
     { ClkRootWin,           0,              Button3,        spawn,          SHCMD("x9term") },
 };
