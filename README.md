@@ -31,4 +31,3 @@ For any questions, feel free to contact me or open a git issue.
 
 [bin](http://github.com/mitchweaver/bin) - helpful scripts  
 [dots](http://github.com/mitchweaver/dots) - dotfiles  
-[bonsai](http://github.com/mitchweaver/bonsai) - my upcoming Linux distribution

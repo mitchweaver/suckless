@@ -1,14 +1,14 @@
 /* -*--*-*-*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 // x200
-static unsigned int gappx = 12;
-static unsigned int borderpx  = 2;
+/* static unsigned int gappx = 12; */
+/* static unsigned int borderpx  = 2; */
 // surface
 /* static unsigned int gappx = 18; */
 /* static unsigned int borderpx  = 3; */
 
 // no gaps
-/* static unsigned int gappx = 0; */
-/* static const unsigned int borderpx  = 1; */
+static unsigned int gappx = 0;
+static const unsigned int borderpx  = 1;
 /* -*-*-*-*-*-*-*-*-*-*- BAR SIZE -*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 // x200
 static const char *fonts[] = { "Terminus:size=8" };
@@ -50,9 +50,9 @@ static const Rule rules[] = {
     { "x9term",          NULL,       "x9term",            0,         0,           1,           -1 },
 };
 
-static const float mfact     = 0.5;
-static const int nmaster     = 1;
-static const int resizehints = 1;
+static const float mfact       = 0.5;
+static const int   nmaster     = 1;
+static const int   resizehints = 1;
 
 static const int NUM_LAYOUTS = 3;
 static const Layout layouts[] = {

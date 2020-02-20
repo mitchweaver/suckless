@@ -14,8 +14,8 @@ char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
 float alpha = 0.97;
 const int borderpx = 22;
 
-static unsigned int cols = 80;
-static unsigned int rows = 50;
+static unsigned int cols = 60;
+static unsigned int rows = 30;
 
 unsigned int tabspaces = 4;
 
