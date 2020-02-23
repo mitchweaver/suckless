@@ -20,7 +20,7 @@ static unsigned int rows = 30;
 unsigned int tabspaces = 4;
 
 /* --------------- Themes -------------------------------- */
-#include "/home/alan/.cache/wal/colors-wal-st.h" // pywal
+#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* #include "../themes/mine/plan9.h" */
 /* #include "../themes/mine/bubblegum-theme.h" */
