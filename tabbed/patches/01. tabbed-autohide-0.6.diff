@@ -1,24 +1,23 @@
 --- tabbed/tabbed.c
-+++ tabbed/tabbed.c_new
++++ tabbed/tabbed.c
 @@ -152,7 +152,7 @@ static void (*handler[LASTEvent]) (const XEvent *) = {
  	[MapRequest] = maprequest,
  	[PropertyNotify] = propertynotify,
  };
 -static int bh, wx, wy, ww, wh;
 +static int bh, wx, wy, ww, wh, vbh;
- static unsigned int numlockmask;
+ static unsigned int numlockmask = 0;
  static Bool running = True, nextfocus, doinitspawn = True,
-             fillagain = False, closelastclient = False,
-@@ -315,7 +315,7 @@ void
- drawbar(void)
- {
- 	XftColor *col;
--	int c, cc, fc, width;
-+	int c, cc, fc, width, nbh, i;
+             fillagain = False, closelastclient = False;
+@@ -307,6 +307,6 @@ void
+ drawbar(void) {
+ 	unsigned long *col;
+-	int c, fc, width, n = 0;
++	int c, fc, width, n = 0, nbh, i;
  	char *name = NULL;
  
  	if (nclients == 0) {
-@@ -323,12 +323,21 @@ drawbar(void)
+@@ -314,10 +314,19 @@ drawbar(void)
  		dc.w = ww;
  		XFetchName(dpy, win, &name);
  		drawtext(name ? name : "", dc.norm);
@@ -39,9 +38,7 @@
 +		return;
 +
  	width = ww;
- 	cc = ww / tabwidth;
- 	if (nclients > cc)
-@@ -975,7 +984,7 @@ setup(void)
+@@ -920,6 +929,6 @@ setup(void)
  	screen = DefaultScreen(dpy);
  	root = RootWindow(dpy, screen);
  	initfont(font);
@@ -49,4 +46,3 @@
 +	vbh = dc.h = dc.font.height + 2;
  
  	/* init atoms */
- 	wmatom[WMDelete] = XInternAtom(dpy, "WM_DELETE_WINDOW", False);

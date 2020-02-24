@@ -1,14 +1,14 @@
 /* -*--*-*-*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 // x200
-static unsigned int gappx = 12;
-static unsigned int borderpx  = 2;
+/* static unsigned int gappx = 12; */
+/* static unsigned int borderpx  = 2; */
 // surface
 /* static unsigned int gappx = 18; */
 /* static unsigned int borderpx  = 3; */
 
 // no gaps
-/* static unsigned int gappx = 0; */
-/* static const unsigned int borderpx  = 1; */
+static unsigned int gappx = 0;
+static const unsigned int borderpx  = 1;
 /* -*-*-*-*-*-*-*-*-*-*- BAR SIZE -*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 // x200
 static const char *fonts[] = { "Terminus:size=8" };

@@ -1,5 +1,5 @@
 --- tabbed/tabbed.c
-+++ tabbed/tabbed.c_new
++++ tabbed/tabbed.c
 @@ -318,6 +318,7 @@ drawbar(void)
  	XftColor *col;
  	int c, cc, fc, width;

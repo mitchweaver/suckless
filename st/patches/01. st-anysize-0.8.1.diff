@@ -1,5 +1,5 @@
 --- st/x.c
-+++ st/x.c_new
++++ st/x.c
 @@ -78,6 +78,7 @@ typedef XftGlyphFontSpec GlyphFontSpec;
  typedef struct {
  	int tw, th; /* tty width and height */

@@ -1,16 +1,5 @@
---- st/config.def.h
-+++ st/config.def.h_new
-@@ -178,6 +178,8 @@ static Shortcut shortcuts[] = {
- 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
- 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
- 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-+	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-+	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
- };
- 
- /*
 --- st/st.c
-+++ st/st.c_new
++++ st/st.c
 @@ -35,6 +35,7 @@
  #define ESC_ARG_SIZ   16
  #define STR_BUF_SIZ   ESC_BUF_SIZ
@@ -22,7 +11,7 @@
 @@ -42,6 +43,9 @@
  #define ISCONTROLC1(c)		(BETWEEN(c, 0x80, 0x9f))
  #define ISCONTROL(c)		(ISCONTROLC0(c) || ISCONTROLC1(c))
- #define ISDELIM(u)		(u && wcschr(worddelimiters, u))
+ #define ISDELIM(u)		(utf8strchr(worddelimiters, u) != NULL)
 +#define TLINE(y)		((y) < term.scr ? term.hist[((y) + term.histi - \
 +				term.scr + HISTSIZE + 1) % HISTSIZE] : \
 +				term.line[(y) - term.scr])
@@ -317,7 +306,7 @@
  	xfinishdraw();
  	xximspot(term.ocx, term.ocy);
 --- st/st.h
-+++ st/st.h_new
++++ st/st.h
 @@ -80,6 +80,8 @@ void die(const char *, ...);
  void redraw(void);
  void draw(void);
