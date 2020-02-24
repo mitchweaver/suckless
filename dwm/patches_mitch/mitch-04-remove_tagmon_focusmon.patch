@@ -1,0 +1,54 @@
+--- dwm/dwm.c	Sun Feb 23 21:54:18 2020
++++ dwm/dwm.c	Sun Feb 23 21:55:49 2020
+@@ -173,7 +173,6 @@
+ static void expose(XEvent *e);
+ static void focus(Client *c);
+ static void focusin(XEvent *e);
+-static void focusmon(const Arg *arg);
+ static void focusstack(const Arg *arg);
+ static int getrootptr(int *x, int *y);
+ static long getstate(Window w);
+@@ -215,7 +214,6 @@
+ static void sigchld(int unused);
+ static void spawn(const Arg *arg);
+ static void tag(const Arg *arg);
+-static void tagmon(const Arg *arg);
+ static void tile(Monitor *);
+ static void togglebar(const Arg *arg);
+ static void togglefloating(const Arg *arg);
+@@ -860,20 +858,6 @@
+ }
+ 
+ void
+-focusmon(const Arg *arg)
+-{
+-	Monitor *m;
+-
+-	if (!mons->next)
+-		return;
+-	if ((m = dirtomon(arg->i)) == selmon)
+-		return;
+-	unfocus(selmon->sel, 0);
+-	selmon = m;
+-	focus(NULL);
+-}
+-
+-void
+ focusstack(const Arg *arg)
+ {
+ 	Client *c = NULL, *i;
+@@ -1765,14 +1749,6 @@
+ 		focus(NULL);
+ 		arrange(selmon);
+ 	}
+-}
+-
+-void
+-tagmon(const Arg *arg)
+-{
+-	if (!selmon->sel || !mons->next)
+-		return;
+-	sendmon(selmon->sel, dirtomon(arg->i));
+ }
+ 
+ void
