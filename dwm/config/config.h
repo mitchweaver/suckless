@@ -22,7 +22,7 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 
 static const Rule rules[] = {
     /* class             instance    title                tags mask  iscentered   isfloating   monitor */
-    { "st-256color",     NULL,       "st",                0,         1,           0,           -1 },
+    { "st-256color",     NULL,       0,                   0,         1,           0,           -1 },
     { "feh",             NULL,       "feh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
 };
