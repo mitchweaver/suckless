@@ -1,24 +1,13 @@
-/* -*--*-*-*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-// x200
+/* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* static unsigned int gappx = 12; */
 /* static unsigned int borderpx  = 2; */
-// surface
-/* static unsigned int gappx = 18; */
-/* static unsigned int borderpx  = 3; */
-
-// no gaps
+/* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 static unsigned int gappx = 0;
 static const unsigned int borderpx  = 1;
-/* -*-*-*-*-*-*-*-*-*-*- BAR SIZE -*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-// x200
-static const char *fonts[] = { "Terminus:size=8" };
-// surface
-/* static const char *fonts[] = { "Terminus:size=10" }; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-static const int showbar = 1;
-static const int topbar  = 1;
-static const int focusonwheel = 1;
+static const char *fonts[] = { "Terminus:size=8" };
+static const int showbar = 0;
 
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
 /* static const char *colors[][3]      = { */
@@ -32,27 +21,17 @@ static const int NUM_WORKSPACES=6;
 static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 
 static const Rule rules[] = {
-    /* class           instance       title                 tags mask  iscentered   isfloating   monitor */
-    { "Gimp",            NULL,       "Gimp",                 0,         0,           1,           -1 },
-    { "Image Manipulation Program", NULL, "Image Manipulation Program",  0, 0, 1, -1 },
-    { "GNU Image Manipulation Program", NULL, "GNU Image Manipulation Program", 0, 0, 1, -1 },
-    { "st",              NULL,       "surf-download",     0,         1,           1,           -1 },
-    { "surf-download",   NULL,       "surf-download",     0,         1,           1,           -1 },
-    { "floating-st",     NULL,       "floating-st",       0,         1,           1,           -1 },
-    { "tabbed",          NULL,       "floating-st",       0,         1,           1,           -1 },
-    { "st",              NULL,       "floating-st",       0,         1,           1,           -1 },
-    { "st",              NULL,       "x9term",            0,         1,           1,           -1 },
-    { "0",               NULL,       "x9term",            0,         1,           1,           -1 },
-    { "NULL",            NULL,       "x9term",            0,         1,           1,           -1 },
+    /* class             instance    title                tags mask  iscentered   isfloating   monitor */
+    { "st-256color",     NULL,       "st",                0,         1,           0,           -1 },
     { "feh",             NULL,       "feh",               0,         1,           1,           -1 },
-    { "meh",             NULL,       "meh",               0,         1,           1,           -1 },
     { "mpv",             NULL,       "mpv",               0,         1,           1,           -1 },
-    { "x9term",          NULL,       "x9term",            0,         0,           1,           -1 },
 };
 
-static const float mfact       = 0.5;
-static const int   nmaster     = 1;
-static const int   resizehints = 1;
+static const float mfact      = 0.5;
+static const int nmaster      = 1;
+static const int resizehints  = 1;
+static const int focusonwheel = 1;
+static const int topbar  = 1;
 
 static const int NUM_LAYOUTS = 3;
 static const Layout layouts[] = {
@@ -67,7 +46,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "84x24", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x22", NULL };
  
 // NOTE: most keybinds for programs I use sxhkd for
 static Key keys[] = {
@@ -95,6 +74,5 @@ static Key keys[] = {
 static Button buttons[] = {
     { ClkClientWin,         Mod1Mask,       Button1,        movemouse,      {0} },
     { ClkClientWin,         Mod1Mask,       Button3,        resizemouse,    {0} },
-    /* { ClkClientWin,         Mod4Mask,       Button1,        resizemouse,    {0} }, */
     { ClkRootWin,           0,              Button3,        spawn,          SHCMD("x9term") },
 };

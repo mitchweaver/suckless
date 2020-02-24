@@ -11,11 +11,10 @@ char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
 /* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* ------------------------------------------------------- */
 
-float alpha = 0.97;
 const int borderpx = 22;
 
-static unsigned int cols = 60;
-static unsigned int rows = 30;
+static unsigned int cols = 90;
+static unsigned int rows = 28;
 
 unsigned int tabspaces = 4;
 
