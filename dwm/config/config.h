@@ -1,9 +1,9 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* static unsigned int gappx = 12; */
-/* static unsigned int borderpx  = 2; */
+static unsigned int gappx = 12;
+static unsigned int borderpx  = 2;
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-static unsigned int gappx = 0;
-static const unsigned int borderpx  = 1;
+/* static unsigned int gappx = 0; */
+/* static const unsigned int borderpx  = 1; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 static const char *fonts[] = { "Terminus:size=8" };
@@ -86,10 +86,11 @@ static Key keys[] = {
 	{ NULL,                 XK_Print,  spawn,          {.v = scrapn } },
 	{ Mod1Mask|ControlMask, XK_k,      spawn,          {.v = keylayout } },
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-	{ Mod1Mask,             XK_apostrophe, spawn,      {.v = volinc } },
-	{ Mod1Mask,             XK_semicolon,  spawn,      {.v = voldec } },
-	{ Mod1Mask,             XK_period,     spawn,      {.v = mpvcnext } },
-	{ Mod1Mask,             XK_comma,      spawn,      {.v = mpvcprev } },
+	{ Mod1Mask,             XK_apostrophe,   spawn,    {.v = volinc       } },
+	{ Mod1Mask,             XK_semicolon,    spawn,    {.v = voldec       } },
+	{ Mod1Mask,             XK_slash,        spawn,    {.v = mpvctoggle   } },
+	{ Mod1Mask,             XK_period,       spawn,    {.v = mpvcnext     } },
+	{ Mod1Mask,             XK_comma,        spawn,    {.v = mpvcprev     } },
 	{ Mod1Mask,             XK_bracketright, spawn,    {.v = mpvcforward  } },
 	{ Mod1Mask,             XK_bracketleft,  spawn,    {.v = mpvcbackward } },
     /* -*-*-*-*-*-*-*- dwm commands -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -102,6 +103,7 @@ static Key keys[] = {
     { Mod1Mask,            XK_f,      setlayout,      {.v = &layouts[1]} },
     { Mod1Mask,            XK_m,      setlayout,      {.v = &layouts[2]} },
     { Mod1Mask,            XK_space,  togglescratch,  {.v = scratchpadcmd } },
+	{ Mod1Mask,            XK_b,      togglebar,      {0} },
     { Mod1Mask,            XK_s,      togglesticky,   {0} },
     { Mod1Mask|ShiftMask,  XK_space,  togglefloating, {0} },
     { Mod1Mask,            XK_h,      rotatestack,    {.i = -1 } },
