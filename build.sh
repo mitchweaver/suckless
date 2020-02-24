@@ -30,9 +30,11 @@ for name ; do
 
     file="$(basename "$url")"
     curl -q -L -C - -# --url "$url" --output "$file"
-    tar -xzf "$file" && rm "$file"
+    mkdir -p dl
+    tar -xzf "$file" -C dl
     [ -d $name ] && rm -rf $name
-    mv -f $name-* $name
+    mv dl/$name-* $name
+    rmdir dl
 
     ls patches | while read -r patch ; do
         printf '\n%s\n\n' "===> applying $patch..."

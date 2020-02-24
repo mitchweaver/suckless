@@ -8,6 +8,7 @@ surf/certificates
 *cache*
 *~*
 
+*.tar.*
 
 
 # these may change, but hide for now
