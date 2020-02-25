@@ -23,9 +23,7 @@ LIBS = -L$(X11LIB) -lm -lX11 -lutil -lXft -lXrender\
        `pkg-config --libs fontconfig` \
        `pkg-config --libs freetype2`
 
-# LIBS = -L$(X11LIB) -lm -lX11 -lutil -lXft \
-
 STCFLAGS = $(INCS) $(CPPFLAGS) $(CFLAGS)
 STLDFLAGS = $(LIBS) $(LDFLAGS)
 
-CC = gcc -w -O3 -pipe -fstack-protector-all -fpie
+CC = cc

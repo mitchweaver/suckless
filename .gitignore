@@ -9,6 +9,7 @@ surf/certificates
 *~*
 
 *.tar.*
+*.tgz
 
 
 # these may change, but hide for now
