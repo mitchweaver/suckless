@@ -17,6 +17,7 @@ DWM_VERSION=6.2
 DMENU_VERSION=4.9
 TABBED_VERSION=0.6
 
+START_PWD="$PWD"
 for name ; do
     cd $name
 
@@ -47,5 +48,5 @@ for name ; do
     cd $name
     make CC="$CC"
     make PREFIX="$PREFIX" install
-    cd - >/dev/null
+    cd "$START_PWD"
 done

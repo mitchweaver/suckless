@@ -6,47 +6,32 @@ static unsigned int borderpx  = 2;
 /* static const unsigned int borderpx  = 1; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-static const char *fonts[] = { "Terminus:size=8" };
-static const int showbar = 1;
-
-static const int NUM_WORKSPACES=6;
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
-
 static const Rule rules[] = {
     /* class             instance    title    tags mask  iscentered   isfloating   monitor */
     { "st-256color",     NULL,       0,       0,         1,           0,           -1 },
-    { "tabbed",          NULL,       0,       0,         1,           0,           -1 },
     { "feh",             NULL,       0,       0,         1,           1,           -1 },
     { "mpv",             NULL,       0,       0,         1,           1,           -1 },
     { "mupdf",           NULL,       0,       0,         1,           1,           -1 },
 };
 
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
-/* static const char *colors[][3]      = { */
-/*     /1*               fg         bg         border   *1/ */
-/*     [SchemeNorm] = { "#bbbbbb", "#222222", "#555555" }, */
-/*     [SchemeSel]  = { "#eeeeee", "#eeeeee", "#333333" }, */
-/*     [SchemeUrg]  = { "#ff0000", "#ff0000", "#ff0000" }, */
-/* }; */
-
+static const char *fonts[] = { "Terminus:size=8" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const int showbar = 1;
 static const float mfact      = 0.5;
 static const int nmaster      = 1;
 static const int resizehints  = 1;
 static const int focusonwheel = 1;
 static const int topbar  = 1;
-
-static const int NUM_LAYOUTS = 3;
+static const char scratchpadname[] = "scratchpad";
 static const Layout layouts[] = {
     { "T", tile },
     { "F", NULL }, // floating
     { "M", monocle },
 };
-
-static const char scratchpadname[] = "scratchpad";
-
 #define TAGKEYS(KEY,TAG) { Mod1Mask, KEY, view, {.ui = 1 << TAG} }, \
                          { Mod1Mask|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
-#define SH(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define SH(cmd) { .v = (const char*[]){ "/bin/sh", "-r", "-c", cmd, NULL } }
 
 static Key keys[] = {
     /* modifier            key        function       argument */
