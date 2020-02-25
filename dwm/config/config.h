@@ -1,10 +1,13 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 static unsigned int gappx = 12;
-static unsigned int borderpx  = 2;
+static unsigned int borderpx  = 1;
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* static unsigned int gappx = 0; */
 /* static const unsigned int borderpx  = 1; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
+// for use with the rounded corners patch:
+static const int CORNER_RADIUS = 10;
 
 static const Rule rules[] = {
     /* class             instance    title    tags mask  iscentered   isfloating   monitor */
