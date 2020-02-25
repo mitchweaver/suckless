@@ -1,13 +1,10 @@
 /* --------------- Fonts -------------------------------- */
 // x200
-char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
-// surface
-/* char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false"; */
-
+/* char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
 /* char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* char font[] = "cherry:pixelsize=12:antialias=false:autohint=false"; */
+char font[] = "tewi:pixelsize=20:antialias=false:autohint=false";
 /* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* ------------------------------------------------------- */
 

@@ -11,8 +11,8 @@ For any questions, feel free to contact me or open a git issue.
 
 **[dwm](http://github.com/MitchWeaver/suckless/tree/master/dwm)**:
 
-![dwm](https://i.redd.it/adumeevthui41.png)
-![older_dwm](http://i.imgur.com/ossASOE.png)
+![dwm1](https://i.redd.it/adumeevthui41.png)  
+![dwm2](https://i.imgur.com/PpPbyfm.png)
 
 **[surf](http://github.com/MitchWeaver/suckless/tree/master/surf)**:
 
