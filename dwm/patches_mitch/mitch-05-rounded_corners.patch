@@ -45,7 +45,7 @@
 +void drawroundedcorners(Client *c) {
 +    // NOTE: this is extremely hacky and surely could be optimized.
 +    //       Any X wizards out there reading this, please pull request.
-+    if(CORNER_RADIUS > 0 && c && !c->isfullscreen){
++    if (CORNER_RADIUS > 0 && c && !c->isfullscreen) {
 +        Window win;
 +        win = c->win;
 +        if(!win) return;
@@ -53,10 +53,10 @@
 +        XWindowAttributes win_attr;
 +        if(!XGetWindowAttributes(dpy, win, &win_attr)) return;
 +
-+        const int w = c->w;
-+        const int h = c->h;
-+
-+        const int dia = 2 * CORNER_RADIUS; // set in config.h
++        // set in config.h:
++        int dia = 2 * CORNER_RADIUS;
++        int w = c->w;
++        int h = c->h;
 +        if(w < dia || h < dia) return;
 +
 +        Pixmap mask;

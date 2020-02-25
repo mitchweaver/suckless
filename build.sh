@@ -19,7 +19,6 @@ TABBED_VERSION=0.6
 
 START_PWD="$PWD"
 for name ; do
-    cd $name
 
     case $name in
         dwm) url=https://dl.suckless.org/dwm/dwm-$DWM_VERSION.tar.gz ;;
@@ -28,6 +27,8 @@ for name ; do
         tabbed) url=https://dl.suckless.org/tools/tabbed-$TABBED_VERSION.tar.gz ;;
         *) usage
     esac
+
+    cd $name
 
     file="$(basename "$url")"
     curl -q -L -C - -# --url "$url" --output "$file"

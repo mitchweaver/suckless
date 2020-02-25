@@ -1,5 +1,5 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static unsigned int gappx = 12;
+static unsigned int gappx = 14;
 static unsigned int borderpx  = 0;
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* static unsigned int gappx = 0; */
@@ -18,7 +18,8 @@ static const Rule rules[] = {
 };
 
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
-static const char *fonts[] = { "Terminus:size=8" };
+static const char *fonts[] = { "tewi:size=8" };
+/* static const char *fonts[] = { "Terminus:size=8" }; */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 static const int showbar = 1;
 static const float mfact      = 0.5;
@@ -34,13 +35,14 @@ static const Layout layouts[] = {
 };
 #define TAGKEYS(KEY,TAG) { Mod1Mask, KEY, view, {.ui = 1 << TAG} }, \
                          { Mod1Mask|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
-#define SH(cmd) { .v = (const char*[]){ "/bin/sh", "-r", "-c", cmd, NULL } }
+#define SH(cmd) { .v = (const char*[]) { "/bin/sh", "-r", "-c", cmd, NULL } }
+static const char *term[] = { "st", NULL };
 
 static Key keys[] = {
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { Mod1Mask|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") },
-    { Mod1Mask,             XK_Return, spawn,        SH("st")               },
+    /* { Mod1Mask|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") }, */
+    { Mod1Mask,             XK_Return, spawn,        { .v = term, }         },
     { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
     { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger")     },
     { Mod1Mask,             XK_w,      spawn,        SH("brws")             },
