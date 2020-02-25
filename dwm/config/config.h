@@ -39,6 +39,7 @@ static const Layout layouts[] = {
 static Key keys[] = {
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { Mod1Mask|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") },
     { Mod1Mask,             XK_Return, spawn,        SH("st")               },
     { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
     { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger")     },

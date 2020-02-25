@@ -1,11 +1,11 @@
 /* --------------- Fonts -------------------------------- */
 // x200
-/* char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
-/* char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
-/* char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
-char font[] = "tewi:pixelsize=20:antialias=false:autohint=false";
-/* char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
+/* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
+/* static const char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
+/* static const char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
+/* static const char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
+static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false";
+/* static const char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* ------------------------------------------------------- */
 
 const int borderpx = 22;
