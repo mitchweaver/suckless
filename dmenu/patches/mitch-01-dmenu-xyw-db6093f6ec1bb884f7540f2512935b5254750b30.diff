@@ -1,3 +1,4 @@
+/* http://github.com/mitchweaver/suckless */
 /* edited to avoid collision with -w windowid argument */
 --- dmenu/dmenu.c
 +++ dmenu/dmenu.c_new
