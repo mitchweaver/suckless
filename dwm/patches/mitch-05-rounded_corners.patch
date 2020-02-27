@@ -38,11 +38,14 @@
  	XMapWindow(dpy, c->win);
  	focus(NULL);
  }
-@@ -1337,6 +1342,52 @@
+@@ -1337,6 +1342,55 @@
  	XSync(dpy, False);
  }
  
 +void drawroundedcorners(Client *c) {
++    // if set to zero in config.h, do not attempt to round
++    if(CORNER_RADIUS < 0) return;
++
 +    // NOTE: this is extremely hacky and surely could be optimized.
 +    //       Any X wizards out there reading this, please pull request.
 +    if (CORNER_RADIUS > 0 && c && !c->isfullscreen) {
@@ -91,7 +94,7 @@
  void
  resizemouse(const Arg *arg)
  {
-@@ -1393,6 +1444,9 @@
+@@ -1393,6 +1447,9 @@
  
  			if (!selmon->lt[selmon->sellt]->arrange || c->isfloating)
  				resize(c, nx, ny, nw, nh, 1);
@@ -101,7 +104,7 @@
  			break;
  		}
  	} while (ev.type != ButtonRelease);
-@@ -1406,6 +1460,7 @@
+@@ -1406,6 +1463,7 @@
  		selmon = m;
  		focus(NULL);
  	}

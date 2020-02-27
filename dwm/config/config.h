@@ -6,8 +6,8 @@ static unsigned int borderpx  = 0;
 /* static const unsigned int borderpx  = 1; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-// for use with the rounded corners patch:
-static const int CORNER_RADIUS = 11;
+// for use with the rounded corners patch (0 disables)
+static const int CORNER_RADIUS = 0;
 
 static const Rule rules[] = {
     /* class             instance    title    tags mask  iscentered   isfloating   monitor */
@@ -41,11 +41,12 @@ static const char *term[] = { "st", NULL };
 static Key keys[] = {
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    /* { Mod1Mask|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") }, */
+    { Mod1Mask|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") },
     { Mod1Mask,             XK_Return, spawn,        { .v = term, }         },
     { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
     { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger")     },
-    { Mod1Mask,             XK_w,      spawn,        SH("brws")             },
+    { Mod1Mask,             XK_w,      spawn,        SH("tabbed -d -c surf -e") },
+    { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("chrome --new-window")  },
     { Mod1Mask,             XK_x,      spawn,        SH("lck")              },
     { Mod1Mask,             XK_o,      spawn,        SH("dedit")            },
     { Mod1Mask,             XK_i,      spawn,        SH("tasks")            },

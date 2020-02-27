@@ -54,7 +54,7 @@ static Parameter defconfig[ParameterLast] = {
     SETV(PreferredLanguages, ((char *[]){ NULL })),
     SETB(RunInFullscreen,    0),
     SETB(ShowIndicators,     1),
-    SETB(SpellChecking,      1),
+    SETB(SpellChecking,      0), // disabled, slows down typing for me
     SETV(SpellLanguages,     ((char *[]){ "en_US,de_DE", NULL })),
     SETB(Style,              1),
     SETF(ZoomLevel,          1.0),
