@@ -25,13 +25,13 @@ const static SearchEngine searchengines[] = {
     { "urban",  "https://urbandictionary.com/define.php?term=%s" },
 };
 
-static int winsize[] = { 800, 600 }; // default window size
+static int winsize[] = { 1000, 600 }; // default window size
 
 static const char *fulluseragent  = "Mozilla/5.0";
-static const char *scriptfile     = "~/.surf/script.js";
-static const char *styledir       = "~/.surf/styles/";
-static const char *cachedir       = "~/.surf/cache/";
-static const char *cookiefile     = "~/.surf/cookies.txt";
+static const char *scriptfile     = "~/.surf/scripts";
+static const char *styledir       = "~/.surf/styles";
+static const char *cookiefile     = "~/.cache/surf/cookies.txt";
+static const char *cachedir       = "~/.cache/surf/cache";
 static const int surfuseragent    = 0;
 
 

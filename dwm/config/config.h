@@ -18,7 +18,21 @@ static const Rule rules[] = {
 };
 
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
-
+/* static const char norm_fg[] = "#d4ddda"; */
+/* static const char norm_bg[] = "#062C39"; */
+/* static const char norm_border[] = "#949a98"; */
+/* static const char sel_fg[] = "#d4ddda"; */
+/* static const char sel_bg[] = "#494262"; */
+/* static const char sel_border[] = "#d4ddda"; */
+/* static const char urg_fg[] = "#d4ddda"; */
+/* static const char urg_bg[] = "#45405F"; */
+/* static const char urg_border[] = "#45405F"; */
+/* static const char *colors[][3]      = { */
+/*     /1*               fg           bg         border                         *1/ */
+/*     [SchemeNorm] = { norm_fg,     norm_bg,   norm_border }, // unfocused wins */
+/*     [SchemeSel]  = { sel_fg,      sel_bg,    sel_border },  // the focused win */
+/*     [SchemeUrg] =  { urg_fg,      urg_bg,    urg_border }, */
+/* }; */
 
 static const char *fonts[] = { "tewi:size=8" };
 /* static const char *fonts[] = { "Terminus:size=8" }; */

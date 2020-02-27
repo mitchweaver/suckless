@@ -1,5 +1,5 @@
-static const char font[] = "tewi:pixelsize=14:antialias=false:autohint=false";
-/* static const char font[] = "Terminus:pixelsize=18:antialias=false:autohint=false"; */
+/* static const char font[] = "tewi:pixelsize=14:antialias=false:autohint=false"; */
+static const char font[] = "Terminus:pixelsize=18:antialias=false:autohint=false";
 /* static const char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "IBMPlexMono:pixelsize=12:antialias=true:autohint=true"; */
