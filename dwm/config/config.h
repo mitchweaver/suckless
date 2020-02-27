@@ -18,6 +18,8 @@ static const Rule rules[] = {
 };
 
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
+
+
 static const char *fonts[] = { "tewi:size=8" };
 /* static const char *fonts[] = { "Terminus:size=8" }; */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6" };

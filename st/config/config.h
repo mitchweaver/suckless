@@ -16,10 +16,12 @@ static unsigned int rows = 28;
 unsigned int tabspaces = 4;
 
 /* --------------- Themes -------------------------------- */
-#include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal
+/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* #include "../themes/mine/plan9.h" */
+#include "../themes/mine/color-nostalgia.h"
 /* #include "../themes/mine/bubblegum-theme.h" */
+/* #include "../themes/default-color-scheme.h" */
+static unsigned int defaultrcs = 257;
 /*  -------------------------------------------------------  */
 
 MouseShortcut mshortcuts[] = {
@@ -101,14 +103,6 @@ static int bellvolume = 0;
 
 /* default TERM value */
 char *termname = "st-256color";
-
-/* Default colors (colorname index)
- * foreground, background, cursor, reverse cursor */
-// NOTE: delete these if not using pywal
-//unsigned int defaultfg = 7;
-//unsigned int defaultbg = 0;
-//static unsigned int defaultcs = 256;
-//static unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor

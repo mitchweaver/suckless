@@ -6,7 +6,7 @@ const char *colorname[] = {
   [4] = "#5b6982", /* blue    */
   [5] = "#755b82", /* magenta */
   [6] = "#5b8275", /* cyan    */
-  [7] = "#cacaca", /* white   */
+  [7] = "#494949", /* white   */
 
   [8]  = "#333333",  /* black   */
   [9]  = "#bda0aa",  /* red     */
