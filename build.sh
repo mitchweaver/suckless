@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 usage() {
-    >&2 echo 'Usage: ./build.sh [dwm] [st] [dmenu] [tabbed]'
+    >&2 echo 'Usage: ./build.sh [dwm] [st] [dmenu] [tabbed] [surf]'
     exit 1
 }
 
@@ -16,14 +16,16 @@ ST_VERSION=0.8.2
 DWM_VERSION=6.2
 DMENU_VERSION=4.9
 TABBED_VERSION=0.6
+SURF_VERSION=2.0
 
 START_PWD="$PWD"
 for name ; do
 
     case $name in
-        dwm) url=https://dl.suckless.org/dwm/dwm-$DWM_VERSION.tar.gz ;;
-        st) url=https://dl.suckless.org/st/st-$ST_VERSION.tar.gz ;;
-        dmenu) url=https://dl.suckless.org/tools/dmenu-$DMENU_VERSION.tar.gz ;;
+        dwm)    url=https://dl.suckless.org/dwm/dwm-$DWM_VERSION.tar.gz ;;
+        st)     url=https://dl.suckless.org/st/st-$ST_VERSION.tar.gz ;;
+        surf)   url=https://dl.suckless.org/surf/surf-$SURF_VERSION.tar.gz ;;
+        dmenu)  url=https://dl.suckless.org/tools/dmenu-$DMENU_VERSION.tar.gz ;;
         tabbed) url=https://dl.suckless.org/tools/tabbed-$TABBED_VERSION.tar.gz ;;
         *) usage
     esac

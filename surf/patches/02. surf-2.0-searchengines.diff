@@ -1,6 +1,5 @@
-index 93a1629..eb2af97 100644
 --- surf/surf.c
-+++ surf/surf.c_new
++++ surf/surf.c
 @@ -129,6 +129,11 @@ typedef struct {
  } Button;
  

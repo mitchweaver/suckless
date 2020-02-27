@@ -1,0 +1,26 @@
+--- surf/surf.c	Thu Feb 27 00:57:01 2020
++++ surf/surf.c	Thu Feb 27 00:57:47 2020
+@@ -227,7 +227,6 @@
+ /* Buttons */
+ static void clicknavigate(Client *c, const Arg *a, WebKitHitTestResult *h);
+ static void clicknewwindow(Client *c, const Arg *a, WebKitHitTestResult *h);
+-static void clickexternplayer(Client *c, const Arg *a, WebKitHitTestResult *h);
+ 
+ static char winid[64];
+ static char togglestats[10];
+@@ -1659,15 +1658,6 @@
+ 
+ 	arg.v = webkit_hit_test_result_get_link_uri(h);
+ 	newwindow(c, &arg, a->b);
+-}
+-
+-void
+-clickexternplayer(Client *c, const Arg *a, WebKitHitTestResult *h)
+-{
+-	Arg arg;
+-
+-	arg = (Arg)VIDEOPLAY(webkit_hit_test_result_get_media_uri(h));
+-	spawn(c, &arg);
+ }
+ 
+ int
