@@ -12,33 +12,40 @@ export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexcept
 export LDFLAGS=-s
 export PREFIX=${HOME}/.local
 
-ST_VERSION=0.8.2
-DWM_VERSION=6.2
-DMENU_VERSION=4.9
-TABBED_VERSION=0.6
-SURF_VERSION=2.0
+ST_VERSION=e85b6b64660214121164ea97fb098eaa4935f7db # 12 Feb 2019
+ST_VERSION=75b4ba4b4be70a3ae429b1719d18b021839216d5 # 13 Mar 2019
+DWM_VERSION=cb3f58ad06993f7ef3a7d8f61468012e2b786cab # 02 Feb 2019
+DMENU_VERSION=db6093f6ec1bb884f7540f2512935b5254750b30 # 03 Mar 2019
+SURF_VERSION=2355c20e92d6f47100323e3394d565f8e8bf70dc # 19 Apr 2017
+TABBED_VERSION=b5f9ec647aae2d9a1d3bd586eb7523a4e0a329a3 # 10 Mar 2018
+
+clone() {
+    cd $1
+    if [ ! -d $1 ] ; then
+        git clone git://git.suckless.org/$1
+    else
+        cd $1
+        git clean -df
+        git fetch --all
+        git reset --hard $2
+        cd - >/dev/null
+    fi
+    cd "$START_PWD"
+}
 
 START_PWD="$PWD"
 for name ; do
 
     case $name in
-        dwm)    url=https://dl.suckless.org/dwm/dwm-$DWM_VERSION.tar.gz ;;
-        st)     url=https://dl.suckless.org/st/st-$ST_VERSION.tar.gz ;;
-        surf)   url=https://dl.suckless.org/surf/surf-$SURF_VERSION.tar.gz ;;
-        dmenu)  url=https://dl.suckless.org/tools/dmenu-$DMENU_VERSION.tar.gz ;;
-        tabbed) url=https://dl.suckless.org/tools/tabbed-$TABBED_VERSION.tar.gz ;;
+        dwm)    clone $name $DWM_VERSION ;;
+        st)     clone $name $ST_VERSION ;;
+        surf)   clone $name $SURF_VERSION ;;
+        dmenu)  clone $name $DMENU_VERSION ;;
+        tabbed) clone $name $TABBED_VERSION ;;
         *) usage
     esac
 
-    cd $name
-
-    file="$(basename "$url")"
-    curl -q -L -C - -# --url "$url" --output "$file"
-    mkdir -p dl
-    tar -xzf "$file" -C dl
-    [ -d $name ] && rm -rf $name
-    mv dl/$name-* $name
-    rmdir dl
+    cd "$name"
 
     ls patches | while read -r patch ; do
         printf '\n%s\n\n' "===> applying $patch..."

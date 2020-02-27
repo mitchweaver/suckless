@@ -1,42 +1,36 @@
-// if tabbed is launched with the -g flag,
-// tabbed becomes fixed and it sized cannot be changed
-// this is EXTREMELY annoying if you want to do this...
-//
-// see my "x9term" script in my bin repo for an example
-//
---- tabbed/tabbed.c	Mon Feb 24 23:07:54 2020
-+++ tabbed/tabbed.c	Mon Feb 24 23:08:26 2020
-@@ -921,7 +921,7 @@
- 
+--- tabbed/tabbed.c	Thu Feb 27 03:14:43 2020
++++ tabbed/tabbed.c	Thu Feb 27 03:15:27 2020
+@@ -975,7 +975,7 @@
  void
- setup(void) {
+ setup(void)
+ {
 -	int bitm, tx, ty, tw, th, dh, dw, isfixed;
 +	int bitm, tx, ty, tw, th, dh, dw;
+ 	XWMHints *wmh;
  	XClassHint class_hint;
  	XSizeHints *size_hint;
- 
-@@ -948,7 +948,6 @@
+@@ -1004,7 +1004,6 @@
  	wy = 0;
  	ww = 800;
  	wh = 600;
 -	isfixed = 0;
  
- 	if(geometry) {
+ 	if (geometry) {
  		tx = ty = tw = th = 0;
-@@ -966,8 +965,6 @@
+@@ -1022,8 +1021,6 @@
  			wx = -1;
- 		if(bitm & YNegative && wy == 0)
+ 		if (bitm & YNegative && wy == 0)
  			wy = -1;
--		if(bitm & (HeightValue|WidthValue))
+-		if (bitm & (HeightValue | WidthValue))
 -			isfixed = 1;
  
  		dw = DisplayWidth(dpy, screen);
  		dh = DisplayHeight(dpy, screen);
-@@ -1000,15 +997,9 @@
+@@ -1057,15 +1054,10 @@
  	XSetClassHint(dpy, win, &class_hint);
  
  	size_hint = XAllocSizeHints();
--	if(!isfixed) {
+-	if (!isfixed) {
 -		size_hint->flags = PSize;
 -		size_hint->height = wh;
 -		size_hint->width = ww;
@@ -48,6 +42,7 @@
 +    size_hint->flags = PSize;
 +    size_hint->height = wh;
 +    size_hint->width = ww;
- 	XSetWMProperties(dpy, win, NULL, NULL, NULL, 0, size_hint, NULL, NULL);
++
+ 	wmh = XAllocWMHints();
+ 	XSetWMProperties(dpy, win, NULL, NULL, NULL, 0, size_hint, wmh, NULL);
  	XFree(size_hint);
- 
