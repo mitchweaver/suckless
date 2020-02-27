@@ -77,13 +77,13 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
 
 // bring up my bookmarks file in the url bar,
 // while preserving the current page link at the top
-#define SETPROP(p, q) { \
+#define SETPROP(p, q, prompt) { \
     .v = (const char *[]){ "/bin/sh", "-c", \
-        "prop=\"`printf '%s\n' $(xprop -id $2 $0 " \
+        "prop=\"`printf '%s\n' $(xprop -id $3 $0 " \
         "| sed -e 's|_SURF.*.= \"||' -e 's|\"$||' " \
-        "&& cat $3) | menu -w $2 -p 'Go:'`\" &&" \
-        "xprop -id $2 -f $1 8s -set $1 \"$prop\"", \
-        p, q, winid, BKMS, NULL \
+        "&& cat $4) | menu -w $3 -p $2`\" &&" \
+        "xprop -id $3 -f $1 8s -set $1 \"$prop\"", \
+        p, q, prompt, winid, BKMS, NULL \
     } \
 }
 
@@ -131,7 +131,7 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
 #define SHIFT GDK_SHIFT_MASK
 static Key keys[] = {
     /* modifier              keyval          function    arg */
-    { MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO") },
+    { MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", "Go:") },
 
     /* -*-*-*-*-*-*-*-*-*-*- CUSTOM FUNCS *-*-*-*-*-*-*-*-*-*-*-*-* */
 	{ MODKEY|SHIFT,            GDK_KEY_b,      spawn,      BM_ADD   },
@@ -140,7 +140,7 @@ static Key keys[] = {
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
     /* ------------------------ FINDING ------------------------------ */
-    { MODKEY,   GDK_KEY_slash,   spawn,  SETPROP("_SURF_FIND", "_SURF_FIND") },
+    { MODKEY,   GDK_KEY_slash,   spawn,  SETPROP("_SURF_FIND", "_SURF_FIND", "Find:") },
     { MODKEY,   GDK_KEY_period,  find,   { .i = +1 } },
     { MODKEY,   GDK_KEY_comma,   find,   { .i = -1 } },
     /* --------------------------------------------------------------- */
