@@ -1,0 +1,34 @@
+--- st/st.c	Thu Feb 27 18:19:25 2020
++++ st/st.c	Thu Feb 27 18:19:25 2020
+@@ -1058,6 +1058,11 @@ tnew(int col, int row)
+ 	treset();
+ }
+ 
++int tisaltscr(void)
++{
++	return IS_SET(MODE_ALTSCREEN);
++}
++
+ void
+ tswapscreen(void)
+ {
+--- st/st.h
++++ st/st.h
+@@ -95,6 +95,7 @@ void sendbreak(const Arg *);
+ void toggleprinter(const Arg *);
+ 
+ int tattrset(int);
++int tisaltscr(void);
+ void tnew(int, int);
+ void tresize(int, int);
+ void tsetdirtattr(int);
+--- st/x.c	Thu Feb 27 18:19:25 2020
++++ st/x.c	Thu Feb 27 18:19:10 2020
+@@ -429,6 +429,7 @@
+ {
+ 	MouseShortcut *ms;
+ 
++    if (tisaltscr())
+ 	for (ms = mshortcuts; ms < mshortcuts + LEN(mshortcuts); ms++) {
+ 		if (ms->release == release &&
+ 		    ms->button == e->xbutton.button &&

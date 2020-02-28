@@ -1,0 +1,44 @@
+--- st/st.h	Thu Feb 27 18:16:05 2020
++++ st/st.h	Thu Feb 27 18:16:05 2020
+@@ -76,6 +76,13 @@ typedef union {
+ 	const void *v;
+ } Arg;
+ 
++typedef struct {
++	 uint b;
++	 uint mask;
++	 void (*func)(const Arg *);
++	 const Arg arg;
++} MouseKey;
++
+ void die(const char *, ...);
+ void redraw(void);
+ void draw(void);
+@@ -122,3 +129,4 @@ extern char *termname;
+ extern unsigned int tabspaces;
+ extern unsigned int defaultfg;
+ extern unsigned int defaultbg;
++extern MouseKey mkeys[];
+--- st/x.c	Thu Feb 27 18:16:05 2020
++++ st/x.c	Thu Feb 27 18:16:50 2020
+@@ -446,11 +446,20 @@
+ bpress(XEvent *e)
+ {
+ 	struct timespec now;
++    MouseKey *mk;
+ 	int snap;
+ 
+ 	if (IS_SET(MODE_MOUSE) && !(e->xbutton.state & forcemousemod)) {
+ 		mousereport(e);
+ 		return;
++	}
++
++	for (mk = mkeys; mk < mkeys + LEN(mkeys); mk++) {
++		if (e->xbutton.button == mk->b
++				&& match(mk->mask, e->xbutton.state)) {
++			mk->func(&mk->arg);
++			return;
++		}
+ 	}
+ 
+ 	if (mouseaction(e, 0))

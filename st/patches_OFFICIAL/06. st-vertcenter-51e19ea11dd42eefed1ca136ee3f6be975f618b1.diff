@@ -1,5 +1,5 @@
 --- st/x.c	Tue Mar 20 00:28:57 2018
-+++ st/x.c_new	Tue Mar 20 00:29:02 2018
++++ st/x.c	Tue Mar 20 00:29:02 2018
 @@ -80,6 +80,7 @@
  	int w, h; /* window width and height */
  	int ch; /* char height */

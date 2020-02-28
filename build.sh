@@ -1,11 +1,11 @@
 #!/bin/sh -e
 
 # -*-*-*-*-*-*-*-*- SETTINGS -*-*-*-*-*-*-*-*-*-*-*-*-*-*--*
-ST_VERSION=e85b6b64660214121164ea97fb098eaa4935f7db     # 12 Feb 2019
 DWM_VERSION=cb3f58ad06993f7ef3a7d8f61468012e2b786cab    # 02 Feb 2019
+ST_VERSION=51e19ea11dd42eefed1ca136ee3f6be975f618b1     # 18 Feb 2020
 DMENU_VERSION=db6093f6ec1bb884f7540f2512935b5254750b30  # 03 Mar 2019
-SURF_VERSION=2355c20e92d6f47100323e3394d565f8e8bf70dc   # 19 Apr 2017
 TABBED_VERSION=b5f9ec647aae2d9a1d3bd586eb7523a4e0a329a3 # 10 Mar 2018
+SURF_VERSION=2355c20e92d6f47100323e3394d565f8e8bf70dc   # 19 Apr 2017
 
 export PREFIX=${HOME}/.local
 export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexceptions'

@@ -1,183 +1,80 @@
-/* --------------- Fonts -------------------------------- */
-// x200
+/* -*-*-*-*-*-*-*- Fonts -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false";
 /* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
 /* static const char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
-static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false";
 /* static const char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
-/* ------------------------------------------------------- */
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 const int borderpx = 22;
-
 static unsigned int cols = 90;
 static unsigned int rows = 28;
-
 unsigned int tabspaces = 4;
+static unsigned int xfps = 120;
+static unsigned int actionfps = 30;
 
-/* --------------- Themes -------------------------------- */
-/* #include "/home/mitch/.cache/wal/colors-wal-st.h" // pywal */
+/* -*-*-*-*-*-*-*- Themes *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+// pywal:
+/* #include "/home/mitch/.cache/wal/colors-wal-st.h" */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 #include "../themes/mine/color-nostalgia.h"
 /* #include "../themes/mine/bubblegum-theme.h" */
 /* #include "../themes/default-color-scheme.h" */
 static unsigned int defaultrcs = 257;
-/*  -------------------------------------------------------  */
-
-MouseShortcut mshortcuts[] = {
-    /* button               mask            string */
-	{ Button4,              XK_NO_MOD,      "\031" },
-	{ Button5,              XK_NO_MOD,      "\005" },
-};
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 MouseKey mkeys[] = {
-	/* button               mask            function        argument */
-	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
-	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
-    { Button4,              ControlMask,    zoom,           {.f =  +2} },
-	{ Button5,              ControlMask,    zoom,           {.f =  -2} },
+	/* button    mask            function        argument */
+	{ Button4,   XK_NO_MOD,      kscrollup,      {.i =  1} },
+	{ Button5,   XK_NO_MOD,      kscrolldown,    {.i =  1} },
+    { Button4,   ControlMask,    zoom,           {.f =  +2} },
+	{ Button5,   ControlMask,    zoom,           {.f =  -2} },
 };
 
 Shortcut shortcuts[] = {
-	/* mask                 keysym          function        argument */
-	{ ControlMask,          XK_equal,       zoom,           {.f = +2} },
-	{ ControlMask,          XK_minus,       zoom,           {.f = -2} },
-	{ ControlMask,          XK_BackSpace,   zoomreset,      {.f =  0} },
-
-    { ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
-    { ControlMask,          XK_v,           clippaste,      {.i =  0} },
-
-	{ ControlMask,          XK_Page_Up,     kscrollup,      {.i = 3} },
-	{ ControlMask,          XK_Page_Down,   kscrolldown,    {.i = 3} },
+	/* mask          keysym          function        argument */
+	{ ControlMask,   XK_equal,       zoom,           {.f = +2} },
+	{ ControlMask,   XK_minus,       zoom,           {.f = -2} },
+	{ ControlMask,   XK_BackSpace,   zoomreset,      {.f =  0} },
+    { ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
+    { ControlMask,   XK_v,           clippaste,      {.i =  0} },
+	{ ControlMask,   XK_Page_Up,     kscrollup,      {.i =  3} },
+	{ ControlMask,   XK_Page_Down,   kscrolldown,    {.i =  3} },
 };
 
 // # # ## # # # # ## IGNORE BELOW ## # # # # ## #  # # # # # # # //
-
-/* What program is execed by st depends of these precedence rules:
- * 1: program passed with -e
- * 2: utmp option
- * 3: SHELL environment variable
- * 4: value of shell in /etc/passwd
- * 5: value of shell in config.h */
-static char *shell = "/bin/sh";
-char *utmp = NULL;
-char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
-
-/* identification sequence returned in DA and DECID */
-char *vtiden = "\033[?6c";
-
-/* Kerning / character bounding-box multipliers */
-static float cwscale = 1.0;
-static float chscale = 1.0;
-
-/* word delimiter string
- *
- * More advanced example: L" `'\"()[]{}" */
-char *worddelimiters = " ";
-
-/* selection timeouts (in milliseconds) */
-static unsigned int doubleclicktimeout = 300;
-static unsigned int tripleclicktimeout = 600;
-
-/* alt screens */
-int allowaltscreen = 1;
-
-/* frames per second st should at maximum draw to the screen */
-static unsigned int xfps = 120;
-static unsigned int actionfps = 30;
-
-/* blinking timeout (set to 0 to disable blinking) for the terminal blinking
- * attribute.  */
-static unsigned int blinktimeout = 800;
-
-/*
- * thickness of underline and bar cursors
- */
-static unsigned int cursorthickness = 2;
-
-/*
- * bell volume. It must be a value between -100 and 100. Use 0 for disabling
- * it
- */
-static int bellvolume = 0;
-
-/* default TERM value */
-char *termname = "st-256color";
-
-/*
- * Default shape of cursor
- * 2: Block ("█")
- * 4: Underline ("_")
- * 6: Bar ("|")
- * 7: Snowman ("☃")
- */
-static unsigned int cursorshape = 2;
-
-/*
- * Default colour and shape of the mouse cursor
- */
+static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
+static KeySym mappedkeys[] = { -1 };
+static uint forcemousemod = ShiftMask;
+static unsigned int defaultattr = 11;
 static unsigned int mouseshape = XC_xterm;
 static unsigned int mousefg = 7;
 static unsigned int mousebg = 0;
-
-/*
- * Color used to display font attributes when fontconfig selected a font which
- * doesn't match the ones requested.
- */
-static unsigned int defaultattr = 11;
-
-/* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
-#define TERMMOD (ControlMask|ShiftMask)
-
-/*
- * Special keys (change & recompile st.info accordingly)
- *
- * Mask value:
- * * Use XK_ANY_MOD to match the key no matter modifiers state
- * * Use XK_NO_MOD to match the key alone (no modifiers)
- * appkey value:
- * * 0: no value
- * * > 0: keypad application mode enabled
- * *   = 2: term.numlock = 1
- * * < 0: keypad application mode disabled
- * appcursor value:
- * * 0: no value
- * * > 0: cursor application mode enabled
- * * < 0: cursor application mode disabled
- * crlf value
- * * 0: no value
- * * > 0: crlf mode is enabled
- * * < 0: crlf mode is disabled
- *
- * Be careful with the order of the definitions because st searches in
- * this table sequentially, so any XK_ANY_MOD must be in the last
- * position for a key.
- */
-
-/*
- * If you want keys other than the X11 function keys (0xFD00 - 0xFFFF)
- * to be mapped below, add them to this array.
- */
-static KeySym mappedkeys[] = { -1 };
-
-/*
- * State bits to ignore when matching key or button events.  By default,
- * numlock (Mod2Mask) and keyboard layout (XK_SWITCH_MOD) are ignored.
- */
-static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
-
-/*
- * Override mouse-select while mask is active (when MODE_MOUSE is set).
- * Note that if you want to use ShiftMask with selmasks, set this to an other
- * modifier, set to 0 to not use it.
- */
-static uint forceselmod = ShiftMask;
-
-/*
- * This is the huge key array which defines all compatibility to the Linux
- * world. Please decide about changes wisely.
- */
+static unsigned int cursorshape = 2;
+char *termname = "st-256color";
+static int bellvolume = 0;
+static unsigned int cursorthickness = 2;
+int allowaltscreen = 1;
+static unsigned int blinktimeout = 800;
+static unsigned int doubleclicktimeout = 300;
+static unsigned int tripleclicktimeout = 600;
+wchar_t *worddelimiters = L" ";
+static float cwscale = 1.0;
+static float chscale = 1.0;
+char *vtiden = "\033[?6c";
+static char *shell = "/bin/sh";
+char *utmp = NULL;
+char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
+static uint selmasks[] = {
+	[SEL_RECTANGULAR] = Mod1Mask,
+};
+static MouseShortcut mshortcuts[] = {
+	/* mask                 button   function        argument       release */
+	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
+	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+};
 static Key key[] = {
 	/* keysym           mask            string      appkey appcursor */
 	{ XK_KP_Home,       ShiftMask,      "\033[2J",       0,   -1},
@@ -390,22 +287,6 @@ static Key key[] = {
 	{ XK_F34,           XK_NO_MOD,      "\033[21;5~",    0,    0},
 	{ XK_F35,           XK_NO_MOD,      "\033[23;5~",    0,    0},
 };
-
-/*
- * Selection types' masks.
- * Use the same masks as usual.
- * Button1Mask is always unset, to make masks match between ButtonPress.
- * ButtonRelease and MotionNotify.
- * If no match is found, regular selection is used.
- */
-static uint selmasks[] = {
-	[SEL_RECTANGULAR] = Mod1Mask,
-};
-
-/*
- * Printable characters in ASCII, used to estimate the advance width
- * of single wide characters.
- */
 static char ascii_printable[] =
 	" !\"#$%&'()*+,-./0123456789:;<=>?"
 	"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
