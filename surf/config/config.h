@@ -91,6 +91,15 @@ static UriParameters uriparams[] = {
     } \
 }
 
+// same as above but dont cat my bookmarks
+#define SETFIND(p, q, prompt) { \
+    .v = (const char *[]){ "/bin/sh", "-c", \
+        "prop=\"$(echo | menu -w $3 -p $2)\" &&" \
+        "xprop -id $3 -f $1 8s -set $1 \"$prop\"", \
+        p, q, prompt, winid, NULL \
+    } \
+}
+
 #define DOWNLOAD(d, r) { \
     .v = (const char *[]){ "/bin/sh", "-c", \
         "st -e /bin/sh -c \"cd ${HOME}/Downloads " \
@@ -156,7 +165,7 @@ static Key keys[] = {
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
     /* -*-*-*-*-*-*-*-*-*-*-*-* FINDING *-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,   GDK_KEY_slash,   spawn,  SETPROP("_SURF_FIND", "_SURF_FIND", "Find:") },
+    { MODKEY,   GDK_KEY_slash,   spawn,  SETFIND("_SURF_FIND", "_SURF_FIND", "Find:") },
     { MODKEY,   GDK_KEY_period,  find,   { .i = +1 } },
     { MODKEY,   GDK_KEY_comma,   find,   { .i = -1 } },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
