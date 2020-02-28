@@ -1,0 +1,41 @@
+--- surf/surf.c	Thu Feb 27 19:03:19 2020
++++ surf/surf.c	Thu Feb 27 19:03:38 2020
+@@ -224,7 +224,6 @@
+ /* Hotkeys */
+ static void pasteuri(GtkClipboard *clipboard, const char *text, gpointer d);
+ static void reload(Client *c, const Arg *a);
+-static void showcert(Client *c, const Arg *a);
+ static void clipboard(Client *c, const Arg *a);
+ static void zoom(Client *c, const Arg *a);
+ static void scrollv(Client *c, const Arg *a);
+@@ -1800,30 +1799,6 @@
+ 		webkit_web_view_reload_bypass_cache(c->view);
+ 	else
+ 		webkit_web_view_reload(c->view);
+-}
+-
+-void
+-showcert(Client *c, const Arg *a)
+-{
+-	GTlsCertificate *cert = c->failedcert ? c->failedcert : c->cert;
+-	GcrCertificate *gcrt;
+-	GByteArray *crt;
+-	GtkWidget *win;
+-	GcrCertificateWidget *wcert;
+-
+-	if (!cert)
+-		return;
+-
+-	g_object_get(cert, "certificate", &crt, NULL);
+-	gcrt = gcr_simple_certificate_new(crt->data, crt->len);
+-	g_byte_array_unref(crt);
+-
+-	win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+-	wcert = gcr_certificate_widget_new(gcrt);
+-	g_object_unref(gcrt);
+-
+-	gtk_container_add(GTK_CONTAINER(win), GTK_WIDGET(wcert));
+-	gtk_widget_show_all(win);
+ }
+ 
+ void

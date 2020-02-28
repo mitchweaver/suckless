@@ -1,0 +1,27 @@
+// http://github.com/mitchweaver/suckless
+--- surf/surf.c	Thu Feb 27 19:07:26 2020
++++ surf/surf.c	Thu Feb 27 19:07:53 2020
+@@ -231,7 +231,6 @@
+ static void navigate(Client *c, const Arg *a);
+ static void stop(Client *c, const Arg *a);
+ static void togglefullscreen(Client *c, const Arg *a);
+-static void toggleinspector(Client *c, const Arg *a);
+ static void find(Client *c, const Arg *a);
+ 
+ /* Buttons */
+@@ -1880,15 +1879,6 @@
+ 		gtk_window_unfullscreen(GTK_WINDOW(c->win));
+ 	else
+ 		gtk_window_fullscreen(GTK_WINDOW(c->win));
+-}
+-
+-void
+-toggleinspector(Client *c, const Arg *a)
+-{
+-	if (webkit_web_inspector_is_attached(c->inspector))
+-		webkit_web_inspector_close(c->inspector);
+-	else if (curconfig[Inspector].val.i)
+-		webkit_web_inspector_show(c->inspector);
+ }
+ 
+ void

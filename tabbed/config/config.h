@@ -1,11 +1,11 @@
-/* static const char font[] = "tewi:pixelsize=14:antialias=false:autohint=false"; */
-static const char font[] = "Terminus:pixelsize=18:antialias=false:autohint=false";
+static const char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false";
+/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
 /* static const char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* static const char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
-/* static const char font[] = "IBMPlexMono:pixelsize=12:antialias=true:autohint=true"; */
+/* static const char font[] = "Roboto Mono:pixelsize=20:antialias=true:autohint=true"; */
 
 /* set to -1 if you want to use the text's height */
-static const int barheight = -1; 
+static const int barheight = -1;
+/* static const int barheight = 20; */
 
 /* -*-*-*-*-*-*-*- THEME -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 // pywal theme

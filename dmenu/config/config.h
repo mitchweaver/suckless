@@ -1,16 +1,11 @@
+static const char *fonts[] = { "Terminus:pixelsize=20:antialias=false:autohint=false" };
+/* static const char *fonts[] = { "tewi:pixelsize=20:antialias=false:autohint=false" }; */
+/* static const char *fonts[] = { "Share Tech Mono:pixelsize=16:antialias=true:autohint=true" }; */
+
 static const unsigned int border_width = 2;
 static int fuzzy = 1;
 
-static const char *fonts[] = {
-    "Terminus:pixelsize=20:antialias=false:autohint=false"
-    /* "Share Tech Mono:pixelsize=16:antialias=true:autohint=true" */
-    /* "Share Tech Mono:pixelsize=14:antialias=true:autohint=true" */
-    /* "IBMPlexMono:pixelsize=16:antialias=true:autohint=true" */
-    /* "IBMPlexMono:pixelsize=14:antialias=true:autohint=true" */
-};
-
 #include "/home/mitch/.cache/wal/colors-wal-dmenu.h";
-
 /* static const char *colors[SchemeLast][2] = { */
 /*             	/1*     fg         bg       *1/ */
 /* 	[SchemeNorm] = { "#bbbbbb", "#373B41" }, */

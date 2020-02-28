@@ -1,8 +1,7 @@
 /* -*-*-*-*-*-*-*- Fonts -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false";
-/* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
+static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
+/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
 /* static const char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* static const char font[] = "IBMPlexMono:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "Roboto Mono:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -16,12 +15,13 @@ static unsigned int actionfps = 30;
 
 /* -*-*-*-*-*-*-*- Themes *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 // pywal:
-/* #include "/home/mitch/.cache/wal/colors-wal-st.h" */
+#include "/home/mitch/.cache/wal/colors-wal-st.h"
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#include "../themes/mine/color-nostalgia.h"
+/* #include "../themes/mine/color-nostalgia.h" */
 /* #include "../themes/mine/bubblegum-theme.h" */
+/* #include "../themes/mine/plan9.h" */
 /* #include "../themes/default-color-scheme.h" */
-static unsigned int defaultrcs = 257;
+/* static unsigned int defaultrcs = 257; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 MouseKey mkeys[] = {

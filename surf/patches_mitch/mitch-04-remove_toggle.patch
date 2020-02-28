@@ -1,0 +1,25 @@
+// http://github.com/mitchweaver/suckless
+--- surf/surf.c	Thu Feb 27 19:04:10 2020
++++ surf/surf.c	Thu Feb 27 19:05:31 2020
+@@ -230,7 +230,6 @@
+ static void scrollh(Client *c, const Arg *a);
+ static void navigate(Client *c, const Arg *a);
+ static void stop(Client *c, const Arg *a);
+-static void toggle(Client *c, const Arg *a);
+ static void togglefullscreen(Client *c, const Arg *a);
+ static void togglecookiepolicy(Client *c, const Arg *a);
+ static void toggleinspector(Client *c, const Arg *a);
+@@ -1872,13 +1871,6 @@
+ stop(Client *c, const Arg *a)
+ {
+ 	webkit_web_view_stop_loading(c->view);
+-}
+-
+-void
+-toggle(Client *c, const Arg *a)
+-{
+-	curconfig[a->i].val.i ^= 1;
+-	setparameter(c, 1, (ParamName)a->i, &curconfig[a->i].val);
+ }
+ 
+ void

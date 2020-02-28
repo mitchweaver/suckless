@@ -1,0 +1,25 @@
+// http://github.com/mitchweaver/suckless
+--- surf/surf.c	Thu Feb 27 19:02:10 2020
++++ surf/surf.c	Thu Feb 27 19:02:35 2020
+@@ -224,7 +224,6 @@
+ /* Hotkeys */
+ static void pasteuri(GtkClipboard *clipboard, const char *text, gpointer d);
+ static void reload(Client *c, const Arg *a);
+-static void print(Client *c, const Arg *a);
+ static void showcert(Client *c, const Arg *a);
+ static void clipboard(Client *c, const Arg *a);
+ static void zoom(Client *c, const Arg *a);
+@@ -1801,13 +1800,6 @@
+ 		webkit_web_view_reload_bypass_cache(c->view);
+ 	else
+ 		webkit_web_view_reload(c->view);
+-}
+-
+-void
+-print(Client *c, const Arg *a)
+-{
+-	webkit_print_operation_run_dialog(webkit_print_operation_new(c->view),
+-	                                  GTK_WINDOW(c->win));
+ }
+ 
+ void
