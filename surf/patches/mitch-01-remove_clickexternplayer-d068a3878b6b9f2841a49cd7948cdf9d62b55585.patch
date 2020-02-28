@@ -1,17 +1,18 @@
---- surf/surf.c	Thu Feb 27 00:57:01 2020
-+++ surf/surf.c	Thu Feb 27 00:57:47 2020
-@@ -227,7 +227,6 @@
+// http://github.com/mitchweaver/suckless
+--- surf/surf.c	Thu Feb 27 18:34:09 2020
++++ surf/surf.c	Thu Feb 27 18:36:02 2020
+@@ -241,7 +241,6 @@
  /* Buttons */
  static void clicknavigate(Client *c, const Arg *a, WebKitHitTestResult *h);
  static void clicknewwindow(Client *c, const Arg *a, WebKitHitTestResult *h);
 -static void clickexternplayer(Client *c, const Arg *a, WebKitHitTestResult *h);
  
  static char winid[64];
- static char togglestats[10];
-@@ -1659,15 +1658,6 @@
+ static char togglestats[12];
+@@ -1982,15 +1981,6 @@
  
  	arg.v = webkit_hit_test_result_get_link_uri(h);
- 	newwindow(c, &arg, a->b);
+ 	newwindow(c, &arg, a->i);
 -}
 -
 -void

@@ -32,51 +32,52 @@ static const char *scriptfile     = "~/.surf/scripts";
 static const char *styledir       = "~/.surf/styles";
 static const char *cookiefile     = "~/.cache/surf/cookies.txt";
 static const char *cachedir       = "~/.cache/surf/cache";
-static const int surfuseragent    = 0;
-
+static const char *certdir        = "~/.cache/surf/certificates/";
 
 static Parameter defconfig[ParameterLast] = {
-    SETB(StrictSSL,          1), // HTTPS Everywhere essentially
-    SETB(JavaScript,         1), // NoScript -- whitelist or blacklist below
-    SETB(Geolocation,        0), // NOPE!
-    SETB(SiteQuirks,         1),
-    SETV(CookiePolicies,     "@Aa"),
-    SETB(Plugins,            1),
-    SETB(LoadImages,         1),
-    SETB(ScrollBars,         1),
-    SETB(AcceleratedCanvas,  1),
-    SETB(DiskCache,          1),
-    SETI(FontSize,           12),
-    SETB(DNSPrefetch,        0),
-    SETB(CaretBrowsing,      0),
-    SETB(FrameFlattening,    0),
-    SETB(HideBackground,     0),
-    SETB(Inspector,          0),
-    SETB(KioskMode,          0),
-    SETB(MediaManualPlay,    0),
-    SETV(PreferredLanguages, ((char *[]){ NULL })),
-    SETB(RunInFullscreen,    0),
-    SETB(ShowIndicators,     1),
-    SETB(SpellChecking,      0), // disabled, slows down typing for me
-    SETV(SpellLanguages,     ((char *[]){ "en_US,de_DE", NULL })),
-    SETB(Style,              1),
-    SETF(ZoomLevel,          1.0),
+	/* parameter                    Arg value       priority */
+	[StrictTLS]           =       { { .i = 1 },     }, // HTTPS Everywhere essentially
+	[JavaScript]          =       { { .i = 1 },     }, // NoScript -- whitelist or blacklist below
+	[Geolocation]         =       { { .i = 0 },     }, // NOPE!
+	[ZoomLevel]           =       { { .f = 1.0 },   }, // default zoom level
+	[MediaManualPlay]     =       { { .i = 1 },     }, // don't autoplay videos
+	[CookiePolicies]      =       { { .v = "@Aa" }, },
+	[FontSize]            =       { { .i = 12 },    },
+	[SpellChecking]       =       { { .i = 0 },     }, // spell checking is laggy for me
+	[SpellLanguages]      =       { { .v = ((char *[]){ "en_US,de_DE", NULL }) }, },
+	[ShowIndicators]      =       { { .i = 0 },     }, // annoying gibberish in titlebars
+	[AcceleratedCanvas]   =       { { .i = 1 },     },
+	[Java]                =       { { .i = 0 },     },
+	[AccessMicrophone]    =       { { .i = 0 },     },
+	[AccessWebcam]        =       { { .i = 0 },     },
+	[Certificate]         =       { { .i = 0 },     },
+	[CaretBrowsing]       =       { { .i = 0 },     },
+	[DefaultCharset]      =       { { .v = "UTF-8" }, },
+	[DiskCache]           =       { { .i = 1 },     },
+	[DNSPrefetch]         =       { { .i = 0 },     },
+	[FileURLsCrossAccess] =       { { .i = 0 },     },
+	[FrameFlattening]     =       { { .i = 0 },     },
+	[HideBackground]      =       { { .i = 0 },     },
+	[LoadImages]          =       { { .i = 1 },     },
+	[Plugins]             =       { { .i = 1 },     },
+	[PreferredLanguages]  =       { { .v = (char *[]){ NULL } }, },
+	[ScrollBars]          =       { { .i = 1 },     },
+	[SiteQuirks]          =       { { .i = 1 },     },
+	[SmoothScrolling]     =       { { .i = 0 },     },
+	[Style]               =       { { .i = 1 },     },
+	[WebGL]               =       { { .i = 0 },     },
+	[RunInFullscreen]     =       { { .i = 0 },     },
+    [Inspector]           =       { { .i = 0 },     },
+	[KioskMode]           =       { { .i = 0 },     },
+
 };
 
 static UriParameters uriparams[] = {
-    { "(://|\\.)suckless\\.org(/|$)", {
-      FSETB(JavaScript, 0),
-      FSETB(Plugins,    0),
-    }, },
+	{ "(://|\\.)suckless\\.org(/|$)", {
+	  [JavaScript] = { { .i = 0 }, 1 },
+	  [Plugins]    = { { .i = 0 }, 1 },
+	}, },
 };
-
-static SiteStyle styles[] = {
-    /* regexp               file in $styledir */
-    { ".*",                 "default.css" },
-};
-
-static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
-                                    WEBKIT_FIND_OPTIONS_WRAP_AROUND;
 
 // bring up my bookmarks file in the url bar,
 // while preserving the current page link at the top
@@ -129,11 +130,16 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
         winid, BKMS, NULL } \
 }
 
+static SiteSpecific styles[] = {
+	/* regexp               file in $styledir */
+	{ ".*",                 "default.css" },
+};
+
 // http://git.gnome.org/browse/gtk+/plain/gdk/gdkkeysyms.h
 #define MODKEY GDK_CONTROL_MASK
 #define SHIFT GDK_SHIFT_MASK
 static Key keys[] = {
-    /* modifier              keyval          function    arg */
+	/* modifier              keyval          function    arg */
     { MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", "Go:") },
 
     /* -*-*-*-*-*-*-*-*-*-*- CUSTOM FUNCS *-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -142,37 +148,37 @@ static Key keys[] = {
     { MODKEY,                  GDK_KEY_space,  spawn,      GO_HOME  },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-    /* ------------------------ FINDING ------------------------------ */
-    { MODKEY,   GDK_KEY_slash,   spawn,  SETPROP("_SURF_FIND", "_SURF_FIND", "Find:") },
-    { MODKEY,   GDK_KEY_period,  find,   { .i = +1 } },
-    { MODKEY,   GDK_KEY_comma,   find,   { .i = -1 } },
-    /* --------------------------------------------------------------- */
-
-    /* ---------------------- HISTORY -------------------------------- */
-    { MODKEY,               GDK_KEY_o,   navigate,   { .i = +1 } },
-    { MODKEY,               GDK_KEY_i,   navigate,   { .i = -1 } },
-    /* --------------------------------------------------------------- */
-
-    /* -*-*-*-*-*-*-*-* RELOADING -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,GDK_KEY_F5,       reload,     { .b = 0 } }, // reload page
-    { MODKEY,GDK_KEY_r,        reload,     { .b = 0 } }, // reload page
-    { MODKEY|SHIFT, GDK_KEY_r, reload,     { .b = 1 } }, // "hard" reload
-    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-
     /* -*-*-*-*-*-*-*-*-*-*- GENERAL -*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { 0,                     GDK_KEY_Escape, stop,       { 0 } },
-    { MODKEY,                GDK_KEY_c,      stop,       { 0 } },
-    { MODKEY,                GDK_KEY_c,      clipboard,  { .b = 0 } },
+    { 0,                     GDK_KEY_Escape, stop,            { 0 } },
+    { MODKEY,                GDK_KEY_c,      stop,            { 0 } },
+    { MODKEY,                GDK_KEY_c,      clipboard,  { .i = 0 } },
     { 0,                     GDK_KEY_F11,    togglefullscreen, { 0 } },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
+    /* -*-*-*-*-*-*-*-*-*-*-*-* FINDING *-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { MODKEY,   GDK_KEY_slash,   spawn,  SETPROP("_SURF_FIND", "_SURF_FIND", "Find:") },
+    { MODKEY,   GDK_KEY_period,  find,   { .i = +1 } },
+    { MODKEY,   GDK_KEY_comma,   find,   { .i = -1 } },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
+    /* -*-*-*-*-*-*-*-*-*-*-* HISTORY *-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { MODKEY,               GDK_KEY_o,   navigate,   { .i = +1 } },
+    { MODKEY,               GDK_KEY_i,   navigate,   { .i = -1 } },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
+    /* -*-*-*-*-*-*-*-* RELOADING -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { MODKEY,GDK_KEY_F5,       reload,  { .i = 0 } }, // reload page
+    { MODKEY,GDK_KEY_r,        reload,  { .i = 0 } }, // reload page
+    { MODKEY|SHIFT, GDK_KEY_r, reload,  { .i = 1 } }, // "hard" reload
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
     /* -*-*-*-*-*-*-*-*- VIM MODE SCROLLING -*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,                GDK_KEY_j,      scroll,     { .i = 'd' } },
-    { MODKEY,                GDK_KEY_k,      scroll,     { .i = 'u' } },
-    { MODKEY,                GDK_KEY_f,      scroll,     { .i = 'U' } },
-    { MODKEY,                GDK_KEY_b,      scroll,     { .i = 'D' } },
-    { MODKEY|SHIFT,          GDK_KEY_j,      scroll,     { .i = 'r' } },
-    { MODKEY|SHIFT,          GDK_KEY_k,      scroll,     { .i = 'l' } },
+    { MODKEY,                GDK_KEY_j,      scrollv,     { .i = +10 } },
+    { MODKEY,                GDK_KEY_k,      scrollv,     { .i = -10 } },
+    { MODKEY,                GDK_KEY_f,      scrollv,     { .i = -50 } },
+    { MODKEY,                GDK_KEY_b,      scrollv,     { .i = +50 } },
+    { MODKEY|SHIFT,          GDK_KEY_j,      scrollh,     { .i = +10 } },
+    { MODKEY|SHIFT,          GDK_KEY_k,      scrollh,     { .i = -10 } },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
     /* -*-*-*-*-*-*-*-*- ZOOMING -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -185,10 +191,18 @@ static Key keys[] = {
 
 /* target can be OnDoc, OnLink, OnImg, OnMedia, OnEdit, OnBar, OnSel, OnAny */
 static Button buttons[] = {
-    /* target       event mask      button  function        argument        stop event */
-    { OnLink,       0,              2,      clicknewwindow, { .b = 0 },     1 },
-    { OnLink,       MODKEY,         2,      clicknewwindow, { .b = 1 },     1 },
-    { OnLink,       MODKEY,         1,      clicknewwindow, { .b = 1 },     1 },
-    { OnAny,        0,              8,      clicknavigate,  { .i = -1 },    1 },
-    { OnAny,        0,              9,      clicknavigate,  { .i = +1 },    1 },
+	/* target       event mask      button  function        argument        stop event */
+	{ OnLink,       0,              2,      clicknewwindow, { .i = 0 },     1 },
+	{ OnLink,       MODKEY,         2,      clicknewwindow, { .i = 1 },     1 },
+	{ OnLink,       MODKEY,         1,      clicknewwindow, { .i = 1 },     1 },
+	{ OnAny,        0,              8,      clicknavigate,  { .i = -1 },    1 },
+	{ OnAny,        0,              9,      clicknavigate,  { .i = +1 },    1 },
 };
+
+static SiteSpecific certs[] = {
+	/* regexp               file in $certdir */
+	{ "://suckless\\.org/", "suckless.org.crt" },
+};
+static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
+                                    WEBKIT_FIND_OPTIONS_WRAP_AROUND;
+static const int surfuseragent    = 0;
