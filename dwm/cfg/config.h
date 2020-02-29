@@ -77,8 +77,8 @@ static Key keys[] = {
     { NULL,                 XK_Print,  spawn,        SH("scrap -n")         },
     { Mod1Mask|ControlMask, XK_k,      spawn,        SH("keylayout")        },
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-    { Mod1Mask,             XK_apostrophe,   spawn,  SH("vol -inc 8")       },
-    { Mod1Mask,             XK_semicolon,    spawn,  SH("vol -dec 8")       },
+    { Mod1Mask,             XK_apostrophe,   spawn,  SH("vol -i 6")         },
+    { Mod1Mask,             XK_semicolon,    spawn,  SH("vol -d 6")         },
     { Mod1Mask,             XK_slash,        spawn,  SH("mpvc toggle")      },
     { Mod1Mask,             XK_period,       spawn,  SH("mpvc --track +1")  },
     { Mod1Mask,             XK_comma,        spawn,  SH("mpvc --track -1")  },

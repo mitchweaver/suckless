@@ -2,7 +2,7 @@
 #define WIFI_INT "iwn0"
 #define AUDIO_INT "/dev/audioctl0"
 const unsigned int interval = 1000;
-static const char unknown_str[] = "?";
+static const char unknown_str[] = "n/a";
 
 /* -*-*-*-*-*-*-*- my functions -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 const char* get_song(void) {
@@ -13,7 +13,7 @@ const char* get_song(void) {
             fgets(buf, 1024, fp);
             buf[strlen(buf)-1]='\0';
             pclose(fp);
-            return bprintf("%s %s", "🎵", buf);
+            return bprintf("%s %s /", "🎵", buf);
         } else
             return NULL;
     } else {
@@ -34,7 +34,7 @@ const char* get_vpn(void) {
         } else
             return NULL;
     } else {
-        return bprintf("%s", " None");
+        return bprintf("%s", " None"); // 
     }
 }
 
@@ -63,14 +63,17 @@ const char* get_bat() {
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 static const struct arg args[] = {
     /* function format          argument */
-    { get_song,     "%s", "NULL" },
-    { cpu_perc,     " / 💻 %s%%",    "NULL" },
+    { get_song,     " %s",            "NULL" },
+    { cpu_perc,     " 💻 %s%%",      "NULL" },
     { ram_perc,     " /  %s%%",     "NULL" },
     { get_vpn,      " / %s",         "NULL" },
-    { wifi_essid,   " /   %s",       WIFI_INT },
-    { wifi_perc,    " %s%%",         WIFI_INT },
+    { wifi_essid,   " /   %s",     WIFI_INT },
+    { wifi_perc,    " %s%%",        WIFI_INT },
+    /* { netspeed_rx,  "  %s",         WIFI_INT }, // down */
+    /* { netspeed_tx,  "  %s",         WIFI_INT }, // up */
     { get_bat,      " / %s",         "NULL" },
-    { vol_perc,     " / 🔊 %s%%",    AUDIO_INT },
+    { run_command,  " / 🔊 %s",         "sh /home/mitch/bin/wrapper/vol" },
+    /* { vol_perc,     " / 🔊 %s%%",     AUDIO_INT }, */
     { datetime,     " / %s",         "%a %b %d - %I:%M %p" },
 };
 
