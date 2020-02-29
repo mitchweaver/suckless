@@ -10,14 +10,19 @@ static unsigned int borderpx  = 0;
 static const int CORNER_RADIUS = 0;
 /* static const int CORNER_RADIUS = 12; */
 
+static const char *fonts[] = {
+    "Terminus:size=8",
+    "RobotoMono Nerd Font:size=8"
+};
+
 static const Rule rules[] = {
-    /* class             instance    title    tags mask  iscentered   isfloating   monitor */
-    { "st-256color",     NULL,   0,             0,         1,           0,           -1 },
-    { 0,                 NULL,   "x9term",      0,         0,           1,           -1 },
-    { 0,                 NULL,   "floating-st", 0,         1,           1,           -1 },
-    { "feh",             NULL,   0,             0,         1,           1,           -1 },
-    { "mpv",             NULL,   0,             0,         1,           1,           -1 },
-    { "mupdf",           NULL,   0,             0,         1,           1,           -1 },
+    /* class          instance    title    tags mask  iscentered   isfloating   monitor */
+    { "st-256color",  NULL,      0,             0,         1,           0,           -1 },
+    { 0,              NULL,      "x9term",      0,         0,           1,           -1 },
+    { 0,              NULL,      "floating-st", 0,         1,           1,           -1 },
+    { "feh",          NULL,      0,             0,         1,           1,           -1 },
+    { "mpv",          NULL,      0,             0,         1,           1,           -1 },
+    { "mupdf",        NULL,      0,             0,         1,           1,           -1 },
 };
 
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
@@ -37,8 +42,6 @@ static const Rule rules[] = {
 /*     [SchemeUrg] =  { urg_fg,      urg_bg,    urg_border }, */
 /* }; */
 
-static const char *fonts[] = { "Terminus:size=8" };
-/* static const char *fonts[] = { "tewi:size=8" }; */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 static const int showbar = 1;
 static const float mfact      = 0.5;

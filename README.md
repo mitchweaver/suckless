@@ -4,7 +4,7 @@
 
 `./build.sh $name`
 
-For any questions, feel free to contact me or open a git issue.
+For questions, feel free to contact me or comment on the git issues.
 
 ### misc screenshots:
 ------
@@ -25,6 +25,10 @@ For any questions, feel free to contact me or open a git issue.
 **[st / tabbed](http://github.com/MitchWeaver/suckless/tree/master/st)**:
 
 ![st / tabbed](http://i.imgur.com/HjfUvWn.png)
+
+**[slstatus](http://github.com/mitchweaver/suckless/tree/master/slstatus)**:
+
+![slstatus](http://0x0.st/ibwm.png)
 
 ### See also
 -------
