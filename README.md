@@ -11,8 +11,9 @@ For questions, feel free to contact me or comment on the git issues.
 
 **[dwm](http://github.com/MitchWeaver/suckless/tree/master/dwm)**:
 
-![dwm1](https://i.redd.it/adumeevthui41.png)  
-![dwm2](https://i.imgur.com/PpPbyfm.png)
+![openbsd_rice](https://i.imgur.com/zFp1jb4.png)
+
+![openbsd_rice 2](https://i.redd.it/adumeevthui41.png)
 
 **[surf](http://github.com/MitchWeaver/suckless/tree/master/surf)**:
 
