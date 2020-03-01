@@ -10,6 +10,9 @@ static unsigned int borderpx  = 0;
 static const int CORNER_RADIUS = 0;
 /* static const int CORNER_RADIUS = 12; */
 
+static const unsigned int minwsz    = 20;   /* min height of a client for smfact */
+static const float smfact           = 0.00; /* factor of tiled clients [0.00..0.95] */
+
 static const char *fonts[] = {
     "Terminus:size=8",
     "RobotoMono Nerd Font:size=8"
@@ -101,6 +104,10 @@ static Key keys[] = {
     { Mod1Mask,            XK_l,      rotatestack,   {.i = +1 } },
     { Mod1Mask,            XK_Tab,    view,          {0} },
     { Mod1Mask|ShiftMask|ControlMask, XK_q,      quit,           {0} },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { Mod1Mask|ShiftMask,  XK_k,      setsmfact,      {.f = +0.05} },
+    { Mod1Mask|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
     TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) TAGKEYS(XK_BackSpace,5)
 };

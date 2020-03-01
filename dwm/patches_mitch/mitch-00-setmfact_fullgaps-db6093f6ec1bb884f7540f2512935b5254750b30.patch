@@ -1,0 +1,105 @@
+/*
+ * http://github.com/mitchweaver/suckless
+ *
+ * smfact patch, but with "fullgaps" support
+ * (obviously assumes you have "fullgaps" patch applied)
+ *
+ * --------- MAKE SURE YOU HAVE THESE IN YOUR CONFIG.H: ----------
+ * static const unsigned int minwsz = 20; /* min height of a client for smfact */
+ * static const float smfact = 0.00;      /* factor of tiled clients [0.00..0.95] */
+ * { MODKEY|ShiftMask,             XK_h,      setsmfact,      {.f = +0.05} },
+ * { MODKEY|ShiftMask,             XK_l,      setsmfact,      {.f = -0.05} },
+ * ---------------------------------------------------------------
+ */
+--- dwm/dwm.c	2011-12-19 16:02:46.000000000 +0100
++++ dwm/dwm.c	2013-04-06 21:00:46.620830452 +0200
+@@ -69,6 +69,7 @@ typedef union {
+ 	int i;
+ 	unsigned int ui;
+ 	float f;
++	float sf;
+ 	const void *v;
+ } Arg;
+ 
+@@ -127,6 +128,7 @@ typedef struct {
+ struct Monitor {
+ 	char ltsymbol[16];
+ 	float mfact;
++	float smfact;
+ 	int nmaster;
+ 	int num;
+ 	int by;               /* bar geometry */
+@@ -220,6 +222,7 @@ static void setfocus(Client *c);
+ static void setfullscreen(Client *c, Bool fullscreen);
+ static void setlayout(const Arg *arg);
+ static void setmfact(const Arg *arg);
++static void setsmfact(const Arg *arg);
+ static void setup(void);
+ static void showhide(Client *c);
+ static void sigchld(int unused);
+@@ -651,6 +654,7 @@ createmon(void) {
+ 		die("fatal: could not malloc() %u bytes\n", sizeof(Monitor));
+ 	m->tagset[0] = m->tagset[1] = 1;
+ 	m->mfact = mfact;
++	m->smfact = smfact;
+ 	m->nmaster = nmaster;
+ 	m->showbar = showbar;
+ 	m->topbar = topbar;
+@@ -1581,6 +1585,19 @@ setmfact(const Arg *arg) {
+ }
+ 
+ void
++setsmfact(const Arg *arg) {
++	float sf;
++
++	if(!arg || !selmon->lt[selmon->sellt]->arrange)
++		return;
++	sf = arg->sf < 1.0 ? arg->sf + selmon->smfact : arg->sf - 1.0;
++	if(sf < 0 || sf > 0.9)
++		return;
++	selmon->smfact = sf;
++	arrange(selmon);
++}
++
++void
+ setup(void) 
+ {
+ 
+@@ -1703,7 +1720,7 @@ textnw(const char *text, unsigned int le
+ 
+ void
+ tile(Monitor *m)
+ {
+-	unsigned int i, n, h, mw, my, ty;
++	unsigned int i, n, h, smh, mw, my, ty;
+ 	Client *c;
+ 
+--- dwm/dwm.c	Sat Feb 29 20:32:05 2020
++++ dwm/dwm.c	Sat Feb 29 20:32:57 2020
+@@ -1849,9 +1849,23 @@
+ 			resize(c, m->wx + m->gappx, m->wy + my, mw - (2*c->bw) - m->gappx, h - (2*c->bw), 0);
+ 			my += HEIGHT(c) + m->gappx;
+ 		} else {
+-			h = (m->wh - ty) / (n - i) - m->gappx;
+-			resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw - (2*c->bw) - 2*m->gappx, h - (2*c->bw), 0);
+-			ty += HEIGHT(c) + m->gappx;
++			smh = m->mh * m->smfact;
++			if(!(nexttiled(c->next)))
++				h = (m->wh - ty) / (n - i) - m->gappx;
++			else
++				h = (m->wh - smh - ty) / (n - i) - m->gappx;
++			if(h < minwsz) {
++				c->isfloating = True;
++				XRaiseWindow(dpy, c->win);
++				resize(c, m->mx + (m->mw / 2 - WIDTH(c) / 2), m->my + (m->mh / 2 - HEIGHT(c) / 2), m->ww - mw - (2*c->bw), h - (2*c->bw), False);
++				ty -= HEIGHT(c);
++			}
++			else
++				resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw - (2*c->bw) - 2*m->gappx, h - (2*c->bw), False);
++			if(!(nexttiled(c->next)))
++				ty += HEIGHT(c) + smh + m->gappx;
++			else
++				ty += HEIGHT(c) + m->gappx;
+ 		}
+ }
+ 
