@@ -6,6 +6,7 @@ const static SearchEngine searchengines[] = {
     { "",       "https://duckduckgo.com/?q=%s" },
     { "g",      "https://google.com/search?q=%s"   },
     { "image",  "https://duckduckgo.com/?q=!image %s" },
+    { "images", "https://duckduckgo.com/?q=!image %s" },
     { "git",    "https://github.com/search?utf8=&q=%s&type=" },
     { "ugit",   "https://github.com/%s" },
     { "gist",   "https://gist.github.com/search?q=%s" },

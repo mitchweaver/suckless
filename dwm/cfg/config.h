@@ -76,7 +76,7 @@ static Key keys[] = {
     { Mod1Mask,             XK_i,      spawn,        SH("tasks")            },
     { Mod1Mask,             XK_c,      spawn,        SH("clip")             },
     { ControlMask,          XK_Print,  spawn,        SH("scrap")            },
-    { NULL,                 XK_Print,  spawn,        SH("scrap -n")         },
+    { 0,                    XK_Print,  spawn,        SH("scrap -n")         },
     { Mod1Mask|ControlMask, XK_k,      spawn,        SH("keylayout")        },
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { Mod1Mask,             XK_apostrophe,   spawn,  SH("vol -i 6") },
@@ -108,6 +108,7 @@ static Key keys[] = {
     { Mod1Mask|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
     { Mod1Mask,            XK_g,      setgaps,        {.i = +4}    },
     { Mod1Mask|ShiftMask,  XK_g,      setgaps,        {.i = -4}    },
+    { 0,                   XK_F11,    togglefullscr,  {0} },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
     TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) 
