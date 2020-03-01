@@ -11,7 +11,7 @@ For questions, feel free to contact me or comment on the git issues.
 
 **[dwm](http://github.com/MitchWeaver/suckless/tree/master/dwm)**:
 
-![openbsd_rice](https://i.imgur.com/zFp1jb4.png)
+![openbsd_rice](https://i.imgur.com/HGvUlT7.png)
 
 ![openbsd_rice 2](https://i.redd.it/adumeevthui41.png)
 

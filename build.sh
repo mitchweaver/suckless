@@ -30,8 +30,9 @@ clone() {
 
 [ "$1" ] || usage
 
-START_PWD="$PWD"
+START_PWD="$(dirname "$0")"
 for name ; do
+    cd "$START_PWD"
 
     case $name in
         st) clone $name $ST_VERSION ;;
@@ -54,8 +55,8 @@ for name ; do
     cp -f cfg/config.mk $name/config.mk 2>/dev/null ||:
 
     cd $name
-    make clean >/dev/null
-    make -j${NPROC:-1} CC=${CC:-gcc}
-    make PREFIX="$PREFIX" install
-    cd "$START_PWD"
+    make -s clean
+    make -s -j${NPROC:-1} CC=${CC:-gcc}
+    make -s PREFIX="$PREFIX" install
+    make -s clean
 done
