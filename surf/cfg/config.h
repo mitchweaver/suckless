@@ -39,48 +39,48 @@ static const char *cachedir       = "~/.cache/surf/cache";
 static const char *certdir        = "~/.cache/surf/certificates/";
 
 static Parameter defconfig[ParameterLast] = {
-	/* parameter                    Arg value       priority */
-	[StrictTLS]           =       { { .i = 1 },     }, // HTTPS Everywhere essentially
-	[JavaScript]          =       { { .i = 1 },     }, // NoScript -- whitelist or blacklist below
-	[Geolocation]         =       { { .i = 0 },     }, // NOPE!
-	[ZoomLevel]           =       { { .f = 1.2 },   }, // default zoom level
-	[MediaManualPlay]     =       { { .i = 1 },     }, // don't autoplay videos
-	[CookiePolicies]      =       { { .v = "@Aa" }, },
-	[FontSize]            =       { { .i = 12 },    },
-	[SpellChecking]       =       { { .i = 0 },     }, // spell checking is laggy for me
-	[SpellLanguages]      =       { { .v = ((char *[]){ "en_US,de_DE", NULL }) }, },
-	[ShowIndicators]      =       { { .i = 0 },     }, // annoying gibberish in titlebars
-	[AcceleratedCanvas]   =       { { .i = 1 },     },
-	[Java]                =       { { .i = 0 },     },
-	[AccessMicrophone]    =       { { .i = 0 },     },
-	[AccessWebcam]        =       { { .i = 0 },     },
-	[Certificate]         =       { { .i = 0 },     },
-	[CaretBrowsing]       =       { { .i = 0 },     },
-	[DefaultCharset]      =       { { .v = "UTF-8" }, },
-	[DiskCache]           =       { { .i = 1 },     },
-	[DNSPrefetch]         =       { { .i = 0 },     },
-	[FileURLsCrossAccess] =       { { .i = 0 },     },
-	[FrameFlattening]     =       { { .i = 0 },     },
-	[HideBackground]      =       { { .i = 0 },     },
-	[LoadImages]          =       { { .i = 1 },     },
-	[Plugins]             =       { { .i = 1 },     },
-	[PreferredLanguages]  =       { { .v = (char *[]){ NULL } }, },
-	[ScrollBars]          =       { { .i = 1 },     },
-	[SiteQuirks]          =       { { .i = 1 },     },
-	[SmoothScrolling]     =       { { .i = 0 },     },
-	[Style]               =       { { .i = 1 },     },
-	[WebGL]               =       { { .i = 0 },     },
-	[RunInFullscreen]     =       { { .i = 0 },     },
+    /* parameter                    Arg value       priority */
+    [StrictTLS]           =       { { .i = 1 },     }, // HTTPS Everywhere essentially
+    [JavaScript]          =       { { .i = 1 },     }, // NoScript -- whitelist or blacklist below
+    [Geolocation]         =       { { .i = 0 },     }, // NOPE!
+    [ZoomLevel]           =       { { .f = 1.2 },   }, // default zoom level
+    [MediaManualPlay]     =       { { .i = 1 },     }, // don't autoplay videos
+    [ClipboardNotPrimary] =       { { .i = 1 },     }, // clipbard vs primary selection
+    [CookiePolicies]      =       { { .v = "@Aa" }, },
+    [FontSize]            =       { { .i = 12 },    },
+    [SpellChecking]       =       { { .i = 0 },     }, // spell checking is laggy for me
+    [SpellLanguages]      =       { { .v = ((char *[]){ "en_US,de_DE", NULL }) }, },
+    [ShowIndicators]      =       { { .i = 0 },     }, // annoying gibberish in titlebars
+    [AcceleratedCanvas]   =       { { .i = 1 },     },
+    [Java]                =       { { .i = 0 },     },
+    [AccessMicrophone]    =       { { .i = 0 },     },
+    [AccessWebcam]        =       { { .i = 0 },     },
+    [Certificate]         =       { { .i = 0 },     },
+    [CaretBrowsing]       =       { { .i = 0 },     },
+    [DefaultCharset]      =       { { .v = "UTF-8" }, },
+    [DiskCache]           =       { { .i = 1 },     },
+    [DNSPrefetch]         =       { { .i = 0 },     },
+    [FileURLsCrossAccess] =       { { .i = 0 },     },
+    [FrameFlattening]     =       { { .i = 0 },     },
+    [HideBackground]      =       { { .i = 0 },     },
+    [LoadImages]          =       { { .i = 1 },     },
+    [Plugins]             =       { { .i = 1 },     },
+    [PreferredLanguages]  =       { { .v = (char *[]){ NULL } }, },
+    [ScrollBars]          =       { { .i = 1 },     },
+    [SiteQuirks]          =       { { .i = 1 },     },
+    [SmoothScrolling]     =       { { .i = 0 },     },
+    [Style]               =       { { .i = 1 },     },
+    [WebGL]               =       { { .i = 0 },     },
+    [RunInFullscreen]     =       { { .i = 0 },     },
     [Inspector]           =       { { .i = 0 },     },
-	[KioskMode]           =       { { .i = 0 },     },
-
+    [KioskMode]           =       { { .i = 0 },     },
 };
 
 static UriParameters uriparams[] = {
-	{ "(://|\\.)suckless\\.org(/|$)", {
-	  [JavaScript] = { { .i = 0 }, 1 },
-	  [Plugins]    = { { .i = 0 }, 1 },
-	}, },
+    { "(://|\\.)suckless\\.org(/|$)", {
+      [JavaScript] = { { .i = 0 }, 1 },
+      [Plugins]    = { { .i = 0 }, 1 },
+    }, },
 };
 
 // bring up my bookmarks file in the url bar,
@@ -144,19 +144,19 @@ static UriParameters uriparams[] = {
 }
 
 static SiteSpecific styles[] = {
-	/* regexp               file in $styledir */
-	{ ".*",                 "default.css" },
+    /* regexp               file in $styledir */
+    { ".*",                 "default.css" },
 };
 
 // http://git.gnome.org/browse/gtk+/plain/gdk/gdkkeysyms.h
 #define MODKEY GDK_CONTROL_MASK
 #define SHIFT GDK_SHIFT_MASK
 static Key keys[] = {
-	/* modifier              keyval          function    arg */
+    /* modifier              keyval          function    arg */
     { MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", "Go:") },
 
     /* -*-*-*-*-*-*-*-*-*-*- CUSTOM FUNCS *-*-*-*-*-*-*-*-*-*-*-*-* */
-	{ MODKEY|SHIFT,            GDK_KEY_b,      spawn,      BM_ADD   },
+    { MODKEY|SHIFT,            GDK_KEY_b,      spawn,      BM_ADD   },
     { MODKEY,                  GDK_KEY_y,      spawn,      MPV_URL  },
     { MODKEY,                  GDK_KEY_space,  spawn,      GO_HOME  },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -204,17 +204,17 @@ static Key keys[] = {
 
 /* target can be OnDoc, OnLink, OnImg, OnMedia, OnEdit, OnBar, OnSel, OnAny */
 static Button buttons[] = {
-	/* target       event mask      button  function        argument        stop event */
-	{ OnLink,       0,              2,      clicknewwindow, { .i = 0 },     1 },
-	{ OnLink,       MODKEY,         2,      clicknewwindow, { .i = 1 },     1 },
-	{ OnLink,       MODKEY,         1,      clicknewwindow, { .i = 1 },     1 },
-	{ OnAny,        0,              8,      clicknavigate,  { .i = -1 },    1 },
-	{ OnAny,        0,              9,      clicknavigate,  { .i = +1 },    1 },
+    /* target       event mask      button  function        argument        stop event */
+    { OnLink,       0,              2,      clicknewwindow, { .i = 0 },     1 },
+    { OnLink,       MODKEY,         2,      clicknewwindow, { .i = 1 },     1 },
+    { OnLink,       MODKEY,         1,      clicknewwindow, { .i = 1 },     1 },
+    { OnAny,        0,              8,      clicknavigate,  { .i = -1 },    1 },
+    { OnAny,        0,              9,      clicknavigate,  { .i = +1 },    1 },
 };
 
 static SiteSpecific certs[] = {
-	/* regexp               file in $certdir */
-	{ "://suckless\\.org/", "suckless.org.crt" },
+    /* regexp               file in $certdir */
+    { "://suckless\\.org/", "suckless.org.crt" },
 };
 static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
                                     WEBKIT_FIND_OPTIONS_WRAP_AROUND;
