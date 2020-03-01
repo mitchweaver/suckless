@@ -106,6 +106,8 @@ static Key keys[] = {
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     { Mod1Mask|ShiftMask,  XK_k,      setsmfact,      {.f = +0.05} },
     { Mod1Mask|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
+    { Mod1Mask,            XK_g,      setgaps,        {.i = +3}    },
+    { Mod1Mask|ShiftMask,  XK_g,      setgaps,        {.i = -3}    },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
     TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) 
