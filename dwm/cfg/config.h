@@ -10,8 +10,10 @@ static unsigned int borderpx  = 0;
 static const int CORNER_RADIUS = 0;
 /* static const int CORNER_RADIUS = 12; */
 
-static const unsigned int minwsz    = 20;   /* min height of a client for smfact */
-static const float smfact           = 0.00; /* factor of tiled clients [0.00..0.95] */
+static const unsigned int minwsz = 20;   /* min height of a client for smfact */
+static const float smfact        = 0.00; /* factor of tiled clients [0.00..0.95] */
+static const int vertpad         = 10;   /* vertical padding of bar */
+static const int sidepad         = 10;   /* horizontal padding of bar */
 
 static const char *fonts[] = {
     "Terminus:size=8",
