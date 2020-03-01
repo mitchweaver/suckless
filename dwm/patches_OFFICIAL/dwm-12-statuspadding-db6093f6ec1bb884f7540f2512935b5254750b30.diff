@@ -1,0 +1,35 @@
+/*
+ * http://github.com/mitchweaver/suckless
+ * dwm-statuspadding patch, but with barpadding patch support
+ * 
+ * --------- NOTE: ADD TO YOUR CONFIG.H: ---------
+ * +static const int horizpadbar = 2; // horizontal padding for statusbar
+ * +static const int vertpadbar  = 0; // vertical padding for statusbar
+ */
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -704,8 +704,8 @@ drawbar(Monitor *m)
+ 	/* draw status first so it can be overdrawn by tags later */
+ 	if (m == selmon) { /* status is only drawn on selected monitor */
+ 		drw_setscheme(drw, scheme[SchemeNorm]);
+-		sw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+-		drw_text(drw, m->ww - sw - 2 * sp, 0, sw, bh, 0, stext, 0);
++		sw = TEXTW(stext);
++		drw_text(drw, m->ww - sw - 2 * sp, 0, sw, bh, lrpad / 2, stext, 0);
+ 	}
+ 
+ 	for (c = m->clients; c; c = c->next) {
+@@ -1544,8 +1544,8 @@ setup(void)
+ 	drw = drw_create(dpy, screen, root, sw, sh);
+ 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
+ 		die("no fonts could be loaded.");
+-	lrpad = drw->fonts->h;
+-	bh = drw->fonts->h + 2;
++	lrpad = drw->fonts->h + horizpadbar;
++	bh = drw->fonts->h + vertpadbar;
+ 	updategeom();
+ 	/* init atoms */
+ 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
+-- 
+2.7.4
+

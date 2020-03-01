@@ -11,13 +11,14 @@ static const int CORNER_RADIUS = 0;
 /* static const int CORNER_RADIUS = 12; */
 
 static const unsigned int minwsz = 20;   /* min height of a client for smfact */
-static const float smfact        = 0.00; /* factor of tiled clients [0.00..0.95] */
 static const int vertpad         = 10;   /* vertical padding of bar */
-static const int sidepad         = 10;   /* horizontal padding of bar */
+static const int sidepad         = 11;   /* horizontal padding of bar */
+static const int horizpadbar = 3; // horizontal padding for statusbar
+static const int vertpadbar  = 10; // vertical padding for statusbar
 
 static const char *fonts[] = {
     "Terminus:size=8",
-    "RobotoMono Nerd Font:size=8"
+    "RobotoMono Nerd Font:size=10"
 };
 
 static const Rule rules[] = {
@@ -47,18 +48,14 @@ static const Rule rules[] = {
 /*     [SchemeUrg] =  { urg_fg,      urg_bg,    urg_border }, */
 /* }; */
 
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "爵", "", "", "ﭮ" };
 static const int showbar = 1;
-static const float mfact      = 0.5;
-static const int nmaster      = 1;
-static const int resizehints  = 1;
-static const int focusonwheel = 1;
 static const int topbar  = 1;
-static const char scratchpadname[] = "scratchpad";
+static const float mfact      = 0.5;
 static const Layout layouts[] = {
-    { "T", tile },
-    { "F", NULL }, // floating
-    { "M", monocle },
+    { "|  ", tile },
+    { "| 缾 ", NULL }, // floating
+    { "|  ", monocle },
 };
 #define TAGKEYS(KEY,TAG) { Mod1Mask, KEY, view, {.ui = 1 << TAG} }, \
                          { Mod1Mask|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
@@ -111,7 +108,11 @@ static Key keys[] = {
     { Mod1Mask|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
-    TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) TAGKEYS(XK_BackSpace,5)
+    TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) 
+    // -- if 4 WS:
+    TAGKEYS(XK_BackSpace,3)
+    // -- if 6 WS:
+    /* TAGKEYS(XK_BackSpace,5) */
 };
 
 static Button buttons[] = {
@@ -119,3 +120,10 @@ static Button buttons[] = {
     { ClkClientWin,         Mod1Mask,       Button3,        resizemouse,    {0} },
     { ClkRootWin,           0,              Button3,        spawn,          SH("x9term") },
 };
+
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+static const float smfact     = 0.00; /* factor of tiled clients [0.00..0.95] */
+static const int resizehints  = 1;
+static const int focusonwheel = 1;
+static const char scratchpadname[] = "scratchpad";
+static const int nmaster      = 1;
