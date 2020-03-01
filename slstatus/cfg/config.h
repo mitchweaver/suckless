@@ -1,7 +1,7 @@
 #define MAXLEN 2048
 #define WIFI_INT "iwn0"
 #define AUDIO_INT "/dev/audioctl0"
-const unsigned int interval = 1000;
+const unsigned int interval = 2000;
 static const char unknown_str[] = "n/a";
 
 /* -*-*-*-*-*-*-*- my functions -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
