@@ -1,5 +1,5 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static unsigned int gappx = 14;
+static unsigned int gappx = 16;
 static unsigned int borderpx  = 0;
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* static unsigned int gappx = 0; */
@@ -51,7 +51,7 @@ static const Rule rules[] = {
 static const char *tags[] = { "爵", "", "", "ﭮ" };
 static const int showbar = 1;
 static const int topbar  = 1;
-static const float mfact      = 0.5;
+static const float mfact = 0.5;
 static const Layout layouts[] = {
     { "|  ", tile },
     { "| 缾 ", NULL }, // floating
@@ -106,8 +106,8 @@ static Key keys[] = {
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     { Mod1Mask|ShiftMask,  XK_k,      setsmfact,      {.f = +0.05} },
     { Mod1Mask|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
-    { Mod1Mask,            XK_g,      setgaps,        {.i = +3}    },
-    { Mod1Mask|ShiftMask,  XK_g,      setgaps,        {.i = -3}    },
+    { Mod1Mask,            XK_g,      setgaps,        {.i = +4}    },
+    { Mod1Mask|ShiftMask,  XK_g,      setgaps,        {.i = -4}    },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
     TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) 
