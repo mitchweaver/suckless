@@ -19,7 +19,6 @@ static unsigned int actionfps = 30;
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* #include "../themes/mine/color-nostalgia.h" */
 /* #include "../themes/mine/bubblegum-theme.h" */
-/* #include "../themes/mine/plan9.h" */
 /* #include "../themes/default-color-scheme.h" */
 /* static unsigned int defaultrcs = 257; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */

@@ -7,10 +7,10 @@ static int fuzzy = 1;
 
 #include "/home/mitch/.cache/wal/colors-wal-dmenu.h";
 /* static const char *colors[SchemeLast][2] = { */
-/*             	/1*     fg         bg       *1/ */
-/* 	[SchemeNorm] = { "#bbbbbb", "#373B41" }, */
-/* 	[SchemeSel] =  { "#eeeeee", "#5F819D" }, */
-/* 	[SchemeOut] =  { "#000000", "#00ffff" }, */
+/* /1*     fg         bg       *1/ */
+/* [SchemeNorm] = { "#bbbbbb", "#373B41" }, */
+/* [SchemeSel] =  { "#eeeeee", "#5F819D" }, */
+/* [SchemeOut] =  { "#000000", "#00ffff" }, */
 /* }; */
 
 static const char *prompt = NULL;  /* -p  option; prompt to the left of input field */

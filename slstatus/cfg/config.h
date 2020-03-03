@@ -24,10 +24,10 @@ const char* get_song(void) {
 
 const char* get_vpn(void) {
     if ( system("pgrep -x openvpn >/dev/null") == 0 ) {
-        FILE *fp = popen("ps -U root | grep openvpn | sed -e 's|.*.\/||' -e 's|\.ovpn||'", "r");
+        FILE *fp = popen("ps -wwxU root | grep openvpn | sed -e 's|.*.\/||' -e 's|\.ovpn||'", "r");
         if (fp) {
-            char buf[128];
-            fgets(buf, 128, fp);
+            char buf[256];
+            fgets(buf, 256, fp);
             buf[strlen(buf)-1]='\0';
             pclose(fp);
             return bprintf("%s %s", "", buf);
@@ -72,7 +72,7 @@ static const struct arg args[] = {
     /* { netspeed_rx,  "  %s",     WIFI_INT }, // down */
     /* { netspeed_tx,  "  %s",     WIFI_INT }, // up */
     { get_bat,      " / %s",        "NULL" },
-    { run_command,  " /  %s",     "sh /home/mitch/bin/xorg/bright" },
+    /* { run_command,  " /   %s",     "sh /home/mitch/bin/xorg/bright" }, //     */
     { run_command,  " / 🔊 %s",     "sh /home/mitch/bin/wrapper/vol" },
     { datetime,     " / %s",         "%a %b %d - %I:%M %p" },
 };

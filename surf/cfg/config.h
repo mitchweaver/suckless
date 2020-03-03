@@ -1,6 +1,6 @@
 /* #define HOMEPAGE "https://start.duckduckgo.com/html" */
 #define HOMEPAGE "/home/mitch/src/startpage/index.html"
-#define BKMS "/home/mitch/files/bkm"
+#define BKMS "/home/mitch/files/bkm.txt"
 #define DOWNLOADS "/home/mitch/Downloads"
 const static SearchEngine searchengines[] = {
     { "",       "https://duckduckgo.com/?q=%s" },
