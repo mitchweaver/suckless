@@ -24,7 +24,8 @@ const char* get_song(void) {
 
 const char* get_vpn(void) {
     if ( system("pgrep -x openvpn >/dev/null") == 0 ) {
-        FILE *fp = popen("ps -wwxU root | grep openvpn | sed -e 's|.*.\/||' -e 's|\.ovpn||'", "r");
+        FILE *fp = popen("ps -wwxU root | grep openvpn | \
+                    sed -e 's|.*.\/||' -e 's|\.ovpn||'", "r");
         if (fp) {
             char buf[256];
             fgets(buf, 256, fp);
@@ -60,27 +61,35 @@ const char* get_bat() {
     sprintf(buf, "%s%s%%", emoji, perc);
     bprintf("%s", buf);
 }
-/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
 static const struct arg args[] = {
-    /* function format          argument */
-    { get_song,     " %s",          "NULL" },
-    { cpu_perc,     " 💻 %s%%",     "NULL" },
-    { ram_perc,     " /  %s%%",    "NULL" },
-
-    { disk_free,    " /  %s",    "/home" },
-    /* { run_command,  " /  %s",    "sh ${HOME}/bin/misc/space" }, */
-
-    { get_vpn,      " / %s",        "NULL" },
-    { wifi_essid,   " /   %s",     WIFI_INT },
-    { wifi_perc,    " %s%%",        WIFI_INT },
-    { netspeed_rx,  " /  %s",     WIFI_INT }, // down
-    { netspeed_tx,  "  %s",     WIFI_INT }, // up
-    { get_bat,      " / %s",        "NULL" },
-    /* { run_command,  " /   %s",     "sh ${HOME}/xorg/bright" }, //     */
-    { run_command,  " / 🔊 %s",     "sh ${HOME}/bin/wrapper/vol" },
-    { datetime,     " / %s",         "%a %b %d - %I:%M %p" },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */ 
+    { get_song,     " %s",         "NULL"    },
+    /* -*-*-*-*-*-*-*- net -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { get_vpn,      " %s",         "NULL"    },
+    { wifi_essid,   " /   %s",    WIFI_INT },
+    { wifi_perc,    " %s%%",       WIFI_INT },
+    { netspeed_rx,  " /  %s",     WIFI_INT }, // down
+    { netspeed_tx,  "  %s",       WIFI_INT }, // up
+    /* -*-*-*-*-*-*-*- sys -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { cpu_perc,     " / 💻 %s%%",  "NULL"   },
+    { ram_perc,     " /  %s%%",   "NULL"   },
+    { disk_free,    " /  %s",     "/home"  },
+    { get_bat,      " / %s",       "NULL"   },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { run_command,  " / 🔊 %s",    "sh ${HOME}/bin/wrapper/vol" },
+    { datetime,     " / %s",       "%a %b %d - %I:%M %p" },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 };
 
+// ------------------------------------------------------------------------
+// unused:
+// ------------------------------------------------------------------------
+/* { run_command,  " /   %s",  "sh ${HOME}/xorg/bright" }, //     */
+
+// ------------------------------------------------------------------------
+// key:
+// ------------------------------------------------------------------------
 /*
  * function            description                     argument (example)
  *
