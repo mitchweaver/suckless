@@ -1,0 +1,11 @@
+--- slstatus/util.c	Fri Mar  6 05:58:42 2020
++++ slstatus/util.c	Fri Mar  6 05:59:26 2020
+@@ -109,7 +109,7 @@
+ 		scaled /= base;
+ 	}
+ 
+-	return bprintf("%.1f %s", scaled, prefix[i]);
++	return bprintf("%.1f%s", scaled, prefix[i]);
+ }
+ 
+ int

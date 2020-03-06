@@ -66,14 +66,18 @@ static const struct arg args[] = {
     { get_song,     " %s",          "NULL" },
     { cpu_perc,     " 💻 %s%%",     "NULL" },
     { ram_perc,     " /  %s%%",    "NULL" },
+
+    { disk_free,    " /  %s",    "/home" },
+    /* { run_command,  " /  %s",    "sh ${HOME}/bin/misc/space" }, */
+
     { get_vpn,      " / %s",        "NULL" },
     { wifi_essid,   " /   %s",     WIFI_INT },
     { wifi_perc,    " %s%%",        WIFI_INT },
-    /* { netspeed_rx,  "  %s",     WIFI_INT }, // down */
-    /* { netspeed_tx,  "  %s",     WIFI_INT }, // up */
+    { netspeed_rx,  " /  %s",     WIFI_INT }, // down
+    { netspeed_tx,  "  %s",     WIFI_INT }, // up
     { get_bat,      " / %s",        "NULL" },
-    /* { run_command,  " /   %s",     "sh /home/mitch/bin/xorg/bright" }, //     */
-    { run_command,  " / 🔊 %s",     "sh /home/mitch/bin/wrapper/vol" },
+    /* { run_command,  " /   %s",     "sh ${HOME}/xorg/bright" }, //     */
+    { run_command,  " / 🔊 %s",     "sh ${HOME}/bin/wrapper/vol" },
     { datetime,     " / %s",         "%a %b %d - %I:%M %p" },
 };
 

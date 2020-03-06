@@ -1,0 +1,36 @@
+/*
+ * http://github.com/mitchweaver/suckless
+ *
+ * Instead of differentiating between "G" and "Gi",
+ * (ex base 1000 and 1024), just use a single prefix set.
+ */
+--- slstatus/util.c	Fri Mar  6 05:54:15 2020
++++ slstatus/util.c	Fri Mar  6 05:54:07 2020
+@@ -99,24 +99,10 @@
+ 	double scaled;
+ 	size_t i, prefixlen;
+ 	const char **prefix;
+-	const char *prefix_1000[] = { "", "k", "M", "G", "T", "P", "E", "Z",
+-	                              "Y" };
+-	const char *prefix_1024[] = { "", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei",
+-	                              "Zi", "Yi" };
++	const char *prefixes[] = { "", "K", "M", "G", "T", "P", "E", "Z", "Y" };
+ 
+-	switch (base) {
+-	case 1000:
+-		prefix = prefix_1000;
+-		prefixlen = LEN(prefix_1000);
+-		break;
+-	case 1024:
+-		prefix = prefix_1024;
+-		prefixlen = LEN(prefix_1024);
+-		break;
+-	default:
+-		warn("fmt_human: Invalid base");
+-		return NULL;
+-	}
++    prefix = prefixes;
++    prefixlen = LEN(prefixes);
+ 
+ 	scaled = num;
+ 	for (i = 0; i < prefixlen && scaled >= base; i++) {

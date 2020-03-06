@@ -1,21 +1,21 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* static unsigned int gappx = 16; */
-/* static unsigned int borderpx  = 0; */
+static unsigned int gappx = 14;
+static unsigned int borderpx  = 0;
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-static unsigned int gappx = 0;
-static const unsigned int borderpx  = 1;
+/* static unsigned int gappx = 0; */
+/* static const unsigned int borderpx  = 1; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* static const int vertpad     = 10; // vertical padding of bar */
-/* static const int sidepad     = 11; // horizontal padding of bar */
-/* static const int horizpadbar = 3;  // horizontal padding for statusbar */
-/* static const int vertpadbar  = 10; // vertical padding for statusbar */
+static const int vertpad     = 10; // vertical padding of bar
+static const int sidepad     = 11; // horizontal padding of bar
+static const int horizpadbar = 3;  // horizontal padding for statusbar
+static const int vertpadbar  = 10; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-* NON-FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*- */
-static const int vertpad     = 0; // vertical padding of bar
-static const int sidepad     = 0; // horizontal padding of bar
-static const int horizpadbar = 2; // horizontal padding for statusbar
-static const int vertpadbar  = 4; // vertical padding for statusbar
+/* static const int vertpad     = 0; // vertical padding of bar */
+/* static const int sidepad     = 0; // horizontal padding of bar */
+/* static const int horizpadbar = 2; // horizontal padding for statusbar */
+/* static const int vertpadbar  = 4; // vertical padding for statusbar */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 
 // for use with the rounded corners patch (0 disables)
@@ -76,7 +76,7 @@ static Key keys[] = {
     { Mod1Mask,             XK_Return, spawn,        { .v = term, }         },
     { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
     { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger")     },
-    { Mod1Mask,             XK_w,      spawn,        SH("chrome --new-window") },
+    { Mod1Mask,             XK_w,      spawn,        SH("brws") },
     /* { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
     { Mod1Mask,             XK_x,      spawn,        SH("lck")              },
     { Mod1Mask,             XK_o,      spawn,        SH("dedit")            },
