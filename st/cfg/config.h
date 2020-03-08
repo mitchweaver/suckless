@@ -1,8 +1,12 @@
 /* -*-*-*-*-*-*-*- Fonts -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
-/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
+/* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
+static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false";
+/* static const char font[] = "Victor Mono:pixelsize=16:antialias=true:autohint=true"; */
+/* static const char font[] = "Share\\-TechMono:pixelsize=20:antialias=true:autohint=true"; */
 /* static const char font[] = "RobotoMono Nerd Font Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* static const char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
+/* static const char font[] = "IBM Plex Mono:pixelsize=16:antialias=true:autohint=true"; */
+/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
+/* static const char font[] = "dweep:pixelsize=14:antialias=false:autohint=false"; */
 /* static const char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 

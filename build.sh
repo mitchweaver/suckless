@@ -8,7 +8,7 @@ TABBED_VERSION=b5f9ec647aae2d9a1d3bd586eb7523a4e0a329a3   # 10 Mar 2018
 SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
 SLSTATUS_VERSION=b14e039639ed28005fbb8bddeb5b5fa0c93475ac # 16 Feb 2019
 
-export PREFIX=~/usr
+export PREFIX=~/.local
 export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexceptions'
 export LDFLAGS=-s
 # -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*

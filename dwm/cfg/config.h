@@ -54,8 +54,18 @@ static const Rule rules[] = {
 /* [SchemeUrg] =  { urg_fg,      urg_bg,    urg_border }, */
 /* }; */
 
-/* static const char *tags[] = { "爵", "", "", "", "", "ﭮ" }; */
-static const char *tags[] = { "1","2","3","4","5","6" };
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+/*
+ * cool emojis to use for tags:
+ *
+ * "", "爵", "", "", "ﭮ", "", "", "", "","", "﬐", "ﳨ"
+ * "ﯙ", "", "", "", "", "", "", "", "", "", "", ""
+ * "", "", "", "", "", "", "", "", "", "", "", ""
+ */
+static const char *tags[] = { "", "", "", "", "", "ﭮ" };
+/* static const char *tags[] = { "1","2","3","4","5","6" }; */
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
 static const int showbar = 1;
 static const int topbar  = 1;
 static const float mfact = 0.5;
@@ -76,7 +86,8 @@ static Key keys[] = {
     { Mod1Mask,             XK_Return, spawn,        { .v = term, }         },
     { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
     { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger")     },
-    { Mod1Mask,             XK_w,      spawn,        SH("brws") },
+    { Mod1Mask,             XK_w,      spawn,        SH("brws")             },
+    { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("onion")            },
     /* { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
     { Mod1Mask,             XK_x,      spawn,        SH("lck")              },
     { Mod1Mask,             XK_o,      spawn,        SH("dedit")            },

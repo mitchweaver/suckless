@@ -8,14 +8,6 @@
  static Client *wintoclient(Window w);
  static Monitor *wintomon(Window w);
  static int xerror(Display *dpy, XErrorEvent *ee);
-@@ -842,6 +843,7 @@ focusmon(const Arg *arg)
- 					in gedit and anjuta */
- 	selmon = m;
- 	focus(NULL);
-+	warp(selmon->sel);
- }
- 
- void
 @@ -1387,6 +1389,8 @@ restack(Monitor *m)
  	}
  	XSync(dpy, False);
