@@ -85,7 +85,7 @@ static Key keys[] = {
     { Mod1Mask|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") },
     { Mod1Mask,             XK_Return, spawn,        { .v = term, }         },
     { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
-    { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger")     },
+    { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger --cmd='set viewmode multipane'") },
     { Mod1Mask,             XK_w,      spawn,        SH("brws")             },
     { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("onion")            },
     /* { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
@@ -105,7 +105,7 @@ static Key keys[] = {
     { Mod1Mask,             XK_bracketright, spawn,  SH("mmt -f")   },
     { Mod1Mask,             XK_bracketleft,  spawn,  SH("mmt -b")   },
     /* -*-*-*-*-*-*-*- dwm commands -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { Mod1Mask,            XK_space,  togglescratch, SH("st -t scratchpad -g 80x22") },
+    { Mod1Mask,            XK_space,  togglescratch, SH("st -t scratchpad -g 68x18") },
     { Mod1Mask,            XK_q,      killclient,    {0} },
     { Mod1Mask,            XK_j,      focusstack,    {.i = +1 } },
     { Mod1Mask,            XK_k,      focusstack,    {.i = -1 } },

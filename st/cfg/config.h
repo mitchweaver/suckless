@@ -10,9 +10,12 @@ static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false";
 /* static const char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
+
+static unsigned int cols = 66;
+static unsigned int rows = 18;
+
 const int borderpx = 22;
-static unsigned int cols = 90;
-static unsigned int rows = 28;
+
 unsigned int tabspaces = 4;
 static unsigned int xfps = 120;
 static unsigned int actionfps = 30;
@@ -42,6 +45,7 @@ Shortcut shortcuts[] = {
     { ControlMask,   XK_BackSpace,   zoomreset,      {.f =  0} },
     { ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
     { ControlMask,   XK_v,           clippaste,      {.i =  0} },
+    { ControlMask,   XK_l,           copyurl,        {.i =  0} },
     { ControlMask,   XK_Page_Up,     kscrollup,      {.i =  3} },
     { ControlMask,   XK_Page_Down,   kscrolldown,    {.i =  3} },
 };
