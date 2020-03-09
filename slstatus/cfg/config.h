@@ -78,7 +78,8 @@ static const struct arg args[] = {
     { get_bat,      " / %s",       "NULL"   },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     { run_command,  " / 🔊 %s",    "sh ${HOME}/bin/wrapper/vol" },
-    { datetime,     " / %s",       "%a %b %d - %I:%M %p" },
+    { datetime,     " / %s",       "%a %I:%M %p" },
+    /* { datetime,     " / %s",       "%a %b %d - %I:%M %p" }, */
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 };
 

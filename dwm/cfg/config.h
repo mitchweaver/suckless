@@ -1,17 +1,16 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static unsigned int gappx = 16;
-/* static unsigned int borderpx = 0; */
-static unsigned int borderpx  = 8;
+#define GAPS_START 20
+#define BORDERPX_START 10
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-/* static unsigned int gappx = 0; */
-/* static const unsigned int borderpx  = 1; */
+/* #define GAPS_START 0 */
+/* #define BORDERPX_START 1 */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static const int vertpad     = 10; // vertical padding of bar
-static const int sidepad     = 11; // horizontal padding of bar
-static const int horizpadbar = 3;  // horizontal padding for statusbar
-static const int vertpadbar  = 10; // vertical padding for statusbar
+static const int vertpad     = GAPS_START; // vertical padding of bar
+static const int sidepad     = GAPS_START; // horizontal padding of bar
+static const int horizpadbar = BORDERPX_START / 2;  // horizontal padding for statusbar
+static const int vertpadbar  = BORDERPX_START;      // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-* NON-FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*- */
 /* static const int vertpad     = 0; // vertical padding of bar */
 /* static const int sidepad     = 0; // horizontal padding of bar */
@@ -143,6 +142,9 @@ static Button buttons[] = {
     { ClkClientWin,         Mod1Mask,       Button3,        resizemouse,    {0} },
     { ClkRootWin,           0,              Button3,        spawn,          SH("x9term") },
 };
+
+static unsigned int gappx = GAPS_START;
+static unsigned int borderpx = BORDERPX_START;
 
 static const unsigned int minwsz = 20; /* min height of a client for smfact */
 
