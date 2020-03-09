@@ -1,6 +1,7 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static unsigned int gappx = 14;
-static unsigned int borderpx  = 0;
+static unsigned int gappx = 16;
+/* static unsigned int borderpx = 0; */
+static unsigned int borderpx  = 8;
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* static unsigned int gappx = 0; */
 /* static const unsigned int borderpx  = 1; */
@@ -22,8 +23,9 @@ static const int vertpadbar  = 10; // vertical padding for statusbar
 static const int CORNER_RADIUS = 0;
 
 static const char*fonts[] = {
-    "Terminus:size=8",
-    "RobotoMono Nerd Font:size=10"
+    "ShureTechMono Nerd Font:size=10"
+    /* "Terminus:size=8", */
+    /* "RobotoMono Nerd Font Mono:size=10" */
 };
 
 static const Rule rules[] = {

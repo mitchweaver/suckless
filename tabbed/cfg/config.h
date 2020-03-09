@@ -1,7 +1,7 @@
-static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
-/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
-/* static const char font[] = "Share Tech Mono:pixelsize=16:antialias=true:autohint=true"; */
+/* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
+static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true";
 /* static const char font[] = "Roboto Mono:pixelsize=20:antialias=true:autohint=true"; */
+/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
 
 /* set to -1 if you want to use the text's height */
 static const int barheight = -1;
