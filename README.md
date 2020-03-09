@@ -27,10 +27,6 @@ For questions, feel free to contact me or comment on the git issues.
 
 ![st / tabbed](http://i.imgur.com/HjfUvWn.png)
 
-**[slstatus](http://github.com/mitchweaver/suckless/tree/master/slstatus)**:
-
-![slstatus](http://0x0.st/ibwm.png)
-
 ### See also
 -------
 

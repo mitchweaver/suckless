@@ -6,7 +6,6 @@ ST_VERSION=51e19ea11dd42eefed1ca136ee3f6be975f618b1       # 18 Feb 2020
 DMENU_VERSION=db6093f6ec1bb884f7540f2512935b5254750b30    # 03 Mar 2019
 TABBED_VERSION=b5f9ec647aae2d9a1d3bd586eb7523a4e0a329a3   # 10 Mar 2018
 SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
-SLSTATUS_VERSION=b14e039639ed28005fbb8bddeb5b5fa0c93475ac # 16 Feb 2019
 
 export PREFIX=~/.local
 export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexceptions'
@@ -14,7 +13,7 @@ export LDFLAGS=-s
 # -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 usage() {
-    >&2 echo 'Usage: ./build.sh [dwm] [st] [dmenu] [tabbed] [surf] [slstatus]'
+    >&2 echo 'Usage: ./build.sh [dwm] [st] [dmenu] [tabbed] [surf]'
     exit 1
 }
 
@@ -41,7 +40,6 @@ for name ; do
         surf) clone $name $SURF_VERSION ;;
         dmenu) clone $name $DMENU_VERSION ;;
         tabbed) clone $name $TABBED_VERSION ;;
-        slstatus) clone $name $SLSTATUS_VERSION ;;
         *) usage
     esac
 
