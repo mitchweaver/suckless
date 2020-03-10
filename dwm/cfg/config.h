@@ -1,16 +1,16 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 20
-#define BORDERPX_START 10
+#define GAPS_START 30
+#define BORDERPX_START 0
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 0 */
 /* #define BORDERPX_START 1 */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static const int vertpad     = GAPS_START; // vertical padding of bar
-static const int sidepad     = GAPS_START; // horizontal padding of bar
-static const int horizpadbar = BORDERPX_START / 2;  // horizontal padding for statusbar
-static const int vertpadbar  = BORDERPX_START;      // vertical padding for statusbar
+static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar
+static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar
+static const int horizpadbar = 6;          // horizontal padding for statusbar
+static const int vertpadbar  = 12;         // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-* NON-FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*- */
 /* static const int vertpad     = 0; // vertical padding of bar */
 /* static const int sidepad     = 0; // horizontal padding of bar */
@@ -22,9 +22,9 @@ static const int vertpadbar  = BORDERPX_START;      // vertical padding for stat
 static const int CORNER_RADIUS = 0;
 
 static const char*fonts[] = {
-    "ShureTechMono Nerd Font:size=10"
+    "ShureTechMono Nerd Font:size=10",
+    "RobotoMono Nerd Font Mono:size=10"
     /* "Terminus:size=8", */
-    /* "RobotoMono Nerd Font Mono:size=10" */
 };
 
 static const Rule rules[] = {

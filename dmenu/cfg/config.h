@@ -1,5 +1,5 @@
 /* static const char *fonts[] = { "Terminus:pixelsize=20:antialias=false:autohint=false" }; */
-static const char *fonts[] = { "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true" };
+static const char *fonts[] = { "ShureTechMono Nerd Font:pixelsize=18:antialias=true:autohint=true" };
 /* static const char *fonts[] = { "tewi:pixelsize=20:antialias=false:autohint=false" }; */
 
 static const unsigned int border_width = 2;
