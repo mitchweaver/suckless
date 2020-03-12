@@ -11,10 +11,11 @@ static const char font[] = "ShureTechMono Nerd Font:pixelsize=18:antialias=true:
 /* static const char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
+// plumber patch
+const static char *plumb_cmd = "opn";
 
 static unsigned int cols = 66;
 static unsigned int rows = 18;
-
 const int borderpx = 22;
 
 unsigned int tabspaces = 4;

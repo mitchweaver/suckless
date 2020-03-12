@@ -1,5 +1,5 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 30
+#define GAPS_START 24
 #define BORDERPX_START 0
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 0 */
@@ -88,7 +88,8 @@ static Key keys[] = {
     { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
     { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger --cmd='set viewmode multipane'") },
     { Mod1Mask,             XK_w,      spawn,        SH("brws")             },
-    { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("onion")            },
+    { Mod1Mask,             XK_e,      spawn,        SH("ddg")              },
+    { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("ddg")              },
     /* { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
     { Mod1Mask,             XK_x,      spawn,        SH("lck")              },
     { Mod1Mask,             XK_o,      spawn,        SH("dedit")            },
@@ -96,7 +97,7 @@ static Key keys[] = {
     { Mod1Mask,             XK_c,      spawn,        SH("clip")             },
     { ControlMask,          XK_Print,  spawn,        SH("scrap")            },
     { 0,                    XK_Print,  spawn,        SH("scrap -n")         },
-    { Mod1Mask|ControlMask, XK_k,      spawn,        SH("keylayout")        },
+    { Mod1Mask|ControlMask, XK_k,      spawn,        SH("keys")             },
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { Mod1Mask,             XK_apostrophe,   spawn,  SH("vol -i 6") },
     { Mod1Mask,             XK_semicolon,    spawn,  SH("vol -d 6") },
