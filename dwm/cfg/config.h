@@ -1,21 +1,24 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 24
-#define BORDERPX_START 0
-/* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-/* #define GAPS_START 0 */
+/* #define GAPS_START 24 */
+/* #define BORDERPX_START 0 */
+/* -*-*-*-*-*-*-*-*-*- SMALL GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+/* #define GAPS_START 8 */
 /* #define BORDERPX_START 1 */
+/* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+#define GAPS_START 0
+#define BORDERPX_START 1
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar
-static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar
-static const int horizpadbar = 6;          // horizontal padding for statusbar
-static const int vertpadbar  = 12;         // vertical padding for statusbar
+/* static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar */
+/* static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar */
+/* static const int horizpadbar = 6;          // horizontal padding for statusbar */
+/* static const int vertpadbar  = 12;         // vertical padding for statusbar */
 /* -*-*-*-*-*-*-*-* NON-FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*- */
-/* static const int vertpad     = 0; // vertical padding of bar */
-/* static const int sidepad     = 0; // horizontal padding of bar */
-/* static const int horizpadbar = 2; // horizontal padding for statusbar */
-/* static const int vertpadbar  = 4; // vertical padding for statusbar */
+static const int vertpad     = 0; // vertical padding of bar
+static const int sidepad     = 0; // horizontal padding of bar
+static const int horizpadbar = 2; // horizontal padding for statusbar
+static const int vertpadbar  = 4; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 
 // for use with the rounded corners patch (0 disables)
@@ -87,10 +90,11 @@ static Key keys[] = {
     { Mod1Mask,             XK_Return, spawn,        { .v = term, }         },
     { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
     { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger --cmd='set viewmode multipane'") },
+//------
     { Mod1Mask,             XK_w,      spawn,        SH("brws")             },
-    { Mod1Mask,             XK_e,      spawn,        SH("ddg")              },
-    { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("ddg")              },
     /* { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
+    { Mod1Mask,             XK_e,      spawn,        SH("ddg")              },
+//------
     { Mod1Mask,             XK_x,      spawn,        SH("lck")              },
     { Mod1Mask,             XK_o,      spawn,        SH("dedit")            },
     { Mod1Mask,             XK_i,      spawn,        SH("tasks")            },
