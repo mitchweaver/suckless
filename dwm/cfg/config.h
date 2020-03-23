@@ -109,8 +109,8 @@ static Key keys[] = {
     { MODKEY,             XK_apostrophe,   spawn,  SH("vol -i 6") },
     { MODKEY,             XK_semicolon,    spawn,  SH("vol -d 6") },
     { MODKEY,             XK_slash,        spawn,  SH("mmt -t")   },
-    { MODKEY,             XK_period,       spawn,  SH("mmt -n")   },
-    { MODKEY,             XK_comma,        spawn,  SH("mmt -p")   },
+    { MODKEY,             XK_period,       spawn,  SH("pkill skroll ; mmt -n")   },
+    { MODKEY,             XK_comma,        spawn,  SH("pkill skroll ; mmt -p")   },
     { MODKEY,             XK_bracketright, spawn,  SH("mmt -f")   },
     { MODKEY,             XK_bracketleft,  spawn,  SH("mmt -b")   },
     /* -*-*-*-*-*-*-*- dwm commands -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -148,7 +148,8 @@ static Key keys[] = {
 static Button buttons[] = {
     { ClkClientWin,  MODKEY,  Button1, movemouse,   {0} },
     { ClkClientWin,  MODKEY,  Button3, resizemouse, {0} },
-    { ClkRootWin,    0,         Button3, spawn,       SH("x9term") }, // p9 rio style terminal drawing
+    { ClkRootWin,    0,       Button3, spawn,       SH("x9term") }, // p9 rio style terminal drawing
+	{ ClkTagBar,     0,       Button1,        view,           {0} },
 };
 
 static unsigned int gappx = GAPS_START;
