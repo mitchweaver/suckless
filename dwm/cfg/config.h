@@ -1,24 +1,24 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* #define GAPS_START 24 */
-/* #define BORDERPX_START 0 */
+#define GAPS_START 22
+#define BORDERPX_START 0
 /* -*-*-*-*-*-*-*-*-*- SMALL GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 8 */
 /* #define BORDERPX_START 1 */
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-#define GAPS_START 0
-#define BORDERPX_START 1
+/* #define GAPS_START 0 */
+/* #define BORDERPX_START 1 */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar */
-/* static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar */
-/* static const int horizpadbar = 6;          // horizontal padding for statusbar */
-/* static const int vertpadbar  = 12;         // vertical padding for statusbar */
+static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar
+static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar
+static const int horizpadbar = 6;          // horizontal padding for statusbar
+static const int vertpadbar  = 12;         // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-* NON-FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*- */
-static const int vertpad     = 0; // vertical padding of bar
-static const int sidepad     = 0; // horizontal padding of bar
-static const int horizpadbar = 2; // horizontal padding for statusbar
-static const int vertpadbar  = 4; // vertical padding for statusbar
+/* static const int vertpad     = 0; // vertical padding of bar */
+/* static const int sidepad     = 0; // horizontal padding of bar */
+/* static const int horizpadbar = 2; // horizontal padding for statusbar */
+/* static const int vertpadbar  = 4; // vertical padding for statusbar */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 
 // for use with the rounded corners patch (0 disables)
@@ -33,6 +33,7 @@ static const char*fonts[] = {
 static const Rule rules[] = {
     /* class          instance    title    tags mask  iscentered   isfloating   monitor */
     { "st-256color",  NULL,      0,             0,         1,           0,           -1 },
+    { "tabbed",       NULL,      0,             0,         1,           0,           -1 },
     { 0,              NULL,      "x9term",      0,         0,           1,           -1 },
     { 0,              NULL,      "floating-st", 0,         1,           1,           -1 },
     { "feh",          NULL,      0,             0,         1,           1,           -1 },
@@ -76,62 +77,64 @@ static const float mfact = 0.5;
 static const Layout layouts[] = {
     { "|  ", tile },
     { "| 缾 ", NULL }, // floating
-    { "|  ", monocle },
+    /* { "|  ", monocle }, */
 };
-#define TAGKEYS(KEY,TAG) { Mod1Mask, KEY, view, {.ui = 1 << TAG} }, \
-                         { Mod1Mask|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
+
+#define MODKEY Mod1Mask
+#define TAGKEYS(KEY,TAG) { MODKEY, KEY, view, {.ui = 1 << TAG} }, \
+                         { MODKEY|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
 #define SH(cmd) { .v = (const char*[]) { "/bin/sh", "-r", "-c", cmd, NULL } }
 static const char *term[] = { "st", NULL };
 
 static Key keys[] = {
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { Mod1Mask|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") },
-    { Mod1Mask,             XK_Return, spawn,        { .v = term, }         },
-    { Mod1Mask,             XK_p,      spawn,        SH("menu run -p Run:") },
-    { Mod1Mask,             XK_r,      spawn,        SH("st -e ranger --cmd='set viewmode multipane'") },
-//------
-    { Mod1Mask,             XK_w,      spawn,        SH("brws")             },
-    /* { Mod1Mask|ShiftMask,   XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
-    { Mod1Mask,             XK_e,      spawn,        SH("ddg")              },
-//------
-    { Mod1Mask,             XK_x,      spawn,        SH("lck")              },
-    { Mod1Mask,             XK_o,      spawn,        SH("dedit")            },
-    { Mod1Mask,             XK_i,      spawn,        SH("tasks")            },
-    { Mod1Mask,             XK_c,      spawn,        SH("clip")             },
-    { ControlMask,          XK_Print,  spawn,        SH("scrap")            },
-    { 0,                    XK_Print,  spawn,        SH("scrap -n")         },
-    { Mod1Mask|ControlMask, XK_k,      spawn,        SH("keys")             },
+    { MODKEY|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") },
+    { MODKEY,             XK_Return, spawn,        { .v = term, }         },
+    { MODKEY,             XK_p,      spawn,        SH("menu run -p Run:") },
+    { MODKEY,             XK_r,      spawn,        SH("st -e ranger --cmd='set viewmode multipane'") },
+
+    { MODKEY,             XK_w,      spawn,        SH("brws")             },
+    /* { MODKEY|ShiftMask,   XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
+    { MODKEY,             XK_u,      spawn,        SH("ddg")              },
+
+    { MODKEY,             XK_x,      spawn,        SH("lck")              },
+    { MODKEY,             XK_o,      spawn,        SH("dedit")            },
+    { MODKEY,             XK_i,      spawn,        SH("tasks")            },
+    { MODKEY,             XK_c,      spawn,        SH("clip")             },
+    { ControlMask,        XK_Print,  spawn,        SH("scrap")            },
+    { 0,                  XK_Print,  spawn,        SH("scrap -n")         },
+    { MODKEY|ControlMask, XK_k,      spawn,        SH("keys")             },
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-    { Mod1Mask,             XK_apostrophe,   spawn,  SH("vol -i 6") },
-    { Mod1Mask,             XK_semicolon,    spawn,  SH("vol -d 6") },
-    { Mod1Mask,             XK_slash,        spawn,  SH("mmt -t")   },
-    { Mod1Mask,             XK_period,       spawn,  SH("mmt -n")   },
-    { Mod1Mask,             XK_comma,        spawn,  SH("mmt -p")   },
-    { Mod1Mask,             XK_bracketright, spawn,  SH("mmt -f")   },
-    { Mod1Mask,             XK_bracketleft,  spawn,  SH("mmt -b")   },
+    { MODKEY,             XK_apostrophe,   spawn,  SH("vol -i 6") },
+    { MODKEY,             XK_semicolon,    spawn,  SH("vol -d 6") },
+    { MODKEY,             XK_slash,        spawn,  SH("mmt -t")   },
+    { MODKEY,             XK_period,       spawn,  SH("mmt -n")   },
+    { MODKEY,             XK_comma,        spawn,  SH("mmt -p")   },
+    { MODKEY,             XK_bracketright, spawn,  SH("mmt -f")   },
+    { MODKEY,             XK_bracketleft,  spawn,  SH("mmt -b")   },
     /* -*-*-*-*-*-*-*- dwm commands -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { Mod1Mask,            XK_space,  togglescratch, SH("st -t scratchpad -g 68x18") },
-    { Mod1Mask,            XK_q,      killclient,    {0} },
-    { Mod1Mask,            XK_j,      focusstack,    {.i = +1 } },
-    { Mod1Mask,            XK_k,      focusstack,    {.i = -1 } },
-    { Mod1Mask|ShiftMask,  XK_h,      setmfact,      {.f = -0.05} },
-    { Mod1Mask|ShiftMask,  XK_l,      setmfact,      {.f = +0.05} },
-    { Mod1Mask,            XK_t,      setlayout,     {.v = &layouts[0]} },
-    { Mod1Mask,            XK_f,      setlayout,     {.v = &layouts[1]} },
-    { Mod1Mask,            XK_m,      setlayout,     {.v = &layouts[2]} },
-    { Mod1Mask,            XK_b,      togglebar,     {0} },
-    { Mod1Mask,            XK_s,      togglesticky,  {0} },
-    { Mod1Mask|ShiftMask,  XK_space,  togglefloating,{0} },
-    { Mod1Mask,            XK_h,      rotatestack,   {.i = -1 } },
-    { Mod1Mask,            XK_l,      rotatestack,   {.i = +1 } },
-    { Mod1Mask,            XK_Tab,    view,          {0} },
-    { Mod1Mask|ShiftMask|ControlMask, XK_q,      quit,           {0} },
+    { MODKEY,            XK_space,  togglescratch, SH("st -t scratchpad -g 68x18") },
+    { MODKEY,            XK_q,      killclient,    {0} },
+    { MODKEY,            XK_j,      focusstack,    {.i = +1 } },
+    { MODKEY,            XK_k,      focusstack,    {.i = -1 } },
+    { MODKEY|ShiftMask,  XK_h,      setmfact,      {.f = -0.05} },
+    { MODKEY|ShiftMask,  XK_l,      setmfact,      {.f = +0.05} },
+    { MODKEY,            XK_t,      setlayout,     {.v = &layouts[0]} },
+    { MODKEY,            XK_f,      setlayout,     {.v = &layouts[1]} },
+    /* { MODKEY,            XK_m,      setlayout,     {.v = &layouts[2]} }, */
+    { MODKEY,            XK_b,      togglebar,     {0} },
+    { MODKEY,            XK_s,      togglesticky,  {0} },
+    { MODKEY|ShiftMask,  XK_space,  togglefloating,{0} },
+    { MODKEY,            XK_h,      rotatestack,   {.i = -1 } },
+    { MODKEY,            XK_l,      rotatestack,   {.i = +1 } },
+    { MODKEY,            XK_Tab,    view,          {0} },
+    { MODKEY|ShiftMask|ControlMask, XK_q,      quit,           {0} },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { Mod1Mask|ShiftMask,  XK_k,      setsmfact,      {.f = +0.05} },
-    { Mod1Mask|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
-    { Mod1Mask,            XK_g,      setgaps,        {.i = +4}    },
-    { Mod1Mask|ShiftMask,  XK_g,      setgaps,        {.i = -4}    },
+    { MODKEY|ShiftMask,  XK_k,      setsmfact,      {.f = +0.05} },
+    { MODKEY|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
+    { MODKEY,            XK_g,      setgaps,        {.i = +4}    },
+    { MODKEY|ShiftMask,  XK_g,      setgaps,        {.i = -4}    },
     { 0,                   XK_F11,    togglefullscr,  {0} },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
@@ -143,9 +146,9 @@ static Key keys[] = {
 };
 
 static Button buttons[] = {
-    { ClkClientWin,         Mod1Mask,       Button1,        movemouse,      {0} },
-    { ClkClientWin,         Mod1Mask,       Button3,        resizemouse,    {0} },
-    { ClkRootWin,           0,              Button3,        spawn,          SH("x9term") },
+    { ClkClientWin,  MODKEY,  Button1, movemouse,   {0} },
+    { ClkClientWin,  MODKEY,  Button3, resizemouse, {0} },
+    { ClkRootWin,    0,         Button3, spawn,       SH("x9term") }, // p9 rio style terminal drawing
 };
 
 static unsigned int gappx = GAPS_START;
