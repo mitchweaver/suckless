@@ -1,5 +1,7 @@
+static const char font[] = "Terminus:pixelsize=18:antialias=false:autohint=false";
 /* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
-static const char font[] = "ShureTechMono Nerd Font:pixelsize=16:antialias=true:autohint=true";
+/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=18:antialias=true:autohint=true"; */
+/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "Roboto Mono:pixelsize=20:antialias=true:autohint=true"; */
 /* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
 

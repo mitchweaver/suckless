@@ -1,5 +1,5 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 22
+#define GAPS_START 20
 #define BORDERPX_START 0
 /* -*-*-*-*-*-*-*-*-*- SMALL GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 8 */
@@ -25,21 +25,21 @@ static const int vertpadbar  = 12;         // vertical padding for statusbar
 static const int CORNER_RADIUS = 0;
 
 static const char*fonts[] = {
+    "Terminus:size=8",
     "ShureTechMono Nerd Font:size=10",
     "RobotoMono Nerd Font Mono:size=10"
-    /* "Terminus:size=8", */
 };
 
 static const Rule rules[] = {
-    /* class          instance    title    tags mask  iscentered   isfloating   monitor */
-    { "st-256color",  NULL,      0,             0,         1,           0,           -1 },
-    { "tabbed",       NULL,      0,             0,         1,           0,           -1 },
-    { 0,              NULL,      "x9term",      0,         0,           1,           -1 },
-    { 0,              NULL,      "floating-st", 0,         1,           1,           -1 },
-    { "feh",          NULL,      0,             0,         1,           1,           -1 },
-    { "mpv",          NULL,      0,             0,         1,           1,           -1 },
-    { "mupdf",        NULL,      0,             0,         1,           0,           -1 },
-    { "MuPDF",        NULL,      0,             0,         1,           0,           -1 },
+    /* class         instance  title      tags mask  iscentered   isfloating  monitor */
+    { "brws",        NULL,     0,         1,         0,           0,          -1 },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+    { "tabbed",      NULL,     0,         0,         1,           0,          -1 },
+    { "x9term",      NULL,     0,         0,         0,           1,          -1 },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+    { "feh",         NULL,     0,         0,         1,           1,          -1 },
+    { "mpv",         NULL,     0,         0,         1,           1,          -1 },
+    { "MuPDF",       NULL,     0,         0,         1,           0,          -1 },
 };
 
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
@@ -64,10 +64,10 @@ static const Rule rules[] = {
  * cool emojis to use for tags:
  *
  * "", "爵", "", "", "ﭮ", "", "", "", "","", "﬐", "ﳨ"
- * "ﯙ", "", "", "", "", "", "", "", "", "", "", ""
- * "", "", "", "", "", "", "", "", "", "", "", ""
+ * "ﯙ", "", "", "", "", "", "", "", "", "", "", ""
+ * "", "", "", "", "", "", "", "", "", "", "", "", "ﭮ"
  */
-static const char *tags[] = { "", "", "", "", "", "ﭮ" };
+static const char *tags[] = { "", "", "", "", "", "" };
 /* static const char *tags[] = { "1","2","3","4","5","6" }; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
@@ -84,13 +84,11 @@ static const Layout layouts[] = {
 #define TAGKEYS(KEY,TAG) { MODKEY, KEY, view, {.ui = 1 << TAG} }, \
                          { MODKEY|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
 #define SH(cmd) { .v = (const char*[]) { "/bin/sh", "-r", "-c", cmd, NULL } }
-static const char *term[] = { "st", NULL };
 
 static Key keys[] = {
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY|ShiftMask,   XK_Return, spawn,        SH("tabbed -d -c -r 2 st -w ''") },
-    { MODKEY,             XK_Return, spawn,        { .v = term, }         },
+    { MODKEY,             XK_Return, spawn,        SH("term")             },
     { MODKEY,             XK_p,      spawn,        SH("menu run -p Run:") },
     { MODKEY,             XK_r,      spawn,        SH("st -e ranger --cmd='set viewmode multipane'") },
 
@@ -148,8 +146,8 @@ static Key keys[] = {
 static Button buttons[] = {
     { ClkClientWin,  MODKEY,  Button1, movemouse,   {0} },
     { ClkClientWin,  MODKEY,  Button3, resizemouse, {0} },
-    { ClkRootWin,    0,       Button3, spawn,       SH("x9term") }, // p9 rio style terminal drawing
-	{ ClkTagBar,     0,       Button1,        view,           {0} },
+    { ClkRootWin,    0,       Button3, spawn,       SH("9m") },
+	{ ClkTagBar,     0,       Button1, view,        {0} },
 };
 
 static unsigned int gappx = GAPS_START;

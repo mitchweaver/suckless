@@ -1,14 +1,13 @@
 /* -*-*-*-*-*-*-*- Fonts -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
-/* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
-/* static const char font[] = "Victor Mono:pixelsize=16:antialias=true:autohint=true"; */
-static const char font[] = "ShureTechMono Nerd Font:pixelsize=18:antialias=true:autohint=true";
-/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
-/* static const char font[] = "RobotoMono Nerd Font Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* static const char font[] = "IBM Plex Mono:pixelsize=16:antialias=true:autohint=true"; */
-/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
-/* static const char font[] = "dweep:pixelsize=14:antialias=false:autohint=false"; */
-/* static const char font[] = "MonteCarlo:pixelsize=10:antialias=false:autohint=false"; */
+static const char font[] = "Terminus:size=12:antialias=false:autohint=false";
+/* static const char font[] = "Terminus:size=20:antialias=false:autohint=false"; */
+/* static const char font[] = "ShureTechMono Nerd Font:size=18:antialias=true:autohint=true"; */
+/* static const char font[] = "ShureTechMono Nerd Font:size=20:antialias=true:autohint=true"; */
+/* static const char font[] = "RobotoMono Nerd Font Mono:size=16:antialias=true:autohint=true"; */
+/* static const char font[] = "spleen:size=20:antialias=false:autohint=false"; */
+/* static const char font[] = "dweep:size=14:antialias=false:autohint=false"; */
+/* static const char font[] = "tewi:size=20:antialias=false:autohint=false"; */
+/* static const char font[] = "MonteCarlo:size=12:antialias=false:autohint=false"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 // plumber patch
