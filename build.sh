@@ -50,9 +50,9 @@ for name ; do
     cd $name
 
     [ -d patches ] &&
-    ls patches | while read -r patch ; do
-        printf '\n%s\n\n' "===> applying $patch..."
-        patch -l -p0 <patches/$patch
+    for patch in patches/* ; do
+        printf '\n%s\n\n' "===> applying ${patch#patches/}..."
+        patch -l -p0 <$patch
     done
 
     cp -f cfg/config.h  $name/config.h  2>/dev/null ||:
