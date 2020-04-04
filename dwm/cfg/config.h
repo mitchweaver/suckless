@@ -1,9 +1,9 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 20
+#define GAPS_START 18
 #define BORDERPX_START 0
 /* -*-*-*-*-*-*-*-*-*- SMALL GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-/* #define GAPS_START 8 */
-/* #define BORDERPX_START 1 */
+/* #define GAPS_START 12 */
+/* #define BORDERPX_START 0 */
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 0 */
 /* #define BORDERPX_START 1 */
@@ -31,15 +31,18 @@ static const char*fonts[] = {
 };
 
 static const Rule rules[] = {
-    /* class         instance  title      tags mask  iscentered   isfloating  monitor */
-    { "brws",        NULL,     0,         1,         0,           0,          -1 },
+    /* class         instance  title       tags mask  iscentered   isfloating  monitor */
+    { "brws",        NULL,     NULL,       1,         0,           0,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-    { "tabbed",      NULL,     0,         0,         1,           0,          -1 },
-    { "x9term",      NULL,     0,         0,         0,           1,          -1 },
+    { "term",        NULL,     "term",     0,         1,           0,          -1 },
+    { "x9term",      NULL,     "x9term",   0,         0,           1,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-    { "feh",         NULL,     0,         0,         1,           1,          -1 },
-    { "mpv",         NULL,     0,         0,         1,           1,          -1 },
-    { "MuPDF",       NULL,     0,         0,         1,           0,          -1 },
+    { "htop",        NULL,     NULL,       0,         1,           1,          -1 },
+    { "ranger",      NULL,     NULL,       0,         1,           1,          -1 },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+    { "feh",         NULL,     NULL,       0,         1,           1,          -1 },
+    { "mpv",         NULL,     NULL,       0,         1,           1,          -1 },
+    { "MuPDF",       NULL,     NULL,       0,         1,           0,          -1 },
 };
 
 #include "/home/mitch/.cache/wal/colors-wal-dwm.h"
@@ -88,13 +91,13 @@ static const Layout layouts[] = {
 static Key keys[] = {
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,             XK_Return, spawn,        SH("term")             },
+    { MODKEY,             XK_Return, spawn,        SH("st -c term -T term") },
     { MODKEY,             XK_p,      spawn,        SH("menu run -p Run:") },
-    { MODKEY,             XK_r,      spawn,        SH("st -e ranger --cmd='set viewmode multipane'") },
+    { MODKEY,             XK_r,      spawn,        SH("st -c ranger -e ranger --cmd='set viewmode multipane'") },
 
-    { MODKEY,             XK_w,      spawn,        SH("brws")             },
-    /* { MODKEY|ShiftMask,   XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
-    { MODKEY,             XK_u,      spawn,        SH("ddg")              },
+    { MODKEY,             XK_w,      spawn,        SH("tabbed -d -c surf -e") },
+    { MODKEY|ShiftMask,   XK_w,      spawn,        SH("brws")             },
+    { MODKEY,             XK_u,      spawn,        SH("websearch")        },
 
     { MODKEY,             XK_x,      spawn,        SH("lck")              },
     { MODKEY,             XK_o,      spawn,        SH("dedit")            },
@@ -103,6 +106,9 @@ static Key keys[] = {
     { ControlMask,        XK_Print,  spawn,        SH("scrap")            },
     { 0,                  XK_Print,  spawn,        SH("scrap -n")         },
     { MODKEY|ControlMask, XK_k,      spawn,        SH("keys")             },
+    /* -*-*-*-*-*-*-*- redshift control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { MODKEY,             XK_equal,  spawn,        SH("sctc -i") },
+    { MODKEY,             XK_minus,  spawn,        SH("sctc -d") },
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { MODKEY,             XK_apostrophe,   spawn,  SH("vol -i 6") },
     { MODKEY,             XK_semicolon,    spawn,  SH("vol -d 6") },

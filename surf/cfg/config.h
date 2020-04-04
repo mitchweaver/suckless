@@ -1,34 +1,34 @@
-#define HOMEPAGE "https://start.duckduckgo.com/html"
-/* #define HOMEPAGE "/home/mitch/src/startpage/index.html" */
+#define HOMEPAGE "https://wvr.sh/start"
 #define BKMS "/home/mitch/fil/bkm.txt"
-#define DOWNLOADS "/home/mitch/Downloads"
+#define DOWNLOADS "/home/mitch/dls"
+
 const static SearchEngine searchengines[] = {
-    { "",       "duckduckgo.com/?q=%s" },
-    { "g",      "startpage.com/do/dsearch?q=%s"   },
-    { "sp",     "startpage.com/do/dsearch?q=%s"   },
-    { "image",  "duckduckgo.com/?q=!image %s" },
-    { "images", "duckduckgo.com/?q=!image %s" },
-    { "git",    "github.com/search?utf8=&q=%s&type=" },
-    { "ugit",   "github.com/%s" },
-    { "gist",   "gist.github.com/search?q=%s" },
-    { "wiki",   "en.wikipedia.org/wiki/%s" },
-    { "w",      "en.wikipedia.org/wiki/%s" },
-    { "metal",  "metal-archives.com/search?searchString=%s&type=band_name" },
-    { "ebay",   "ebay.com/sch/i.html?_from=R40&_nkw=%s&_sacat=0&_sop=15&rt=nc&LH_BIN=1" },
-    { "az",     "smile.amazon.com/s?k=%s" },
-    { "gr",     "goodreads.com/search?q=%s" },
-    { "discogs","discogs.com/search?q=%s&btn=&type=all" },
-    { "bc",     "bandcamp.com/search?q=%s" },
-    { "arch",   "wiki.archlinux.org/index.php?search=%s" },
-    { "gentoo", "wiki.gentoo.org/index.php?search=%s" },
-    { "r",      "old.reddit.com/r/%s" },
-    { "u",      "old.reddit.com/u/%s" },
-    { "4",      "boards.4chan.org/%s" },
-    { "yt",     "youtube.com/results?search_query=%s" },
-    { "reddit", "old.reddit.com/search?q=%s" },
-    { "dict",   "thefreedictionary.com/%s" },
-    { "thes",   "thesaurus.com/browse/%s" },
-    { "urban",  "urbandictionary.com/define.php?term=%s" },
+    { "",       "https://duckduckgo.com/?q=%s" },
+    { "g",      "https://startpage.com/do/dsearch?q=%s"   },
+    { "sp",     "https://startpage.com/do/dsearch?q=%s"   },
+    { "image",  "https://duckduckgo.com/?q=!image %s" },
+    { "images", "https://duckduckgo.com/?q=!image %s" },
+    { "git",    "https://github.com/search?utf8=&q=%s&type=" },
+    { "ugit",   "https://github.com/%s" },
+    { "gist",   "https://gist.github.com/search?q=%s" },
+    { "wiki",   "https://en.wikipedia.org/wiki/%s" },
+    { "w",      "https://en.wikipedia.org/wiki/%s" },
+    { "metal",  "https://metal-archives.com/search?searchString=%s&type=band_name" },
+    { "ebay",   "https://ebay.com/sch/i.html?_from=R40&_nkw=%s&_sacat=0&_sop=15&rt=nc&LH_BIN=1" },
+    { "az",     "https://smile.amazon.com/s?k=%s" },
+    { "gr",     "https://goodreads.com/search?q=%s" },
+    { "discogs","https://discogs.com/search?q=%s&btn=&type=all" },
+    { "bc",     "https://bandcamp.com/search?q=%s" },
+    { "arch",   "https://wiki.archlinux.org/index.php?search=%s" },
+    { "gentoo", "https://wiki.gentoo.org/index.php?search=%s" },
+    { "r",      "https://old.reddit.com/r/%s" },
+    { "u",      "https://old.reddit.com/u/%s" },
+    { "4",      "https://boards.4chan.org/%s" },
+    { "yt",     "https://youtube.com/results?search_query=%s" },
+    { "reddit", "https://old.reddit.com/search?q=%s" },
+    { "dict",   "https://thefreedictionary.com/%s" },
+    { "thes",   "https://thesaurus.com/browse/%s" },
+    { "urban",  "https://urbandictionary.com/define.php?term=%s" },
 };
 
 static int winsize[] = { 1000, 600 }; // default window size
@@ -43,16 +43,19 @@ static const char *certdir        = "~/.cache/surf/certificates/";
 static Parameter defconfig[ParameterLast] = {
     /* parameter                    Arg value       priority */
     [StrictTLS]           =       { { .i = 1 },     }, // HTTPS Everywhere
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     [JavaScript]          =       { { .i = 0 },     }, // NoScript -- whitelist or blacklist below
-                                                       //        (or turn on as needed with ctrl+shift+s)
-    [CookiePolicies]      =       { { .v = "@" },   }, // @ = do not allow external, def:"@Aa"
+                                                       // (or turn on as needed with ctrl+shift+s)
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */ 
+    [CookiePolicies]      =       { { .v = "" }, }, // @ = do not allow external, def:"@Aa"
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     [LoadImages]          =       { { .i = 1 },     }, // disable on a page with ctrl+shift+i
-    [DiskCache]           =       { { .i = 1 },     },
+    [DiskCache]           =       { { .i = 1 },     }, // local file cache
     [Geolocation]         =       { { .i = 0 },     }, // NOPE!
     [ShowIndicators]      =       { { .i = 0 },     }, // annoying
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     [FontSize]            =       { { .i = 14 },    },
-    [ZoomLevel]           =       { { .f = 1.2 },   }, // default zoom level
+    [ZoomLevel]           =       { { .f = 1.0 },   }, // default zoom level
     [MediaManualPlay]     =       { { .i = 1 },     }, // don't autoplay videos
     [ClipboardNotPrimary] =       { { .i = 1 },     }, // clipbard vs primary selection
     [ScrollBars]          =       { { .i = 0 },     },
@@ -171,6 +174,7 @@ static Key keys[] = {
     { MODKEY,                GDK_KEY_c,      stop,            { 0 } },
     { MODKEY,                GDK_KEY_c,      clipboard,  { .i = 0 } },
     { 0,                     GDK_KEY_F11,    togglefullscreen, { 0 } },
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_p,      print,      { 0 } },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
     /* -*-*-*-*-*-*-*-*-*-*-*-* FINDING *-*-*-*-*-*-*-*-*-*-*-*-*-* */
