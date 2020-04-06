@@ -482,9 +482,9 @@
  extern char *utmp;
  extern char *stty_args;
 @@ -120,3 +129,4 @@ extern char *termname;
- extern unsigned int tabspaces;
  extern unsigned int defaultfg;
  extern unsigned int defaultbg;
+ extern MouseKey mkeys[];
 +extern const int boxdraw, boxdraw_bold, boxdraw_braille;
 --- st/x.c
 +++ st/x.c

@@ -1,4 +1,5 @@
-static const char *fonts[] = { "Terminus:size=12:antialias=false:autohint=false" };
+static const char *fonts[] = { "cozette:size=10:antialias=false:autohint=false" };
+/* static const char *fonts[] = { "Terminus:size=12:antialias=false:autohint=false" }; */
 /* static const char *fonts[] = { "ShureTechMono Nerd Font:size=16:antialias=true:autohint=true" }; */
 
 static const unsigned int border_width = 2;

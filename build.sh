@@ -8,7 +8,7 @@ TABBED_VERSION=b5f9ec647aae2d9a1d3bd586eb7523a4e0a329a3   # 10 Mar 2018
 SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
 SOWM_VERSION=e22087856ba51027e16fbd22c1e022545bfc9f36     # 11 Mar 2020
 
-export PREFIX=~/.local
+export PREFIX=${HOME}/.local
 export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexceptions'
 export LDFLAGS=-s
 # -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*

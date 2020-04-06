@@ -25,7 +25,8 @@ static const int vertpadbar  = 12;         // vertical padding for statusbar
 static const int CORNER_RADIUS = 0;
 
 static const char*fonts[] = {
-    "Terminus:size=8",
+    /* "Terminus:size=8", */
+    "cozette:size=10",
     "ShureTechMono Nerd Font:size=10",
     "RobotoMono Nerd Font Mono:size=10"
 };
@@ -86,7 +87,7 @@ static const Layout layouts[] = {
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) { MODKEY, KEY, view, {.ui = 1 << TAG} }, \
                          { MODKEY|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
-#define SH(cmd) { .v = (const char*[]) { "/bin/sh", "-r", "-c", cmd, NULL } }
+#define SH(cmd) { .v = (const char*[]) { "/bin/sh", "-c", cmd, NULL } }
 
 static Key keys[] = {
     /* modifier            key        function       argument */
@@ -110,8 +111,8 @@ static Key keys[] = {
     { MODKEY,             XK_equal,  spawn,        SH("sctc -i") },
     { MODKEY,             XK_minus,  spawn,        SH("sctc -d") },
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-    { MODKEY,             XK_apostrophe,   spawn,  SH("vol -i 6") },
-    { MODKEY,             XK_semicolon,    spawn,  SH("vol -d 6") },
+    { MODKEY,             XK_apostrophe,   spawn,  SH("vol -i 4") },
+    { MODKEY,             XK_semicolon,    spawn,  SH("vol -d 4") },
     { MODKEY,             XK_slash,        spawn,  SH("mmt -t")   },
     { MODKEY,             XK_period,       spawn,  SH("pkill skroll ; mmt -n")   },
     { MODKEY,             XK_comma,        spawn,  SH("pkill skroll ; mmt -p")   },
