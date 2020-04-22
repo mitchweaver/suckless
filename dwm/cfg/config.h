@@ -1,19 +1,19 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 18
+#define GAPS_START 38
 #define BORDERPX_START 0
 /* -*-*-*-*-*-*-*-*-*- SMALL GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 12 */
 /* #define BORDERPX_START 0 */
 /* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 0 */
-/* #define BORDERPX_START 1 */
+/* #define BORDERPX_START 2 */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar
 static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar
-static const int horizpadbar = 6;          // horizontal padding for statusbar
-static const int vertpadbar  = 12;         // vertical padding for statusbar
+static const int horizpadbar = 6;   // horizontal padding for statusbar
+static const int vertpadbar  = 10;  // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-* NON-FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*- */
 /* static const int vertpad     = 0; // vertical padding of bar */
 /* static const int sidepad     = 0; // horizontal padding of bar */
@@ -25,10 +25,9 @@ static const int vertpadbar  = 12;         // vertical padding for statusbar
 static const int CORNER_RADIUS = 0;
 
 static const char*fonts[] = {
-    /* "Terminus:size=8", */
-    "cozette:size=10",
-    "ShureTechMono Nerd Font:size=10",
-    "RobotoMono Nerd Font Mono:size=10"
+    /* "Terminus:size=12", */
+    /* "cozette:size=10", */
+    "ShureTechMono Nerd Font:size=12",
 };
 
 static const Rule rules[] = {
@@ -93,23 +92,29 @@ static Key keys[] = {
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     { MODKEY,             XK_Return, spawn,        SH("st -c term -T term") },
-    { MODKEY,             XK_p,      spawn,        SH("menu run -p Run:") },
-    { MODKEY,             XK_r,      spawn,        SH("st -c ranger -e ranger --cmd='set viewmode multipane'") },
+    { MODKEY,             XK_r,      spawn,        SH("st -c ranger -e ranger \
+		--cmd='set viewmode multipane'") },
+    { MODKEY,             XK_e,      spawn,        SH("start_acme") },
 
-    { MODKEY,             XK_w,      spawn,        SH("tabbed -d -c surf -e") },
-    { MODKEY|ShiftMask,   XK_w,      spawn,        SH("brws")             },
-    { MODKEY,             XK_u,      spawn,        SH("websearch")        },
+    { MODKEY,   XK_w,      spawn,        SH("brws")             },
+    /* { MODKEY,             XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
+
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+    { MODKEY,             XK_p,      spawn,        SH("menu run -p Run:") },
+    { MODKEY,             XK_o,      spawn,        SH("dedit")            },
+    { MODKEY,             XK_i,      spawn,        SH("bkm t")            },
+    { MODKEY|ShiftMask,   XK_i,      spawn,        SH("bkm a")            },
+    { MODKEY,             XK_u,      spawn,        SH("tasks")            },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
     { MODKEY,             XK_x,      spawn,        SH("lck")              },
-    { MODKEY,             XK_o,      spawn,        SH("dedit")            },
-    { MODKEY,             XK_i,      spawn,        SH("tasks")            },
     { MODKEY,             XK_c,      spawn,        SH("clip")             },
     { ControlMask,        XK_Print,  spawn,        SH("scrap")            },
     { 0,                  XK_Print,  spawn,        SH("scrap -n")         },
     { MODKEY|ControlMask, XK_k,      spawn,        SH("keys")             },
     /* -*-*-*-*-*-*-*- redshift control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,             XK_equal,  spawn,        SH("sctc -i") },
-    { MODKEY,             XK_minus,  spawn,        SH("sctc -d") },
+    { MODKEY,             XK_equal,  spawn,        SH("xsctc -i") },
+    { MODKEY,             XK_minus,  spawn,        SH("xsctc -d") },
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { MODKEY,             XK_apostrophe,   spawn,  SH("vol -i 4") },
     { MODKEY,             XK_semicolon,    spawn,  SH("vol -d 4") },

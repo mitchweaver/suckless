@@ -24,7 +24,7 @@ const static SearchEngine searchengines[] = {
     { "r",      "https://old.reddit.com/r/%s" },
     { "u",      "https://old.reddit.com/u/%s" },
     { "4",      "https://boards.4chan.org/%s" },
-    { "yt",     "https://youtube.com/results?search_query=%s" },
+    { "yt",     "https://invidio.us/search?q=%s" },
     { "reddit", "https://old.reddit.com/search?q=%s" },
     { "dict",   "https://thefreedictionary.com/%s" },
     { "thes",   "https://thesaurus.com/browse/%s" },
@@ -44,10 +44,10 @@ static Parameter defconfig[ParameterLast] = {
     /* parameter                    Arg value       priority */
     [StrictTLS]           =       { { .i = 1 },     }, // HTTPS Everywhere
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    [JavaScript]          =       { { .i = 0 },     }, // NoScript -- whitelist or blacklist below
+    [JavaScript]          =       { { .i = 1 },     }, // NoScript -- whitelist or blacklist below
                                                        // (or turn on as needed with ctrl+shift+s)
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */ 
-    [CookiePolicies]      =       { { .v = "" }, }, // @ = do not allow external, def:"@Aa"
+    [CookiePolicies]      =       { { .v = "@" }, }, // @ = do not allow external, def:"@Aa"
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     [LoadImages]          =       { { .i = 1 },     }, // disable on a page with ctrl+shift+i
     [DiskCache]           =       { { .i = 1 },     }, // local file cache
@@ -85,10 +85,13 @@ static Parameter defconfig[ParameterLast] = {
 };
 
 static UriParameters uriparams[] = {
-    { "(://|\\.)suckless\\.org(/|$)", {
-      [JavaScript] = { { .i = 0 }, 1 },
-      [Plugins]    = { { .i = 0 }, 1 },
-    }, },
+    { ".*webmail\\.dsu\\.edu(/|$)",     { [JavaScript] = { { .i = 1 }, 1 }, }, },
+    { ".*github\\.com(/|$)",     { [JavaScript] = { { .i = 1 }, 1 }, }, },
+    { ".*reddit\\.com(/|$)",     { [JavaScript] = { { .i = 1 }, 1 }, }, },
+    { ".*startpage\\.com(/|$)",  { [JavaScript] = { { .i = 1 }, 1 }, }, },
+    { ".*ebay\\.com(/|$)",       { [JavaScript] = { { .i = 1 }, 1 }, }, },
+    { ".*paypal\\.com(/|$)",     { [JavaScript] = { { .i = 1 }, 1 }, }, },
+    { ".*discordapp\\.com(/|$)", { [JavaScript] = { { .i = 1 }, 1 }, }, },
 };
 
 // bring up my bookmarks file in the url bar,

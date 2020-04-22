@@ -1,22 +1,22 @@
 /* -*-*-*-*-*-*-*- Fonts -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* static const char font[] = "Terminus:size=12:antialias=false:autohint=false"; */
-/* static const char font[] = "Terminus:size=20:antialias=false:autohint=false"; */
-/* static const char font[] = "ShureTechMono Nerd Font:size=18:antialias=true:autohint=true"; */
-/* static const char font[] = "ShureTechMono Nerd Font:size=20:antialias=true:autohint=true"; */
-/* static const char font[] = "RobotoMono Nerd Font Mono:size=16:antialias=true:autohint=true"; */
-static const char font[] = "cozette:size=10:antialias=false:autohint=false";
-/* static const char font[] = "spleen:size=20:antialias=false:autohint=false"; */
-/* static const char font[] = "dweep:size=14:antialias=false:autohint=false"; */
-/* static const char font[] = "tewi:size=20:antialias=false:autohint=false"; */
-/* static const char font[] = "MonteCarlo:size=12:antialias=false:autohint=false"; */
+/* static const char font[] = "RobotoMono Nerd Font Mono:pixelsize=18:antialias=true:autohint=true"; */
+/* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
+/* static const char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
+/* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
+static const char font[] = "ShureTechMono Nerd Font:pixelsize=22:antialias=true:autohint=true";
+/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
+/* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
+/* static const char font[] = "dweep:pixelsize=14:antialias=false:autohint=false"; */
+/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
+/* static const char font[] = "MonteCarlo:pixelsize=12:antialias=false:autohint=false"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 // plumber patch
 const static char *plumb_cmd = "opn";
 
-static unsigned int cols = 72;
-static unsigned int rows = 20;
-const int borderpx = 22;
+static unsigned int cols = 76;
+static unsigned int rows = 18;
+const int borderpx = 20;
 
 unsigned int tabspaces = 4;
 static unsigned int xfps = 120;
@@ -34,10 +34,12 @@ static unsigned int actionfps = 30;
 
 MouseKey mkeys[] = {
     /* button    mask            function        argument */
-    { Button4,   XK_NO_MOD,      kscrollup,      {.i =  1} },
-    { Button5,   XK_NO_MOD,      kscrolldown,    {.i =  1} },
-    { Button4,   ControlMask,    zoom,           {.f =  +2} },
-    { Button5,   ControlMask,    zoom,           {.f =  -2} },
+    /* { Button4,   XK_NO_MOD,      kscrollup,      {.i =  1} }, */
+    /* { Button5,   XK_NO_MOD,      kscrolldown,    {.i =  1} }, */
+    { Button4,   ControlMask,    kscrollup,      {.i =  1} },
+    { Button5,   ControlMask,    kscrolldown,    {.i =  1} },
+    { Button4,   ControlMask|ShiftMask, zoom,  {.f =  +2} },
+    { Button5,   ControlMask|ShiftMask, zoom,  {.f =  -2} },
 };
 
 Shortcut shortcuts[] = {
