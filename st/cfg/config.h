@@ -14,6 +14,9 @@ static const char font[] = "ShureTechMono Nerd Font:pixelsize=22:antialias=true:
 // plumber patch
 const static char *plumb_cmd = "opn";
 
+// look into using scroll later!
+char *scroll = NULL;
+
 static unsigned int cols = 76;
 static unsigned int rows = 18;
 const int borderpx = 20;
@@ -22,24 +25,15 @@ unsigned int tabspaces = 4;
 static unsigned int xfps = 120;
 static unsigned int actionfps = 30;
 
-/* -*-*-*-*-*-*-*- Themes *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-// pywal:
-#include "/home/mitch/.cache/wal/colors-wal-st.h"
-/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* #include "../themes/mine/color-nostalgia.h" */
-/* #include "../themes/mine/bubblegum-theme.h" */
-/* #include "../themes/default-color-scheme.h" */
-/* static unsigned int defaultrcs = 257; */
-/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+// theme, included from ${HOME}/.cache/themes in config.mk
+#include <st.h>
 
 MouseKey mkeys[] = {
     /* button    mask            function        argument */
-    /* { Button4,   XK_NO_MOD,      kscrollup,      {.i =  1} }, */
-    /* { Button5,   XK_NO_MOD,      kscrolldown,    {.i =  1} }, */
-    { Button4,   ControlMask,    kscrollup,      {.i =  1} },
-    { Button5,   ControlMask,    kscrolldown,    {.i =  1} },
-    { Button4,   ControlMask|ShiftMask, zoom,  {.f =  +2} },
-    { Button5,   ControlMask|ShiftMask, zoom,  {.f =  -2} },
+    { Button4,   XK_NO_MOD,      kscrollup,      {.i =  1} },
+    { Button5,   XK_NO_MOD,      kscrolldown,    {.i =  1} },
+    { Button4,   ControlMask, zoom,  {.f =  +2} },
+    { Button5,   ControlMask, zoom,  {.f =  -2} },
 };
 
 Shortcut shortcuts[] = {

@@ -24,6 +24,9 @@ static const int vertpadbar  = 10;  // vertical padding for statusbar
 // for use with the rounded corners patch (0 disables)
 static const int CORNER_RADIUS = 0;
 
+// theme, included from ${HOME}/.cache/themes in config.mk
+#include <dwm.h>
+
 static const char*fonts[] = {
     /* "Terminus:size=12", */
     /* "cozette:size=10", */
@@ -34,6 +37,7 @@ static const Rule rules[] = {
     /* class         instance  title       tags mask  iscentered   isfloating  monitor */
     { "brws",        NULL,     NULL,       1,         0,           0,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+    { "pop",         NULL,     "pop",     0,         0,           1,          -1 },
     { "term",        NULL,     "term",     0,         1,           0,          -1 },
     { "x9term",      NULL,     "x9term",   0,         0,           1,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
@@ -44,23 +48,6 @@ static const Rule rules[] = {
     { "mpv",         NULL,     NULL,       0,         1,           1,          -1 },
     { "MuPDF",       NULL,     NULL,       0,         1,           0,          -1 },
 };
-
-#include "/home/mitch/.cache/wal/colors-wal-dwm.h"
-/* static const char norm_fg[] = "#d4ddda"; */
-/* static const char norm_bg[] = "#062C39"; */
-/* static const char norm_border[] = "#949a98"; */
-/* static const char sel_fg[] = "#d4ddda"; */
-/* static const char sel_bg[] = "#494262"; */
-/* static const char sel_border[] = "#d4ddda"; */
-/* static const char urg_fg[] = "#d4ddda"; */
-/* static const char urg_bg[] = "#45405F"; */
-/* static const char urg_border[] = "#45405F"; */
-/* static const char *colors[][3]      = { */
-/* /1*               fg           bg         border                         *1/ */
-/* [SchemeNorm] = { norm_fg,     norm_bg,   norm_border }, // unfocused wins */
-/* [SchemeSel]  = { sel_fg,      sel_bg,    sel_border },  // the focused win */
-/* [SchemeUrg] =  { urg_fg,      urg_bg,    urg_border }, */
-/* }; */
 
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /*
@@ -156,10 +143,11 @@ static Key keys[] = {
 };
 
 static Button buttons[] = {
-    { ClkClientWin,  MODKEY,  Button1, movemouse,   {0} },
-    { ClkClientWin,  MODKEY,  Button3, resizemouse, {0} },
-    { ClkRootWin,    0,       Button3, spawn,       SH("9m") },
-	{ ClkTagBar,     0,       Button1, view,        {0} },
+    { ClkClientWin,  MODKEY,      Button1, movemouse,   {0} },
+    { ClkClientWin,  MODKEY,      Button3, resizemouse, {0} },
+	{ ClkTagBar,     0,           Button1, view,        {0} },
+    { ClkRootWin,    0,           Button3, spawn,       SH("9m") },
+    /* { ClkAny,        ControlMask, Button3, spawn,       SH("opn -c") }, */
 };
 
 static unsigned int gappx = GAPS_START;

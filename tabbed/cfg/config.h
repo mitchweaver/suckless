@@ -10,17 +10,8 @@ static const char font[] = "ShureTechMono Nerd Font:pixelsize=18:antialias=true:
 static const int barheight = -1;
 /* static const int barheight = 20; */
 
-/* -*-*-*-*-*-*-*- THEME -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-// pywal theme
-#include "/home/mitch/.cache/wal/colors-wal-tabbed.h"
-// default
-/* static const char* normbgcolor  = "#222222"; */
-/* static const char* normfgcolor  = "#cccccc"; */
-/* static const char* selbgcolor   = "#555555"; */
-/* static const char* selfgcolor   = "#ffffff"; */
-/* static const char* urgbgcolor   = "#111111"; */
-/* static const char* urgfgcolor   = "#cc0000"; */
-/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+// theme, included from ${HOME}/.cache/themes in config.mk
+#include <tabbed.h>
 
 static const char before[]      = "<";
 static const char after[]       = ">";

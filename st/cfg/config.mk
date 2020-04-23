@@ -8,7 +8,8 @@ X11LIB = /usr/X11R6/lib
 
 INCS = -I$(X11INC) \
        `pkg-config --cflags fontconfig` \
-       `pkg-config --cflags freetype2`
+       `pkg-config --cflags freetype2` \
+	   -I${HOME}/.cache/themes
 
 # -------- Linux ---------------------
 CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600

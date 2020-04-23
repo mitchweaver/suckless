@@ -2,11 +2,10 @@
 
 # -*-*-*-*-*-*-*-*- SETTINGS -*-*-*-*-*-*-*-*-*-*-*-*-*-*--*
 DWM_VERSION=cb3f58ad06993f7ef3a7d8f61468012e2b786cab      # 02 Feb 2019
-ST_VERSION=28ad28839985e965c9ca06a9a202523414c84ac4       # 02 Apr 2020
+ST_VERSION=33a9a456644ceb235ea6ce61282f3bdce7a8b547       # 11 Apr 2020
 DMENU_VERSION=db6093f6ec1bb884f7540f2512935b5254750b30    # 03 Mar 2019
 TABBED_VERSION=b5f9ec647aae2d9a1d3bd586eb7523a4e0a329a3   # 10 Mar 2018
 SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
-SOWM_VERSION=e22087856ba51027e16fbd22c1e022545bfc9f36     # 11 Mar 2020
 
 export PREFIX=${HOME}/.local
 export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexceptions'
@@ -43,7 +42,6 @@ for name ; do
         surf) clone $name $sl $SURF_VERSION ;;
         dmenu) clone $name $sl $DMENU_VERSION ;;
         tabbed) clone $name $sl $TABBED_VERSION ;;
-        sowm) clone $name http://github.com/dylanaraps $SOWM_VERSION ;;
         *) usage
     esac
 
