@@ -83,14 +83,15 @@ static Key keys[] = {
 		--cmd='set viewmode multipane'") },
     { MODKEY,             XK_e,      spawn,        SH("start_acme") },
 
-    { MODKEY,   XK_w,      spawn,        SH("brws")             },
+    { MODKEY,             XK_w,      spawn,        SH("brws")             },
+    { MODKEY|ShiftMask,   XK_w,      spawn,        SH("brws a")           },
     /* { MODKEY,             XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
 
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     { MODKEY,             XK_p,      spawn,        SH("menu run -p Run:") },
     { MODKEY,             XK_o,      spawn,        SH("dedit")            },
-    { MODKEY,             XK_i,      spawn,        SH("bkm t")            },
-    { MODKEY|ShiftMask,   XK_i,      spawn,        SH("bkm a")            },
+    { MODKEY,             XK_i,      spawn,        SH("brws")           },
+    { MODKEY|ShiftMask,   XK_i,      spawn,        SH("brws a")           },
     { MODKEY,             XK_u,      spawn,        SH("tasks")            },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
@@ -110,6 +111,8 @@ static Key keys[] = {
     { MODKEY,             XK_comma,        spawn,  SH("pkill skroll ; mmt -p")   },
     { MODKEY,             XK_bracketright, spawn,  SH("mmt -f")   },
     { MODKEY,             XK_bracketleft,  spawn,  SH("mmt -b")   },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
     /* -*-*-*-*-*-*-*- dwm commands -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     { MODKEY,            XK_space,  togglescratch, SH("st -t scratchpad -g 68x18") },
     { MODKEY,            XK_q,      killclient,    {0} },
