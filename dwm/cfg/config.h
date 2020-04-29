@@ -10,15 +10,15 @@
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar
-static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar
-static const int horizpadbar = 6;   // horizontal padding for statusbar
-static const int vertpadbar  = 10;  // vertical padding for statusbar
+/* static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar */
+/* static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar */
+/* static const int horizpadbar = 6;   // horizontal padding for statusbar */
+/* static const int vertpadbar  = 10;  // vertical padding for statusbar */
 /* -*-*-*-*-*-*-*-* NON-FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*- */
-/* static const int vertpad     = 0; // vertical padding of bar */
-/* static const int sidepad     = 0; // horizontal padding of bar */
-/* static const int horizpadbar = 2; // horizontal padding for statusbar */
-/* static const int vertpadbar  = 4; // vertical padding for statusbar */
+static const int vertpad     = 0; // vertical padding of bar
+static const int sidepad     = 0; // horizontal padding of bar
+static const int horizpadbar = 2; // horizontal padding for statusbar
+static const int vertpadbar  = 4; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 
 // for use with the rounded corners patch (0 disables)
@@ -75,6 +75,8 @@ static const Layout layouts[] = {
                          { MODKEY|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
 #define SH(cmd) { .v = (const char*[]) { "/bin/sh", "-c", cmd, NULL } }
 
+// need this include for brightness/audio keys
+#include <X11/XF86keysym.h>
 static Key keys[] = {
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -86,6 +88,9 @@ static Key keys[] = {
     { MODKEY,             XK_w,      spawn,        SH("brws")             },
     { MODKEY|ShiftMask,   XK_w,      spawn,        SH("brws a")           },
     /* { MODKEY,             XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
+
+    { 0, XF86XK_MonBrightnessUp,   spawn, SH("bright i") },
+    { 0, XF86XK_MonBrightnessDown, spawn, SH("bright d") },
 
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     { MODKEY,             XK_p,      spawn,        SH("menu run -p Run:") },
@@ -106,6 +111,10 @@ static Key keys[] = {
     /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { MODKEY,             XK_apostrophe,   spawn,  SH("vol -i 4") },
     { MODKEY,             XK_semicolon,    spawn,  SH("vol -d 4") },
+
+    { 0, XF86XK_AudioRaiseVolume, spawn, SH("vol -i 4") },
+    { 0, XF86XK_AudioLowerVolume, spawn, SH("vol -d 4") },
+
     { MODKEY,             XK_slash,        spawn,  SH("mmt -t")   },
     { MODKEY,             XK_period,       spawn,  SH("pkill skroll ; mmt -n")   },
     { MODKEY,             XK_comma,        spawn,  SH("pkill skroll ; mmt -p")   },
