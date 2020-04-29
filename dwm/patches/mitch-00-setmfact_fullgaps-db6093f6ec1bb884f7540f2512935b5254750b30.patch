@@ -34,9 +34,9 @@
  static void setlayout(const Arg *arg);
  static void setmfact(const Arg *arg);
 +static void setsmfact(const Arg *arg);
+ static void setnumdesktops(void);
  static void setup(void);
- static void showhide(Client *c);
- static void sigchld(int unused);
+ static void setviewport(void);
 @@ -651,6 +654,7 @@ createmon(void) {
  		die("fatal: could not malloc() %u bytes\n", sizeof(Monitor));
  	m->tagset[0] = m->tagset[1] = 1;

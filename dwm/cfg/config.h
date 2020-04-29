@@ -78,50 +78,11 @@ static const Layout layouts[] = {
 // need this include for brightness/audio keys
 #include <X11/XF86keysym.h>
 static Key keys[] = {
+    //
+    // NOTE: regular program bindings now handled in sxhkdrc
+    //
+
     /* modifier            key        function       argument */
-    /* -*-*-*-*-*-*-*- programs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,             XK_Return, spawn,        SH("st -c term -T term") },
-    { MODKEY,             XK_r,      spawn,        SH("st -c ranger -e ranger \
-		--cmd='set viewmode multipane'") },
-    { MODKEY,             XK_e,      spawn,        SH("start_acme") },
-
-    { MODKEY,             XK_w,      spawn,        SH("brws")             },
-    { MODKEY|ShiftMask,   XK_w,      spawn,        SH("brws a")           },
-    /* { MODKEY,             XK_w,      spawn,        SH("tabbed -d -c surf -e") }, */
-
-    { 0, XF86XK_MonBrightnessUp,   spawn, SH("bright i") },
-    { 0, XF86XK_MonBrightnessDown, spawn, SH("bright d") },
-
-    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,             XK_p,      spawn,        SH("menu run -p Run:") },
-    { MODKEY,             XK_o,      spawn,        SH("dedit")            },
-    { MODKEY,             XK_i,      spawn,        SH("brws")           },
-    { MODKEY|ShiftMask,   XK_i,      spawn,        SH("brws a")           },
-    { MODKEY,             XK_u,      spawn,        SH("tasks")            },
-    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-
-    { MODKEY,             XK_x,      spawn,        SH("lck")              },
-    { MODKEY,             XK_c,      spawn,        SH("clip")             },
-    { ControlMask,        XK_Print,  spawn,        SH("scrap")            },
-    { 0,                  XK_Print,  spawn,        SH("scrap -n")         },
-    { MODKEY|ControlMask, XK_k,      spawn,        SH("keys")             },
-    /* -*-*-*-*-*-*-*- redshift control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,             XK_equal,  spawn,        SH("xsctc -i") },
-    { MODKEY,             XK_minus,  spawn,        SH("xsctc -d") },
-    /* -*-*-*-*-*-*-*- media control -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-    { MODKEY,             XK_apostrophe,   spawn,  SH("vol -i 4") },
-    { MODKEY,             XK_semicolon,    spawn,  SH("vol -d 4") },
-
-    { 0, XF86XK_AudioRaiseVolume, spawn, SH("vol -i 4") },
-    { 0, XF86XK_AudioLowerVolume, spawn, SH("vol -d 4") },
-
-    { MODKEY,             XK_slash,        spawn,  SH("mmt -t")   },
-    { MODKEY,             XK_period,       spawn,  SH("pkill skroll ; mmt -n")   },
-    { MODKEY,             XK_comma,        spawn,  SH("pkill skroll ; mmt -p")   },
-    { MODKEY,             XK_bracketright, spawn,  SH("mmt -f")   },
-    { MODKEY,             XK_bracketleft,  spawn,  SH("mmt -b")   },
-    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-
     /* -*-*-*-*-*-*-*- dwm commands -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     { MODKEY,            XK_space,  togglescratch, SH("st -t scratchpad -g 68x18") },
     { MODKEY,            XK_q,      killclient,    {0} },
@@ -144,13 +105,10 @@ static Key keys[] = {
     { MODKEY|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
     { MODKEY,            XK_g,      setgaps,        {.i = +4}    },
     { MODKEY|ShiftMask,  XK_g,      setgaps,        {.i = -4}    },
-    { 0,                   XK_F11,    togglefullscr,  {0} },
+    { 0,                 XK_F11,    togglefullscr,  {0} },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
     TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) 
-    // -- if 4 WS:
-    /* TAGKEYS(XK_BackSpace,3) */
-    // -- if 6 WS:
     TAGKEYS(XK_BackSpace,5)
 };
 
