@@ -40,6 +40,7 @@ static const Rule rules[] = {
     { "pop",         NULL,     "pop",     0,         0,           1,          -1 },
     { "term",        NULL,     "term",     0,         1,           0,          -1 },
     { "x9term",      NULL,     "x9term",   0,         0,           1,          -1 },
+    { "floating-st", NULL,     "floating-st",     0,         1,           1,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { "htop",        NULL,     NULL,       0,         1,           1,          -1 },
     { "ranger",      NULL,     NULL,       0,         1,           1,          -1 },
