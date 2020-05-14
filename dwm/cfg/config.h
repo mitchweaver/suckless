@@ -47,6 +47,10 @@ static const Rule rules[] = {
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { "feh",         NULL,     NULL,       0,         1,           1,          -1 },
     { "mpv",         NULL,     NULL,       0,         1,           1,          -1 },
+    { "sxiv",        NULL,     NULL,       0,         1,           1,          -1 },
+    { "Sxiv",        NULL,     NULL,       0,         1,           1,          -1 },
+    { "virt-manager",        NULL,     NULL,       0,         1,           1,          -1 },
+    { "Virt-manager",        NULL,     NULL,       0,         1,           1,          -1 },
     { "MuPDF",       NULL,     NULL,       0,         1,           0,          -1 },
 };
 
@@ -120,6 +124,9 @@ static Button buttons[] = {
     { ClkRootWin,    0,           Button3, spawn,       SH("9m") },
     /* { ClkAny,        ControlMask, Button3, spawn,       SH("opn -c") }, */
 };
+
+// decor hints patch
+static const int decorhints  = 1;
 
 static unsigned int gappx = GAPS_START;
 static unsigned int borderpx = BORDERPX_START;
