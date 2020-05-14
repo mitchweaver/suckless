@@ -1,0 +1,39 @@
+--- st/st.c
++++ st/st.c
+@@ -1874,10 +1874,8 @@ strhandle(void)
+ 				fprintf(stderr, "erresc: invalid color j=%d, p=%s\n",
+ 				        j, p ? p : "(null)");
+ 			} else {
+-				/*
+-				 * TODO if defaultbg color is changed, borders
+-				 * are dirty
+-				 */
++				if (j == defaultbg)
++					xclearwin();
+ 				redraw();
+ 			}
+ 			return;
+--- st/win.h
++++ st/win.h
+@@ -37,3 +37,4 @@ void xsetpointermotion(int);
+ void xsetsel(char *);
+ int xstartdraw(void);
+ void xximspot(int, int);
++void xclearwin(void);
+--- st/x.c
++++ st/x.c
+@@ -825,6 +825,12 @@ xclear(int x1, int y1, int x2, int y2)
+ 			x1, y1, x2-x1, y2-y1);
+ }
+ 
++void
++xclearwin(void)
++{
++	xclear(0, 0, win.w, win.h);
++}
++
+ void
+ xhints(void)
+ {
+-- 
+
