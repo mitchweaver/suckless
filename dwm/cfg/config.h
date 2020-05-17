@@ -1,6 +1,6 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 38
-#define BORDERPX_START 0
+#define GAPS_START 34
+#define BORDERPX_START 2
 /* -*-*-*-*-*-*-*-*-*- SMALL GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 12 */
 /* #define BORDERPX_START 0 */
@@ -49,9 +49,12 @@ static const Rule rules[] = {
     { "mpv",         NULL,     NULL,       0,         1,           1,          -1 },
     { "sxiv",        NULL,     NULL,       0,         1,           1,          -1 },
     { "Sxiv",        NULL,     NULL,       0,         1,           1,          -1 },
-    { "virt-manager",        NULL,     NULL,       0,         1,           1,          -1 },
-    { "Virt-manager",        NULL,     NULL,       0,         1,           1,          -1 },
+    { "pcmanfm",     NULL,     NULL,       0,         1,           1,          -1 },
+    { "Pcmanfm",     NULL,     NULL,       0,         1,           1,          -1 },
+    { "mupdf",       NULL,     NULL,       0,         1,           0,          -1 },
     { "MuPDF",       NULL,     NULL,       0,         1,           0,          -1 },
+    { "virt-manager", NULL,    NULL,       0,         1,           1,          -1 },
+    { "Virt-manager", NULL,    NULL,       0,         1,           1,          -1 },
 };
 
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -59,10 +62,10 @@ static const Rule rules[] = {
  * cool emojis to use for tags:
  *
  * "", "爵", "", "", "ﭮ", "", "", "", "","", "﬐", "ﳨ"
- * "ﯙ", "", "", "", "", "", "", "", "", "", "", ""
+ * "ﯙ", "", "", "", "", "", "", "", "", "", "", "" ""
  * "", "", "", "", "", "", "", "", "", "", "", "", "ﭮ"
  */
-static const char *tags[] = { "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "ﭮ" };
 /* static const char *tags[] = { "1","2","3","4","5","6" }; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
