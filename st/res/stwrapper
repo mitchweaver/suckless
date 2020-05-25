@@ -1,0 +1,2 @@
+#!/bin/sh
+exec tabbed -n 'Simple Terminal' -c -r 2 st -w '' -t 'Simple Terminal' "$@"

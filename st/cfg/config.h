@@ -3,7 +3,7 @@
 /* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
-static const char font[] = "Hack:pixelsize=16:antialias=true:autohint=true";
+static const char font[] = "Hack:pixelsize=18:antialias=true:autohint=true";
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
 /* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
@@ -19,8 +19,8 @@ const static char *plumb_cmd = "opn";
 char *scroll = NULL;
 
 static unsigned int cols = 80;
-static unsigned int rows = 26;
-const int borderpx = 20;
+static unsigned int rows = 24;
+const int borderpx = 0;
 
 unsigned int tabspaces = 4;
 static unsigned int xfps = 120;

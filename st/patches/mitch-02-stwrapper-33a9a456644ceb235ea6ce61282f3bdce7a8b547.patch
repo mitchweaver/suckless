@@ -1,0 +1,10 @@
+--- st/Makefile	2020-05-25 10:55:23.124057917 -0500
++++ st/Makefile	2020-05-25 10:57:53.824765898 -0500
+@@ -44,6 +44,7 @@
+ install: st
+ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
+ 	cp -f st $(DESTDIR)$(PREFIX)/bin
++	install -D -m 0755 ../res/stwrapper $(DESTDIR)$(PREFIX)/bin/stwrapper
+ 	chmod 755 $(DESTDIR)$(PREFIX)/bin/st
+ 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
+ 	sed "s/VERSION/$(VERSION)/g" < st.1 > $(DESTDIR)$(MANPREFIX)/man1/st.1
