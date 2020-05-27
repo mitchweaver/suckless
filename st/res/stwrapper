@@ -1,2 +1,33 @@
-#!/bin/sh
-exec tabbed -n 'Simple Terminal' -c -r 2 st -w '' -t 'Simple Terminal' "$@"
+#!/bin/sh -e
+#
+# http://github.com/mitchweaver/suckless
+#
+# wrapper for suckless simple terminal
+#
+# ensures even terminal size across different machines
+#
+
+# get screen dimensions
+xrandr --nograb --current --listactivemonitors | \
+while read -r line ; do
+    case $line in
+        Monitors*) ;;
+        *)
+            w=${line%%/*}
+            h=${line#*x}
+            printf '%s %s\n' "${w##* }" "${h%%/*}"
+            break
+    esac
+done | \
+{
+    read -r w h
+    if [ "$w" ] && [ "$h" ] ; then
+        exec tabbed -g $((w / 2 - w / 10))x$((h / 2 - h / 10)) \
+            -n 'Simple Terminal' -c -r 2 \
+            st -w '' -t 'Simple Terminal' "$@"
+    else
+        >&2 printf '%s: not determine screen dimensions.\n' "${0##*/}"
+        exec tabbed -n 'Simple Terminal' -c -r 2 \
+            st -w '' -t 'Simple Terminal' "$@"
+    fi
+}

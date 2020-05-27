@@ -3,7 +3,10 @@
 /* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=12:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
-static const char font[] = "Hack:pixelsize=18:antialias=true:autohint=true";
+
+static const char font[] = "SF Mono:pixelsize=18:antialias=true:autohint=true";
+/* static const char font[] = "Hack:pixelsize=18:antialias=true:autohint=true"; */
+
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
 /* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
@@ -18,8 +21,8 @@ const static char *plumb_cmd = "opn";
 // look into using scroll later!
 char *scroll = NULL;
 
-static unsigned int cols = 80;
-static unsigned int rows = 24;
+static unsigned int cols = 84;
+static unsigned int rows = 22;
 const int borderpx = 0;
 
 unsigned int tabspaces = 4;
