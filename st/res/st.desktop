@@ -5,7 +5,7 @@ Comment=Suckless Simple Terminal
 Keywords=st;simple;suckless;shell;prompt;command;commandline;cmd;
 
 TryExec=st
-Exec=tabbed -n 'Simple Terminal' -c -r 2 st -w '' -t 'Simple Terminal' -g 80x24
+Exec=stwrapper
 Icon=st
 
 Type=Application

@@ -1,4 +1,4 @@
-static const char font[] = "SF Pro:pixelsize=16:antialias=true:autohint=true";
+static const char font[] = "SF Mono:pixelsize=18:antialias=true:autohint=true";
 /* static const char font[] = "Hack:pixelsize=16:antialias=true:autohint=true"; */
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=24:antialias=true:autohint=true"; */
 /* static const char font[] = "cozette:pixelsize=10:antialias=false:autohint=false"; */

@@ -6,6 +6,7 @@ ST_VERSION=33a9a456644ceb235ea6ce61282f3bdce7a8b547       # 11 Apr 2020
 DMENU_VERSION=db6093f6ec1bb884f7540f2512935b5254750b30    # 03 Mar 2019
 TABBED_VERSION=b5f9ec647aae2d9a1d3bd586eb7523a4e0a329a3   # 10 Mar 2018
 SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
+SENT_VERSION=2649e8d5334f7e37a1710c60fb740ecfe91b9f9e     # 13 May 2020
 
 export PREFIX=${HOME}/.local
 export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexceptions'
@@ -42,6 +43,7 @@ for name ; do
         surf) clone $name $sl $SURF_VERSION ;;
         dmenu) clone $name $sl $DMENU_VERSION ;;
         tabbed) clone $name $sl $TABBED_VERSION ;;
+        sent) clone $name $sl $SENT_VERSION ;;
         *) usage
     esac
 
@@ -50,7 +52,7 @@ for name ; do
     [ -d patches ] &&
     for patch in patches/* ; do
         printf '\n%s\n\n' "===> applying ${patch#patches/}..."
-        patch -l -p0 <$patch
+        patch -l -p0 <$patch || exit 1
     done
 
     cp -f cfg/config.h  $name/config.h  2>/dev/null ||:

@@ -22,7 +22,7 @@ done | \
 {
     read -r w h
     if [ "$w" ] && [ "$h" ] ; then
-        exec tabbed -g $((w / 2 - w / 10))x$((h / 2 - h / 10)) \
+        exec tabbed -g $((w / 2 - w / 8))x$((h / 2 - h / 8)) \
             -n 'Simple Terminal' -c -r 2 \
             st -w '' -t 'Simple Terminal' "$@"
     else
