@@ -26,22 +26,26 @@
  
  		dw = DisplayWidth(dpy, screen);
  		dh = DisplayHeight(dpy, screen);
-@@ -1057,15 +1054,10 @@
+--- tabbed/tabbed.c	2020-06-12 14:57:52.957622683 -0500
++++ tabbed/tabbed.c	2020-06-12 14:58:17.397855818 -0500
+@@ -1063,16 +1063,11 @@
  	XSetClassHint(dpy, win, &class_hint);
  
  	size_hint = XAllocSizeHints();
 -	if (!isfixed) {
--		size_hint->flags = PSize;
+-		size_hint->flags = PSize | PMinSize;
 -		size_hint->height = wh;
 -		size_hint->width = ww;
+-		size_hint->min_height = bh + 1;
 -	} else {
 -		size_hint->flags = PMaxSize | PMinSize;
 -		size_hint->min_width = size_hint->max_width = ww;
 -		size_hint->min_height = size_hint->max_height = wh;
 -	}
-+    size_hint->flags = PSize;
-+    size_hint->height = wh;
-+    size_hint->width = ww;
++
++	size_hint->flags = PMaxSize | PMinSize;
++	size_hint->min_width = size_hint->max_width = ww;
++	size_hint->min_height = size_hint->max_height = wh;
 +
  	wmh = XAllocWMHints();
  	XSetWMProperties(dpy, win, NULL, NULL, NULL, 0, size_hint, wmh, NULL);

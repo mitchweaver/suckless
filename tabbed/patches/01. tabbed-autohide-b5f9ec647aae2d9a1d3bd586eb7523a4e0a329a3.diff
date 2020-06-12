@@ -4,8 +4,8 @@
  	[MapRequest] = maprequest,
  	[PropertyNotify] = propertynotify,
  };
--static int bh, wx, wy, ww, wh;
-+static int bh, wx, wy, ww, wh, vbh;
+-static int bh, obh, wx, wy, ww, wh;
++static int bh, obh, wx, wy, ww, wh, vbh;
  static unsigned int numlockmask;
  static Bool running = True, nextfocus, doinitspawn = True,
              fillagain = False, closelastclient = False,
