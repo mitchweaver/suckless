@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 # -*-*-*-*-*-*-*-*- SETTINGS -*-*-*-*-*-*-*-*-*-*-*-*-*-*--*
-DWM_VERSION=f087d20e6e60a49c756936b4312f5d194d8e63b4      # 22 Apr 2020
+DWM_VERSION=f04cac6d6e39cd9e3fc4fae526e3d1e8df5e34b2      # 11 Jun 2020
 ST_VERSION=33a9a456644ceb235ea6ce61282f3bdce7a8b547       # 11 Apr 2020
 DMENU_VERSION=db6093f6ec1bb884f7540f2512935b5254750b30    # 03 Mar 2019
 TABBED_VERSION=b5f9ec647aae2d9a1d3bd586eb7523a4e0a329a3   # 10 Mar 2018

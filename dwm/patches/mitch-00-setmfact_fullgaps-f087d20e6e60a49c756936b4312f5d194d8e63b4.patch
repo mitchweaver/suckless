@@ -74,15 +74,16 @@
 +	unsigned int i, n, h, smh, mw, my, ty;
  	Client *c;
  
---- dwm/dwm.c	Sat Feb 29 20:32:05 2020
-+++ dwm/dwm.c	Sat Feb 29 20:32:57 2020
-@@ -1849,9 +1849,23 @@
- 			resize(c, m->wx + m->gappx, m->wy + my, mw - (2*c->bw) - m->gappx, h - (2*c->bw), 0);
- 			my += HEIGHT(c) + m->gappx;
+--- dwm/dwm.c	2020-06-12 14:49:30.008825067 -0500
++++ dwm/dwm.c	2020-06-12 14:49:27.064796984 -0500
+@@ -1910,10 +1910,23 @@
+ 			if (my + HEIGHT(c) + m->gappx < m->wh)
+ 				my += HEIGHT(c) + m->gappx;
  		} else {
 -			h = (m->wh - ty) / (n - i) - m->gappx;
 -			resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw - (2*c->bw) - 2*m->gappx, h - (2*c->bw), 0);
--			ty += HEIGHT(c) + m->gappx;
+-			if (ty + HEIGHT(c) + m->gappx < m->wh)
+-				ty += HEIGHT(c) + m->gappx;
 +			smh = m->mh * m->smfact;
 +			if(!(nexttiled(c->next)))
 +				h = (m->wh - ty) / (n - i) - m->gappx;
@@ -96,10 +97,10 @@
 +			}
 +			else
 +				resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw - (2*c->bw) - 2*m->gappx, h - (2*c->bw), False);
-+			if(!(nexttiled(c->next)))
-+				ty += HEIGHT(c) + smh + m->gappx;
-+			else
-+				ty += HEIGHT(c) + m->gappx;
++			if(!(nexttiled(c->next)) && (ty + HEIGHT(c) + m->gappx + smh < m->wh))
++					ty += HEIGHT(c) + smh + m->gappx;
++			else if (ty + HEIGHT(c) + m->gappx < m->wh)
++					ty += HEIGHT(c) + m->gappx;
  		}
  }
  

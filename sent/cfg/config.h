@@ -5,6 +5,7 @@ static char *fontfallbacks[] = {
 	"roboto",
 	"ubuntu",
 };
+
 #define NUMFONTSCALES 42
 #define FONTSZ(x) ((int)(10.0 * powf(1.1288, (x)))) /* x in [0, NUMFONTSCALES-1] */
 
@@ -19,7 +20,7 @@ static const char *inverted_colors[] = {
 };
 
 /* height of the presentation progress bar */
-static const int progressheight = 5;
+static const int progressheight = 10;
 
 static const float linespacing = 1.4;
 

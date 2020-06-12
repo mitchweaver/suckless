@@ -29,7 +29,7 @@
 @@ -729,15 +727,8 @@ drawbar(Monitor *m)
  	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
  
- 	if ((w = m->ww - sw - x) > bh) {
+ 	if ((w = m->ww - tw - x) > bh) {
 -		if (m->sel) {
 -			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 -			drw_text(drw, x, 0, w - 2 * sp, bh, lrpad / 2, m->sel->name, 0);

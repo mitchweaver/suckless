@@ -30,17 +30,19 @@ static const int CORNER_RADIUS = 0;
 static const char*fonts[] = {
     /* "Terminus:size=12", */
     /* "cozette:size=10", */
-    "ShureTechMono Nerd Font:size=12",
+    "ShureTechMono Nerd Font:pixelsize=22",
 };
 
 static const Rule rules[] = {
     /* class         instance  title       tags mask  iscentered   isfloating  monitor */
     { "brws",        NULL,     NULL,       1,         0,           0,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-    { "pop",         NULL,     "pop",     0,         0,           1,          -1 },
+    { "pop",         NULL,     "pop",      0,         0,           1,          -1 },
     { "term",        NULL,     "term",     0,         1,           0,          -1 },
     { "x9term",      NULL,     "x9term",   0,         0,           1,          -1 },
-    { "floating-st", NULL,     "floating-st",     0,         1,           1,          -1 },
+    { "floating-st", NULL,     "floating-st", 0,      1,           1,          -1 },
+    { "Simple Terminal", NULL, NULL,       0,         1,           0,          -1 },
+    { NULL,          NULL, "Simple Terminal",       0,         1,           0,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { "htop",        NULL,     NULL,       0,         1,           1,          -1 },
     { "ranger",      NULL,     NULL,       0,         1,           1,          -1 },
@@ -124,7 +126,7 @@ static Button buttons[] = {
     { ClkClientWin,  MODKEY,      Button1, movemouse,   {0} },
     { ClkClientWin,  MODKEY,      Button3, resizemouse, {0} },
 	{ ClkTagBar,     0,           Button1, view,        {0} },
-    { ClkRootWin,    0,           Button3, spawn,       SH("9m") },
+    { ClkRootWin,    0,           Button3, spawn,       SH("x9term") },
     /* { ClkAny,        ControlMask, Button3, spawn,       SH("opn -c") }, */
 };
 
