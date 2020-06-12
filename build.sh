@@ -2,7 +2,7 @@
 
 # -*-*-*-*-*-*-*-*- SETTINGS -*-*-*-*-*-*-*-*-*-*-*-*-*-*--*
 DWM_VERSION=f04cac6d6e39cd9e3fc4fae526e3d1e8df5e34b2      # 11 Jun 2020
-ST_VERSION=33a9a456644ceb235ea6ce61282f3bdce7a8b547       # 11 Apr 2020
+ST_VERSION=72e3f6c7c05b4d5b56388508bb20a863aec279f5       # 19 Apr 2020
 DMENU_VERSION=9b38fda6feda68f95754d5b8932b1a69471df960    # 11 Jun 2020
 TABBED_VERSION=dabf6a25ab01107fc1e0464ee6a3e369d1626f97   # 12 May 2020
 SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
@@ -19,13 +19,13 @@ usage() {
 }
 
 clone() {
-    mkdir -p $1
-    cd $1
-    [ -d $1 ] || git clone $2/$1
-    cd $1
+    mkdir -p "$1"
+    cd "$1"
+    [ -d "$1" ] || git clone "$2/$1"
+    cd "$1"
     git clean -df
     git fetch --all
-    git reset --hard $3
+    git reset --hard "$3"
     cd "$START_PWD"
 }
 
@@ -38,29 +38,29 @@ for name ; do
 
     sl=git://git.suckless.org
     case $name in
-        st) clone $name $sl $ST_VERSION ;;
-        dwm) clone $name $sl $DWM_VERSION ;;
-        surf) clone $name $sl $SURF_VERSION ;;
-        dmenu) clone $name $sl $DMENU_VERSION ;;
-        tabbed) clone $name $sl $TABBED_VERSION ;;
-        sent) clone $name $sl $SENT_VERSION ;;
+        st) clone "$name" $sl $ST_VERSION ;;
+        dwm) clone "$name" $sl $DWM_VERSION ;;
+        surf) clone "$name" $sl $SURF_VERSION ;;
+        dmenu) clone "$name" $sl $DMENU_VERSION ;;
+        tabbed) clone "$name" $sl $TABBED_VERSION ;;
+        sent) clone "$name" $sl $SENT_VERSION ;;
         *) usage
     esac
 
-    cd $name
+    cd "$name"
 
     [ -d patches ] &&
     for patch in patches/* ; do
         printf '\n%s\n\n' "===> applying ${patch#patches/}..."
-        patch -l -p0 <$patch || exit 1
+        patch -l -p0 < "$patch" || exit 1
     done
 
-    cp -f cfg/config.h  $name/config.h  2>/dev/null ||:
-    cp -f cfg/config.mk $name/config.mk 2>/dev/null ||:
+    cp -f cfg/config.h  "$name"/config.h  2>/dev/null ||:
+    cp -f cfg/config.mk "$name"/config.mk 2>/dev/null ||:
 
-    cd $name
+    cd "$name"
     make -s clean
-    make -s -j${NPROC:-1} CC=${CC:-gcc}
+    make -s -j"${NPROC:-1}" CC="${CC:-gcc}"
     make -s PREFIX="$PREFIX" install
     make -s clean
 done
