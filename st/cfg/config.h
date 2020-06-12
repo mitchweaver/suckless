@@ -26,9 +26,13 @@ static unsigned int cols = 84;
 static unsigned int rows = 22;
 const int borderpx = 8;
 
+// security concerns regarding window operations
+// see: https://git.suckless.org/st/commit/a2a704492b9f4d2408d180f7aeeacf4c789a1d67.html
+int allowwindowops = 0;
+
 unsigned int tabspaces = 4;
-static unsigned int xfps = 120;
-static unsigned int actionfps = 30;
+static double minlatency = 8;
+static double maxlatency = 33;
 
 // theme, included from ${HOME}/.cache/themes in config.mk
 #include <st.h>

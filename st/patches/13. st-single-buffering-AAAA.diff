@@ -1,0 +1,45 @@
+/*
+ * Why do images not work in st using the w3m image hack?
+ *
+ * w3mimg uses a hack that draws an image on top of the terminal emulator Drawable
+ * window. The hack relies on the terminal to use a single buffer to draw its
+ * contents directly.
+ *
+ * st uses double-buffered drawing so the image is quickly replaced and may show a
+ * short flicker effect.
+ *
+ * Below is a patch example to change st double-buffering to a single Drawable
+ * buffer.
+ */
+--- st/x.c
++++ st/x.c
+@@ -732,10 +732,6 @@ xresize(int col, int row)
+ 	win.tw = col * win.cw;
+ 	win.th = row * win.ch;
+ 
+-	XFreePixmap(xw.dpy, xw.buf);
+-	xw.buf = XCreatePixmap(xw.dpy, xw.win, win.w, win.h,
+-			DefaultDepth(xw.dpy, xw.scr));
+-	XftDrawChange(xw.draw, xw.buf);
+ 	xclear(0, 0, win.w, win.h);
+ 
+ 	/* resize to new width */
+@@ -1148,8 +1144,7 @@ xinit(int cols, int rows)
+ 	gcvalues.graphics_exposures = False;
+ 	dc.gc = XCreateGC(xw.dpy, parent, GCGraphicsExposures,
+ 			&gcvalues);
+-	xw.buf = XCreatePixmap(xw.dpy, xw.win, win.w, win.h,
+-			DefaultDepth(xw.dpy, xw.scr));
++	xw.buf = xw.win;
+ 	XSetForeground(xw.dpy, dc.gc, dc.col[defaultbg].pixel);
+ 	XFillRectangle(xw.dpy, xw.buf, dc.gc, 0, 0, win.w, win.h);
+ 
+@@ -1632,8 +1627,6 @@ xdrawline(Line line, int x1, int y1, int x2)
+ void
+ xfinishdraw(void)
+ {
+-	XCopyArea(xw.dpy, xw.buf, xw.win, dc.gc, 0, 0, win.w,
+-			win.h, 0, 0);
+ 	XSetForeground(xw.dpy, dc.gc,
+ 			dc.col[IS_SET(MODE_REVERSE)?
+ 				defaultfg : defaultbg].pixel);
