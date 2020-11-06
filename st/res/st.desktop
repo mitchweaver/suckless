@@ -6,7 +6,7 @@ Keywords=st;simple;suckless;shell;prompt;command;commandline;cmd;
 
 TryExec=st
 Exec=stwrapper
-Icon=st
+Icon=/home/mitch/.local/share/icons/st.png
 
 Type=Application
 Categories=System;TerminalEmulator;

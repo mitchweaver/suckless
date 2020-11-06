@@ -1,13 +1,14 @@
 /* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 34
-#define BORDERPX_START 2
+/* #define GAPS_START 34 */
+/* #define BORDERPX_START 2 */
 /* -*-*-*-*-*-*-*-*-*- SMALL GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 /* #define GAPS_START 12 */
-/* #define BORDERPX_START 0 */
-/* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-/* #define GAPS_START 0 */
 /* #define BORDERPX_START 2 */
+/* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+#define GAPS_START 0
+#define BORDERPX_START 2
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+static const int topbar  = 1;
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar */
@@ -28,9 +29,9 @@ static const int CORNER_RADIUS = 0;
 #include <dwm.h>
 
 static const char*fonts[] = {
-    /* "Terminus:size=12", */
+    "Terminus:pixelsize=16",
     /* "cozette:size=10", */
-    "ShureTechMono Nerd Font:pixelsize=22",
+    "ShureTechMono Nerd Font:pixelsize=20",
 };
 
 static const Rule rules[] = {
@@ -68,12 +69,11 @@ static const Rule rules[] = {
  * "", "", "", "", "", "", "", "", "", "", "", "", "ﭮ"
  */
 /* static const char *tags[] = { "", "", "", "", "", "ﭮ" }; */
-static const char *tags[] = { "","2","3","4","5","6" };
-/* static const char *tags[] = { "1","2","3","4","5","6" }; */
+/* static const char *tags[] = { "","","","","","ﭮ" }; */
+static const char *tags[] = { "1","2","3","4","5","6" };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 static const int showbar = 1;
-static const int topbar  = 1;
 static const float mfact = 0.5;
 static const Layout layouts[] = {
     { "|  ", tile },

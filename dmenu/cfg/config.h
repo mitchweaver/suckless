@@ -1,4 +1,5 @@
 static const char *fonts[] = {
+    "Terminus:pixelsize=20:antialias=false:autohint=false",
     "SF Mono:pixelsize=22:antialias=true:autohint=true",
     "Noto Color Emoji:pixelsize=22:antialias=true:autohint=true",
     "Noto Sans:pixelsize=22:antialias=true:autohint=true",

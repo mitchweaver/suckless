@@ -7,6 +7,8 @@
 # ensures even terminal size across different machines
 #
 
+exec st -c 'Simple Terminal' -t 'Simple Terminal' "$@"
+
 # get screen dimensions
 xrandr --nograb --current --listactivemonitors | \
 while read -r line ; do
