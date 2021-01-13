@@ -14,7 +14,11 @@ export LDFLAGS=-s
 # -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 usage() {
-    >&2 echo 'Usage: ./build.sh [dwm] [st] [dmenu] [tabbed] [surf]'
+    die 'Usage: ./build.sh [dwm] [st] [dmenu] [tabbed] [surf]'
+}
+
+die() {
+    >&2 printf '%s\n' "$*"
     exit 1
 }
 
@@ -31,36 +35,60 @@ clone() {
 
 [ "$1" ] || usage
 
-START_PWD=$(dirname "$0")
-[ "$START_PWD" = . ] && START_PWD=$PWD
-for name ; do
-    cd "$START_PWD"
+build() {
+    START_PWD=$(dirname "$0")
+    [ "$START_PWD" = . ] && START_PWD=$PWD
+    for name ; do
+        cd "$START_PWD"
 
-    sl=git://git.suckless.org
-    case $name in
-        st) clone "$name" $sl $ST_VERSION ;;
-        dwm) clone "$name" $sl $DWM_VERSION ;;
-        surf) clone "$name" $sl $SURF_VERSION ;;
-        dmenu) clone "$name" $sl $DMENU_VERSION ;;
-        tabbed) clone "$name" $sl $TABBED_VERSION ;;
-        sent) clone "$name" $sl $SENT_VERSION ;;
-        *) usage
-    esac
+        sl=git://git.suckless.org
+        case $name in
+            st) clone "$name" $sl $ST_VERSION ;;
+            dwm) clone "$name" $sl $DWM_VERSION ;;
+            surf) clone "$name" $sl $SURF_VERSION ;;
+            dmenu) clone "$name" $sl $DMENU_VERSION ;;
+            tabbed) clone "$name" $sl $TABBED_VERSION ;;
+            sent) clone "$name" $sl $SENT_VERSION ;;
+            *) usage
+        esac
 
-    cd "$name"
+        cd "$name"
 
-    [ -d patches ] &&
-    for patch in patches/* ; do
-        printf '\n%s\n\n' "===> applying ${patch#patches/}..."
-        patch -l -p0 < "$patch" || exit 1
+        [ -d patches ] &&
+        for patch in patches/* ; do
+            printf '\n%s\n\n' "===> applying ${patch#patches/}..."
+            patch -l -p0 < "$patch" || exit 1
+        done
+
+        [ -f cfg/config.h  ] && cp -f cfg/config.h  "$name"/config.h
+        [ -f cfg/config.mk ] && cp -f cfg/config.mk "$name"/config.mk
+
+        cd "$name"
+        make -s clean
+        make -s -j"${NPROC:-1}" CC="${CC:-gcc}"
+        make -s PREFIX="$PREFIX" install
     done
+}
 
-    cp -f cfg/config.h  "$name"/config.h  2>/dev/null ||:
-    cp -f cfg/config.mk "$name"/config.mk 2>/dev/null ||:
+comptest() {
+    printf 'Running compiler test...'
+    echo 'int main() { return 0 ; }' > /tmp/$$.c
+    ${CC:-gcc} /tmp/$$.c -o /tmp/$$
+    chmod +x /tmp/$$
+    if /tmp/$$ ; then
+        rm /tmp/$$.c /tmp/$$
+        printf ' %s\n\n' 'Passed!'
+    else
+        die "Something wrong with your compiler! Aborting."
+    fi
+}
 
-    cd "$name"
-    make -s clean
-    make -s -j"${NPROC:-1}" CC="${CC:-gcc}"
-    make -s PREFIX="$PREFIX" install
-    make -s clean
-done
+main() {
+    for cmd in make ${CC:-gcc} patch ; do
+        command -v "$cmd" >/dev/null || die "missing: $cmd"
+    done
+    comptest
+    build "$@"
+}
+
+main "$@"
