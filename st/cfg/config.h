@@ -17,6 +17,9 @@ static const char font[] = "ShureTechMono Nerd Font:pixelsize=22:antialias=true:
 /* static const char font[] = "MonteCarlo:pixelsize=12:antialias=false:autohint=false"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
+// bg opacity
+float alpha = 0.8;
+
 // plumber patch
 const static char *plumb_cmd = "opn";
 

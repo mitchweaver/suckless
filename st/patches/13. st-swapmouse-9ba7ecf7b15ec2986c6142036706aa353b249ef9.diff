@@ -18,9 +18,10 @@
  	Window parent;
  	pid_t thispid = getpid();
 -	XColor xmousefg, xmousebg;
+	XWindowAttributes attr;
+	XVisualInfo vis;
+
  
- 	if (!(xw.dpy = XOpenDisplay(NULL)))
- 		die("can't open display\n");
 @@ -1683,6 +1684,12 @@ xsetmode(int set, unsigned int flags)
  {
  	int mode = win.mode;
