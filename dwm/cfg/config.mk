@@ -14,9 +14,9 @@ XINERAMAFLAGS = -DXINERAMA
 FREETYPELIBS = -lfontconfig -lXft
 
 # Linux
-FREETYPEINC = /usr/include/freetype2
+# FREETYPEINC = /usr/include/freetype2
 # OpenBSD
-#FREETYPEINC = ${X11INC}/freetype2
+FREETYPEINC = ${X11INC}/freetype2
 
 INCS = -I${X11INC} -I${FREETYPEINC} -I${HOME}/.cache/themes
 LIBS = -L${X11LIB} -lX11 -lXext ${XINERAMALIBS} ${FREETYPELIBS}

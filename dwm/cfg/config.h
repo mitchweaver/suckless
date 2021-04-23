@@ -1,13 +1,8 @@
-/* -*--*-*-*-*-*-*-*-*- GAPS -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* #define GAPS_START 34 */
-/* #define BORDERPX_START 2 */
-/* -*-*-*-*-*-*-*-*-*- SMALL GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-/* #define GAPS_START 12 */
-/* #define BORDERPX_START 2 */
-/* -*-*-*-*-*-*-*-*-*- NO GAPS *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-#define GAPS_START 0
-#define BORDERPX_START 2
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+#define GAPS_START 26
+#define BORDERPX_START 0
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
 static const int topbar  = 1;
 
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -30,8 +25,8 @@ static const int CORNER_RADIUS = 0;
 
 static const char*fonts[] = {
     "Terminus:pixelsize=16",
-    /* "cozette:size=10", */
-    "ShureTechMono Nerd Font:pixelsize=20",
+    "Terminess (TTF) Nerd Font:pixelsize=16",
+    "Shure Tech Mono Nerd Font:pixelsize=16",
 };
 
 static const Rule rules[] = {
@@ -68,17 +63,16 @@ static const Rule rules[] = {
  * "ﯙ", "", "", "", "", "", "", "", "", "", "", "" ""
  * "", "", "", "", "", "", "", "", "", "", "", "", "ﭮ"
  */
-/* static const char *tags[] = { "", "", "", "", "", "ﭮ" }; */
-/* static const char *tags[] = { "","","","","","ﭮ" }; */
-static const char *tags[] = { "1","2","3","4","5","6" };
+static const char *tags[] = { "","","", "","","" };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 static const int showbar = 1;
 static const float mfact = 0.5;
 static const Layout layouts[] = {
-    { "|  ", tile },
-    { "| 缾 ", NULL }, // floating
-    /* { "|  ", monocle }, */
+    { "|  ", tile },
+    { "| 缾", NULL }, // floating
+    /* { "|  ", NULL }, // floating */
+    /* { "| C ", monocle }, */
 };
 
 #define MODKEY Mod1Mask
