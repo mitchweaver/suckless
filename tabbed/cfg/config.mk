@@ -3,8 +3,14 @@ VERSION=4.7
 PREFIX = ${HOME}/.local
 MANPREFIX = ${PREFIX}/share/man
 
-X11INC = /usr/X11R6/include
-X11LIB = /usr/X11R6/lib
+# OpenBSD / Linux
+#X11INC = /usr/X11R6/include
+#X11LIB = /usr/X11R6/lib
+
+# NetBSD
+X11INC = /usr/X11R7/include
+X11LIB = /usr/X11R7/lib
+
 
 XINERAMALIBS  = -lXinerama
 XINERAMAFLAGS = -DXINERAMA
