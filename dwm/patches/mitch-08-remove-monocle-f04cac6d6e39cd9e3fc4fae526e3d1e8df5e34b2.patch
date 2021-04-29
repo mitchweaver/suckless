@@ -1,0 +1,26 @@
+--- dwm/dwm.c
++++ dwm/dwm.c.new
+@@ -200,7 +200,6 @@
+ static void manage(Window w, XWindowAttributes *wa);
+ static void mappingnotify(XEvent *e);
+ static void maprequest(XEvent *e);
+-static void monocle(Monitor *m);
+ static void motionnotify(XEvent *e);
+ static void movemouse(const Arg *arg);
+ static Client *nexttiled(Client *c);
+@@ -1191,15 +1190,6 @@
+ 		return;
+ 	if (!wintoclient(ev->window))
+ 		manage(ev->window, &wa);
+-}
+-
+-void
+-monocle(Monitor *m)
+-{
+-	Client *c;
+-
+-	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
+-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+ }
+ 
+ void
