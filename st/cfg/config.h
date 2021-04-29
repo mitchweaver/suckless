@@ -25,7 +25,7 @@ const static char *plumb_cmd = "opn";
 // look into using scroll later!
 char *scroll = NULL;
 
-static unsigned int cols = 84;
+static unsigned int cols = 80;
 static unsigned int rows = 22;
 const int borderpx = 8;
 

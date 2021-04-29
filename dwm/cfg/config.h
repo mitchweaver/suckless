@@ -36,6 +36,11 @@ static const unsigned int alphas[][3] = {
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
+static const unsigned int ulinepad = 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke = 2; /* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0; /* how far above the bottom of the bar the line should appear */
+static const int ulineall = 0;
+
 // theme, included from ${HOME}/.cache/themes in config.mk
 #include <dwm.h>
 
@@ -86,9 +91,9 @@ static const int showbar = 1;
 static const float mfact = 0.5;
 static const Layout layouts[] = {
     { "|  ", tile },
-    { "| 缾", NULL }, // floating
+    { "| 缾 ", NULL }, // floating
+    { "| C ", col  }, // column
     /* { "|  ", NULL }, // floating */
-    /* { "| C ", monocle }, */
 };
 
 #define MODKEY Mod1Mask
@@ -111,9 +116,9 @@ static Key keys[] = {
     { MODKEY,            XK_k,      focusstack,    {.i = -1 } },
     { MODKEY|ShiftMask,  XK_h,      setmfact,      {.f = -0.05} },
     { MODKEY|ShiftMask,  XK_l,      setmfact,      {.f = +0.05} },
-    { MODKEY,            XK_t,      setlayout,     {.v = &layouts[0]} },
-    { MODKEY,            XK_f,      setlayout,     {.v = &layouts[1]} },
-    /* { MODKEY,            XK_m,      setlayout,     {.v = &layouts[2]} }, */
+    { MODKEY,            XK_t,      setlayout,     {.v = &layouts[0]} }, // tile
+    { MODKEY,            XK_f,      setlayout,     {.v = &layouts[1]} }, // floating
+    { MODKEY,            XK_c,      setlayout,     {.v = &layouts[2]} }, // column
     { MODKEY,            XK_b,      togglebar,     {0} },
     { MODKEY,            XK_s,      togglesticky,  {0} },
     { MODKEY|ShiftMask,  XK_space,  togglefloating,{0} },
