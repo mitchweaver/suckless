@@ -57,7 +57,7 @@ build() {
         [ -d patches ] &&
         for patch in patches/* ; do
             printf '%s' "===> applying ${patch#patches/}..."
-            patch -l -p0 < "$patch" > /dev/null || exit 1
+            patch -s -l -p0 < "$patch" || exit 1
             printf '%s\n' ' OK!'
         done
 
