@@ -21,9 +21,9 @@
  
  #include "drw.h"
 @@ -241,6 +242,7 @@
- static int xerror(Display *dpy, XErrorEvent *ee);
  static int xerrordummy(Display *dpy, XErrorEvent *ee);
  static int xerrorstart(Display *dpy, XErrorEvent *ee);
+ static void xinitvisual();
 +static void drawroundedcorners(Client *c);
  
  /* variables */

@@ -38,9 +38,9 @@
  {
  	Client *c = NULL, *i;
 @@ -1765,14 +1749,6 @@
- 		focus(NULL);
- 		arrange(selmon);
- 	}
+	}
+	updatecurrentdesktop();
+	updatecurrentdesktop();
 -}
 -
 -void

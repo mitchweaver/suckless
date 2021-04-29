@@ -2,9 +2,9 @@
 --- dwm/dwm.c
 +++ dwm/dwm.c
 @@ -232,7 +232,6 @@
- static int xerror(Display *dpy, XErrorEvent *ee);
  static int xerrordummy(Display *dpy, XErrorEvent *ee);
  static int xerrorstart(Display *dpy, XErrorEvent *ee);
+ static void xinitvisual();
 -static void zoom(const Arg *arg);
  
  /* variables */

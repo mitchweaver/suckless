@@ -41,6 +41,3 @@
  			}
  			if (ev->value_mask & CWWidth) {
  				c->oldw = c->w;
---
-2.19.1
-

@@ -20,6 +20,22 @@ static const int vertpadbar  = 4; // vertical padding for statusbar
 // for use with the rounded corners patch (0 disables)
 static const int CORNER_RADIUS = 0;
 
+// defined as 0-255 in hex (unsigned), with 255 being opaque
+//
+// common hex values:
+// 100%  =  1.0 * 255 = 255, in hex: 0xffu 
+// 90%   =  0.9 * 255 = 228, in hex: 0xe4u
+// 80%   =  0.8 * 255 = 182, in hex: 0xb6u
+//
+// OPAQUE = 0xffu, defined in the patch
+static const unsigned int baralpha = 0xe4u;
+static const unsigned int borderalpha = OPAQUE;
+static const unsigned int alphas[][3] = {
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+};
+
 // theme, included from ${HOME}/.cache/themes in config.mk
 #include <dwm.h>
 
