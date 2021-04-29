@@ -3,24 +3,27 @@ VERSION=4.7
 PREFIX = ${HOME}/.local
 MANPREFIX = ${PREFIX}/share/man
 
-# OpenBSD / Linux
-#X11INC = /usr/X11R6/include
-#X11LIB = /usr/X11R6/lib
-
-# NetBSD
-X11INC = /usr/X11R7/include
-X11LIB = /usr/X11R7/lib
-
-
 XINERAMALIBS  = -lXinerama
 XINERAMAFLAGS = -DXINERAMA
 
 FREETYPELIBS = -lfontconfig -lXft
 
-# Linux
-# FREETYPEINC = /usr/include/freetype2
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+# OpenBSD / Linux
+X11INC = /usr/X11R6/include
+X11LIB = /usr/X11R6/lib
+
+# NetBSD
+# X11INC = /usr/X11R7/include
+# X11LIB = /usr/X11R7/lib
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 # OpenBSD
 FREETYPEINC = ${X11INC}/freetype2
+# Linux
+# FREETYPEINC = /usr/include/freetype2
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 INCS = -I${X11INC} -I${FREETYPEINC} -I${HOME}/.cache/themes
 LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS} -lm -lXrender

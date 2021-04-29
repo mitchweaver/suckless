@@ -2,6 +2,7 @@
 /* static const char font[] = "RobotoMono Nerd Font Mono:pixelsize=18:antialias=true:autohint=true"; */
 /* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
 static const char font[] = "Terminus:pixelsize=16:antialias=false:autohint=false";
+/* static const char font[] = "Terminus:pixelsize=18:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false"; */
 
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=16:antialias=true:autohint=true"; */
@@ -16,6 +17,7 @@ static const char font[] = "Terminus:pixelsize=16:antialias=false:autohint=false
 // bg opacity
 /* float alpha = 1.0; */
 float alpha = 0.9;
+/* float alpha = 0.85; */
 
 // plumber patch
 const static char *plumb_cmd = "opn";

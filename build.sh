@@ -9,7 +9,7 @@ SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
 SENT_VERSION=2649e8d5334f7e37a1710c60fb740ecfe91b9f9e     # 13 May 2020
 
 export PREFIX=${HOME}/.local
-export CFLAGS='-O2 -pipe -s -pedantic -std=c99 -fstack-protector-strong -fexceptions'
+export CFLAGS='-O2 -pipe -s -std=c99 -fstack-protector-strong'
 export LDFLAGS=-s
 # -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
@@ -56,9 +56,12 @@ build() {
 
         [ -d patches ] &&
         for patch in patches/* ; do
-            printf '\n%s\n\n' "===> applying ${patch#patches/}..."
-            patch -l -p0 < "$patch" || exit 1
+            printf '%s' "===> applying ${patch#patches/}..."
+            patch -l -p0 < "$patch" > /dev/null || exit 1
+            printf '%s\n' ' OK!'
         done
+
+        printf '%s\n\n' 'Patching succeeded!'
 
         [ -f cfg/config.h  ] && cp -f cfg/config.h  "$name"/config.h
         [ -f cfg/config.mk ] && cp -f cfg/config.mk "$name"/config.mk
@@ -72,7 +75,7 @@ build() {
 
 comptest() {
     printf 'Running compiler test...'
-    echo 'int main() { return 0 ; }' > /tmp/$$.c
+    printf '%s\n' 'int main() { return 0 ; }' > /tmp/$$.c
     ${CC:-gcc} /tmp/$$.c -o /tmp/$$
     chmod +x /tmp/$$
     if /tmp/$$ ; then
@@ -84,7 +87,7 @@ comptest() {
 }
 
 main() {
-    for cmd in make ${CC:-gcc} patch ; do
+    for cmd in make ${CC:-gcc} ld git patch ; do
         command -v "$cmd" >/dev/null || die "missing: $cmd"
     done
     comptest
