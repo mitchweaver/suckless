@@ -14,8 +14,8 @@ static const char font[] = "Terminus:pixelsize=16:antialias=false:autohint=false
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 // bg opacity
-float alpha = 1.0;
-/* float alpha = 0.85; */
+/* float alpha = 1.0; */
+float alpha = 0.9;
 
 // plumber patch
 const static char *plumb_cmd = "opn";

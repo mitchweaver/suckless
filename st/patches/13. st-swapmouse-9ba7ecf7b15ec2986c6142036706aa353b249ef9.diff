@@ -20,7 +20,6 @@
 -	XColor xmousefg, xmousebg;
 	XWindowAttributes attr;
 	XVisualInfo vis;
-
  
 @@ -1683,6 +1684,12 @@ xsetmode(int set, unsigned int flags)
  {
