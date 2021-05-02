@@ -1,0 +1,27 @@
+--- sent/config.def.h
++++ sent/config.def.h
+@@ -19,6 +19,9 @@ static const float linespacing = 1.4;
+ static const float usablewidth = 0.75;
+ static const float usableheight = 0.75;
+ 
++/* height of the presentation progress bar */
++static const int progressheight = 5;
++
+ static Mousekey mshortcuts[] = {
+ 	/* button         function        argument */
+ 	{ Button1,        advance,        {.i = +1} },
+--- sent/sent.c
++++ sent/sent.c
+@@ -533,6 +533,12 @@ xdraw()
+ 			         0,
+ 			         slides[idx].lines[i],
+ 			         0);
++		if (idx != 0 && progressheight != 0) {
++			drw_rect(d,
++			         0, xw.h - progressheight,
++			         (xw.w * idx)/(slidecount - 1), progressheight,
++			         1, 0);
++		}
+ 		drw_map(d, xw.win, 0, 0, xw.w, xw.h);
+ 	} else {
+ 		if (!(im->state & SCALED))

@@ -1,0 +1,67 @@
+--- sent/config.def.h
++++ sent/config.def.h
+@@ -13,6 +13,11 @@ static const char *colors[] = {
+ 	"#FFFFFF", /* background color */
+ };
+ 
++static const char *inverted_colors[] = {
++	"#FFFFFF", /* foreground color */
++	"#000000", /* background color */
++};
++
+ static const float linespacing = 1.4;
+ 
+ /* how much screen estate is to be used at max for the content */
+--- sent/sent.1
++++ sent/sent.1
+@@ -6,6 +6,7 @@
+ .Sh SYNOPSIS
+ .Nm
+ .Op Fl v
++.Op Fl i
+ .Op Ar file
+ .Sh DESCRIPTION
+ .Nm
+@@ -21,6 +22,8 @@ few minutes.
+ .Bl -tag -width Ds
+ .It Fl v
+ Print version information to stdout and exit.
++.It Fl i
++Use the colors from the inverted color array.
+ .El
+ .Sh USAGE
+ .Bl -tag -width Ds
+--- sent/sent.c
++++ sent/sent.c
+@@ -25,6 +25,8 @@
+ 
+ char *argv0;
+ 
++int use_inverted_colors = 0;
++
+ /* macros */
+ #define LEN(a)         (sizeof(a) / sizeof(a)[0])
+ #define LIMIT(x, a, b) (x) = (x) < (a) ? (a) : (x) > (b) ? (b) : (x)
+@@ -586,7 +588,11 @@ xinit()
+ 
+ 	if (!(d = drw_create(xw.dpy, xw.scr, xw.win, xw.w, xw.h)))
+ 		die("sent: Unable to create drawing context");
+-	sc = drw_scm_create(d, colors, 2);
++	if (use_inverted_colors) {
++		sc = drw_scm_create(d, inverted_colors, 2);
++	} else {
++		sc = drw_scm_create(d, colors, 2);
++	}
+ 	drw_setscheme(d, sc);
+ 	XSetWindowBackground(xw.dpy, xw.win, sc[ColBg].pixel);
+ 
+@@ -687,6 +693,9 @@ main(int argc, char *argv[])
+ 	case 'v':
+ 		fprintf(stderr, "sent-"VERSION"\n");
+ 		return 0;
++	case 'i':
++		use_inverted_colors = 1;
++		break;
+ 	default:
+ 		usage();
+ 	} ARGEND

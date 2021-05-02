@@ -1,0 +1,56 @@
+--- sent/sent.1
++++ sent/sent.1
+@@ -5,6 +5,9 @@
+ .Nd simple plaintext presentation tool
+ .Sh SYNOPSIS
+ .Nm
++.Op Fl f Ar font
++.Op Fl c Ar fgcolor
++.Op Fl b Ar bgcolor
+ .Op Fl v
+ .Op Ar file
+ .Sh DESCRIPTION
+@@ -21,6 +24,14 @@ few minutes.
+ .Bl -tag -width Ds
+ .It Fl i
+ Use the colors from the inverted color array.
++.It Fl f Ar font
++Defines the
++.Ar font
++when sent is run.
++.It Fl c Ar fgcolor
++Defines the foreground color when sent is run.
++.It Fl b Ar bgcolor
++Defines the background color when sent is run.
+ .El
+ .Sh USAGE
+ .Bl -tag -width Ds
+diff --git a/sent.c b/sent.c
+index c50a572..0b36e32 100644
+--- sent/sent.c
++++ sent/sent.c
+@@ -675,7 +675,7 @@ configure(XEvent *e)
+ void
+ usage()
+ {
+-	die("usage: %s [file]", argv0);
++	die("usage: %s [-c fgcolor] [-b bgcolor] [-f font] [file]", argv0);
+ }
+ 
+ int
+@@ -687,6 +687,15 @@ main(int argc, char *argv[])
+    case 'i':
+		use_inverted_colors = 1;
+		break;
++	case 'f':
++		fontfallbacks[0] = EARGF(usage());
++		break;
++	case 'c':
++		colors[0] = EARGF(usage());
++		break;
++	case 'b':
++		colors[1] = EARGF(usage());
++		break;
+ 	default:
+ 		usage();
+ 	} ARGEND
