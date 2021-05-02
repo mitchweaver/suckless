@@ -1,18 +1,17 @@
-// dns seems like an odd syscall group to require
-// must be related to how tabbed attaches clients
-// for X via the local network. to research...
 --- tabbed/tabbed.c
 +++ tabbed/tabbed.c
-@@ -1280,6 +1280,13 @@
+@@ -1280,6 +1280,15 @@
  int
  main(int argc, char *argv[])
  {
 +
++#ifdef __OpenBSD__
 +    if (pledge("stdio rpath unix proc exec dns", NULL) == -1)
 +    {
 +        fprintf (stderr, "%s: pledge\n", "tabbed");
 +        exit ( 1 );
 +    }
++#endif
 +
  	Bool detach = False;
  	int replace = 0;
