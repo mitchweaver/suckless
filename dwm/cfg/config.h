@@ -1,5 +1,5 @@
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 26
+#define GAPS_START 28
 #define BORDERPX_START 0
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
@@ -21,33 +21,28 @@ static const int vertpadbar  = 4; // vertical padding for statusbar
 static const int CORNER_RADIUS = 0;
 
 // defined as 0-255 in hex (unsigned), with 255 being opaque
-//
-// common hex values:
-// 100%  =  1.0 * 255 = 255, in hex: 0xffu 
-// 90%   =  0.9 * 255 = 228, in hex: 0xe4u
-// 80%   =  0.8 * 255 = 182, in hex: 0xb6u
-//
 // OPAQUE = 0xffu, defined in the patch
-static const unsigned int baralpha = 0xe4u;
-static const unsigned int borderalpha = OPAQUE;
+#define ALPHA_90_PERCENT 0xe4u
+#define ALPHA_85_PERCENT 0xd8u
+#define ALPHA_80_PERCENT 0xb6u
 static const unsigned int alphas[][3] = {
-	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	/*             foreground baralpha  borderalpha     */
+	[SchemeNorm] = { OPAQUE, ALPHA_85_PERCENT, OPAQUE },
+	[SchemeSel]  = { OPAQUE, ALPHA_85_PERCENT, OPAQUE },
 };
 
-static const unsigned int ulinepad = 5;	/* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke = 2; /* thickness / height of the underline */
-static const unsigned int ulinevoffset	= 0; /* how far above the bottom of the bar the line should appear */
-static const int ulineall = 0;
+/* static const unsigned int ulinepad = 5;	/1* horizontal padding between the underline and tag *1/ */
+/* static const unsigned int ulinestroke = 2; /1* thickness / height of the underline *1/ */
+/* static const unsigned int ulinevoffset	= 0; /1* how far above the bottom of the bar the line should appear *1/ */
+/* static const int ulineall = 0; */
 
 // theme, included from ${HOME}/.cache/themes in config.mk
 #include <dwm.h>
 
 static const char*fonts[] = {
-    "Terminus:pixelsize=16",
-    "Terminess (TTF) Nerd Font:pixelsize=16",
-    "Shure Tech Mono Nerd Font:pixelsize=16",
+    /* "Terminus:pixelsize=20", */
+    "Shure Tech Mono Nerd Font:pixelsize=20",
+    "Terminess (TTF) Nerd Font:pixelsize=20",
 };
 
 static const Rule rules[] = {
