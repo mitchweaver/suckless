@@ -1,0 +1,16 @@
+--- sent/sent.c
++++ sent/sent.c
+@@ -736,6 +736,13 @@
+ int
+ main(int argc, char *argv[])
+ {
++
++    if (pledge("stdio flock unix rpath", NULL) == -1)
++    {
++        fprintf (stderr, "%s: pledge\n", "PROGRAM_NAME");
++        exit ( 1 );
++    }
++
+ 	FILE *fp = NULL;
+ 
+ 	ARGBEGIN {
