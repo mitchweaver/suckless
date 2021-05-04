@@ -7,6 +7,7 @@ DMENU_VERSION=1a13d0465d1a6f4f74bc5b07b04c9bd542f20ba6    # 02 SEP 2020
 TABBED_VERSION=dabf6a25ab01107fc1e0464ee6a3e369d1626f97   # 12 May 2020
 SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
 SENT_VERSION=2649e8d5334f7e37a1710c60fb740ecfe91b9f9e     # 13 May 2020
+SLOCK_VERSION=35633d45672d14bd798c478c45d1a17064701aa9    # 25 Mar 2017
 
 export PREFIX=${HOME}/.local
 export CFLAGS='-O2 -pipe -s -std=c99 -fstack-protector-strong'
@@ -49,6 +50,7 @@ build() {
             dmenu) clone "$name" $sl $DMENU_VERSION ;;
             tabbed) clone "$name" $sl $TABBED_VERSION ;;
             sent) clone "$name" $sl $SENT_VERSION ;;
+            slock) clone "$name" $sl $SLOCK_VERSION ;;
             *) usage
         esac
 
