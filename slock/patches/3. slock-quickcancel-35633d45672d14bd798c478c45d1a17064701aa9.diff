@@ -1,0 +1,47 @@
+--- slock/config.def.h
++++ slock/config.def.h
+@@ -10,3 +10,6 @@ static const char *colorname[NUMCOLS] = {
+ 
+ /* treat a cleared input like a wrong password (color) */
+ static const int failonclear = 1;
++
++/* time in seconds to cancel lock with mouse movement */
++static const int timetocancel = 4;
+--- slock/slock.c
++++ slock/slock.c
+@@ -13,6 +13,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <unistd.h>
++#include <time.h>
+ #include <sys/types.h>
+ #include <X11/extensions/Xrandr.h>
+ #include <X11/keysym.h>
+@@ -24,6 +25,8 @@
+ 
+ char *argv0;
+ 
++static time_t locktime;
++
+ enum {
+ 	INIT,
+ 	INPUT,
+@@ -141,6 +144,7 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
+ 	oldc = INIT;
+ 
+ 	while (running && !XNextEvent(dpy, &ev)) {
++		running = !((time(NULL) - locktime < timetocancel) && (ev.type == MotionNotify));
+ 		if (ev.type == KeyPress) {
+ 			explicit_bzero(&buf, sizeof(buf));
+ 			num = XLookupString(&ev.xkey, buf, sizeof(buf), &ksym, 0);
+@@ -268,6 +272,7 @@ lockscreen(Display *dpy, struct xrandr *rr, int screen)
+ 
+ 			XSelectInput(dpy, lock->root, SubstructureNotifyMask);
+			drawlogo(dpy, lock, INIT);
++			locktime = time(NULL);
+ 			return lock;
+ 		}
+ 
+-- 
+2.23.0
+
