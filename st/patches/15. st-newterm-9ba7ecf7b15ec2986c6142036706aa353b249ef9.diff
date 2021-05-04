@@ -1,0 +1,51 @@
+diff --git a/st.c b/st.c
+index b8e6077..044e29b 100644
+--- st/st.c
++++ st/st.c
+@@ -153,6 +153,7 @@ typedef struct {
+ } STREscape;
+ 
+ static void execsh(char *, char **);
++static char *getcwd_by_pid(pid_t pid);
+ static void stty(char **);
+ static void sigchld(int);
+ static void ttywriteraw(const char *, size_t);
+@@ -1059,6 +1060,26 @@ tswapscreen(void)
+ 	tfulldirt();
+ }
+ 
++void
++newterm(const Arg* a)
++{
++	switch (fork()) {
++	case -1:
++		die("fork failed: %s\n", strerror(errno));
++		break;
++	case 0:
++		chdir(getcwd_by_pid(pid));
++		execlp("st", "./st", NULL);
++		break;
++	}
++}
++
++static char *getcwd_by_pid(pid_t pid) {
++	char buf[32];
++	snprintf(buf, sizeof buf, "/proc/%d/cwd", pid);
++	return realpath(buf, NULL);
++}
++
+ void
+ tscrolldown(int orig, int n)
+ {
+
+--- st/st.h
++++ st/st.h
+@@ -110,6 +110,7 @@
+
+ void resettitle(void);
+
++void newterm(const Arg *);
+ void selclear(void);
+ void selinit(void);
+ void selstart(int, int, int);
+
