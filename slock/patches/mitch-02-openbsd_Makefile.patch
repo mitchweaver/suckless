@@ -1,0 +1,42 @@
+--- slock/Makefile
++++ slock/Makefile
+@@ -15,8 +15,7 @@
+ 	@echo "CC       = ${CC}"
+ 
+ .c.o:
+-	@echo CC $<
+-	@${CC} -c ${CFLAGS} $<
++	${CC} -c ${CFLAGS} $<
+ 
+ ${OBJ}: config.h config.mk arg.h util.h
+ 
+@@ -25,8 +24,7 @@
+ 	@cp config.def.h $@
+ 
+ slock: ${OBJ}
+-	@echo CC -o $@
+-	@${CC} -o $@ ${OBJ} ${LDFLAGS}
++	${CC} -o $@ ${OBJ} ${LDFLAGS}
+ 
+ clean:
+ 	@echo cleaning
+@@ -42,15 +40,10 @@
+ 	@rm -rf slock-${VERSION}
+ 
+ install: all
+-	@echo installing executable file to ${DESTDIR}${PREFIX}/bin
+-	@mkdir -p ${DESTDIR}${PREFIX}/bin
+-	@cp -f slock ${DESTDIR}${PREFIX}/bin
+-	@chmod 755 ${DESTDIR}${PREFIX}/bin/slock
+-	@chmod u+s ${DESTDIR}${PREFIX}/bin/slock
+-	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
+-	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
+-	@sed "s/VERSION/${VERSION}/g" <slock.1 >${DESTDIR}${MANPREFIX}/man1/slock.1
+-	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/slock.1
++	install -Dm0755 slock ${DESTDIR}${PREFIX}/bin
++	sed "s/VERSION/${VERSION}/g" < slock.1 > slock.1.tmp
++	mv -f slock.1.tmp slock.1
++	install -Dm0644 slock.1 ${DESTDIR}${MANPREFIX}/man1
+ 
+ uninstall:
+ 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
