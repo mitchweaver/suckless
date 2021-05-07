@@ -1,6 +1,6 @@
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 34
-#define BORDERPX_START 2
+#define GAPS_START 36
+#define BORDERPX_START 6
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -17,14 +17,10 @@ static const int horizpadbar = 2; // horizontal padding for statusbar
 static const int vertpadbar  = 4; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 // Fonts - matches first in order 
-//
-// ex: use terminus first, as it looks cleaned than terminess
-//     but, if its a glyph, it will fail to find in terminus
-//     and then search successfully in terminess
 static const char*fonts[] = {
-    "Terminus:pixelsize=20",
-    "Terminess (TTF) Nerd Font:pixelsize=20",
-    "Shure Tech Mono Nerd Font:pixelsize=20",
+    "Shure Tech Mono Nerd Font:pixelsize=22",
+    "Terminess (TTF) Nerd Font:pixelsize=22",
+    "Terminus:pixelsize=22",
 };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
