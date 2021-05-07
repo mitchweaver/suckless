@@ -1,10 +1,10 @@
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 28
-#define BORDERPX_START 0
+#define GAPS_START 34
+#define BORDERPX_START 2
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-static const int topbar  = 1;
-
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+static const int topbar  = 0;
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar */
 /* static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar */
@@ -16,6 +16,18 @@ static const int sidepad     = 0; // horizontal padding of bar
 static const int horizpadbar = 2; // horizontal padding for statusbar
 static const int vertpadbar  = 4; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+// Fonts - matches first in order 
+//
+// ex: use terminus first, as it looks cleaned than terminess
+//     but, if its a glyph, it will fail to find in terminus
+//     and then search successfully in terminess
+static const char*fonts[] = {
+    "Terminus:pixelsize=20",
+    "Terminess (TTF) Nerd Font:pixelsize=20",
+    "Shure Tech Mono Nerd Font:pixelsize=20",
+};
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
 
 // for use with the rounded corners patch (0 disables)
 static const int CORNER_RADIUS = 0;
@@ -25,10 +37,11 @@ static const int CORNER_RADIUS = 0;
 #define ALPHA_90_PERCENT 0xe4u
 #define ALPHA_85_PERCENT 0xd8u
 #define ALPHA_80_PERCENT 0xb6u
+#define DONT_CHANGE OPAQUE
 static const unsigned int alphas[][3] = {
 	/*             foreground baralpha  borderalpha     */
-	[SchemeNorm] = { OPAQUE, ALPHA_85_PERCENT, OPAQUE },
-	[SchemeSel]  = { OPAQUE, ALPHA_85_PERCENT, OPAQUE },
+	[SchemeNorm] = { DONT_CHANGE, OPAQUE, DONT_CHANGE },
+	[SchemeSel]  = { DONT_CHANGE, OPAQUE, DONT_CHANGE },
 };
 
 /* static const unsigned int ulinepad = 5;	/1* horizontal padding between the underline and tag *1/ */
@@ -38,12 +51,6 @@ static const unsigned int alphas[][3] = {
 
 // theme, included from ${HOME}/.cache/themes in config.mk
 #include <dwm.h>
-
-static const char*fonts[] = {
-    /* "Terminus:pixelsize=20", */
-    "Shure Tech Mono Nerd Font:pixelsize=20",
-    "Terminess (TTF) Nerd Font:pixelsize=20",
-};
 
 static const Rule rules[] = {
     /* class         instance  title       tags mask  iscentered   isfloating  monitor */
