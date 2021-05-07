@@ -36,6 +36,11 @@ unsigned int tabspaces = 4;
 static double minlatency = 8;
 static double maxlatency = 33;
 
+/* disable bold, italic and roman fonts globally */
+int disablebold = 0;
+int disableitalic = 0;
+int disableroman = 0;
+
 // theme, included from ${HOME}/.cache/themes in config.mk
 #include <st.h>
 

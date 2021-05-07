@@ -23,9 +23,6 @@ CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600 -D_BSD_SOURCE
 # NetBSD
 # CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600 -D_BSD_SOURCE -D_NETBSD_SOURCE
 
-LIBS = -L$(X11LIB) -lm -lX11 -lutil -lXft -lXrender\
-		`pkg-config --libs fontconfig` \
-		`pkg-config --libs freetype2`
 # Linux
 # LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft -lXrender `pkg-config --libs fontconfig` `pkg-config --libs freetype2`
 
