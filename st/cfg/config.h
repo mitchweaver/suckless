@@ -1,6 +1,6 @@
 /* -*-*-*-*-*-*-*- Fonts -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* static const char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false"; */
-static const char font[] = "ShureTechMono Nerd Font:pixelsize=22:antialias=true:autohint=true";
+static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
+/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
 /* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
 /* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
 /* static const char font[] = "dweep:pixelsize=14:antialias=false:autohint=false"; */
@@ -24,9 +24,9 @@ const static char *plumb_cmd = "opn";
 // look into using scroll later!
 char *scroll = NULL;
 
-static unsigned int cols = 80;
-static unsigned int rows = 22;
-const int borderpx = 8;
+static unsigned int cols = 76;
+static unsigned int rows = 20;
+const int borderpx = 18;
 
 // security concerns regarding window operations
 // see: https://git.suckless.org/st/commit/a2a704492b9f4d2408d180f7aeeacf4c789a1d67.html
@@ -59,7 +59,7 @@ Shortcut shortcuts[] = {
     { ControlMask,   XK_BackSpace,   zoomreset,      {.f =  0} },
     { ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
     { ControlMask,   XK_v,           clippaste,      {.i =  0} },
-    { ControlMask,   XK_l,           copyurl,        {.i =  0} },
+    { ControlMask,   XK_u,           copyurl,        {.i =  0} },
     { ControlMask,   XK_Page_Up,     kscrollup,      {.i =  3} },
     { ControlMask,   XK_Page_Down,   kscrolldown,    {.i =  3} },
     /* { ControlMask,   XK_Return,      newterm,        {.i =  0} }, */

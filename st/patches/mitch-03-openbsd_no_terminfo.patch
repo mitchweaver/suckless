@@ -1,0 +1,12 @@
+--- st/Makefile	Mon May 10 11:02:55 2021
++++ st/Makefile	Mon May 10 11:04:05 2021
+@@ -49,8 +49,7 @@
+ 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
+ 	sed "s/VERSION/$(VERSION)/g" < st.1 > $(DESTDIR)$(MANPREFIX)/man1/st.1
+ 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
+-	tic -sx st.info
+-	@echo Please see the README file regarding the terminfo entry of st.
++	if [ "`uname`" != OpenBSD ] ; then tic -sx st.info ; fi
+ 	mkdir -p $(DESTDIR)$(PREFIX)/share/icons
+ 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
+ 	install -D -m 0755 ../res/st.desktop $(DESTDIR)$(PREFIX)/share/applications/st.desktop
