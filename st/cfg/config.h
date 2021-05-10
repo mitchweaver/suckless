@@ -1,5 +1,14 @@
-/* -*-*-*-*-*-*-*- Fonts -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false";
+// theme, included from ${HOME}/.cache/themes in config.mk
+#include <st.h>
+
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+/* ███████╗ ██████╗ ███╗   ██╗████████╗███████╗ */
+/* ██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██╔════╝ */
+/* █████╗  ██║   ██║██╔██╗ ██║   ██║   ███████╗ */
+/* ██╔══╝  ██║   ██║██║╚██╗██║   ██║   ╚════██║ */
+/* ██║     ╚██████╔╝██║ ╚████║   ██║   ███████║ */
+/* ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝ */
+static const char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false";
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
 /* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
 /* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
@@ -8,21 +17,9 @@ static const char font[] = "Terminus:pixelsize=20:antialias=false:autohint=false
 /* static const char font[] = "MonteCarlo:pixelsize=12:antialias=false:autohint=false"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-// bg opacity
-float alpha = 1.0;
-/* float alpha = 0.9; */
-/* float alpha = 0.85; */
-/* float alpha = 0.8; */
-/* float alpha = 0.75; */
-/* float alpha = 0.7; */
-/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-
-// plumber patch
-const static char *plumb_cmd = "opn";
-
-// look into using scroll later!
-char *scroll = NULL;
+const float alpha = 0.85;             // alpha opacity patch
+const static char *plumb_cmd = "opn"; // plumber patch
+char *scroll = NULL;                  // look into using scroll later
 
 static unsigned int cols = 76;
 static unsigned int rows = 20;
@@ -41,15 +38,12 @@ int disablebold = 0;
 int disableitalic = 0;
 int disableroman = 0;
 
-// theme, included from ${HOME}/.cache/themes in config.mk
-#include <st.h>
-
 MouseKey mkeys[] = {
     /* button    mask            function        argument */
     { Button4,   XK_NO_MOD,      kscrollup,      {.i =  1} },
     { Button5,   XK_NO_MOD,      kscrolldown,    {.i =  1} },
-    { Button4,   ControlMask, zoom,  {.f =  +2} },
-    { Button5,   ControlMask, zoom,  {.f =  -2} },
+    { Button4,   ControlMask,    zoom,           {.f =  +2} },
+    { Button5,   ControlMask,    zoom,           {.f =  -2} },
 };
 
 Shortcut shortcuts[] = {
@@ -62,10 +56,17 @@ Shortcut shortcuts[] = {
     { ControlMask,   XK_u,           copyurl,        {.i =  0} },
     { ControlMask,   XK_Page_Up,     kscrollup,      {.i =  3} },
     { ControlMask,   XK_Page_Down,   kscrolldown,    {.i =  3} },
-    /* { ControlMask,   XK_Return,      newterm,        {.i =  0} }, */
+
+    // new term patch: /* { ControlMask,   XK_Return,      newterm,        {.i =  0} }, */
 };
 
-/* -*-*-*-*-*-*-* BOX DRAW STUFF -*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+/* ██████╗  ██████╗ ██╗  ██╗    ██████╗ ██████╗  █████╗ ██╗    ██╗ */
+/* ██╔══██╗██╔═══██╗╚██╗██╔╝    ██╔══██╗██╔══██╗██╔══██╗██║    ██║ */
+/* ██████╔╝██║   ██║ ╚███╔╝     ██║  ██║██████╔╝███████║██║ █╗ ██║ */
+/* ██╔══██╗██║   ██║ ██╔██╗     ██║  ██║██╔══██╗██╔══██║██║███╗██║ */
+/* ██████╔╝╚██████╔╝██╔╝ ██╗    ██████╔╝██║  ██║██║  ██║╚███╔███╔╝ */
+/* ╚═════╝  ╚═════╝ ╚═╝  ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ */ 
 /* 1: render most of the lines/blocks characters without using the font for */
 /*    perfect alignment between cells (U2500 - U259F except dashes/diagonals). */
 /*    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored. */
@@ -76,8 +77,22 @@ const int boxdraw_bold = 1;
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
 const int boxdraw_braille = 1;
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-
-// # # ## # # # # ## IGNORE BELOW ## # # # # ## #  # # # # # # # //
+/* █████   █████████  ██████   █████    ███████    ███████████   ██████████   */
+/* ▒███   ███▒▒▒▒▒███▒▒██████ ▒▒███   ███▒▒▒▒▒███ ▒▒███▒▒▒▒▒███ ▒▒███▒▒▒▒▒█   */
+/* ▒███  ███     ▒▒▒  ▒███▒███ ▒███  ███     ▒▒███ ▒███    ▒███  ▒███  █ ▒    */
+/* ▒███ ▒███          ▒███▒▒███▒███ ▒███      ▒███ ▒██████████   ▒██████      */
+/* ▒███ ▒███    █████ ▒███ ▒▒██████ ▒███      ▒███ ▒███▒▒▒▒▒███  ▒███▒▒█      */
+/* ▒███ ▒▒███  ▒▒███  ▒███  ▒▒█████ ▒▒███     ███  ▒███    ▒███  ▒███ ▒   █   */
+/* █████ ▒▒█████████  █████  ▒▒█████ ▒▒▒███████▒   █████   █████ ██████████   */
+/* ▒▒▒▒▒   ▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒▒▒    ▒▒▒▒▒   ▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒   */
+/* ███████████  ██████████ █████          ███████    █████   ███   █████      */
+/* ▒███▒▒▒▒▒███▒▒███▒▒▒▒▒█▒▒███         ███▒▒▒▒▒███ ▒▒███   ▒███  ▒▒███       */
+/* ▒███    ▒███ ▒███  █ ▒  ▒███        ███     ▒▒███ ▒███   ▒███   ▒███       */
+/* ▒██████████  ▒██████    ▒███       ▒███      ▒███ ▒███   ▒███   ▒███       */
+/* ▒███▒▒▒▒▒███ ▒███▒▒█    ▒███       ▒███      ▒███ ▒▒███  █████  ███        */
+/* ▒███    ▒███ ▒███ ▒   █ ▒███      █▒▒███     ███   ▒▒▒█████▒█████▒         */
+/* ███████████  ██████████ ███████████ ▒▒▒███████▒      ▒▒███ ▒▒███           */
+/* ▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒         ▒▒▒   ▒▒▒           */
 static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
 static KeySym mappedkeys[] = { -1 };
 static uint forcemousemod = ShiftMask;
