@@ -1,0 +1,33 @@
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -239,7 +239,6 @@
+ static void togglescratch(const Arg *arg);
+ static void togglesticky(const Arg *arg);
+ static void togglefullscr(const Arg *arg);
+-static void toggletag(const Arg *arg);
+ static void toggleview(const Arg *arg);
+ static void unfocus(Client *c, int setfocus);
+ static void unmanage(Client *c, int destroyed);
+@@ -2023,22 +2022,6 @@
+     setfullscreen(selmon->sel, !selmon->sel->isfullscreen);
+ }
+ 
+-void
+-toggletag(const Arg *arg)
+-{
+-	unsigned int newtags;
+-
+-	if (!selmon->sel)
+-		return;
+-	newtags = selmon->sel->tags ^ (arg->ui & TAGMASK);
+-	if (newtags) {
+-		selmon->sel->tags = newtags;
+-		focus(NULL);
+-		arrange(selmon);
+-	}
+-}
+-
+-void
+ toggleview(const Arg *arg)
+ {
+ 	unsigned int newtagset = selmon->tagset[selmon->seltags] ^ (arg->ui & TAGMASK);
