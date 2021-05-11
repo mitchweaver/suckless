@@ -12,6 +12,17 @@ SLOCK_VERSION=35633d45672d14bd798c478c45d1a17064701aa9    # 25 Mar 2017
 export PREFIX=${HOME}/.local
 export CFLAGS='-O2 -pipe -s -std=c99 -fstack-protector-strong'
 export LDFLAGS=-s
+
+# shellcheck disable=2155
+case $(uname) in
+    Linux)
+        if command -v nproc >/dev/null ; then
+            export NPROC="$(nproc)"
+        fi
+        ;;
+    OpenBSD)
+        export NPROC="$(sysctl -n hw.ncpu)"
+esac
 # -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 usage() {
