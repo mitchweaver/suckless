@@ -1,0 +1,22 @@
+--- tabbed/config.def.h
++++ tabbed/config.def.h
+@@ -10,7 +10,7 @@ static const char before[]      = "<";
+ static const int  tabwidth      = 200;
+ static const Bool foreground    = True;
+ static       Bool urgentswitch  = False;
+-
++static const int barHeight	= 24;
+ /*
+  * Where to place a new tab when it is opened. When npisrelative is True,
+  * then the current position is changed + newposition. If npisrelative
+--- tabbed/tabbed.c
++++ tabbed/tabbed.c
+@@ -920,7 +920,7 @@ setup(void) {
+ 	screen = DefaultScreen(dpy);
+ 	root = RootWindow(dpy, screen);
+ 	initfont(font);
+-	vbh = dc.h = dc.font.height + 2;
++	vbh = dc.h = barheight;
+ 
+ 	/* init atoms */
+ 	wmatom[WMProtocols] = XInternAtom(dpy, "WM_PROTOCOLS", False);
