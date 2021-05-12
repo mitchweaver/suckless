@@ -9,10 +9,9 @@
 /* ██║     ╚██████╔╝██║ ╚████║   ██║   ███████║ */
 /* ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝ */
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
-static const char font[] = "Hack:pixelsize=20:antialias=true:autohint=true";
+static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false";
 /* static const char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false"; */
 /* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
-/* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
 /* static const char font[] = "dweep:pixelsize=14:antialias=false:autohint=false"; */
 /* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
 /* static const char font[] = "MonteCarlo:pixelsize=12:antialias=false:autohint=false"; */
@@ -32,7 +31,7 @@ int allowwindowops = 0;
 
 unsigned int tabspaces = 4;
 static double minlatency = 8;
-static double maxlatency = 33;
+static double maxlatency = 30;
 
 /* disable bold, italic and roman fonts globally */
 int disablebold = 0;
@@ -77,6 +76,37 @@ const int boxdraw_bold = 1;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
 const int boxdraw_braille = 1;
+/*
+ *  ██████╗██╗   ██╗██████╗ ███████╗ ██████╗ ██████╗ 
+ * ██╔════╝██║   ██║██╔══██╗██╔════╝██╔═══██╗██╔══██╗
+ * ██║     ██║   ██║██████╔╝███████╗██║   ██║██████╔╝
+ * ██║     ██║   ██║██╔══██╗╚════██║██║   ██║██╔══██╗
+ * ╚██████╗╚██████╔╝██║  ██║███████║╚██████╔╝██║  ██║
+ *  ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
+ */
+/* --------------- Default shape of cursor
+ * 2: Block ("█")
+ * 4: Underline ("_")
+ * 6: Bar ("|")
+ * 7: Snowman ("☃")
+ * https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81
+ *
+ * ----------- Default style of cursor
+ * 0: Blinking block
+ * 1: Blinking block
+ * 2: Steady block ("█")
+ * 3: Blinking underline
+ * 4: Steady underline ("_")
+ * 5: Blinking bar
+ * 6: Steady bar ("|")
+ * 7: Blinking snowman
+ * 8: Steady snowman
+ */
+static unsigned int cursorshape = 2;
+static unsigned int cursorstyle = 2;
+static Rune stcursor = 0x2603; /* snowman (U+2603) */
+
+
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* █████   █████████  ██████   █████    ███████    ███████████   ██████████   */
 /* ▒███   ███▒▒▒▒▒███▒▒██████ ▒▒███   ███▒▒▒▒▒███ ▒▒███▒▒▒▒▒███ ▒▒███▒▒▒▒▒█   */
@@ -101,7 +131,6 @@ static unsigned int defaultattr = 11;
 static unsigned int mouseshape = XC_xterm;
 static unsigned int mousefg = 7;
 static unsigned int mousebg = 0;
-static unsigned int cursorshape = 2;
 char *termname = "st-256color";
 static int bellvolume = 0;
 static unsigned int cursorthickness = 2;
