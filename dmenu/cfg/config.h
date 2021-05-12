@@ -1,7 +1,8 @@
 static const char *fonts[] = {
-    "Hack:pixelsize=20:antialias=true:autohint=true",
+    "spleen:pixelsize=22:antialias=true:autohint=true",
     "ShureTechMono Nerd Font:pixelsize=22:antialias=true:autohint=true",
     "Terminus:pixelsize=22:antialias=false:autohint=false",
+    "Hack:pixelsize=20:antialias=true:autohint=true",
     "Noto Color Emoji:pixelsize=22:antialias=true:autohint=true",
     "Unifont:pixelsize=22"
 };

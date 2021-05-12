@@ -31,7 +31,7 @@ int allowwindowops = 0;
 
 unsigned int tabspaces = 4;
 static double minlatency = 8;
-static double maxlatency = 30;
+static double maxlatency = 33;
 
 /* disable bold, italic and roman fonts globally */
 int disablebold = 0;
@@ -73,7 +73,6 @@ Shortcut shortcuts[] = {
 /* 0: disable (render all U25XX glyphs normally from the font). */
 const int boxdraw = 1;
 const int boxdraw_bold = 1;
-
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
 const int boxdraw_braille = 1;
 /*
@@ -88,9 +87,7 @@ const int boxdraw_braille = 1;
  * 2: Block ("█")
  * 4: Underline ("_")
  * 6: Bar ("|")
- * 7: Snowman ("☃")
  * https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81
- *
  * ----------- Default style of cursor
  * 0: Blinking block
  * 1: Blinking block
@@ -99,8 +96,6 @@ const int boxdraw_braille = 1;
  * 4: Steady underline ("_")
  * 5: Blinking bar
  * 6: Steady bar ("|")
- * 7: Blinking snowman
- * 8: Steady snowman
  */
 static unsigned int cursorshape = 2;
 static unsigned int cursorstyle = 2;

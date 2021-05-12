@@ -17,8 +17,8 @@ static const int horizpadbar = 2; // horizontal padding for statusbar
 static const int vertpadbar  = 4; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 static const char*fonts[] = {
+    "spleen:pixelsize=22:antialias=true;autohint=true",
     "Shure Tech Mono Nerd Font:pixelsize=22",
-    /* "RobotoMono Nerd Font Mono:pixelsize=22:antialias=true:autohint=true", */
     "Terminus:pixelsize=22:antialias=false:autohint=false",
     "Terminess (TTF) Nerd Font:pixelsize=22:antialias=true:autohiint=true",
 };
