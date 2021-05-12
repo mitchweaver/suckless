@@ -1,10 +1,10 @@
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 36
-#define BORDERPX_START 6
+#define GAPS_START 30
+#define BORDERPX_START 4
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static const int topbar  = 0;
+static const int topbar  = 1;
 /* -*-*-*-*-*-*-*-*- FLOATING BAR -*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* static const int vertpad     = GAPS_START - GAPS_START / 3; // vertical padding of bar */
 /* static const int sidepad     = GAPS_START - GAPS_START / 3; // horizontal padding of bar */
@@ -16,11 +16,11 @@ static const int sidepad     = 0; // horizontal padding of bar
 static const int horizpadbar = 2; // horizontal padding for statusbar
 static const int vertpadbar  = 4; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-// Fonts - matches first in order 
 static const char*fonts[] = {
     "Shure Tech Mono Nerd Font:pixelsize=22",
-    "Terminess (TTF) Nerd Font:pixelsize=22",
-    "Terminus:pixelsize=22",
+    /* "RobotoMono Nerd Font Mono:pixelsize=22:antialias=true:autohint=true", */
+    "Terminus:pixelsize=22:antialias=false:autohint=false",
+    "Terminess (TTF) Nerd Font:pixelsize=22:antialias=true:autohiint=true",
 };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
@@ -33,11 +33,12 @@ static const int CORNER_RADIUS = 0;
 #define ALPHA_90_PERCENT 0xe4u
 #define ALPHA_85_PERCENT 0xd8u
 #define ALPHA_80_PERCENT 0xb6u
+#define ALPHA_75_PERCENT 0xb1u
 #define DONT_CHANGE OPAQUE
 static const unsigned int alphas[][3] = {
 	/*             foreground baralpha  borderalpha     */
-	[SchemeNorm] = { DONT_CHANGE, OPAQUE, DONT_CHANGE },
-	[SchemeSel]  = { DONT_CHANGE, OPAQUE, DONT_CHANGE },
+	[SchemeNorm] = { DONT_CHANGE, ALPHA_75_PERCENT, DONT_CHANGE },
+	[SchemeSel]  = { DONT_CHANGE, ALPHA_75_PERCENT, DONT_CHANGE },
 };
 
 /* static const unsigned int ulinepad = 5;	/1* horizontal padding between the underline and tag *1/ */
@@ -89,9 +90,9 @@ static const int showbar = 1;
 static const float mfact = 0.5;
 static const Layout layouts[] = {
     { "|  ", tile },
-    { "| 缾 ", NULL }, // floating
-    { "| C ", col  }, // column
-    /* { "|  ", NULL }, // floating */
+    { "|  ", NULL }, // floating
+    /* { "| C ", col  }, // column */
+    /* { "| 缾 ", NULL }, // floating */
 };
 
 #define MODKEY Mod1Mask
@@ -116,7 +117,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,  XK_l,      setmfact,      {.f = +0.05} },
     { MODKEY,            XK_t,      setlayout,     {.v = &layouts[0]} }, // tile
     { MODKEY,            XK_f,      setlayout,     {.v = &layouts[1]} }, // floating
-    { MODKEY,            XK_c,      setlayout,     {.v = &layouts[2]} }, // column
+    /* { MODKEY,            XK_c,      setlayout,     {.v = &layouts[2]} }, // column */
     { MODKEY,            XK_b,      togglebar,     {0} },
     { MODKEY,            XK_s,      togglesticky,  {0} },
     { MODKEY|ShiftMask,  XK_space,  togglefloating,{0} },

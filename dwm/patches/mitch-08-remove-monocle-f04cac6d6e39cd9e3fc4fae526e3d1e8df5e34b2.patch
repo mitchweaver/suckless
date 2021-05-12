@@ -1,5 +1,5 @@
 --- dwm/dwm.c
-+++ dwm/dwm.c.new
++++ dwm/dwm.c
 @@ -200,7 +200,6 @@
  static void manage(Window w, XWindowAttributes *wa);
  static void mappingnotify(XEvent *e);

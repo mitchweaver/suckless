@@ -4,7 +4,24 @@
 #
 # wrapper for suckless simple terminal
 #
-# ensures even terminal size across different machines
-#
 
-nohup st -c 'Simple Terminal' -t 'Simple Terminal' "$@" >/dev/null 2>&1 &
+case $1 in
+    -h|--help)
+        >&2 printf 'Usage: %s [-t]\n' "${0##*/}"
+        ;;
+    -t|--tabbed)
+        shift
+        nohup tabbed -c -k -n 'Simple Terminal' -r 2 \
+            st \
+            -w '' \
+            -c 'Simple Terminal' \
+            -t 'Simple Terminal' \
+            "$@" >/dev/null 2>&1 &
+        ;;
+    *)
+        nohup \
+            st \
+            -c 'Simple Terminal' \
+            -t 'Simple Terminal' \
+            "$@" >/dev/null 2>&1 &
+esac
