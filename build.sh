@@ -9,6 +9,9 @@ SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
 SENT_VERSION=2649e8d5334f7e37a1710c60fb740ecfe91b9f9e     # 13 May 2020
 SLOCK_VERSION=35633d45672d14bd798c478c45d1a17064701aa9    # 25 Mar 2017
 
+# do not remove this, needed for order of patches!
+export LC_ALL=C
+
 export PREFIX=${HOME}/.local
 export CFLAGS='-O2 -pipe -s -std=c99 -fstack-protector-strong'
 export LDFLAGS=-s
