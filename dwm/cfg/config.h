@@ -30,10 +30,11 @@ static const int CORNER_RADIUS = 0;
 
 // defined as 0-255 in hex (unsigned), with 255 being opaque
 // OPAQUE = 0xffu, defined in the patch
-#define ALPHA_90_PERCENT 0xe4u
+#define ALPHA_90_PERCENT 0xe5u
 #define ALPHA_85_PERCENT 0xd8u
-#define ALPHA_80_PERCENT 0xb6u
-#define ALPHA_75_PERCENT 0xb1u
+#define ALPHA_80_PERCENT 0xccu
+#define ALPHA_75_PERCENT 0xbfu
+#define ALPHA_70_PERCENT 0xb2u
 #define DONT_CHANGE OPAQUE
 static const unsigned int alphas[][3] = {
 	/*             foreground baralpha  borderalpha     */
@@ -55,7 +56,6 @@ static const Rule rules[] = {
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { "pop",         NULL,     "pop",      0,         0,           1,          -1 },
     { "term",        NULL,     "term",     0,         1,           0,          -1 },
-    { "x9term",      NULL,     "x9term",   0,         0,           1,          -1 },
     { "floating-st", NULL,     "floating-st", 0,      1,           1,          -1 },
     { "Simple Terminal", NULL, NULL,       0,         1,           0,          -1 },
     { NULL,          NULL, "Simple Terminal",       0,         1,           0,          -1 },
