@@ -1,10 +1,3 @@
-*bookmarks*
-*cookies.txt
-*history.txt
-*cache
-*certificates
-*history*
-*cache*
 *~*
 *.tar.*
 *.tgz
@@ -12,7 +5,6 @@
 *.out
 *.bak
 *.bk
-*.cache
 *.tmp
 *.temp
 *.rej
@@ -28,6 +20,5 @@ quark/quark
 sent/sent
 slock/slock
 st/st
-surf/surf
 tabbed/tabbed
 slstatus/slstatus

@@ -42,10 +42,6 @@ You'll need to provide *your own* `.h` theme template, (or just dont source them
 
 ![st / tabbed](http://0x0.st/iAql.png)
 
-**[surf](http://github.com/MitchWeaver/suckless/tree/master/surf)**:
-
-![surf](http://i.imgur.com/yRY0yMg.png)
-
 ### See also
 -------
 
