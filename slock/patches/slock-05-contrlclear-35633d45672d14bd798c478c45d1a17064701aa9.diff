@@ -1,12 +1,3 @@
---- slock/config.def.h
-+++ slock/config.def.h
-@@ -10,3 +10,6 @@ static const char *colorname[NUMCOLS] = {
- 
- /* treat a cleared input like a wrong password */
- static const int failonclear = 1;
-+
-+/* allow control key to trigger fail on clear */
-+static const int controlkeyclear = 0;
 --- slock/slock.c
 +++ slock/slock.c
 @@ -180,8 +180,9 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
