@@ -8,8 +8,8 @@
 /* ██╔══╝  ██║   ██║██║╚██╗██║   ██║   ╚════██║ */
 /* ██║     ╚██████╔╝██║ ╚████║   ██║   ███████║ */
 /* ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝ */
-/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
-static const char font[] = "spleen:pixelsize=18:antialias=false:autohint=false";
+static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true";
+/* static const char font[] = "spleen:pixelsize=18:antialias=false:autohint=false"; */
 /* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false"; */
 /* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
