@@ -85,7 +85,34 @@ build() {
         cd "$name"
         make -s clean
         make -s -j"${NPROC:-1}" CC="${CC:-gcc}"
-        make -s PREFIX="$PREFIX" install
+
+        case $name in
+            slock)
+                >&2 printf '\n%s\n' 'Need to install to /usr/local due to suid:'
+                case $(uname) in
+                    Linux)
+                        sudo make -s PREFIX=/usr/local install
+                        sudo chmod u+s /usr/local/bin/slock
+                        ;;
+                    OpenBSD)
+                        doas make -s PREFIX=/usr/local install
+                        doas chmod u+s /usr/local/bin/slock
+                esac
+
+                # not all linux distros have nobody/nogroup
+                if ! grep nobody /etc/passwd >/dev/null ; then
+                    >&2 echo 'Non-priviledge user nobody does not exist, adding...'
+                    sudo useradd nobody
+                fi
+                if ! grep nogroup /etc/group >/dev/null ; then
+                    >&2 echo 'Non-priviledge group nobody does not exist, adding...'
+                    sudo groupadd nobody
+                fi
+
+                ;;
+            *)
+                make -s PREFIX="$PREFIX" install
+        esac
     done
 }
 
