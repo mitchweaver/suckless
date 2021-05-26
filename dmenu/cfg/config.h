@@ -15,15 +15,15 @@ static const char *fonts[] = {
     /* "Noto Sans CJK SC:pixelsize=22:antialias=true:autohint=true", */
     /* "Noto Sans CJK TC:pixelsize=22:antialias=true:autohint=true", */
 
-static double opacity = 0.8; // opacity patch
+/* static double opacity = 0.8; // opacity patch */
 
-static const unsigned int baralpha = 0xd0;
-static const unsigned int borderalpha = OPAQUE;
-static const unsigned int alphas[][3]      = {
-	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
-};
+/* static const unsigned int baralpha = 0xd0; */
+/* static const unsigned int borderalpha = OPAQUE; */
+/* static const unsigned int alphas[][3]      = { */
+/* 	/1*               fg      bg        border     *1/ */
+/* 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha }, */
+/* 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha }, */
+/* }; */
 
 static const unsigned int border_width = 2;
 static int fuzzy = 1;
