@@ -106,7 +106,7 @@ build() {
                 fi
                 if ! grep nogroup /etc/group >/dev/null ; then
                     >&2 echo 'Non-priviledge group nobody does not exist, adding...'
-                    sudo groupadd nobody
+                    sudo groupadd nogroup
                 fi
 
                 ;;
