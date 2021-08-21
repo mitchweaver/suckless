@@ -8,6 +8,8 @@
 /* ██╔══╝  ██║   ██║██║╚██╗██║   ██║   ╚════██║ */
 /* ██║     ╚██████╔╝██║ ╚████║   ██║   ███████║ */
 /* ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝ */
+/* static const char font[] = "Terminus:pixelsize=14:antialias=true:autohint=true"; */
+/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=14:antialias=true:autohint=true"; */
 static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true";
 /* static const char font[] = "spleen:pixelsize=18:antialias=false:autohint=false"; */
 /* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
@@ -22,9 +24,9 @@ float alpha = 0.85;             // alpha opacity patch
 const static char *plumb_cmd = "opn"; // plumber patch
 char *scroll = NULL;                  // look into using scroll later
 
-static unsigned int cols = 76;
-static unsigned int rows = 20;
-const int borderpx = 18;
+static unsigned int cols = 80;
+static unsigned int rows = 24;
+const int borderpx = 10;
 
 // security concerns regarding window operations
 // see: https://git.suckless.org/st/commit/a2a704492b9f4d2408d180f7aeeacf4c789a1d67.html

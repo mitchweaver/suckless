@@ -1,5 +1,5 @@
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-#define GAPS_START 30
+#define GAPS_START 26
 #define BORDERPX_START 4
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
@@ -19,7 +19,7 @@ static const int vertpadbar  = 4; // vertical padding for statusbar
 static const char*fonts[] = {
     /* "spleen:pixelsize=22:antialias=true;autohint=true", */
     "Shure Tech Mono Nerd Font:pixelsize=22",
-    "Terminus:pixelsize=22:antialias=false:autohint=false",
+    "Terminus:pixelsize=18:antialias=false:autohint=false",
     "Terminess (TTF) Nerd Font:pixelsize=22:antialias=true:autohiint=true",
 };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -38,8 +38,8 @@ static const int CORNER_RADIUS = 0;
 #define DONT_CHANGE OPAQUE
 static const unsigned int alphas[][3] = {
 	/*             foreground baralpha  borderalpha     */
-	[SchemeNorm] = { DONT_CHANGE, ALPHA_75_PERCENT, DONT_CHANGE },
-	[SchemeSel]  = { DONT_CHANGE, ALPHA_75_PERCENT, DONT_CHANGE },
+	[SchemeNorm] = { DONT_CHANGE, OPAQUE, DONT_CHANGE },
+	[SchemeSel]  = { DONT_CHANGE, OPAQUE, DONT_CHANGE },
 };
 
 /* static const unsigned int ulinepad = 5;	/1* horizontal padding between the underline and tag *1/ */
@@ -83,7 +83,7 @@ static const Rule rules[] = {
  * "ﯙ", "", "", "", "", "", "", "", "", "", "", "" ""
  * "", "", "", "", "", "", "", "", "", "", "", "", "ﭮ"
  */
-static const char *tags[] = { "","","", "","","" };
+static const char *tags[] = { "","","","","", "﬐" };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 static const int showbar = 1;
@@ -109,7 +109,7 @@ static Key keys[] = {
 
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- dwm commands -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY,            XK_space,  togglescratch, SH("st -t scratchpad -g 68x18") },
+    { MODKEY,            XK_space,  togglescratch, SH("st -t scratchpad -g 72x20") },
     { MODKEY,            XK_q,      killclient,    {0} },
     { MODKEY,            XK_j,      focusstack,    {.i = +1 } },
     { MODKEY,            XK_k,      focusstack,    {.i = -1 } },
@@ -133,8 +133,7 @@ static Key keys[] = {
     { 0,                 XK_F11,    togglefullscr,  {0} },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
-    TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) 
-    TAGKEYS(XK_BackSpace,5)
+    TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) TAGKEYS(XK_BackSpace,5)
 };
 
 static Button buttons[] = {
