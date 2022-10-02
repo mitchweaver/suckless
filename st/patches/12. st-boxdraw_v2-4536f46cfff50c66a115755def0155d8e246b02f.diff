@@ -481,11 +481,15 @@
  /* config.h globals */
  extern char *utmp;
  extern char *stty_args;
-@@ -120,3 +129,4 @@ extern char *termname;
- extern unsigned int defaultfg;
+
+--- st/st.h
++++ st/st.h
+@@ -147,4 +147,5 @@
  extern unsigned int defaultbg;
+ extern unsigned int defaultcs;
  extern MouseKey mkeys[];
 +extern const int boxdraw, boxdraw_bold, boxdraw_braille;
+
 --- st/x.c
 +++ st/x.c
 @@ -1118,6 +1118,8 @@ xinit(int cols, int rows)

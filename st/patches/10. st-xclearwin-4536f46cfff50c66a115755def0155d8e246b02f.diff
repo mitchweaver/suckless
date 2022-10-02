@@ -1,18 +1,18 @@
 --- st/st.c
 +++ st/st.c
-@@ -1874,10 +1874,8 @@ strhandle(void)
- 				fprintf(stderr, "erresc: invalid color j=%d, p=%s\n",
- 				        j, p ? p : "(null)");
- 			} else {
--				/*
--				 * TODO if defaultbg color is changed, borders
--				 * are dirty
--				 */
-+				if (j == defaultbg)
-+					xclearwin();
- 				redraw();
- 			}
- 			return;
+@@ -2004,11 +2004,8 @@
+                fprintf(stderr, "erresc: invalid color j=%d, p=%s\n",
+                        j, p ? p : "(null)");
+            } else {
+-               /*
+-                * TODO if defaultbg color is changed, borders
+-                * are dirty
+-                */
+                tfulldirt();
++               redraw();
+            }
+            return;
+        }
 --- st/win.h
 +++ st/win.h
 @@ -37,3 +37,4 @@ void xsetpointermotion(int);

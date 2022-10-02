@@ -29,14 +29,15 @@
   * Default columns and rows numbers
 --- st/x.c
 +++ st/x.c
-@@ -253,6 +253,7 @@ static char *opt_name  = NULL;
- static char *opt_title = NULL;
- 
- static int oldbutton = 3; /* button event on startup: 3 = release */
+@@ -265,6 +265,8 @@
+ static Cursor cursor;
+ static XColor xmousefg, xmousebg;
+
 +static int cursorblinks = 0;
- 
++
  void
  clipcopy(const Arg *dummy)
+ {
 @@ -1526,16 +1527,19 @@ xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og)
  	/* draw the new one */
  	if (IS_SET(MODE_FOCUSED)) {

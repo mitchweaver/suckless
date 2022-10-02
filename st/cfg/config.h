@@ -8,16 +8,14 @@
 /* ██╔══╝  ██║   ██║██║╚██╗██║   ██║   ╚════██║ */
 /* ██║     ╚██████╔╝██║ ╚████║   ██║   ███████║ */
 /* ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝ */
-/* static const char font[] = "Terminus:pixelsize=14:antialias=true:autohint=true"; */
+/* static const char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
+/* static const char font[] = "Terminus:pixelsize=16:antialias=false:autohint=false"; */
+static const char font[] = "Terminus:pixelsize=24:antialias=false:autohint=false";
+/* static const char font[] = "Roboto Mono:pixelsize=20:antialias=true:autohint=true"; */
+/* static const char font[] = "Roboto Mono:pixelsize=24:antialias=true:autohint=true"; */
+/* static const char font[] = "Fixedsys Excelsior:pixelsize=24:antialias=false:autohint=false"; */
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=14:antialias=true:autohint=true"; */
-static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true";
-/* static const char font[] = "spleen:pixelsize=18:antialias=false:autohint=false"; */
-/* static const char font[] = "spleen:pixelsize=20:antialias=false:autohint=false"; */
-/* static const char font[] = "Terminus:pixelsize=22:antialias=false:autohint=false"; */
-/* static const char font[] = "cozette:pixelsize=18:antialias=false:autohint=false"; */
-/* static const char font[] = "dweep:pixelsize=14:antialias=false:autohint=false"; */
-/* static const char font[] = "tewi:pixelsize=20:antialias=false:autohint=false"; */
-/* static const char font[] = "MonteCarlo:pixelsize=12:antialias=false:autohint=false"; */
+/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 float alpha = 0.85;             // alpha opacity patch

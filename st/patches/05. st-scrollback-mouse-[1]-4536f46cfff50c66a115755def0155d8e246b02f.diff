@@ -1,44 +1,46 @@
---- st/st.h	Thu Feb 27 18:16:05 2020
-+++ st/st.h	Thu Feb 27 18:16:05 2020
-@@ -76,6 +76,13 @@ typedef union {
- 	const void *v;
+--- st/st.h   2022-10-02 12:13:33.877655410 -0500
++++ st/st.h  2022-10-02 12:13:30.892658781 -0500
+@@ -77,6 +77,13 @@
+    const char *s;
  } Arg;
- 
+
 +typedef struct {
-+	 uint b;
-+	 uint mask;
-+	 void (*func)(const Arg *);
-+	 const Arg arg;
++    uint b;
++    uint mask;
++    void (*func)(const Arg *);
++    const Arg arg;
 +} MouseKey;
 +
  void die(const char *, ...);
  void redraw(void);
  void draw(void);
-@@ -122,3 +129,4 @@ extern char *termname;
- extern unsigned int tabspaces;
+@@ -127,3 +134,5 @@
  extern unsigned int defaultfg;
  extern unsigned int defaultbg;
+ extern unsigned int defaultcs;
 +extern MouseKey mkeys[];
---- st/x.c	Thu Feb 27 18:16:05 2020
-+++ st/x.c	Thu Feb 27 18:16:50 2020
-@@ -446,11 +446,20 @@
- bpress(XEvent *e)
- {
- 	struct timespec now;
-+    MouseKey *mk;
- 	int snap;
- 
- 	if (IS_SET(MODE_MOUSE) && !(e->xbutton.state & forcemousemod)) {
- 		mousereport(e);
- 		return;
-+	}
 +
-+	for (mk = mkeys; mk < mkeys + LEN(mkeys); mk++) {
-+		if (e->xbutton.button == mk->b
-+				&& match(mk->mask, e->xbutton.state)) {
-+			mk->func(&mk->arg);
-+			return;
-+		}
- 	}
- 
- 	if (mouseaction(e, 0))
+--- st/x.c    2022-10-02 12:15:07.498521980 -0500
++++ st/x.c    2022-10-02 12:16:37.796325000 -0500
+@@ -471,6 +471,7 @@
+ {
+    int btn = e->xbutton.button;
+    struct timespec now;
++    MouseKey *mk;
+    int snap;
+
+    if (1 <= btn && btn <= 11)
+@@ -481,6 +482,14 @@
+        return;
+    }
+
++   for (mk = mkeys; mk < mkeys + LEN(mkeys); mk++) {
++       if (e->xbutton.button == mk->b
++               && match(mk->mask, e->xbutton.state)) {
++           mk->func(&mk->arg);
++           return;
++       }
++   }
++
+    if (mouseaction(e, 0))
+        return;
