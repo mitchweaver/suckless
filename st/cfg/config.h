@@ -10,9 +10,10 @@
 /* ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝ */
 /* static const char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=16:antialias=false:autohint=false"; */
-static const char font[] = "Terminus:pixelsize=24:antialias=false:autohint=false";
+/* static const char font[] = "Terminus:pixelsize=24:antialias=false:autohint=false"; */
+/* static const char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false"; */
 /* static const char font[] = "Roboto Mono:pixelsize=20:antialias=true:autohint=true"; */
-/* static const char font[] = "Roboto Mono:pixelsize=24:antialias=true:autohint=true"; */
+static const char font[] = "Roboto Mono:pixelsize=26:antialias=true:autohint=true";
 /* static const char font[] = "Fixedsys Excelsior:pixelsize=24:antialias=false:autohint=false"; */
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=14:antialias=true:autohint=true"; */
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
