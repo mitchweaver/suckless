@@ -12,20 +12,8 @@ SLOCK_VERSION=35633d45672d14bd798c478c45d1a17064701aa9    # 25 Mar 2017
 # do not remove this, needed for order of patches!
 export LC_ALL=C
 
-export PREFIX=${HOME}/.local
-export CFLAGS='-O2 -pipe -s -std=c99 -fstack-protector-strong'
-export LDFLAGS=-s
-
-# shellcheck disable=2155
-case $(uname) in
-    Linux)
-        if command -v nproc >/dev/null ; then
-            export NPROC="$(nproc)"
-        fi
-        ;;
-    OpenBSD)
-        export NPROC="$(sysctl -n hw.ncpu)"
-esac
+export PREFIX="${HOME}/.local"
+export CFLAGS='-O2 -pipe -std=c99 -fstack-protector-strong'
 # -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 usage() {
@@ -83,19 +71,19 @@ build() {
         [ -f cfg/config.mk ] && cp -f cfg/config.mk "$name"/config.mk
 
         cd "$name"
-        make -s clean
-        make -s -j"${NPROC:-1}" CC="${CC:-gcc}"
+        make clean
+        make CC="${CC:-gcc}"
 
         case $name in
             slock)
                 >&2 printf '\n%s\n' 'Need to install to /usr/local due to suid:'
                 case $(uname) in
                     Linux)
-                        sudo make -s PREFIX=/usr/local install
+                        sudo make PREFIX=/usr/local install
                         sudo chmod u+s /usr/local/bin/slock
                         ;;
                     OpenBSD)
-                        doas make -s PREFIX=/usr/local install
+                        doas make PREFIX=/usr/local install
                         doas chmod u+s /usr/local/bin/slock
                 esac
 
@@ -111,7 +99,7 @@ build() {
 
                 ;;
             *)
-                make -s PREFIX="$PREFIX" install
+                make PREFIX="$PREFIX" install
         esac
     done
 }
