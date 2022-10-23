@@ -10,16 +10,16 @@
 /* ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝ */
 /* static const char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=16:antialias=false:autohint=false"; */
-/* static const char font[] = "Terminus:pixelsize=24:antialias=false:autohint=false"; */
+static const char font[] = "Terminus:pixelsize=24:antialias=false:autohint=false";
 /* static const char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false"; */
-/* static const char font[] = "Roboto Mono:pixelsize=20:antialias=true:autohint=true"; */
-static const char font[] = "Roboto Mono:pixelsize=26:antialias=true:autohint=true";
-/* static const char font[] = "Fixedsys Excelsior:pixelsize=24:antialias=false:autohint=false"; */
+
+/* static const char font[] = "Roboto Mono Nerd Font Mono:pixelsize=20:antialias=true:autohint=true"; */
+
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=14:antialias=true:autohint=true"; */
 /* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true:autohint=true"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-float alpha = 0.85;             // alpha opacity patch
+float alpha = 0.9;                   // alpha opacity patch
 const static char *plumb_cmd = "opn"; // plumber patch
 char *scroll = NULL;                  // look into using scroll later
 
