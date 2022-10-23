@@ -14,7 +14,7 @@ INCS = -I. -I/usr/include -I/usr/include/freetype2 -I${X11INC}
 LIBS = -L/usr/lib -lc -lm -L${X11LIB} -lXft -lfontconfig -lX11
 
 # OpenBSD
-INCS = -I. -I${X11INC} -I${X11INC}/freetype2
+# INCS = -I. -I${X11INC} -I${X11INC}/freetype2
 
 # FreeBSD
 #INCS = -I. -I/usr/local/include -I/usr/local/include/freetype2 -I${X11INC}

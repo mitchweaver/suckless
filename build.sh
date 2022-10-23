@@ -3,7 +3,7 @@
 # -*-*-*-*-*-*-*-*- SETTINGS -*-*-*-*-*-*-*-*-*-*-*-*-*-*--*
 DWM_VERSION=bb2e7222baeec7776930354d0e9f210cc2aaad5f      # 08 Jul 2020
 ST_VERSION=00085199039ee63acc7b1ecb7e3774a9c3552b2a       # 02 Oct 2022
-DMENU_VERSION=1a13d0465d1a6f4f74bc5b07b04c9bd542f20ba6    # 02 SEP 2020
+DMENU_VERSION=1d2b462acf1210b8f86966b8dd9bb6e36e369ee1    # 23 Oct 2022
 TABBED_VERSION=dabf6a25ab01107fc1e0464ee6a3e369d1626f97   # 12 May 2020
 SURF_VERSION=d068a3878b6b9f2841a49cd7948cdf9d62b55585     # 08 Feb 2019
 SENT_VERSION=2649e8d5334f7e37a1710c60fb740ecfe91b9f9e     # 13 May 2020
@@ -58,12 +58,13 @@ build() {
 
         cd "$name"
 
-        [ -d patches ] &&
-        for patch in patches/* ; do
-            printf '%s' "===> applying ${patch#patches/}..."
-            patch -s -l -p0 < "$patch" || exit 1
-            printf '%s\n' ' OK!'
-        done
+        if ls -A1q patches | grep -q . >/dev/null 2>&1 ; then
+            for patch in patches/* ; do
+                printf '%s' "===> applying ${patch#patches/}..."
+                patch -s -l -p0 < "$patch" || exit 1
+                printf '%s\n' ' OK!'
+            done
+        fi
 
         printf '%s\n\n' 'Patching succeeded!'
 
