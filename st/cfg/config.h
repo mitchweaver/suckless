@@ -103,6 +103,12 @@ static unsigned int cursorshape = 2;
 static unsigned int cursorstyle = 2;
 static Rune stcursor = 0x2603; /* snowman (U+2603) */
 
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+// if using themed_cursor patch:
+static char* mouseshape = "xterm";
+// else:
+/* static unsigned int mouseshape = XC_xterm; */
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 /* █████   █████████  ██████   █████    ███████    ███████████   ██████████   */
@@ -125,7 +131,6 @@ static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
 static KeySym mappedkeys[] = { -1 };
 static uint forcemousemod = ShiftMask;
 static unsigned int defaultattr = 11;
-static unsigned int mouseshape = XC_xterm;
 static unsigned int mousefg = 7;
 static unsigned int mousebg = 0;
 char *termname = "st-256color";
