@@ -18,7 +18,7 @@ Is everything set right but still not building? Let me know!
 
 #### I can't find `#include <dwm.h>`, what/where is that?
 
-These headers are how I include themes from my auto-rice script, which you can see [here](https://github.com/mitchweaver/bin/blob/master/rice/rice).
+These headers are how I include themes from my auto-rice script, which you can see [here](https://github.com/mitchweaver/bin/blob/master/bin/rice).
 
 This script dumps a `.h` file to the `~/.cache` directory containing the theme template.  
 This `.h` gets included in the build from `-I${HOME}/.cache/themes` in each `config.mk`.
@@ -37,10 +37,6 @@ You'll need to provide *your own* `.h` theme template, (or just dont source them
 **[dmenu](http://github.com/MitchWeaver/suckless/tree/master/dwm)**:
 
 ![dmenu](https://i.imgur.com/1E9EsSB.png)
-
-**[st / tabbed](http://github.com/MitchWeaver/suckless/tree/master/st)**:
-
-![st / tabbed](http://0x0.st/iAql.png)
 
 ### See also
 -------
