@@ -1,0 +1,60 @@
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -1742,26 +1813,37 @@
+ }
+ 
+ int
+-sendevent(Client *c, Atom proto)
++sendevent(Window w, Atom proto, int mask, long d0, long d1, long d2, long d3, long d4)
+ {
+ 	int n;
+-	Atom *protocols;
++	Atom *protocols, mt;
+ 	int exists = 0;
+ 	XEvent ev;
+ 
+-	if (XGetWMProtocols(dpy, c->win, &protocols, &n)) {
+-		while (!exists && n--)
+-			exists = protocols[n] == proto;
+-		XFree(protocols);
++	if (proto == wmatom[WMTakeFocus] || proto == wmatom[WMDelete]) {
++		mt = wmatom[WMProtocols];
++		if (XGetWMProtocols(dpy, w, &protocols, &n)) {
++			while (!exists && n--)
++				exists = protocols[n] == proto;
++			XFree(protocols);
++		}
+ 	}
++	else {
++		exists = True;
++		mt = proto;
++	}
++
+ 	if (exists) {
+ 		ev.type = ClientMessage;
+-		ev.xclient.window = c->win;
+-		ev.xclient.message_type = wmatom[WMProtocols];
++		ev.xclient.window = w;
++		ev.xclient.message_type = mt;
+ 		ev.xclient.format = 32;
+-		ev.xclient.data.l[0] = proto;
+-		ev.xclient.data.l[1] = CurrentTime;
+-		XSendEvent(dpy, c->win, False, NoEventMask, &ev);
++		ev.xclient.data.l[0] = d0;
++		ev.xclient.data.l[1] = d1;
++		ev.xclient.data.l[2] = d2;
++		ev.xclient.data.l[3] = d3;
++		ev.xclient.data.l[4] = d4;
++		XSendEvent(dpy, w, False, mask, &ev);
+ 	}
+ 	return exists;
+ }
+@@ -1775,7 +1857,7 @@
+ 			XA_WINDOW, 32, PropModeReplace,
+ 			(unsigned char *) &(c->win), 1);
+ 	}
+-	sendevent(c, wmatom[WMTakeFocus]);
++	sendevent(c->win, wmatom[WMTakeFocus], NoEventMask, wmatom[WMTakeFocus], CurrentTime, 0, 0, 0);
+ }
+ 
+ void

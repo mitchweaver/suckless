@@ -62,9 +62,6 @@ static const unsigned int ulinestroke = 2; /* thickness / height of the underlin
 static const unsigned int ulinevoffset	= 0; /* how far above the bottom of the bar the line should appear */
 static const int ulineall = 0;
 
-// theme, included from ${HOME}/.cache/themes in config.mk
-/* #include <dwm.h> */
-
 static const Rule rules[] = {
     /* class         instance  title       tags mask  iscentered   isfloating  monitor */
     { "brws",        NULL,     NULL,       1,         0,           0,          -1 },
@@ -180,16 +177,21 @@ static const int nmaster      = 1;
 
 
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-/* DEFAULT COLORS WHNE NO XRESOURCES */
+// include theme colors from ${HOME}/.cache/themes in config.mk
+// see `rice` script from my bin repository to see an example of
+// how you could generate these:
+#include <dwm.h>
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
-static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
- };
+// OTHERWISE, UNCOMMENT DEFAULT COLORS BELOW
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+/* static char normbgcolor[]           = "#222222"; */
+/* static char normbordercolor[]       = "#444444"; */
+/* static char normfgcolor[]           = "#bbbbbb"; */
+/* static char selfgcolor[]            = "#eeeeee"; */
+/* static char selbordercolor[]        = "#005577"; */
+/* static char selbgcolor[]            = "#005577"; */
+/* static char *colors[][3] = { */
+/*        /1*               fg           bg           border   *1/ */
+/*        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor }, */
+/*        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  }, */
+/*  }; */

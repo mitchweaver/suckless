@@ -1,7 +1,8 @@
 #!/bin/sh -e
 
 # -*-*-*-*-*-*-*-*- SETTINGS -*-*-*-*-*-*-*-*-*-*-*-*-*-*--*
-DWM_VERSION=bb2e7222baeec7776930354d0e9f210cc2aaad5f      # 08 Jul 2020
+DWM_VERSION=e81f17d4c196aaed6893fd4beed49991caa3e2a4      # 09 Apr 2023
+# DWM_VERSION=bb2e7222baeec7776930354d0e9f210cc2aaad5f      # 08 Jul 2020
 ST_VERSION=00085199039ee63acc7b1ecb7e3774a9c3552b2a       # 02 Oct 2022
 DMENU_VERSION=1d2b462acf1210b8f86966b8dd9bb6e36e369ee1    # 23 Oct 2022
 TABBED_VERSION=dabf6a25ab01107fc1e0464ee6a3e369d1626f97   # 12 May 2020
@@ -13,7 +14,6 @@ SLOCK_VERSION=35633d45672d14bd798c478c45d1a17064701aa9    # 25 Mar 2017
 export LC_ALL=C
 
 export PREFIX="${HOME}/.local"
-export CFLAGS='-O2 -pipe -std=c99 -fstack-protector-strong'
 # -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 usage() {
@@ -73,7 +73,7 @@ build() {
 
         cd "$name"
         make clean
-        make CC="${CC:-gcc}"
+        make
 
         case $name in
             slock)
