@@ -1,15 +1,17 @@
+diff --git dwm/dwm.c dwm/dwm.c
+index 0362114..e4e8514 100644
 --- dwm/dwm.c
 +++ dwm/dwm.c
-@@ -93,7 +93,7 @@ struct Client {
+@@ -92,7 +92,7 @@ struct Client {
  	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
  	int bw, oldbw;
  	unsigned int tags;
--	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky;
-+	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky, needresize;
+-	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
++	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, needresize;
  	Client *next;
  	Client *snext;
  	Monitor *mon;
-@@ -625,6 +625,8 @@ configurerequest(XEvent *e)
+@@ -621,6 +621,8 @@ configurerequest(XEvent *e)
  				configure(c);
  			if (ISVISIBLE(c))
  				XMoveResizeWindow(dpy, c->win, c->x, c->y, c->w, c->h);
@@ -18,7 +20,7 @@
  		} else
  			configure(c);
  	} else {
-@@ -1610,6 +1612,12 @@ showhide(Client *c)
+@@ -1611,6 +1613,12 @@ showhide(Client *c)
  	if (ISVISIBLE(c)) {
  		/* show clients top down */
  		XMoveWindow(dpy, c->win, c->x, c->y);

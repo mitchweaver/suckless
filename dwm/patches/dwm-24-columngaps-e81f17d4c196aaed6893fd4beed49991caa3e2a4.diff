@@ -1,13 +1,17 @@
+From f0792e4daf566be0304aad18e43d16c044844f16 Mon Sep 17 00:00:00 2001
+From: Georgios Oxinos <georgios.oxinos.extern@elinvar.de>
+Date: Sun, 24 Jan 2021 16:38:28 +0100
+Subject: [PATCH] [dwm][patch] patch that adds gaps to column layout
+
+---
+ config.def.h |  3 +++
+ dwm.c        | 29 +++++++++++++++++++++++++++++
+ 2 files changed, 32 insertions(+)
+
+diff --git a/dwm.c b/dwm.c
+index 4465af1..e72e00a 100644
 --- dwm/dwm.c
 +++ dwm/dwm.c
-@@ -234,6 +234,7 @@
- static void spawn(const Arg *arg);
- static void tag(const Arg *arg);
- static void tile(Monitor *);
-+static void col(Monitor *);
- static void togglebar(const Arg *arg);
- static void togglefloating(const Arg *arg);
- static void togglescratch(const Arg *arg);
 @@ -1670,6 +1670,35 @@ tagmon(const Arg *arg)
  	sendmon(selmon->sel, dirtomon(arg->i));
  }
@@ -44,3 +48,6 @@
  void
  tile(Monitor *m)
  {
+-- 
+2.27.0
+

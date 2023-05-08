@@ -1,0 +1,25 @@
+# --- dwm/config.def.h
+# +++ dwm/config.def.h	
+# @@ -21,6 +21,11 @@ static const char *colors[][3]      = {
+#  /* tagging */
+#  static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+ 
+# +static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+# +static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+# +static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+# +static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+# +
+#  static const Rule rules[] = {
+#  	/* xprop(1):
+#  	 *	WM_CLASS(STRING) = instance, class
+--- dwm/dwm.c
++++ dwm/dwm.c
+@@ -719,6 +719,8 @@ drawbar(Monitor *m)
+ 		w = TEXTW(tags[i]);
+ 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
+ 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
++		if (ulineall || m->tagset[m->seltags] & 1 << i) /* if there are conflicts, just move these lines directly underneath both 'drw_setscheme' and 'drw_text' :) */
++			drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
+ 		if (occ & 1 << i)
+ 			drw_rect(drw, x + boxs, boxs, boxw, boxw,
+ 				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,

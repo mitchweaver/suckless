@@ -1,9 +1,26 @@
+From 2550931c66e10e667ce56a6761cbadd12b331c52 Mon Sep 17 00:00:00 2001
+From: bakkeby <bakkeby@gmail.com>
+Date: Mon, 10 Aug 2020 16:45:00 +0200
+Subject: [PATCH] Steam patch
+
+Steam, and steam windows (games), trigger a ConfigureNotify request every time the window
+gets focus. More so, the configure event passed along from Steam tends to have the wrong
+x and y coordinates which can make the window, if floating, jump around the screen.
+
+This patch works around this age-old issue by ignoring the x and y co-ordinates for
+ConfigureNotify requests relating to Steam windows.
+---
+ dwm.c | 20 +++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
+
+diff --git dwm/dwm.c dwm/dwm.c
+index 4465af1..598d36d 100644
 --- dwm/dwm.c
 +++ dwm/dwm.c
 @@ -93,6 +93,7 @@ struct Client {
  	int bw, oldbw;
  	unsigned int tags;
-	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky, needresize;
+	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, needresize, issticky;
 +	int issteam;
  	Client *next;
  	Client *snext;
@@ -41,3 +58,6 @@
  			}
  			if (ev->value_mask & CWWidth) {
  				c->oldw = c->w;
+--
+2.19.1
+

@@ -1,0 +1,65 @@
+# diff -pu dwm.stickypatch/config.def.h dwm.stickyindicator/config.def.h
+# --- dwm.stickypatch/config.def.h	2021-02-28 23:51:25.118904642 -0600
+# +++ dwm.stickyindicator/config.def.h	2021-03-15 20:19:53.533323727 -0500
+# @@ -17,6 +17,8 @@ static const char *colors[][3]      = {
+#  	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+#  	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+#  };
+# +static const XPoint stickyicon[]    = { {0,0}, {4,0}, {4,8}, {2,6}, {0,8}, {0,0} }; /* represents the icon as an array of vertices */
+# +static const XPoint stickyiconbb    = {4,8};	/* defines the bottom right corner of the polygon's bounding box (speeds up scaling) */
+ 
+#  /* tagging */
+#  static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+diff -pu dwm.stickypatch/drw.c dwm.stickyindicator/drw.c
+--- dwm/drw.c	2021-02-28 23:51:06.992237482 -0600
++++ dwm/drw.c	2021-03-15 20:19:19.499990633 -0500
+@@ -248,6 +248,26 @@ drw_rect(Drw *drw, int x, int y, unsigne
+ 		XDrawRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w - 1, h - 1);
+ }
+ 
++void
++drw_polygon(Drw *drw, int x, int y, int ow, int oh, int sw, int sh, const XPoint *points, int npoints, int shape, int filled) /* wrapper function to scale and draw a polygon with X11 */
++{
++	if (!drw || !drw->scheme)
++		return;
++	XSetForeground(drw->dpy, drw->gc, drw->scheme[ColFg].pixel);
++	if (!filled) { /* reduces the scaled width and height by 1 when drawing the outline to compensate for X11 drawing the line 1 pixel over */
++		sw -= 1;
++		sh -= 1;
++	}
++	XPoint scaledpoints[npoints];
++	memcpy(scaledpoints, points, npoints);
++	for (int v = 0; v < npoints; v++)
++		scaledpoints[v] = (XPoint){ .x = points[v].x * sw / ow + x, .y = points[v].y * sh / oh + y };
++	if (filled)
++		XFillPolygon(drw->dpy, drw->drawable, drw->gc, scaledpoints, npoints, shape, CoordModeOrigin); /* Change shape to 'Convex' or 'Complex' in dwm.c if the shape is not 'Nonconvex' */
++	else
++		XDrawLines(drw->dpy, drw->drawable, drw->gc, scaledpoints, npoints, CoordModeOrigin);
++}
++
+ int
+ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lpad, const char *text, int invert)
+ {
+diff -pu dwm.stickypatch/drw.h dwm.stickyindicator/drw.h
+--- dwm/drw.h	2021-02-28 23:51:06.992237482 -0600
++++ dwm/drw.h	2021-03-01 01:34:02.739074730 -0600
+@@ -51,6 +51,7 @@ void drw_setscheme(Drw *drw, Clr *scm);
+ 
+ /* Drawing functions */
+ void drw_rect(Drw *drw, int x, int y, unsigned int w, unsigned int h, int filled, int invert);
++void drw_polygon(Drw *drw, int x, int y, int ow, int oh, int sw, int sh, const XPoint *points, int npoints, int shape, int filled);
+ int drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lpad, const char *text, int invert);
+ 
+ /* Map functions */
+diff -pu dwm.stickypatch/dwm.c dwm.stickyindicator/dwm.c
+--- dwm/dwm.c	2021-02-28 23:51:25.118904642 -0600
++++ dwm/dwm.c	2021-03-15 20:12:32.063326766 -0500
+@@ -736,6 +736,8 @@ drawbar(Monitor *m)
+ 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
+ 			if (m->sel->isfloating)
+ 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
++			if (m->sel->issticky)
++				drw_polygon(drw, x + boxs, m->sel->isfloating ? boxs * 2 + boxw : boxs, stickyiconbb.x, stickyiconbb.y, boxw, boxw * stickyiconbb.y / stickyiconbb.x, stickyicon, LENGTH(stickyicon), Nonconvex, m->sel->tags & m->tagset[m->seltags]);
+ 		} else {
+ 			drw_setscheme(drw, scheme[SchemeNorm]);
+ 			drw_rect(drw, x, 0, w, bh, 1, 1);
