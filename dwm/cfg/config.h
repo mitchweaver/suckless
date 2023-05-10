@@ -32,8 +32,9 @@ static const int vertpadbar  = 4; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 static const char*fonts[] = {
     /* "spleen:pixelsize=22:antialias=true;autohint=true", */
-    "Shure Tech Mono Nerd Font:pixelsize=22",
-    "Terminus:pixelsize=18:antialias=false:autohint=false",
+    "Shure Tech Mono Nerd Font:pixelsize=20",
+    /* "Shure Tech Mono Nerd Font:pixelsize=22", */
+    /* "Terminus:pixelsize=20:antialias=false:autohint=false", */
     "Terminess (TTF) Nerd Font:pixelsize=22:antialias=true:autohiint=true",
 };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -69,8 +70,11 @@ static const Rule rules[] = {
     { "pop",         NULL,     "pop",      0,         0,           1,          -1 },
     { "term",        NULL,     "term",     0,         1,           0,          -1 },
     { "floating-st", NULL,     "floating-st", 0,      1,           1,          -1 },
+    { "floating-kitty", NULL,  "floating-kitty", 0,   1,           1,          -1 },
+    { "kitty",       NULL,     NULL,       0,         1,           0,          -1 },
     { "Simple Terminal", NULL, NULL,       0,         1,           0,          -1 },
-    { NULL,          NULL, "Simple Terminal",       0,         1,           0,          -1 },
+    { NULL,          NULL,    "Simple Terminal", 0,   1,           0,          -1 },
+    { NULL,          NULL,    "kitty",     0,         1,           0,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { "htop",        NULL,     NULL,       0,         1,           1,          -1 },
     { "ranger",      NULL,     NULL,       0,         1,           1,          -1 },
@@ -85,6 +89,17 @@ static const Rule rules[] = {
     { "MuPDF",       NULL,     NULL,       0,         1,           0,          -1 },
     { "virt-manager", NULL,    NULL,       0,         1,           1,          -1 },
     { "Virt-manager", NULL,    NULL,       0,         1,           1,          -1 },
+    /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
+    // disc=always 10
+    // mail=always 9
+    // spotify=always 8
+    // these are tagmasks, see: https://dwm.suckless.org/customisation/tagmask
+    { "discord",     NULL,     NULL,       1 << 9,         1,           0,          -1 },
+    { "Discord",     NULL,     NULL,       1 << 9,         1,           0,          -1 },
+    { "mailspring",  NULL,     NULL,       1 << 8,         1,           0,          -1 },
+    { "Mailspring",  NULL,     NULL,       1 << 8,         1,           0,          -1 },
+    { "spotify",     NULL,     NULL,       1 << 7,         1,           0,          -1 },
+    { "Spotify",     NULL,     NULL,       1 << 7,         1,           0,          -1 },
 };
 
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -96,7 +111,8 @@ static const Rule rules[] = {
  * "", "", "", "", "", "", "", "", "", "", "", "", "ﭮ"
  */
 /* static const char *tags[] = { "","","","","", "﬐" }; */
-static const char *tags[] = { "1","2","3","4","5", "6" };
+/* static const char *tags[] = { "1","2","3","4","5", "6" }; */
+static const char *tags[] = { "1","2","3","4","5", "6", "7", "8", "9", "10" };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -147,8 +163,9 @@ static Key keys[] = {
     { MODKEY|ShiftMask,  XK_g,      setgaps,        {.i = -4}    },
     /* { 0,                 XK_F11,    togglefullscr,  {0} }, */
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3) 
-    TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) TAGKEYS(XK_BackSpace,5)
+    TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3)
+    TAGKEYS(XK_5,4) TAGKEYS(XK_6,5) TAGKEYS(XK_7,6) TAGKEYS(XK_8,7)
+    TAGKEYS(XK_9,8) TAGKEYS(XK_0,9) TAGKEYS(XK_BackSpace,9)
 };
 
 static Button buttons[] = {
