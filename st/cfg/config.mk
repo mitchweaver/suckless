@@ -17,13 +17,6 @@ INCS = -I$(X11INC) \
 	   -I${HOME}/.cache/themes
 
 # Linux
-CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600
-# OpenBSD
-# CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600 -D_BSD_SOURCE
-# NetBSD
-# CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600 -D_BSD_SOURCE -D_NETBSD_SOURCE
-
-# Linux
 LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft -lXcursor -lXrender `pkg-config --libs fontconfig` `pkg-config --libs freetype2`
 
 # OpenBSD
@@ -34,7 +27,8 @@ LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft -lXcursor -lXrender `pkg-config -
 # NetBSD
 # LIBS = -Wl,-R${X11LIB} -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft -lXrender `pkg-config --libs fontconfig` `pkg-config --libs freetype2`
 
-STCFLAGS = $(INCS) $(CPPFLAGS) $(CFLAGS)
-STLDFLAGS = $(LIBS) $(LDFLAGS)
+STCFLAGS = $(INCS) $(CPPFLAGS) $(CFLAGS) -O3 -pipe -fomit-frame-pointer -fipa-pta -fno-semantic-interposition -fno-trapping-math -fno-math-errno -fasynchronous-unwind-tables  -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=auto -fuse-linker-plugin -falign-functions=32
+STLDFLAGS = $(LIBS) $(LDFLAGS) -fuse-ld=mold -Wl,-O1 -Wl,--as-needed
+CPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600 -O3 -pipe -fomit-frame-pointer -fipa-pta -fno-semantic-interposition -fno-trapping-math -fno-math-errno -fasynchronous-unwind-tables
 
 CC = cc

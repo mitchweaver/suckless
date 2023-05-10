@@ -11,12 +11,15 @@
 /* static const char font[] = "Terminus:pixelsize=14:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=16:antialias=false:autohint=false"; */
 /* static const char font[] = "Terminus:pixelsize=24:antialias=false:autohint=false"; */
+
 /* static const char font[] = "Terminus:pixelsize=28:antialias=false:autohint=false"; */
+/* static const char font[] = "Terminus:pixelsize=32:antialias=false:autohint=false"; */
 
 /* static const char font[] = "Roboto Mono Nerd Font Mono:pixelsize=20:antialias=true"; */
 
-/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true"; */
-static const char font[] = "ShureTechMono Nerd Font:pixelsize=24:antialias=true";
+static const char font[] = "ShureTechMono Nerd Font:pixelsize=20:antialias=true";
+/* static const char font[] = "ShureTechMono Nerd Font:pixelsize=22:antialias=true"; */
+/* static const char font[] = "Hack Nerd Font:pixelsize=28:antialias=true"; */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 float alpha = 0.9;                   // alpha opacity patch

@@ -70,22 +70,19 @@ static const Rule rules[] = {
     /* class         instance  title       tags mask  iscentered   isfloating  monitor */
     { "brws",        NULL,     NULL,       1,         0,           0,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
-    { "pop",         NULL,     "pop",      0,         0,           1,          -1 },
-    { "term",        NULL,     "term",     0,         1,           0,          -1 },
-    { "floating-st", NULL,     "floating-st", 0,      1,           1,          -1 },
-    { "floating-kitty", NULL,  "floating-kitty", 0,   1,           1,          -1 },
+    /* { "term",        NULL,     "term",     0,         1,           0,          -1 }, */
+    /* { "floating-st", NULL,     "floating-st", 0,      1,           1,          -1 }, */
+    /* { "floating-kitty", NULL,  "floating-kitty", 0,   1,           1,          -1 }, */
     { "kitty",       NULL,     NULL,       0,         1,           0,          -1 },
     { "Simple Terminal", NULL, NULL,       0,         1,           0,          -1 },
     { NULL,          NULL,    "Simple Terminal", 0,   1,           0,          -1 },
     { NULL,          NULL,    "kitty",     0,         1,           0,          -1 },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { "htop",        NULL,     NULL,       0,         1,           1,          -1 },
-    { "ranger",      NULL,     NULL,       0,         1,           1,          -1 },
+    /* { "ranger",      NULL,     NULL,       0,         1,           1,          -1 }, */
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
     { "feh",         NULL,     NULL,       0,         1,           1,          -1 },
     { "mpv",         NULL,     NULL,       0,         1,           1,          -1 },
-    { "sxiv",        NULL,     NULL,       0,         1,           1,          -1 },
-    { "Sxiv",        NULL,     NULL,       0,         1,           1,          -1 },
     { "pcmanfm",     NULL,     NULL,       0,         1,           1,          -1 },
     { "Pcmanfm",     NULL,     NULL,       0,         1,           1,          -1 },
     { "mupdf",       NULL,     NULL,       0,         1,           0,          -1 },
@@ -132,7 +129,14 @@ static const Layout layouts[] = {
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) { MODKEY, KEY, view, {.ui = 1 << TAG} }, \
                          { MODKEY|ShiftMask, KEY, tag, {.ui = 1 << TAG} },
+
+// run any arbitrary shell command
 #define SH(cmd) { .v = (const char*[]) { "/bin/sh", "-c", cmd, NULL } }
+
+
+/* static const char scratchpadname[] = "scratchpad"; */
+/* static const char *scratchpadcmd[] = { "kitty", "--class", "scratchpad", "--name", scratchpadname, "-o", "initial_window_width=760", "-o", "initial_window_height=400", NULL }; */
+/* static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "72x20", "-e", "${SHELL}", NULL }; */
 
 // need this include for brightness/audio keys
 #include <X11/XF86keysym.h>
@@ -140,10 +144,9 @@ static Key keys[] = {
     //
     // NOTE: regular program bindings now handled in sxhkdrc
     //
-
     /* modifier            key        function       argument */
     /* -*-*-*-*-*-*-*- dwm commands -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    /* { MODKEY,            XK_space,  togglescratch, SH("st -t scratchpad -g 72x20") }, */
+    /* { MODKEY,            XK_space,  togglescratch, .v = scratchpadcmd }, */
     { MODKEY,            XK_q,      killclient,    {0} },
     { MODKEY,            XK_j,      focusstack,    {.i = +1 } },
     { MODKEY,            XK_k,      focusstack,    {.i = -1 } },
@@ -152,7 +155,6 @@ static Key keys[] = {
     { MODKEY,            XK_t,      setlayout,     {.v = &layouts[0]} }, // tile
     { MODKEY,            XK_f,      setlayout,     {.v = &layouts[1]} }, // floating
     /* { MODKEY,            XK_c,      setlayout,     {.v = &layouts[2]} }, // column */
-    { MODKEY,            XK_b,      togglebar,     {0} },
     { MODKEY,            XK_s,      togglesticky,  {0} },
     { MODKEY|ShiftMask,  XK_space,  togglefloating,{0} },
     { MODKEY,            XK_h,      rotatestack,   {.i = -1 } },
@@ -160,10 +162,13 @@ static Key keys[] = {
     { MODKEY,            XK_Tab,    view,          {0} },
     { MODKEY|ShiftMask|ControlMask, XK_q,      quit,           {0} },
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
-    { MODKEY|ShiftMask,  XK_k,      setsmfact,      {.f = +0.05} },
-    { MODKEY|ShiftMask,  XK_j,      setsmfact,      {.f = -0.05} },
-    { MODKEY,            XK_g,      setgaps,        {.i = +4}    },
-    { MODKEY|ShiftMask,  XK_g,      setgaps,        {.i = -4}    },
+    { MODKEY|ShiftMask,   XK_k,      setsmfact,      {.f = +0.05} },
+    { MODKEY|ShiftMask,   XK_j,      setsmfact,      {.f = -0.05} },
+    { MODKEY,             XK_g,      setgaps,        {.i = +4}    },
+    { MODKEY|ShiftMask,   XK_g,      setgaps,        {.i = -4}    },
+    { MODKEY,             XK_b,      setborderpx,    {.i = +1 } },
+    { MODKEY|ShiftMask,   XK_b,      setborderpx,    {.i = -1 } },
+    { MODKEY|ControlMask, XK_b,      togglebar,     {0} },
     /* { 0,                 XK_F11,    togglefullscr,  {0} }, */
     /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
     TAGKEYS(XK_1,0) TAGKEYS(XK_2,1) TAGKEYS(XK_3,2) TAGKEYS(XK_4,3)
