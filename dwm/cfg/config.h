@@ -53,9 +53,12 @@ static const int CORNER_RADIUS = 0;
 #define ALPHA_70_PERCENT 0xb2u
 #define DONT_CHANGE OPAQUE
 static const unsigned int alphas[][3] = {
-	/*             foreground baralpha  borderalpha     */
-	[SchemeNorm] = { DONT_CHANGE, OPAQUE, DONT_CHANGE },
-	[SchemeSel]  = { DONT_CHANGE, OPAQUE, DONT_CHANGE },
+	/*             foreground     baralpha  borderalpha     */
+	[SchemeNorm] = { DONT_CHANGE, ALPHA_80_PERCENT,   DONT_CHANGE },
+	[SchemeSel]  = { DONT_CHANGE, ALPHA_80_PERCENT,   DONT_CHANGE },
+
+	/* [SchemeNorm] = { DONT_CHANGE, OPAQUE,   DONT_CHANGE }, */
+	/* [SchemeSel]  = { DONT_CHANGE, OPAQUE,   DONT_CHANGE }, */
 };
 
 static const unsigned int ulinepad = 5;	/* horizontal padding between the underline and tag */
