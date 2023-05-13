@@ -32,11 +32,11 @@ static const int horizpadbar = 2; // horizontal padding for statusbar
 static const int vertpadbar  = 4; // vertical padding for statusbar
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- */
 static const char*fonts[] = {
-    /* "spleen:pixelsize=22:antialias=true;autohint=true", */
-    "Shure Tech Mono Nerd Font:pixelsize=20",
     /* "Shure Tech Mono Nerd Font:pixelsize=22", */
     /* "Terminus:pixelsize=20:antialias=false:autohint=false", */
-    "Terminess (TTF) Nerd Font:pixelsize=22:antialias=true:autohiint=true",
+    /* "TerminessTTF Nerd Font Mono:pixelsize=22:antialias=true:autohiint=true", */
+    "Shure Tech Mono Nerd Font:pixelsize=20",
+    "DejaVu Sans Mono:pixelsize=24"
 };
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
@@ -113,7 +113,12 @@ static const Rule rules[] = {
  */
 /* static const char *tags[] = { "","","","","", "﬐" }; */
 /* static const char *tags[] = { "1","2","3","4","5", "6" }; */
-static const char *tags[] = { "1","2","3","4","5", "6", "7", "8", "9", "10" };
+/* static const char *tags[] = { "1","2","3","4","5", "6", "7", "8", "9", "10" }; */
+static const char *tags[] = { "","","","","", "", "", "", "", "﬐" };
+/* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+static const char ptagf[] = "[%s. %s]";	/* format of a tag label */
+static const char etagf[] = "[%s]";	/* format of an empty tag */
+static const int lcaselbl = 1;		/* 1 means make tag label lowercase */
 /* -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
